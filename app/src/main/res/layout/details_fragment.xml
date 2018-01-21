@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="54px"
+            android:text="爱马仕女士公文包上班首选2018新款白领必备"
+            android:textColor="#FF303030"
+            android:textSize="42px"
+            android:layout_marginLeft="74px"/>
+
+
+        <TextView
+            android:layout_marginLeft="74px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="34px"
+            android:text="品牌：爱马仕"
+            android:textColor="#838383"
+            android:textSize="36px" />
+
+        <TextView
+            android:layout_marginLeft="74px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16px"
+            android:text="商品编号：201801181256"
+            android:textColor="#838383"
+            android:textSize="36px"  />
+
+        <TextView
+            android:layout_marginLeft="74px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16px"
+            android:text="颜色：粉色"
+            android:textColor="#838383"
+            android:textSize="36px"  />
+
+        <TextView
+            android:layout_marginLeft="74px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16px"
+            android:text="材质：真牛品"
+            android:textColor="#838383"
+            android:textSize="36px" />
+
+        <TextView
+            android:layout_marginLeft="74px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16px"
+            android:text="尺寸：420*255*155mm"
+            android:textColor="#838383"
+            android:textSize="36px"  />
+
+    <View
+        android:layout_marginTop="48px"
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:background="#F1F1F1"/>
+
+
+    <TextView
+        android:layout_marginLeft="74px"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="74px"
+        android:text="内容描述"
+        android:textColor="#838383"
+        android:textSize="14sp" />
+
+
+    <ImageView
+        android:layout_gravity="center"
+        android:layout_width="960px"
+        android:layout_height="960px"
+        android:src="@drawable/mo1"
+        android:scaleType="fitXY"/>
+
+
+    <TextView
+        android:layout_marginLeft="74px"
+        android:layout_marginTop="74px"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="cant/侧面"
+        android:textColor="#838383"
+        android:textSize="16sp" />
+
+
+    <ImageView
+        android:layout_gravity="center"
+        android:layout_width="960px"
+        android:layout_height="960px"
+        android:src="@drawable/mo1"
+        android:scaleType="fitXY"/>
+
+
+</LinearLayout>
