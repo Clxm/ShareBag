@@ -97,14 +97,49 @@ public class LoginActivity extends BaseActivity {
             case R.id.login_forget://忘记密码
                 break;
             case R.id.login_qq://QQ登录
-                Toast.makeText(this, "QQ登录", Toast.LENGTH_SHORT).show();
-
+//                Toast.makeText(this, "QQ登录", Toast.LENGTH_SHORT).show();
+                UMShareAPI.get(this).getPlatformInfo(this, SHARE_MEDIA.QQ, authListener);
                 break;
             case R.id.login_weixin://微信登录
-                Toast.makeText(this, "微信登录", Toast.LENGTH_SHORT).show();
+                UMShareAPI.get(this).getPlatformInfo(this, SHARE_MEDIA.WEIXIN, authListener);
+//                Toast.makeText(this, "微信登录", Toast.LENGTH_SHORT).show();
                 break;
         }
     }
+    UMAuthListener authListener=new UMAuthListener() {
+        @Override
+        public void onStart(SHARE_MEDIA share_media) {
+
+        }
+
+        @Override
+        public void onComplete(SHARE_MEDIA share_media, int i, Map<String, String> map) {
+            Toast.makeText(LoginActivity.this, "成功", Toast.LENGTH_SHORT).show();
+            String s = map.get("name");
+            String s1 = map.get("uid");
+            String s2 = map.get("iconurl");
+            String s3 = map.get("gender");
+            Toast.makeText(LoginActivity.this, s+s1+s2+s3, Toast.LENGTH_SHORT).show();
+
+
+
+
+
+
+
+
+        }
+
+        @Override
+        public void onError(SHARE_MEDIA share_media, int i, Throwable throwable) {
+
+        }
+
+        @Override
+        public void onCancel(SHARE_MEDIA share_media, int i) {
+
+        }
+    };
 
     private void goLogin() {
         Map<String, String> map = new HashMap<>();
@@ -119,11 +154,11 @@ public class LoginActivity extends BaseActivity {
 
                 if (info.equals("1")){
                     String username = loginBean.getMsg().getUsername();//用户名
-                    String password = loginBean.getMsg().getPassword();
-                    String gender = (String) loginBean.getMsg().getGender();
-                    String id = loginBean.getMsg().getId();
+                    String password = loginBean.getMsg().getPassword();//密码
+                    String gender = (String) loginBean.getMsg().getGender();//性别
+                    String id = loginBean.getMsg().getId();//id
                     String nickname = (String) loginBean.getMsg().getName();//昵称
-                    String iconurl = (String) loginBean.getMsg().getIconurl();
+                    String iconurl = (String) loginBean.getMsg().getIconurl();//头像
 
                     FileUtil.saveToPre1(LoginActivity.this, username, password,id,gender,nickname,iconurl);
 
@@ -175,6 +210,7 @@ public class LoginActivity extends BaseActivity {
             String iconurl = data.get("iconurl");
             String gender = data.get("gender");
             Toast.makeText(getApplicationContext(),name+uid+gender+iconurl , Toast.LENGTH_SHORT).show();
+            FileUtil.saveToPre1(LoginActivity.this, "","",uid,gender,name,iconurl);
 
         }
 
@@ -188,54 +224,5 @@ public class LoginActivity extends BaseActivity {
             Toast.makeText( getApplicationContext(), "Authorize cancel", Toast.LENGTH_SHORT).show();
         }
     };
-
-
-
-//    UMAuthListener authListener = new UMAuthListener() {
-//        /**
-//         * @desc 授权开始的回调
-//         * @param platform 平台名称
-//         */
-//        @Override
-//        public void onStart(SHARE_MEDIA platform) {
-//
-//        }
-//
-//        /**
-//         * @desc 授权成功的回调
-//         * @param platform 平台名称
-//         * @param action 行为序号，开发者用不上
-//         * @param data 用户资料返回
-//         */
-//        @Override
-//        public void onComplete(SHARE_MEDIA platform, int action, Map<String, String> data) {
-//
-//            Toast.makeText(LoginActivity.this, "成功了", Toast.LENGTH_LONG).show();
-//
-//        }
-//
-//        /**
-//         * @desc 授权失败的回调
-//         * @param platform 平台名称
-//         * @param action 行为序号，开发者用不上
-//         * @param t 错误原因
-//         */
-//        @Override
-//        public void onError(SHARE_MEDIA platform, int action, Throwable t) {
-//
-//            Toast.makeText(LoginActivity.this, "失败：" + t.getMessage(),
-//                    Toast.LENGTH_LONG).show();
-//        }
-//
-//        /**
-//         * @desc 授权取消的回调
-//         * @param platform 平台名称
-//         * @param action 行为序号，开发者用不上
-//         */
-//        @Override
-//        public void onCancel(SHARE_MEDIA platform, int action) {
-//            Toast.makeText(LoginActivity.this, "取消了", Toast.LENGTH_LONG).show();
-//        }
-//    };
 
 }

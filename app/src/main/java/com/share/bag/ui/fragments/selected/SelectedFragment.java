@@ -120,11 +120,9 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
                     intent1.putExtra("details",mList.get(position).getId());
 
                     startActivity(intent1);
-
-
-
             }
         });
+
         adapter.setCallback(new PopularAdapter.AdapterCallback() {//收藏调用
             @Override
             public void callBack(View v, int position) {
@@ -156,7 +154,6 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
                             }else {
                                 Toast.makeText(getContext(), ""+status, Toast.LENGTH_SHORT).show();
                             }
-
 
                             adapter.notifyDataSetChanged();// 刷新
 

@@ -5,6 +5,6 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@mipmap/yindaiye_1"
+        android:src="@mipmap/yindaoye13"
         android:scaleType="fitXY"/>
 </LinearLayout>

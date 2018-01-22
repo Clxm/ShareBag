@@ -24,8 +24,6 @@ public  class FileUtil {
      * @param name
      * @param pass
      */
-
-
     public static void saveToPre1(Context context, String name, String pass,String id,String gender,String nickname,String imageurl) {
         SharedPreferences sharedPreferences = context.getSharedPreferences("userinfo",context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -55,9 +53,9 @@ public  class FileUtil {
         tpass.setText(pass);
     }
 
-/*
-* 我的主页的sp
-* */
+    /*
+    * 我的主页的sp
+    * */
     public static void MinereadFromPre(Context context,  TextView nickname,ImageView touxiangurl) {
         SharedPreferences sharedPreferences = context.getSharedPreferences("userinfo",context.MODE_PRIVATE);
 
@@ -78,18 +76,26 @@ public  class FileUtil {
         Glide.with(context).load("http://baobaoapi.ldlchat.com/"+imageurl).into(touxiangurl);
         name1.setText(name);
     }
-    /*
-    * 选包收藏
-    * */
-    public static void SelectedreadFromPre(Context context, TextView tname) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences("userinfo",context.MODE_PRIVATE);
-        String name = sharedPreferences.getString("name","");
-        tname.setText(name);
 
+
+
+    /*
+    *           选包收藏
+    *
+    *       //判断登录是否成功
+    * */
+    public static void SelectedreadFromPre(Context context, TextView nickname) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("userinfo",context.MODE_PRIVATE);
+        String name = sharedPreferences.getString("nickname","");
+        nickname.setText(name);
     }
-/*
-* 清空sp内容
-* */
+
+
+
+
+    /*
+    * 清空sp内容
+    * */
     public static void shanchu(Context context) {
         SharedPreferences sharedPreferences = context.getSharedPreferences("userinfo",context.MODE_PRIVATE);
         sharedPreferences.edit().clear().commit();
