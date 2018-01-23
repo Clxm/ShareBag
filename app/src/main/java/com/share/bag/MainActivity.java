@@ -139,7 +139,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     //判断网络状态
     private void getnetwoke() {
 
-      /*  if (netwoke == null) {
+  if (netwoke == null) {
             netwoke = new Netwoke();
         }
 
@@ -149,7 +149,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
         if (getnetwoke.equals("网络无连接")) {
             setNetwork();
-        }*/
+        }
     }
 
     private void setNetwork() {

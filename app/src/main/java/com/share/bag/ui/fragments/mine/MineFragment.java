@@ -123,7 +123,7 @@ public class MineFragment extends BaseFragment {
 
         FileUtil.MinereadFromPre(getActivity(),mine_name,mineAvatar);
         if (mine_name.getText().equals("")){
-            Glide.with(getContext()).load(R.mipmap.ic_launcher).into(mineAvatar);
+            Glide.with(getContext()).load(R.drawable.touxiang22).into(mineAvatar);
             mine_name.setText("请登录");
         }
 
@@ -151,7 +151,24 @@ public class MineFragment extends BaseFragment {
             if (data!=null){
                 String name = data.getStringExtra("name");
                 String img = data.getStringExtra("img");
-                Glide.with(getContext()).load("http://baobaoapi.ldlchat.com"+img).into(mineAvatar);
+
+
+
+                String str = "1234567";
+                if(str.indexOf("23") != -1)
+                {
+                    System.out.println("包含该字符串");
+                }
+//                !img.toString().equals("Uploads")
+                if (img.indexOf("Uploads")!=-1){
+                    Glide.with(getContext()).load("http://baobaoapi.ldlchat.com"+img).into(mineAvatar);
+//                    Glide.with(getContext()).load(img).into(mineAvatar);
+                }else {
+//                    Glide.with(getContext()).load("http://baobaoapi.ldlchat.com"+img).into(mineAvatar);
+                    Glide.with(getContext()).load(img).into(mineAvatar);
+                }
+
+
 //            Glide.with(getActivity()).load("http://baobaoapi.ldlchat.com "+img).error(R.mipmap.ic_launcher).into(mineAvatar);
                 Log.e("2222222222222","http://baobaoapi.ldlchat.com "+img);
 //            Toast.makeText(getContext(), "http://baobaoapi.ldlchat.com "+img, Toast.LENGTH_SHORT).show();

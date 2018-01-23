@@ -2,6 +2,7 @@ package com.share.bag.ui.activitys.mine;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,6 +29,7 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
 /*
 * 登录界面
 * */
@@ -119,14 +121,14 @@ public class LoginActivity extends BaseActivity {
             String s1 = map.get("uid");
             String s2 = map.get("iconurl");
             String s3 = map.get("gender");
-            Toast.makeText(LoginActivity.this, s+s1+s2+s3, Toast.LENGTH_SHORT).show();
-
-
-
-
-
-
-
+            Toast.makeText(LoginActivity.this, s+s2, Toast.LENGTH_SHORT).show();
+            Log.e("TAG","---------"+s2);
+            Intent intent=new Intent();
+            intent.setClass(LoginActivity.this, MainActivity.class);
+            intent.putExtra("name",s);
+            intent.putExtra("img",s2);
+            setResult(0,intent);
+            finish();
 
         }
 
@@ -205,12 +207,19 @@ public class LoginActivity extends BaseActivity {
         }
         @Override
         public void onComplete(SHARE_MEDIA platform, int action, Map<String, String> data) {
-            String name = data.get("name");
-            String uid = data.get("uid");
-            String iconurl = data.get("iconurl");
-            String gender = data.get("gender");
-            Toast.makeText(getApplicationContext(),name+uid+gender+iconurl , Toast.LENGTH_SHORT).show();
-            FileUtil.saveToPre1(LoginActivity.this, "","",uid,gender,name,iconurl);
+//            String name = data.get("name");
+//            String uid = data.get("uid");
+//            String iconurl = data.get("iconurl");
+//            String gender = data.get("gender");
+//            Toast.makeText(getApplicationContext(),name+uid+gender+iconurl , Toast.LENGTH_SHORT).show();
+//            FileUtil.saveToPre1(LoginActivity.this, "","",uid,gender,name,iconurl);
+
+
+
+
+
+
+
 
         }
 
