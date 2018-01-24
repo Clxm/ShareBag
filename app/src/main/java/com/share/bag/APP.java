@@ -14,7 +14,7 @@ import com.umeng.socialize.UMShareAPI;
 public class APP extends Application{
 
     public static AppCompatActivity context;
-    // Ument代码块
+
     {//                             wx38f75c7fdb68b2bf      5327c868524043b95beae393f5e586ff
 //        PlatformConfig.setWeixin("wx38f75c7fdb68b2bf", "bf141bbadd477a5d81397c1f5b79113e");
         PlatformConfig.setWeixin("wx38f75c7fdb68b2bf", "5327c868524043b95beae393f5e586ff");
