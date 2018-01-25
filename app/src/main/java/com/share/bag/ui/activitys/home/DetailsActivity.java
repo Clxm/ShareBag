@@ -347,6 +347,9 @@ public class DetailsActivity extends BaseActivity {
         });
 
     }
+
+
+
     private void QQShareWeb(String thumb_img){
         UMImage thumb = new UMImage(DetailsActivity.this,thumb_img);
         UMWeb web = new UMWeb("https://www.baidu.com/");

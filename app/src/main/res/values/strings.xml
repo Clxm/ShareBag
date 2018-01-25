@@ -73,5 +73,5 @@
 
     <string name="my_wallet">我的钱包</string>
     <string name="confirm_rent">确认租</string>
-
+    <string name="confirm_buy">确认买</string>
 </resources>

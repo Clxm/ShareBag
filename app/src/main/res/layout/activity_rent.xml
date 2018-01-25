@@ -70,7 +70,7 @@
 
 
                 <TextView
-                    android:id="@+id/rent"
+                    android:id="@+id/buy_rent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
@@ -86,10 +86,10 @@
                     android:id="@+id/rent_22"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignBaseline="@+id/rent"
-                    android:layout_alignBottom="@+id/rent"
+                    android:layout_alignBaseline="@+id/buy_rent"
+                    android:layout_alignBottom="@+id/buy_rent"
                     android:layout_marginStart="58px"
-                    android:layout_toEndOf="@+id/rent"
+                    android:layout_toEndOf="@+id/buy_rent"
                     android:text="12345678901"
                     android:textColor="#FF303030"
                     android:textSize="42px" />
@@ -98,8 +98,8 @@
                     android:id="@+id/rent_11"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignStart="@+id/rent"
-                    android:layout_below="@+id/rent"
+                    android:layout_alignStart="@+id/buy_rent"
+                    android:layout_below="@+id/buy_rent"
                     android:layout_marginTop="30px"
                     android:text="北京市昌平南区回龙观镇珠江摩尔大厦"
                     android:textColor="#FF838383"

@@ -23,7 +23,6 @@ import com.alipay.sdk.app.PayTask;
 import com.share.bag.R;
 import com.share.bag.SBUrls;
 import com.share.bag.alipay.AuthResult;
-import com.share.bag.alipay.OrderInfoUtil2_0;
 import com.share.bag.alipay.PayResult;
 import com.share.bag.entity.MayBean;
 import com.share.bag.utils.okhttp.OkHttpUtils;
@@ -68,6 +67,57 @@ public class RentActivity extends AppCompatActivity {
 
     int number;
     private PopupWindow window1;
+    private String status;
+    private String info;
+    private Handler mHandler = new Handler() {
+        @SuppressWarnings("unused")
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case SDK_PAY_FLAG: {
+                    @SuppressWarnings("unchecked")
+                    PayResult payResult = new PayResult((Map<String, String>) msg.obj);
+                    /**
+                     对于支付结果，请商户依赖服务端的异步通知结果。同步通知结果，仅作为支付结束的通知。
+                     */
+                    String resultInfo = payResult.getResult();// 同步返回需要验证的信息
+                    String resultStatus = payResult.getResultStatus();
+                    // 判断resultStatus 为9000则代表支付成功
+                    if (TextUtils.equals(resultStatus, "9000")) {
+                        // 该笔订单是否真实支付成功，需要依赖服务端的异步通知。
+                        Toast.makeText(RentActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
+                    } else {
+                        // 该笔订单真实的支付结果，需要依赖服务端的异步通知。
+                        Toast.makeText(RentActivity.this, "支付失败", Toast.LENGTH_SHORT).show();
+                    }
+                    break;
+                }
+                case SDK_AUTH_FLAG: {
+                    @SuppressWarnings("unchecked")
+                    AuthResult authResult = new AuthResult((Map<String, String>) msg.obj, true);
+                    String resultStatus = authResult.getResultStatus();
+
+                    // 判断resultStatus 为“9000”且result_code
+                    // 为“200”则代表授权成功，具体状态码代表含义可参考授权接口文档
+                    if (TextUtils.equals(resultStatus, "9000") && TextUtils.equals(authResult.getResultCode(), "200")) {
+                        // 获取alipay_open_id，调支付时作为参数extern_token 的value
+                        // 传入，则支付账户为该授权账户
+                        Toast.makeText(RentActivity.this,
+                                "授权成功\n" + String.format("authCode:%s", authResult.getAuthCode()), Toast.LENGTH_SHORT)
+                                .show();
+                    } else {
+                        // 其他状态值则为授权失败
+                        Toast.makeText(RentActivity.this,
+                                "授权失败" + String.format("authCode:%s", authResult.getAuthCode()), Toast.LENGTH_SHORT).show();
+
+                    }
+                    break;
+                }
+                default:
+                    break;
+            }
+        };
+    };
+
 
 
     @Override
@@ -126,7 +176,7 @@ public class RentActivity extends AppCompatActivity {
     private void initView() {
         rent_return = (ImageView) findViewById(R.id.rent_return);
         imageView3 = (ImageView) findViewById(R.id.imageView3);
-        rent = (TextView) findViewById(R.id.rent);
+        rent = (TextView) findViewById(R.id.buy_rent);
         rent_22 = (TextView) findViewById(R.id.rent_22);
         rent_11 = (TextView) findViewById(R.id.rent_11);
         rent_address = (RelativeLayout) findViewById(R.id.rent_address);
@@ -187,7 +237,7 @@ public class RentActivity extends AppCompatActivity {
         pay_zfb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(RentActivity.this, "支付宝", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(RentActivity.this, "支付宝", Toast.LENGTH_SHORT).show();
 
                 Map<String,String> maymap=new HashMap<String, String>();
                 
@@ -203,15 +253,15 @@ public class RentActivity extends AppCompatActivity {
                 maymap.put("discount_price","");//优惠卷价格（discount_price）（）
                 maymap.put("discount_id","");//优惠卷id
                 maymap.put("deposit","200");//押金（单个的实际应付押金）
-                
+
                 OkHttpUtils.getInstance().post(SBUrls.PAY, maymap, new MyNetWorkCallback<MayBean>() {
                     @Override
                     public void onSuccess(MayBean mayBean) {
-                        String info = mayBean.getInfo();
-                        String status = mayBean.getStatus();
-                        Toast.makeText(RentActivity.this, status+"====="+info, Toast.LENGTH_SHORT).show();
+                        info = mayBean.getInfo();
+                        status = mayBean.getStatus();
+//                        Toast.makeText(RentActivity.this, status +"====="+ info, Toast.LENGTH_SHORT).show();
+                        payV2();
 
-                        payV2(info);
 
                     }
 
@@ -226,56 +276,10 @@ public class RentActivity extends AppCompatActivity {
 
 
     }
-    private Handler mHandler = new Handler() {
-        @SuppressWarnings("unused")
-        public void handleMessage(Message msg) {
-            switch (msg.what) {
-                case SDK_PAY_FLAG: {
-                    @SuppressWarnings("unchecked")
-                    PayResult payResult = new PayResult((Map<String, String>) msg.obj);
-                    /**
-                     对于支付结果，请商户依赖服务端的异步通知结果。同步通知结果，仅作为支付结束的通知。
-                     */
-                    String resultInfo = payResult.getResult();// 同步返回需要验证的信息
-                    String resultStatus = payResult.getResultStatus();
-                    // 判断resultStatus 为9000则代表支付成功
-                    if (TextUtils.equals(resultStatus, "9000")) {
-                        // 该笔订单是否真实支付成功，需要依赖服务端的异步通知。
-                        Toast.makeText(RentActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
-                    } else {
-                        // 该笔订单真实的支付结果，需要依赖服务端的异步通知。
-                        Toast.makeText(RentActivity.this, "支付失败", Toast.LENGTH_SHORT).show();
-                    }
-                    break;
-                }
-                case SDK_AUTH_FLAG: {
-                    @SuppressWarnings("unchecked")
-                    AuthResult authResult = new AuthResult((Map<String, String>) msg.obj, true);
-                    String resultStatus = authResult.getResultStatus();
 
-                    // 判断resultStatus 为“9000”且result_code
-                    // 为“200”则代表授权成功，具体状态码代表含义可参考授权接口文档
-                    if (TextUtils.equals(resultStatus, "9000") && TextUtils.equals(authResult.getResultCode(), "200")) {
-                        // 获取alipay_open_id，调支付时作为参数extern_token 的value
-                        // 传入，则支付账户为该授权账户
-                        Toast.makeText(RentActivity.this,
-                                "授权成功\n" + String.format("authCode:%s", authResult.getAuthCode()), Toast.LENGTH_SHORT)
-                                .show();
-                    } else {
-                        // 其他状态值则为授权失败
-                        Toast.makeText(RentActivity.this,
-                                "授权失败" + String.format("authCode:%s", authResult.getAuthCode()), Toast.LENGTH_SHORT).show();
 
-                    }
-                    break;
-                }
-                default:
-                    break;
-            }
-        };
-    };
 
-    public void payV2(String v) {
+    public void payV2() {
         if (TextUtils.isEmpty(APPID) || (TextUtils.isEmpty(RSA2_PRIVATE) && TextUtils.isEmpty(RSA_PRIVATE))) {
             new AlertDialog.Builder(this).setTitle("警告").setMessage("需要配置APPID | RSA_PRIVATE")
                     .setPositiveButton("确定", new DialogInterface.OnClickListener() {
@@ -286,7 +290,8 @@ public class RentActivity extends AppCompatActivity {
                     }).show();
             return;
         }
-
+        Toast.makeText(RentActivity.this, status +"====="+ info, Toast.LENGTH_SHORT).show();
+        android.util.Log.e("TAG","----------"+info);
         /**
          * 这里只是为了方便直接向商户展示支付宝的整个支付流程；所以Demo中加签过程直接放在客户端完成；
          * 真实App里，privateKey等数据严禁放在客户端，加签过程务必要放在服务端完成；
@@ -294,20 +299,20 @@ public class RentActivity extends AppCompatActivity {
          *
          * orderInfo的获取必须来自服务端；
          */
-        boolean rsa2 = (RSA2_PRIVATE.length() > 0);
-        Map<String, String> params = OrderInfoUtil2_0.buildOrderParamMap(APPID, rsa2);
-        String orderParam = OrderInfoUtil2_0.buildOrderParam(params);
-
-        String privateKey = rsa2 ? RSA2_PRIVATE : RSA_PRIVATE;
-        String sign = OrderInfoUtil2_0.getSign(params, privateKey, rsa2);
-        final String orderInfo = orderParam + "&" + sign;
+//        boolean rsa2 = (RSA2_PRIVATE.length() > 0);
+//        Map<String, String> params = OrderInfoUtil2_0.buildOrderParamMap(APPID, rsa2);
+//        String orderParam = OrderInfoUtil2_0.buildOrderParam(params);
+//
+//        String privateKey = rsa2 ? RSA2_PRIVATE : RSA_PRIVATE;
+//        String sign = OrderInfoUtil2_0.getSign(params, privateKey, rsa2);
+//        final String orderInfo = orderParam + "&" + sign;
 
         Runnable payRunnable = new Runnable() {
 
             @Override
             public void run() {
                 PayTask alipay = new PayTask(RentActivity.this);
-                Map<String, String> result = alipay.payV2(orderInfo, true);
+                Map<String, String> result = alipay.payV2(info, true);
                 Log.i("msp", result.toString());
 
                 Message msg = new Message();
