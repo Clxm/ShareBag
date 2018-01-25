@@ -84,11 +84,6 @@ public class PersonalActivity extends BaseActivity {
 
     @Override
     public void initView() {
-//        Log.e("TAG","-----------");
-//        FileUtil.MinereadFromPre(this,personalName1,personal_avatar1);
-//        String s = personalName1.getText().toString();
-//        Toast.makeText(this, "---------"+s, Toast.LENGTH_SHORT).show();
-//        Log.e("TAG","-----------");
 
         personal_return = (ImageView) findViewById(R.id.personal_return);
         imgview = (ImageView) findViewById(R.id.personal_avatar1);

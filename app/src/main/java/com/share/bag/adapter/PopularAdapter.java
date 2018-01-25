@@ -45,6 +45,8 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.ViewHold
         }
 
 
+
+
         holder.recyler_name.setText(list.get(position).getTitle());
         holder.recyler_price.setText(list.get(position).getDays_money());
         holder.recyler_money.setText(list.get(position).getOriginalprice());

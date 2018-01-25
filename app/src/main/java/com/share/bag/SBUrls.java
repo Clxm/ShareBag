@@ -7,7 +7,19 @@ package com.share.bag;
 
 public class SBUrls {
 //    ------------------------------ url -----------------------------------------
-//    登录
+
+    //支付
+    public static final String PAY ="http://baobaoapi.ldlchat.com/index.php?s=/Home/Pay/alipaystodo.html";
+    //APP_ID
+    public static final String APPID = "2018010201523821";
+    //PID
+    public static final String PID = "2088901865907742";
+
+    public static final String RSA2_PRIVATE = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAlkR+whMRcYIybSBl5b1O4Gyv2Y00th/fxn+4tpCRkU1OmGo6l3UESg319yJCXWfIFIHRVCe+11JKiV7OyTYBVX4wC83ekqDVrVwGNBziU0ZrE2gerDRihX66xGGCs0w1TIhQsoawCH1hd61VOz6ABWp3l7yN8WM2KrXkl0OyGC2PVOO01eF9Y8cojPAm3nvOts/056C6X+o5Le9UTZ5m/AGAWOf9u3BBigG8lDrrG1P83+QON6irZcjgI55TJl9QtiNsb9W22xfbJzWVTS1xR4R1EfrkUyE4Cbw2peJSkUqIedZn2vndIN1aQ1G0uXp237rJEQiwRX6vKtm7/RpaeQIDAQAB";
+    public static final String RSA_PRIVATE = "";
+//    private static final int SDK_PAY_FLAG = 1;
+
+    //    登录
     public static final String LOGINURL = "http://baobaoapi.ldlchat.com/index.php?s=/Home/Public/login.html";
 //    注册
     public static final String REGISTEREDURL = "http://baobaoapi.ldlchat.com/index.php?s=/Home/Public/registered.html";

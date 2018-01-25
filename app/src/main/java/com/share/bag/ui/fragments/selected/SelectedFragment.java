@@ -31,12 +31,10 @@ import com.share.bag.ui.activitys.home.DetailsActivity;
 import com.share.bag.utils.okhttp.OkHttpUtils;
 import com.share.bag.utils.okhttp.callback.ByteCallBack;
 import com.share.bag.utils.okhttp.callback.MyNetWorkCallback;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -123,9 +121,10 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
             }
         });
 
+
         adapter.setCallback(new PopularAdapter.AdapterCallback() {//收藏调用
             @Override
-            public void callBack(View v, int position) {
+            public void callBack( View v, int position) {
                 if (select_user.getText().equals("")){
                     Toast.makeText(getActivity(), "请先登录"+position, Toast.LENGTH_SHORT).show();
                 }else {
@@ -146,13 +145,12 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
 //                            Toast.makeText(getActivity(), "----"+status, Toast.LENGTH_SHORT).show();
 //                            getselect();
                             if (status.toString().equals("收藏成功")){
-//                                convertView = LayoutInflater.from(getContext()).inflate(R.layout.recy_item1,null);
-//                                ImageView viewById = convertView.findViewById(R.id.recyler_Collection);
-//                                viewById.setImageResource(R.mipmap.ic_launcher);
-                                Toast.makeText(getContext(), "收藏成功"+status, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getContext(), "----"+status, Toast.LENGTH_SHORT).show();
 
+//                                getpopular();
+//                                adapter.notifyDataSetChanged();// 刷新
                             }else {
-                                Toast.makeText(getContext(), ""+status, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getContext(), "++++"+status, Toast.LENGTH_SHORT).show();
                             }
 
                             adapter.notifyDataSetChanged();// 刷新
@@ -204,7 +202,9 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
 //                Log.e("TAG",selectedBeens.toString());
                 mList.addAll(selectedBeens);
                 mLists.addAll(selectedBeens);
+
                 adapter.notifyDataSetChanged();
+
             }
 
             @Override
