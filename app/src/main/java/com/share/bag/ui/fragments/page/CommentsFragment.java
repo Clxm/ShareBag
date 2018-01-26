@@ -8,7 +8,9 @@ import com.share.bag.base.BaseFragment;
 /**
  * Created by Administrator on 2018/1/4.
  */
-
+/*
+* 详情页-评论
+* */
 public class CommentsFragment extends BaseFragment {
     @Override
     public int initLayout() {

@@ -8,6 +8,7 @@
 
 
         <TextView
+            android:id="@+id/detalis_Introduction"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="54px"
@@ -17,50 +18,135 @@
             android:layout_marginLeft="74px"/>
 
 
+
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="34px"
+        android:layout_marginLeft="74px">
+
+
         <TextView
-            android:layout_marginLeft="74px"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="34px"
-            android:text="品牌：爱马仕"
+            android:text="品牌："
+            android:textColor="#838383"
+            android:textSize="36px"/>
+        <TextView
+            android:id="@+id/detalis_brand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="爱马仕"
+            android:textColor="#838383"
+            android:textSize="36px" />
+
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16px"
+        android:layout_marginLeft="74px"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="商品编号"
+            android:textColor="#838383"
+            android:textSize="36px"  />
+
+        <TextView
+            android:id="@+id/detalis_numbering"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="201801181256"
+            android:textColor="#838383"
+            android:textSize="36px"  />
+    </LinearLayout>
+
+
+
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="16px"
+    android:layout_marginLeft="74px">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="颜色："
+        android:textColor="#838383"
+        android:textSize="36px"  />
+    <TextView
+        android:id="@+id/detalis_colour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="粉色"
+        android:textColor="#838383"
+        android:textSize="36px"  />
+
+
+</LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16px"
+        android:layout_marginLeft="74px">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="材质"
             android:textColor="#838383"
             android:textSize="36px" />
 
         <TextView
-            android:layout_marginLeft="74px"
+            android:id="@+id/detalis_material"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16px"
-            android:text="商品编号：201801181256"
-            android:textColor="#838383"
-            android:textSize="36px"  />
-
-        <TextView
-            android:layout_marginLeft="74px"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16px"
-            android:text="颜色：粉色"
-            android:textColor="#838383"
-            android:textSize="36px"  />
-
-        <TextView
-            android:layout_marginLeft="74px"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16px"
-            android:text="材质：真牛品"
+            android:text="真牛品"
             android:textColor="#838383"
             android:textSize="36px" />
 
+
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16px"
+        android:layout_marginLeft="74px">
         <TextView
-            android:layout_marginLeft="74px"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16px"
-            android:text="尺寸：420*255*155mm"
+            android:text="尺寸："
             android:textColor="#838383"
             android:textSize="36px"  />
+
+
+        <TextView
+            android:id="@+id/detalis_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="420*255*155mm"
+            android:textColor="#838383"
+            android:textSize="36px"  />
+    </LinearLayout>
+
+
+
 
     <View
         android:layout_marginTop="48px"
@@ -80,11 +166,12 @@
 
 
     <ImageView
+        android:id="@+id/detalis_description_img1"
         android:layout_gravity="center"
-        android:layout_width="960px"
-        android:layout_height="960px"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:src="@drawable/mo1"
-        android:scaleType="fitXY"/>
+       />
 
 
     <TextView
@@ -98,11 +185,11 @@
 
 
     <ImageView
+        android:id="@+id/detalis_description_img2"
         android:layout_gravity="center"
-        android:layout_width="960px"
-        android:layout_height="960px"
-        android:src="@drawable/mo1"
-        android:scaleType="fitXY"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/mo1" />
 
 
 </LinearLayout>

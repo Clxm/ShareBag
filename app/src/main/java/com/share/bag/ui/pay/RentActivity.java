@@ -1,8 +1,7 @@
 package com.share.bag.ui.pay;
 
-import android.app.AlertDialog;
+import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -32,18 +31,23 @@ import com.umeng.socialize.utils.Log;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.share.bag.SBUrls.APPID;
-import static com.share.bag.SBUrls.RSA2_PRIVATE;
-import static com.share.bag.SBUrls.RSA_PRIVATE;
-
-///////////////////////////
-
 /*
 * 确认租
 * */
 public class RentActivity extends AppCompatActivity {
     private static final int SDK_PAY_FLAG = 1;
     private static final int SDK_AUTH_FLAG = 2;
+    //支付
+    public static final String PAY ="http://baobaoapi.ldlchat.com/index.php?s=/Home/Pay/alipaystodo.html";
+    //APP_ID
+    public static final String APPID = "2018010201523821";
+    //PID
+    public static final String PID = "2088901865907742";
+
+    public static final String RSA2_PRIVATE = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAlkR+whMRcYIybSBl5b1O4Gyv2Y00th/fxn+4tpCRkU1OmGo6l3UESg319yJCXWfIFIHRVCe+11JKiV7OyTYBVX4wC83ekqDVrVwGNBziU0ZrE2gerDRihX66xGGCs0w1TIhQsoawCH1hd61VOz6ABWp3l7yN8WM2KrXkl0OyGC2PVOO01eF9Y8cojPAm3nvOts/056C6X+o5Le9UTZ5m/AGAWOf9u3BBigG8lDrrG1P83+QON6irZcjgI55TJl9QtiNsb9W22xfbJzWVTS1xR4R1EfrkUyE4Cbw2peJSkUqIedZn2vndIN1aQ1G0uXp237rJEQiwRX6vKtm7/RpaeQIDAQAB";
+    //    public static final String RSA_PRIVATE = "MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCtcC1NxkGy7Xba8RkseR4eZFJK4Crj8UtgeNKNsIpEJ3tsgVt1wrRqfXoL/y2MtoCFx/8PS4VufsPIb8FFq/rYJN2sq4X+E5FAUOQq+sjc6LccnIKGWQ/v3SB6abvqgp6L0+o4g+LtigsiTNDMIn5vq2TxlWPbVlveXL9UqpmokcFpmh2f5yZvnOTOtwy1UUWwExz2FQ0K5daz+OOoPlOy/L8ebYEUVpYIZmzvNbUE36mFrV4gh//Bgl7dTVLwLTx6zmMIJZaKUtlVjkDMuOHceuXLnmWeUkAZWph5rmMZJ6v2htPDp22uZ2A/V7Pez3uZfkiW0gZGHJj2Y7awmAhxAgMBAAECggEAFrQfihXQ1d5V97Ul6Xd1ZN8XEqwjkTEt/9PxJBEfGGreskaAtXqmaWZBir59tPTTADA9CECHl/5KHLvcXgV0UcUJq6fMY4UmN3gfViz8DEb+aWVnhLS17F1S+hNLQRiWLpGwEHPbSeMPMA9EKeS+DlouXZ2Ds9urLQGRHkEy2ij6q5uCUVwe5Q2xeGhQWSTmAaOeAZS9tMZUx3ju9ME6xdAGjAdO+PAdAjWj1oZfMA4TZfRcSywudbKF4L610NSughKFtQsyjW1EJrBSnScBWQtvTCrCjYrBTrmxNBAIStRZERkNXHnQez+X72tggJWKlvh6wim63P1Wg0NR9eN13QKBgQDxt1HfseAgsaYtrrYpoUwy8NU/fTilfmkHkHiCQHYRDXzQI4BNURNbx2smS33w7jBr2n9O91wcd6N4J6xkeiuZ/loiLU+Y0pTxl0njhxyDfJ1/cyTmjhczIlFYc4R8CtTGBxh5iz/zSMNF64k+QPUVpjzKrOkTZWfNPVTog52B2wKBgQC3r/MFLWzM1NVtgYcs+p5MeNRriTDu+oH0eYonw2LvzvvZflj8QJ6Cue9O/Wlarg56Rf+mb25iDcXZGCTPFSjk+kovYaCea0Q6pBU8yp7UmawIoQtk2scJOHnW9rMJvAj0/cfcEdDBiNINKts0HkjVACUP5zWyfaFidUukobsuowKBgBW+8Fa3ofpPASxK84h7Qmey0vyLP3VkEf7kOHM/aV/PXtM63mgWSy+OmU0wrXvncePCHIH2LwtAmCxPJWtEsneAMouwl+Cf0VaKzdLybNZHd8PnkAJN9jhbdgYHHnwqXUoTiVgl9vLkMO0xa392SJZSBlYViEJ+dQA57FGexaTRAoGBAILwRL8TE3Sr3vwxkido+4CtvVZutFgWcJ7SKL6RlCw4EuWGIG6orZWob0OSdxBx9NYKoeOFmV0CTl+jy1Fm1wDqvgkqgbGL61YV8yGjmjcY2D5KdnHNVoZnIMswjo3I4WWqplZkyLe9DWbffuSXFfnoIYNFoMx8q5cg3+wacfEbAoGAYWw4SL/jnl4A5AUHPOgY3fHUFkcBkEwz8/gPkOT2kf9LZxiuxkJPlu2BWOaDWldzRa2xQaAcb1mtN3rtzrGLDpFC7lkinlpuZlIn4YTg9caO898P1OEM4BEg62U+jse6v5zyYWv4FCl5dN3MelWDAT1EsKhBXnRIA3GZxzdRhZ8=";
+    public static final String RSA_PRIVATE = "";
+    public static final String TARGET_ID = "";
 
     private ImageView rent_return;
     private ImageView imageView3;
@@ -69,6 +73,10 @@ public class RentActivity extends AppCompatActivity {
     private PopupWindow window1;
     private String status;
     private String info;
+
+
+
+    @SuppressLint("HandlerLeak")
     private Handler mHandler = new Handler() {
         @SuppressWarnings("unused")
         public void handleMessage(Message msg) {
@@ -81,6 +89,7 @@ public class RentActivity extends AppCompatActivity {
                      */
                     String resultInfo = payResult.getResult();// 同步返回需要验证的信息
                     String resultStatus = payResult.getResultStatus();
+                    android.util.Log.e("TAG",resultStatus);
                     // 判断resultStatus 为9000则代表支付成功
                     if (TextUtils.equals(resultStatus, "9000")) {
                         // 该笔订单是否真实支付成功，需要依赖服务端的异步通知。
@@ -117,8 +126,6 @@ public class RentActivity extends AppCompatActivity {
             }
         };
     };
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -157,13 +164,8 @@ public class RentActivity extends AppCompatActivity {
         rent_submit_order.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
                 getPay();
-
-//
 //                Toast.makeText(RentActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
-
             }
         });
 
@@ -241,18 +243,18 @@ public class RentActivity extends AppCompatActivity {
 
                 Map<String,String> maymap=new HashMap<String, String>();
                 
-                maymap.put("old_price","50");//原定总价  （old_price）（租金总额：没有优惠过的总计）
-                maymap.put("new_price","50");//优惠后的价格  （new_price）（租金总额：有优惠过的总计）
+                maymap.put("old_price","50.00");//原定总价  （old_price）（租金总额：没有优惠过的总计）
+                maymap.put("new_price","50.00");//优惠后的价格  （new_price）（租金总额：有优惠过的总计）
                 maymap.put("pay_status","3");//支付类型   （pay_status   1-微信   2-钱包   3-支付宝）
-                maymap.put("is_order","2");//订单类型    （is_order    1-充值   2-购物）
-                maymap.put("deposit_num","200");//押金总和    （deposit_num）（押金）
+                maymap.put("is_order","3");//订单类型    （is_order    1-充值   2-买   3-租）
+                maymap.put("deposit_num","0.02");//押金总和    （deposit_num）（押金）
                 //订单详情表
-                maymap.put("baglist_id","1");//包id
-                maymap.put("old_price","10");//一个包的租金
-                maymap.put("new_price","10");//优惠后价格 （new_price）（租金-红包劵）
-                maymap.put("discount_price","");//优惠卷价格（discount_price）（）
-                maymap.put("discount_id","");//优惠卷id
-                maymap.put("deposit","200");//押金（单个的实际应付押金）
+//                maymap.put("baglist_id","1");//包id
+//                maymap.put("old_price","10");//一个包的租金
+//                maymap.put("new_price","0.01");//优惠后价格 （new_price）（租金-红包劵）
+//                maymap.put("discount_price","");//优惠卷价格（discount_price）（）
+//                maymap.put("discount_id","");//优惠卷id
+//                maymap.put("deposit","0.01");//押金（单个的实际应付押金）
 
                 OkHttpUtils.getInstance().post(SBUrls.PAY, maymap, new MyNetWorkCallback<MayBean>() {
                     @Override
@@ -260,8 +262,13 @@ public class RentActivity extends AppCompatActivity {
                         info = mayBean.getInfo();
                         status = mayBean.getStatus();
 //                        Toast.makeText(RentActivity.this, status +"====="+ info, Toast.LENGTH_SHORT).show();
-                        payV2();
+//                        android.util.Log.e("TAG","----------"+info);
+                        String s = info.replaceAll("&amp;", "&");
 
+//                        android.util.Log.e("TAG","ssssssssssssssss"+s);
+                        Toast.makeText(RentActivity.this, ""+s, Toast.LENGTH_SHORT).show();
+                        String ss="alipay_sdk=alipay-sdk-php-20161101&app_id=2017090608586413&biz_content=%7B%22subject%22%3A%22%5Cu548c%5Cu5408%5Cu751f%5Cu6d3b-%5Cu7f51%5Cu7edc%5Cu5546%5Cu54c1%22%2C%22out_trade_no%22%3A%22appzfb-3093-1941%22%2C%22timeout_express%22%3A%2230m%22%2C%22total_amount%22%3A%2278.00%22%2C%22product_code%22%3A%22QUICK_MSECURITY_PAY%22%7D&charset=UTF-8&format=json&method=alipay.trade.app.pay&notify_url=http%3A%2F%2Fpay.heyishenghuo.com%2Fapi%2Falirespond.php&sign_type=RSA2&timestamp=2018-01-26+11%3A48%3A33&version=1.0&sign=CuSaaHls9d2DEm5ehv%2Bx%2BPOiqNhDJgmQlSyWB6J6RkTx57Z99XtKQ%2FXfh9Atesw7y4XyqmMoewzNbp3Wq42XzvPsGA74dscFFLZzZPJxQ%2Fs8NHDxjBCvc43V%2FIZvZKg174n0AGyWGvKAE2%2FUSqP%2FmJpYabq8t9hbf2%2FJBQ8aH4juf5hIJfy8pKBnF9GQu0hIW88%2BtE5tQ6pCCJe87Ru4ZVsqXGgYqk86ovGBobNyCKJAytKDOKT5OOLsxA5e5AIm7wSLJYam3QGRlx0MAlzbDg7sUOYZyXklEB9kOuzt%2B%2B643G5bNFryG2lLuu%2BQTX5An2ABKubGTNf2G%2B7um9zDaA%3D%3D";
+                        payV2(s);
 
                     }
 
@@ -277,21 +284,9 @@ public class RentActivity extends AppCompatActivity {
 
     }
 
+    public void payV2(final String str) {
 
 
-    public void payV2() {
-        if (TextUtils.isEmpty(APPID) || (TextUtils.isEmpty(RSA2_PRIVATE) && TextUtils.isEmpty(RSA_PRIVATE))) {
-            new AlertDialog.Builder(this).setTitle("警告").setMessage("需要配置APPID | RSA_PRIVATE")
-                    .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialoginterface, int i) {
-                            //
-                            finish();
-                        }
-                    }).show();
-            return;
-        }
-        Toast.makeText(RentActivity.this, status +"====="+ info, Toast.LENGTH_SHORT).show();
-        android.util.Log.e("TAG","----------"+info);
         /**
          * 这里只是为了方便直接向商户展示支付宝的整个支付流程；所以Demo中加签过程直接放在客户端完成；
          * 真实App里，privateKey等数据严禁放在客户端，加签过程务必要放在服务端完成；
@@ -312,7 +307,7 @@ public class RentActivity extends AppCompatActivity {
             @Override
             public void run() {
                 PayTask alipay = new PayTask(RentActivity.this);
-                Map<String, String> result = alipay.payV2(info, true);
+                Map<String, String> result = alipay.payV2(str, true);//orderInfo
                 Log.i("msp", result.toString());
 
                 Message msg = new Message();
@@ -325,5 +320,6 @@ public class RentActivity extends AppCompatActivity {
         Thread payThread = new Thread(payRunnable);
         payThread.start();
     }
+
 
 }

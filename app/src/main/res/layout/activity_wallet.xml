@@ -78,7 +78,7 @@
         android:layout_alignTop="@+id/wallet_amount"
         android:layout_toEndOf="@+id/wallet_amount"
         android:background="@drawable/my_textview"
-        android:id="@+id/textView14" />
+        android:id="@+id/wallet_recharge" />
 
 
 
@@ -97,24 +97,26 @@
 
 
         <LinearLayout
-android:layout_weight="1"
+            android:id="@+id/wallet_coupons"
+            android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="150px"
-          android:gravity="center"
-            >
+            android:gravity="center"
+            android:layout_marginLeft="88px"
+            android:layout_marginRight="76px">
 
             <TextView
                 android:layout_marginRight="150px"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="         红包劵"
-                android:layout_weight="1"/>
+                android:text="红包劵" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"/>
+
             <ImageView
-                android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/dayu3"/>
@@ -130,24 +132,24 @@ android:layout_weight="1"
 
 
         <LinearLayout
+            android:id="@+id/wallet_renewed"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="150px"
             android:gravity="center"
-            >
+            android:layout_marginRight="76px"
+            android:layout_marginLeft="88px">
 
             <TextView
                 android:layout_marginRight="150px"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="         以旧换新劵"
-                android:layout_weight="1"/>
+                android:text="以旧换新劵" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"/>
             <ImageView
-                android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/dayu3"/>
@@ -163,24 +165,24 @@ android:layout_weight="1"
 
 
         <LinearLayout
+            android:id="@+id/wallet_deposit"
+            android:layout_marginLeft="88px"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="150px"
             android:gravity="center"
-            >
+            android:layout_marginRight="76px">
 
             <TextView
                 android:layout_marginRight="150px"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="         押金"
-                android:layout_weight="1"/>
+                android:text="押金" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"/>
             <ImageView
-                android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/dayu3"/>
@@ -196,24 +198,23 @@ android:layout_weight="1"
 
 
         <LinearLayout
+            android:id="@+id/wallet_rent"
+            android:layout_marginLeft="88px"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="150px"
             android:gravity="center"
-            >
+            android:layout_marginRight="76px" >
 
             <TextView
-                android:layout_marginRight="150px"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="         租金"
-                android:layout_weight="1"/>
+                android:text="租金" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"/>
             <ImageView
-                android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/dayu3"/>
@@ -229,24 +230,24 @@ android:layout_weight="1"
 
 
         <LinearLayout
-            android:layout_weight="1"
+            android:id="@+id/wallet_commission"
+            android:layout_marginLeft="88px"
             android:layout_width="match_parent"
             android:layout_height="150px"
             android:gravity="center"
-            >
+            android:layout_marginRight="76px" >
 
             <TextView
                 android:layout_marginRight="150px"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="         推广佣金"
+                android:text="推广佣金"
                 android:layout_weight="1"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"/>
             <ImageView
-                android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/dayu3"/>
@@ -262,38 +263,29 @@ android:layout_weight="1"
 
 
         <LinearLayout
+            android:id="@+id/wallet_card"
+            android:layout_marginLeft="88px"
+            android:layout_marginRight="76px"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="150px"
-            android:gravity="center"
-            >
+            android:gravity="center">
 
             <TextView
                 android:layout_marginRight="150px"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="         月卡办理"
-                android:layout_weight="1"/>
+                android:text="月卡办理" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"/>
             <ImageView
-                android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/dayu3"/>
 
         </LinearLayout>
-
-
-
-
-
-
-
-
-
 
 
     </LinearLayout>

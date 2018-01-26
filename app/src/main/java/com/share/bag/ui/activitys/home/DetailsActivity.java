@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +25,7 @@ import com.share.bag.adapter.CosTomPageAdapter;
 import com.share.bag.base.BaseActivity;
 import com.share.bag.entity.CollectionBean;
 import com.share.bag.entity.DeailsBean;
+import com.share.bag.entity.Student;
 import com.share.bag.ui.activitys.mine.LoginActivity;
 import com.share.bag.ui.fragments.page.CommentsFragment;
 import com.share.bag.ui.fragments.page.DetalisFragment;
@@ -42,6 +42,8 @@ import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.loader.ImageLoader;
 import com.zhouwei.mzbanner.CustomViewPager;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -88,6 +90,8 @@ public class DetailsActivity extends BaseActivity {
 
     private FragmentManager fragmentManager;
     private ImageView Details_shared;
+    private String description_1;
+
 
     @Override
     public int initLayout() {
@@ -100,7 +104,7 @@ public class DetailsActivity extends BaseActivity {
         Intent intent = getIntent();
         //      得到传过来的ID  通过id来取值
         tmp = intent.getStringExtra("details");
-        Log.e("sss", "initView: " + tmp);
+//        Log.e("sss", "initView: " + tmp);
         fragmentManager = getSupportFragmentManager();
         Details_shared = (ImageView) findViewById(R.id.Details_shared);
         Details_shared.setOnClickListener(new View.OnClickListener() {
@@ -129,16 +133,29 @@ public class DetailsActivity extends BaseActivity {
         OkHttpUtils.getInstance().post(SBUrls.DETAILSURL, map, new MyNetWorkCallback<DeailsBean>() {
             @Override
             public void onSuccess(DeailsBean deailsBean) {
-                List<String> img = deailsBean.getImg();
+
+                List<String> img = deailsBean.getCarousel();//carousel
 
                 for (int i = 0; i < img.size(); i++) {
-                    String s = "http://" + img.get(i);
+                    String s = "http://" + img.get(i);//http://baobaoapi.ldlchat.com/Uploads/20180108/5a531cb6077c9.jpg
                     heardimg.add(s);
                 }
 
                 //         BannerHeader Show
                 bannerHeaderShow();
                 TabPageShow();
+                String title = deailsBean.getTitle();//简介
+//                String deposit = deailsBean.getDeposit();//原价
+//                String nowprice = deailsBean.getNowprice();//租金
+                String title1 = deailsBean.getTitle();//品牌
+                String color = deailsBean.getColor();//颜色
+                String material = deailsBean.getMaterial();//材质
+                String title2 = deailsBean.getBagSize().getTitle();//尺寸
+
+                List<String> contentimg = deailsBean.getContentimg();
+                description_1 = "http://" +contentimg.get(0);
+                String description_2 = "http://" +contentimg.get(1);
+                EventBus.getDefault().post(new Student(title,title1,color,material,title2, description_1,description_2));
 
             }
 
@@ -184,6 +201,7 @@ public class DetailsActivity extends BaseActivity {
                 Toast.makeText(DetailsActivity.this, "Request unsuccessful", Toast.LENGTH_SHORT).show();
             }
         });
+
     }
 
     @Override
@@ -216,7 +234,20 @@ public class DetailsActivity extends BaseActivity {
                     Intent intent = new Intent(DetailsActivity.this, LoginActivity.class);
                     startActivity(intent);
                 } else {
+
+                    Toast.makeText(this, ""+description_1, Toast.LENGTH_SHORT).show();
+
                     Intent rentloginintent = new Intent(DetailsActivity.this, RentActivity.class);
+                    rentloginintent.putExtra("","");
+                    rentloginintent.putExtra("","");
+                    rentloginintent.putExtra("","");
+                    rentloginintent.putExtra("","");
+                    rentloginintent.putExtra("","");
+                    rentloginintent.putExtra("","");
+                    rentloginintent.putExtra("","");
+
+
+
                     startActivity(rentloginintent);
                 }
                 break;
