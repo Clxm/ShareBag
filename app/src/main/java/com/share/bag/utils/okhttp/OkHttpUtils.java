@@ -12,6 +12,8 @@ import com.share.bag.utils.SharePreUtils;
 import com.share.bag.utils.okhttp.callback.ByteCallBack;
 import com.share.bag.utils.okhttp.callback.MyNetWorkCallback;
 
+import org.json.JSONException;
+
 import java.io.IOException;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -103,7 +105,11 @@ public class OkHttpUtils implements IHttp {
                     @Override
                     public void run() {
                         //执行在主线程
-                        callback.onSuccess(getGeneric(jsonData,callback));
+                        try {
+                            callback.onSuccess(getGeneric(jsonData,callback));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 });
 
@@ -155,7 +161,11 @@ public class OkHttpUtils implements IHttp {
                     @Override
                     public void run() {
                         //执行在主线程
-                        callback.onSuccess(getGeneric(jsonData,callback));
+                        try {
+                            callback.onSuccess(getGeneric(jsonData,callback));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 });
 
@@ -204,7 +214,11 @@ public class OkHttpUtils implements IHttp {
                     @Override
                     public void run() {
                         //执行在主线程
-                        callback.onSuccess(getGeneric(jsonData,callback));
+                        try {
+                            callback.onSuccess(getGeneric(jsonData,callback));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 });
 
@@ -316,7 +330,11 @@ public class OkHttpUtils implements IHttp {
                     @Override
                     public void run() {
                         //执行在主线程
-                        callback.onSuccess(bundle);
+                        try {
+                            callback.onSuccess(bundle);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 });
 
@@ -390,7 +408,11 @@ public class OkHttpUtils implements IHttp {
                 APP.context.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        callback.onSuccess(getGeneric(jsonData,callback));
+                        try {
+                            callback.onSuccess(getGeneric(jsonData,callback));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 });
             }

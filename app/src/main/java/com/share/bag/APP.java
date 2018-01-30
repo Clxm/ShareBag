@@ -1,6 +1,8 @@
 package com.share.bag;
 
 import android.app.Application;
+import android.content.Context;
+import android.support.multidex.MultiDex;
 import android.support.v7.app.AppCompatActivity;
 
 import com.umeng.socialize.Config;
@@ -28,5 +30,12 @@ public class APP extends Application{
         Config.DEBUG = true;
         // Ument初始化
        UMShareAPI.get(this);
+    }
+
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
     }
 }

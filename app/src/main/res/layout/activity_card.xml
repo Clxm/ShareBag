@@ -1,9 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F8F8F8"
     tools:context="com.share.bag.ui.activitys.mine.wallet.CardActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <RelativeLayout
+        android:background="#FFF"
+        android:layout_width="match_parent"
+        android:layout_height="140px">
+
+
+        <ImageView
+            android:id="@+id/card_return"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="30px"
+            android:src="@mipmap/xiaoyuhei" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="月卡办理"
+            android:textColor="#000"
+            android:textSize="51px" />
+
+    </RelativeLayout>
+
+
+    <!--<ImageView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="572px"-->
+    <!--android:src="@drawable/yueka3"-->
+    <!--android:scaleType="fitXY"/>-->
+
+
+    <ImageView
+        android:id="@+id/card_buy"
+        android:layout_width="match_parent"
+        android:layout_height="572px"
+        android:background="@drawable/yuekabanli3" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60px"
+        android:layout_marginTop="105px"
+        android:text="月卡贴士："
+        android:textColor="#000"
+        android:textSize="46px" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60px"
+        android:layout_marginRight="60px"
+        android:layout_marginTop="35px"
+        android:text="月卡为30天有效期，起始时间从领取当天开始，到使用截止日24小时结束"
+        android:textColor="#000"
+        android:textSize="46px" />
+
+
+</LinearLayout>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.share.bag.ui.activitys.mine.wallet.MyDepositActivity">
+
+    <RelativeLayout
+        android:background="#FFF"
+        android:layout_width="match_parent"
+        android:layout_height="140px">
+
+
+        <ImageView
+            android:id="@+id/myrent_return"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="30px"
+            android:src="@mipmap/xiaoyuhei" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="我的押金"
+            android:textColor="#000"
+            android:textSize="51px" />
+
+    </RelativeLayout>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical">
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/yajin3"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="22222"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="22222"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="22222"/>
+
+
+
+
+</LinearLayout>
+
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center_horizontal">
+
+
+    <Button
+        android:layout_width="936px"
+        android:layout_height="130px"
+        android:text="充值"
+        android:textSize="49px"
+        android:textColor="#FFF"/>
+
+
+    <Button
+        android:layout_width="936px"
+        android:layout_height="130px"
+        android:text="wwwww"
+        android:textSize="49px"
+        android:textColor="#FFF"/>
+
+    <Button
+        android:layout_width="936px"
+        android:layout_height="130px"
+       android:textSize="49px"
+        android:text="wwwww"/>
+
+
+
+
+
+
+
+</LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="历史详情"
+            android:textSize="40px"
+            android:textColor="#f96662"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="78px" />
+
+    </RelativeLayout>
+
+
+
+
+
+</LinearLayout>

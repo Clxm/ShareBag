@@ -86,6 +86,8 @@
 
 
 
+
+
     <LinearLayout
         android:layout_marginTop="50px"
         android:layout_marginLeft="30px"
@@ -95,6 +97,14 @@
         android:background="@drawable/my_relative"
         android:orientation="vertical">
 
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="1150px">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1150px"
+            android:orientation="vertical">
 
         <LinearLayout
             android:id="@+id/wallet_coupons"
@@ -286,6 +296,10 @@
                 android:src="@mipmap/dayu3"/>
 
         </LinearLayout>
+        </LinearLayout>
+        </ScrollView>
+
+
 
 
     </LinearLayout>

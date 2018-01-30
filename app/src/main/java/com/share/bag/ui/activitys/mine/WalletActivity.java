@@ -1,5 +1,6 @@
 package com.share.bag.ui.activitys.mine;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -9,6 +10,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.share.bag.R;
+import com.share.bag.ui.activitys.mine.wallet.CardActivity;
+import com.share.bag.ui.activitys.mine.wallet.MyRentActivity;
+import com.share.bag.ui.activitys.mine.wallet.PromotionActivity;
 
 /*
 * 我的钱包
@@ -81,26 +85,38 @@ public class WalletActivity extends AppCompatActivity implements View.OnClickLis
                 Toast.makeText(this, "eeeeeeeeeee", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.wallet_deposit:
+                Intent intent3=new Intent(WalletActivity.this, MyRentActivity.class);
 
+
+                startActivity(intent3);
                 Toast.makeText(this, "eeeeeeeeeee", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.wallet_rent:
+//                租金
+                Intent intent2=new Intent(WalletActivity.this, MyRentActivity.class);
 
-                Toast.makeText(this, "eeeeeeeeeee", Toast.LENGTH_SHORT).show();
+
+                startActivity(intent2);
+
                 break;
             case R.id.wallet_commission:
+                //推广佣金
+                Intent intent1=new Intent(WalletActivity.this, PromotionActivity.class);
 
-                Toast.makeText(this, "eeeeeeeeeee", Toast.LENGTH_SHORT).show();
+
+                startActivity(intent1);
                 break;
             case R.id.wallet_card://月卡办理
-                Toast.makeText(this, "月卡办理", Toast.LENGTH_SHORT).show();
+//                月卡办理
+                Intent intent=new Intent(WalletActivity.this, CardActivity.class);
 
+                intent.putExtra("","");
+                intent.putExtra("","");
+                intent.putExtra("","");
+                intent.putExtra("","");
+                intent.putExtra("","");
 
-
-
-
-
-                
+                startActivity(intent);
 
                 break;
 

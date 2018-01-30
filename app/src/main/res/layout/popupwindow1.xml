@@ -15,14 +15,15 @@
         android:layout_alignParentTop="true"
         android:orientation="vertical">
         <!--android:textColor="@drawable/derew"-->
+        <!--android:background="@drawable/textview1"-->
         <Button
             android:id="@+id/DiGao"
             android:layout_width="432px"
             android:layout_height="102px"
-            android:background="@drawable/textview1"
+            android:background="@drawable/textview2"
             android:gravity="center"
             android:text="价格从低到高"
-          android:textColor="#FFF"
+          android:textColor="#A6A6A6"
             android:textSize="45px"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"

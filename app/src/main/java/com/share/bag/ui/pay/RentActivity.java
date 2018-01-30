@@ -26,7 +26,12 @@ import com.share.bag.alipay.PayResult;
 import com.share.bag.entity.MayBean;
 import com.share.bag.utils.okhttp.OkHttpUtils;
 import com.share.bag.utils.okhttp.callback.MyNetWorkCallback;
+import com.tencent.mm.opensdk.modelpay.PayReq;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.umeng.socialize.utils.Log;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -48,6 +53,17 @@ public class RentActivity extends AppCompatActivity {
     //    public static final String RSA_PRIVATE = "MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCtcC1NxkGy7Xba8RkseR4eZFJK4Crj8UtgeNKNsIpEJ3tsgVt1wrRqfXoL/y2MtoCFx/8PS4VufsPIb8FFq/rYJN2sq4X+E5FAUOQq+sjc6LccnIKGWQ/v3SB6abvqgp6L0+o4g+LtigsiTNDMIn5vq2TxlWPbVlveXL9UqpmokcFpmh2f5yZvnOTOtwy1UUWwExz2FQ0K5daz+OOoPlOy/L8ebYEUVpYIZmzvNbUE36mFrV4gh//Bgl7dTVLwLTx6zmMIJZaKUtlVjkDMuOHceuXLnmWeUkAZWph5rmMZJ6v2htPDp22uZ2A/V7Pez3uZfkiW0gZGHJj2Y7awmAhxAgMBAAECggEAFrQfihXQ1d5V97Ul6Xd1ZN8XEqwjkTEt/9PxJBEfGGreskaAtXqmaWZBir59tPTTADA9CECHl/5KHLvcXgV0UcUJq6fMY4UmN3gfViz8DEb+aWVnhLS17F1S+hNLQRiWLpGwEHPbSeMPMA9EKeS+DlouXZ2Ds9urLQGRHkEy2ij6q5uCUVwe5Q2xeGhQWSTmAaOeAZS9tMZUx3ju9ME6xdAGjAdO+PAdAjWj1oZfMA4TZfRcSywudbKF4L610NSughKFtQsyjW1EJrBSnScBWQtvTCrCjYrBTrmxNBAIStRZERkNXHnQez+X72tggJWKlvh6wim63P1Wg0NR9eN13QKBgQDxt1HfseAgsaYtrrYpoUwy8NU/fTilfmkHkHiCQHYRDXzQI4BNURNbx2smS33w7jBr2n9O91wcd6N4J6xkeiuZ/loiLU+Y0pTxl0njhxyDfJ1/cyTmjhczIlFYc4R8CtTGBxh5iz/zSMNF64k+QPUVpjzKrOkTZWfNPVTog52B2wKBgQC3r/MFLWzM1NVtgYcs+p5MeNRriTDu+oH0eYonw2LvzvvZflj8QJ6Cue9O/Wlarg56Rf+mb25iDcXZGCTPFSjk+kovYaCea0Q6pBU8yp7UmawIoQtk2scJOHnW9rMJvAj0/cfcEdDBiNINKts0HkjVACUP5zWyfaFidUukobsuowKBgBW+8Fa3ofpPASxK84h7Qmey0vyLP3VkEf7kOHM/aV/PXtM63mgWSy+OmU0wrXvncePCHIH2LwtAmCxPJWtEsneAMouwl+Cf0VaKzdLybNZHd8PnkAJN9jhbdgYHHnwqXUoTiVgl9vLkMO0xa392SJZSBlYViEJ+dQA57FGexaTRAoGBAILwRL8TE3Sr3vwxkido+4CtvVZutFgWcJ7SKL6RlCw4EuWGIG6orZWob0OSdxBx9NYKoeOFmV0CTl+jy1Fm1wDqvgkqgbGL61YV8yGjmjcY2D5KdnHNVoZnIMswjo3I4WWqplZkyLe9DWbffuSXFfnoIYNFoMx8q5cg3+wacfEbAoGAYWw4SL/jnl4A5AUHPOgY3fHUFkcBkEwz8/gPkOT2kf9LZxiuxkJPlu2BWOaDWldzRa2xQaAcb1mtN3rtzrGLDpFC7lkinlpuZlIn4YTg9caO898P1OEM4BEg62U+jse6v5zyYWv4FCl5dN3MelWDAT1EsKhBXnRIA3GZxzdRhZ8=";
     public static final String RSA_PRIVATE = "";
     public static final String TARGET_ID = "";
+//////////////
+private IWXAPI api;
+
+    ///////////
+
+
+
+
+
+
+
 
     private ImageView rent_return;
     private ImageView imageView3;
@@ -126,6 +142,8 @@ public class RentActivity extends AppCompatActivity {
             }
         };
     };
+    private LinearLayout pay_wx;
+    private String content;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -165,7 +183,7 @@ public class RentActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 getPay();
-//                Toast.makeText(RentActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(MyRentActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -212,7 +230,7 @@ public class RentActivity extends AppCompatActivity {
         window1.setContentView(contentView);
         //设置各个控件的点击响应
         LinearLayout pay_balance = (LinearLayout) contentView.findViewById(R.id.pay_balance);
-        LinearLayout pay_wx = (LinearLayout) contentView.findViewById(R.id.pay_wx);
+        pay_wx = (LinearLayout) contentView.findViewById(R.id.pay_wx);
         LinearLayout pay_zfb = (LinearLayout) contentView.findViewById(R.id.pay_zfb);
 
 
@@ -232,14 +250,18 @@ public class RentActivity extends AppCompatActivity {
         pay_wx.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(RentActivity.this, "微信支付", Toast.LENGTH_SHORT).show();
+
+             //微信支付点击事件
+
+//                getwxfk();
+
                 window1.dismiss();
             }
         });
         pay_zfb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Toast.makeText(RentActivity.this, "支付宝", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(MyRentActivity.this, "支付宝", Toast.LENGTH_SHORT).show();
 
                 Map<String,String> maymap=new HashMap<String, String>();
                 
@@ -256,18 +278,31 @@ public class RentActivity extends AppCompatActivity {
 //                maymap.put("discount_id","");//优惠卷id
 //                maymap.put("deposit","0.01");//押金（单个的实际应付押金）
 
-                OkHttpUtils.getInstance().post(SBUrls.PAY, maymap, new MyNetWorkCallback<MayBean>() {
+
+                String baglist_id1="1";
+                String old_price11="10";
+                String new_price11="0.01";
+                String discount_price11="";
+                String discount_id11="";
+                String deposit11="0.01";
+
+
+                String xiangqing="["
+                        +"baglist_id"+baglist_id1+","
+                        +"old_price1"+old_price11+","
+
+                        +"]";
+                maymap.put("",xiangqing);
+
+                OkHttpUtils.getInstance().post(SBUrls.ZHFPAY, maymap, new MyNetWorkCallback<MayBean>() {
                     @Override
                     public void onSuccess(MayBean mayBean) {
                         info = mayBean.getInfo();
                         status = mayBean.getStatus();
-//                        Toast.makeText(RentActivity.this, status +"====="+ info, Toast.LENGTH_SHORT).show();
-//                        android.util.Log.e("TAG","----------"+info);
                         String s = info.replaceAll("&amp;", "&");
 
-//                        android.util.Log.e("TAG","ssssssssssssssss"+s);
-                        Toast.makeText(RentActivity.this, ""+s, Toast.LENGTH_SHORT).show();
-                        String ss="alipay_sdk=alipay-sdk-php-20161101&app_id=2017090608586413&biz_content=%7B%22subject%22%3A%22%5Cu548c%5Cu5408%5Cu751f%5Cu6d3b-%5Cu7f51%5Cu7edc%5Cu5546%5Cu54c1%22%2C%22out_trade_no%22%3A%22appzfb-3093-1941%22%2C%22timeout_express%22%3A%2230m%22%2C%22total_amount%22%3A%2278.00%22%2C%22product_code%22%3A%22QUICK_MSECURITY_PAY%22%7D&charset=UTF-8&format=json&method=alipay.trade.app.pay&notify_url=http%3A%2F%2Fpay.heyishenghuo.com%2Fapi%2Falirespond.php&sign_type=RSA2&timestamp=2018-01-26+11%3A48%3A33&version=1.0&sign=CuSaaHls9d2DEm5ehv%2Bx%2BPOiqNhDJgmQlSyWB6J6RkTx57Z99XtKQ%2FXfh9Atesw7y4XyqmMoewzNbp3Wq42XzvPsGA74dscFFLZzZPJxQ%2Fs8NHDxjBCvc43V%2FIZvZKg174n0AGyWGvKAE2%2FUSqP%2FmJpYabq8t9hbf2%2FJBQ8aH4juf5hIJfy8pKBnF9GQu0hIW88%2BtE5tQ6pCCJe87Ru4ZVsqXGgYqk86ovGBobNyCKJAytKDOKT5OOLsxA5e5AIm7wSLJYam3QGRlx0MAlzbDg7sUOYZyXklEB9kOuzt%2B%2B643G5bNFryG2lLuu%2BQTX5An2ABKubGTNf2G%2B7um9zDaA%3D%3D";
+//                        Toast.makeText(MyRentActivity.this, ""+s, Toast.LENGTH_SHORT).show();
+//                        String ss="alipay_sdk=alipay-sdk-php-20161101&app_id=2017090608586413&biz_content=%7B%22subject%22%3A%22%5Cu548c%5Cu5408%5Cu751f%5Cu6d3b-%5Cu7f51%5Cu7edc%5Cu5546%5Cu54c1%22%2C%22out_trade_no%22%3A%22appzfb-3093-1941%22%2C%22timeout_express%22%3A%2230m%22%2C%22total_amount%22%3A%2278.00%22%2C%22product_code%22%3A%22QUICK_MSECURITY_PAY%22%7D&charset=UTF-8&format=json&method=alipay.trade.app.pay&notify_url=http%3A%2F%2Fpay.heyishenghuo.com%2Fapi%2Falirespond.php&sign_type=RSA2&timestamp=2018-01-26+11%3A48%3A33&version=1.0&sign=CuSaaHls9d2DEm5ehv%2Bx%2BPOiqNhDJgmQlSyWB6J6RkTx57Z99XtKQ%2FXfh9Atesw7y4XyqmMoewzNbp3Wq42XzvPsGA74dscFFLZzZPJxQ%2Fs8NHDxjBCvc43V%2FIZvZKg174n0AGyWGvKAE2%2FUSqP%2FmJpYabq8t9hbf2%2FJBQ8aH4juf5hIJfy8pKBnF9GQu0hIW88%2BtE5tQ6pCCJe87Ru4ZVsqXGgYqk86ovGBobNyCKJAytKDOKT5OOLsxA5e5AIm7wSLJYam3QGRlx0MAlzbDg7sUOYZyXklEB9kOuzt%2B%2B643G5bNFryG2lLuu%2BQTX5An2ABKubGTNf2G%2B7um9zDaA%3D%3D";
                         payV2(s);
 
                     }
@@ -320,6 +355,28 @@ public class RentActivity extends AppCompatActivity {
         Thread payThread = new Thread(payRunnable);
         payThread.start();
     }
+    public void getwxfk() {
 
+        try {
+            JSONObject json = new JSONObject(content);
+            PayReq req = new PayReq();
+            req.appId = "wxf8b4f85f3a794e77";  // 测试用appId
+            req.appId			= json.getString("appid");
+            req.partnerId		= json.getString("partnerid");
+            req.prepayId		= json.getString("prepayid");
+            req.nonceStr		= json.getString("noncestr");
+            req.timeStamp		= json.getString("timestamp");
+            req.packageValue	= json.getString("package");
+            req.sign			= json.getString("sign");
+            req.extData			= "app data"; // optional
+            Toast.makeText(RentActivity.this, "正常调起支付", Toast.LENGTH_SHORT).show();
+            // 在支付之前，如果应用没有注册到微信，应该先调用IWXMsg.registerApp将应用注册到微信
+//            api.sendReq(req);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+//        pay_wx .setEnabled(true);
+    }
 
 }
