@@ -133,7 +133,9 @@
         <activity android:name=".ui.activitys.mine.wallet.CardActivity" />
         <activity android:name=".ui.activitys.mine.wallet.PromotionActivity" />
         <activity android:name=".ui.activitys.mine.wallet.MyRentActivity" />
-        <activity android:name=".ui.activitys.mine.wallet.MyDepositActivity"></activity>
+        <activity android:name=".ui.activitys.mine.wallet.MyDepositActivity" />
+        <activity android:name=".ui.activitys.mine.wallet.MyTradeActivity" />
+        <activity android:name=".ui.activitys.mine.wallet.RedCouponsActivity"></activity>
     </application>
 
 </manifest>

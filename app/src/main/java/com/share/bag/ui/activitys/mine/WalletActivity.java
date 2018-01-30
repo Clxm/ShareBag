@@ -11,8 +11,11 @@ import android.widget.Toast;
 
 import com.share.bag.R;
 import com.share.bag.ui.activitys.mine.wallet.CardActivity;
+import com.share.bag.ui.activitys.mine.wallet.MyDepositActivity;
 import com.share.bag.ui.activitys.mine.wallet.MyRentActivity;
+import com.share.bag.ui.activitys.mine.wallet.MyTradeActivity;
 import com.share.bag.ui.activitys.mine.wallet.PromotionActivity;
+import com.share.bag.ui.activitys.mine.wallet.RedCouponsActivity;
 
 /*
 * 我的钱包
@@ -76,20 +79,25 @@ public class WalletActivity extends AppCompatActivity implements View.OnClickLis
                 Toast.makeText(this, "充值", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.wallet_coupons:
+                Intent intent5=new Intent(WalletActivity.this, RedCouponsActivity.class);
 
-                Toast.makeText(this, "eeeeeeeeeee", Toast.LENGTH_SHORT).show();
+
+                startActivity(intent5);
                 break;
 
-            case R.id.wallet_renewed:
+            case R.id.wallet_renewed://以旧换新
+                Intent intent4=new Intent(WalletActivity.this, MyTradeActivity.class);
 
-                Toast.makeText(this, "eeeeeeeeeee", Toast.LENGTH_SHORT).show();
+
+                startActivity(intent4);
+
                 break;
-            case R.id.wallet_deposit:
-                Intent intent3=new Intent(WalletActivity.this, MyRentActivity.class);
+            case R.id.wallet_deposit://押金
+                Intent intent3=new Intent(WalletActivity.this, MyDepositActivity.class);
 
 
                 startActivity(intent3);
-                Toast.makeText(this, "eeeeeeeeeee", Toast.LENGTH_SHORT).show();
+
                 break;
             case R.id.wallet_rent:
 //                租金

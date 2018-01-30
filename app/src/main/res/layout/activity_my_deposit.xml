@@ -5,18 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#FFF"
     tools:context="com.share.bag.ui.activitys.mine.wallet.MyDepositActivity">
 
     <RelativeLayout
-        android:background="#FFF"
         android:layout_width="match_parent"
         android:layout_height="140px">
 
 
         <ImageView
             android:id="@+id/myrent_return"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="31px"
+            android:layout_height="56px"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:layout_marginStart="30px"
@@ -34,6 +34,13 @@
 
     </RelativeLayout>
 
+    
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:background="#E9E9E9"/>
+    
+    
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -42,28 +49,30 @@
 
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_marginTop="147px"
+        android:layout_width="135px"
+        android:layout_height="135px"
+        android:scaleType="fitXY"
         android:src="@mipmap/yajin3"/>
 
 
     <TextView
+        android:layout_marginTop="45px"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="22222"/>
+        android:text="押金余额（元）"
+        android:textSize="43px"
+        android:textColor="#333333"/>
 
 
     <TextView
+        android:id="@+id/myrent_total"
+        android:layout_marginTop="40px"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="22222"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="22222"/>
-
-
+        android:text="￥289.00"
+        android:textSize="131px"
+        android:textColor="#333333" />
 
 
 </LinearLayout>
@@ -77,41 +86,47 @@
 
 
     <Button
+        android:id="@+id/myrent_charge"
+        android:layout_marginTop="179px"
         android:layout_width="936px"
         android:layout_height="130px"
         android:text="充值"
         android:textSize="49px"
-        android:textColor="#FFF"/>
+        android:textColor="#FFF"
+        android:background="@drawable/textview3"/>
 
 
     <Button
+        android:id="@+id/myrent_retreat"
+        android:layout_marginTop="70px"
         android:layout_width="936px"
         android:layout_height="130px"
-        android:text="wwwww"
+        android:text="退押金"
         android:textSize="49px"
-        android:textColor="#FFF"/>
+        android:textColor="#FFF"
+        android:background="@drawable/textview3"/>
 
     <Button
+        android:id="@+id/myrent_freeze"
+        android:layout_marginTop="70px"
         android:layout_width="936px"
         android:layout_height="130px"
        android:textSize="49px"
-        android:text="wwwww"/>
-
-
-
-
-
+        android:text="冻结押金￥10.32"
+        android:background="@drawable/textview4"/>
 
 
 </LinearLayout>
 
 
     <RelativeLayout
+        android:layout_marginTop="56px"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
 
         <TextView
+            android:id="@+id/myrent_history"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="历史详情"

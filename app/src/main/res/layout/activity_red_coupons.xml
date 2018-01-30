@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#EEEEEE"
+    tools:context="com.share.bag.ui.activitys.mine.wallet.RedCouponsActivity">
+
+
+
+    <RelativeLayout
+        android:background="#FFF"
+        android:layout_width="match_parent"
+        android:layout_height="140px">
+
+
+        <ImageView
+            android:background="#FFF"
+            android:id="@+id/redcoupons_return"
+            android:layout_width="31px"
+            android:layout_height="56px"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="30px"
+            android:src="@mipmap/xiaoyuhei" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="红包卷"
+            android:textColor="#000"
+            android:textSize="51px" />
+
+    </RelativeLayout>
+
+<ListView
+    android:id="@+id/redcoupons_listview"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"></ListView>
+
+
+</LinearLayout>
