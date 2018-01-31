@@ -378,13 +378,6 @@ private IWXAPI api;
          *
          * orderInfo的获取必须来自服务端；
          */
-//        boolean rsa2 = (RSA2_PRIVATE.length() > 0);
-//        Map<String, String> params = OrderInfoUtil2_0.buildOrderParamMap(APPID, rsa2);
-//        String orderParam = OrderInfoUtil2_0.buildOrderParam(params);
-//
-//        String privateKey = rsa2 ? RSA2_PRIVATE : RSA_PRIVATE;
-//        String sign = OrderInfoUtil2_0.getSign(params, privateKey, rsa2);
-//        final String orderInfo = orderParam + "&" + sign;
 
         Runnable payRunnable = new Runnable() {
 
@@ -404,18 +397,6 @@ private IWXAPI api;
         Thread payThread = new Thread(payRunnable);
         payThread.start();
     }
-//    public void getwxfk() {
-//
-//        try {
-//
-//
-//            // 在支付之前，如果应用没有注册到微信，应该先调用IWXMsg.registerApp将应用注册到微信
-////            api.sendReq(req);
-//
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-////        pay_wx .setEnabled(true);
-//    }
+
 
 }

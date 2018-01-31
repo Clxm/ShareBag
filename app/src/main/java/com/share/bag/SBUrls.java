@@ -21,9 +21,6 @@ public class SBUrls {
 
     //微信
 
-
-
-
     //    登录
     public static final String LOGINURL = "http://baobaoapi.ldlchat.com/Home/Public/login.html";
 //    注册
