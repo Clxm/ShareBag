@@ -9,7 +9,7 @@ public class SBUrls {
 //    ------------------------------ url -----------------------------------------
 
     //支付
-    public static final String ZHFPAY ="http://baobaoapi.ldlchat.com/index.php?s=/Home/Pay/alipaystodo.html";
+    public static final String ZHFPAY ="http://baobaoapi.ldlchat.com/Home/Pay/alipaystodo.html";
     //APP_ID
     public static final String APPID = "2018010201523821";
     //PID
@@ -21,32 +21,30 @@ public class SBUrls {
 
     //微信
 
-    public static final String WXPAY ="http://wxpay.wxutil.com/pub_v2/app/app_pay.php";
-
 
 
 
     //    登录
-    public static final String LOGINURL = "http://baobaoapi.ldlchat.com/index.php?s=/Home/Public/login.html";
+    public static final String LOGINURL = "http://baobaoapi.ldlchat.com/Home/Public/login.html";
 //    注册
-    public static final String REGISTEREDURL = "http://baobaoapi.ldlchat.com/index.php?s=/Home/Public/registered.html";
+    public static final String REGISTEREDURL = "http://baobaoapi.ldlchat.com/Home/Public/registered.html";
 //    验证码                                                                                           getSmsk
-    public static final String SMSURL = "http://baobaoapi.ldlchat.com/index.php?s=/Home/Public/getSmsk.html";
+    public static final String SMSURL = "http://baobaoapi.ldlchat.com/Home/Public/getSmsk.html";
 //      首页
-    public static final String HOMEURL ="http://baobaoapi.ldlchat.com/index.php?s=/Home/Index/index.html";
+    public static final String HOMEURL ="http://baobaoapi.ldlchat.com/Home/Index/index.html";
 //    详情
-    public static final String DETAILSURL ="http://baobaoapi.ldlchat.com/index.php?s=/Home/Backcontent/content.html";
+    public static final String DETAILSURL ="http://baobaoapi.ldlchat.com/Home/Backcontent/content.html";
 //      选包（热门）界面
-    public static final String POPULAR ="http://baobaoapi.ldlchat.com/index.php?s=/Home/Backlist/bagtolist.html";
+    public static final String POPULAR ="http://baobaoapi.ldlchat.com/Home/Backlist/bagtolist.html";
     public static final String LOGURL="http://baobaoapi.ldlchat.com";
 
 //                        Collection收藏
-    public static final String COLLECTION="http://baobaoapi.ldlchat.com/index.php?s=/Home/Backcontent/collection.html";
+    public static final String COLLECTION="http://baobaoapi.ldlchat.com/Home/Backcontent/collection.html";
     //    ------------------------------ 字符 -----------------------------------------''
     public static final String TOKEN = "TOKEN";
 
-    public static final String UPDATA_IMG = "http://baobaoapi.ldlchat.com/index.php?s=/Home/Public/upheaderimg.html";
+    public static final String UPDATA_IMG = "http://baobaoapi.ldlchat.com/Home/Public/upheaderimg.html";
 
     //popo
-    public static final String JIAZHEN="http://baobaoapi.ldlchat.com/index.php?s=/Home/Backlist/bagtolist.html";
+    public static final String JIAZHEN="http://baobaoapi.ldlchat.com/Home/Backlist/bagtolist.html";
 }

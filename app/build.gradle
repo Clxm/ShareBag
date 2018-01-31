@@ -1,6 +1,25 @@
 apply plugin: 'com.android.application'
 
 android {
+//    signingConfigs {
+//
+//        release {
+//            //.jks文件放在项目目录
+//            storeFile file("yiweixiaozhu.jks")
+//            storePassword "xxx"
+//            keyAlias "xxx.release"
+//            keyPassword "xxx"
+//        }
+//        debug {
+//            //.jks文件放在项目目录
+//            storeFile file("xxx.jks")
+//            storePassword "xxx"
+//            keyAlias "xxx.release"
+//            keyPassword "xxx"
+//        }
+//    }
+
+
     compileSdkVersion 26
     buildToolsVersion "26.0.2"
     defaultConfig {
@@ -32,20 +51,6 @@ android {
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')

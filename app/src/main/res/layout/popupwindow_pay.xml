@@ -18,30 +18,61 @@
     android:layout_height="900px"
     android:orientation="vertical">
 
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="146px"
+        android:background="#f8f8f8">
+
+
+        <ImageView
+            android:layout_width="46px"
+            android:layout_height="46px"
+            android:src="@mipmap/guanbi3"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="46px" />
+
+
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="选择支付方式"
+    android:textSize="43px"
+    android:textColor="#333333"
+    android:layout_centerVertical="true"
+    android:layout_centerHorizontal="true" />
+
+
+
+    </RelativeLayout>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="2px"
         android:background="#ECECEF"/>
     <LinearLayout
         android:id="@+id/pay_balance"
+        android:layout_marginTop="137px"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical">
 
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/ic_launcher"/>
+            android:layout_marginLeft="40px"
+            android:layout_width="65px"
+            android:layout_height="65px"
+            android:src="@mipmap/qianbao3"/>
         <TextView
+            android:layout_marginLeft="28px"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="余额"/>
+            android:text="余额"
+            android:textSize="43px"
+            android:textColor="#333333"/>
 
-        <View
-            android:layout_width="wrap_content"
-            android:layout_height="1px"
-            android:layout_weight="1"/>
+
 
 
 
@@ -57,26 +88,28 @@
 
     <LinearLayout
         android:id="@+id/pay_wx"
+        android:layout_marginTop="137px"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical">
 
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_marginLeft="40px"
+            android:layout_width="65px"
+            android:layout_height="65px"
             android:src="@mipmap/pay_wx"/>
 
 
 
         <TextView
+            android:layout_marginLeft="28px"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="余额"/>
-        <View
-            android:layout_width="wrap_content"
-            android:layout_height="1px"
-            android:layout_weight="1"/>
+            android:text="微信支付"
+            android:textSize="43px"
+            android:textColor="#333333"/>
+
 
 
     </LinearLayout>
@@ -88,27 +121,27 @@
 
     <LinearLayout
         android:id="@+id/pay_zfb"
+        android:layout_marginTop="137px"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical">
 
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_marginLeft="40px"
+            android:layout_width="65px"
+            android:layout_height="65px"
             android:src="@mipmap/pay_zfb"/>
 
 
         <TextView
+            android:layout_marginLeft="28px"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="余额"/>
+            android:text="支付宝支付"
+            android:textSize="43px"
+            android:textColor="#333333"/>
 
-
-        <View
-            android:layout_width="wrap_content"
-            android:layout_height="1px"
-            android:layout_weight="1"/>
 
     </LinearLayout>
 

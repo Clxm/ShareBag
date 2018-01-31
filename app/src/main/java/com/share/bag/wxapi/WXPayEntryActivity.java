@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.share.bag.R;
-import com.share.bag.weixin.Constants;
 import com.tencent.mm.opensdk.constants.ConstantsAPI;
 import com.tencent.mm.opensdk.modelbase.BaseReq;
 import com.tencent.mm.opensdk.modelbase.BaseResp;
@@ -17,8 +16,8 @@ import com.tencent.mm.opensdk.openapi.IWXAPIEventHandler;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
 public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler{
-	
-	private static final String TAG = "MicroMsg.SDKSample.WXPayEntryActivity";
+
+//	private static final String TAG = "MicroMsg.SDKSample.WXPayEntryActivity";
 
     private IWXAPI api;
 	
@@ -27,7 +26,7 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pay_result);
         
-    	api = WXAPIFactory.createWXAPI(this, Constants.APP_ID);
+    	api = WXAPIFactory.createWXAPI(this, "wx38f75c7fdb68b2bf");
        api.handleIntent(getIntent(), this);
     }
 

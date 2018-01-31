@@ -8,7 +8,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.share.bag.R;
 import com.share.bag.ui.activitys.mine.wallet.CardActivity;
 import com.share.bag.ui.activitys.mine.wallet.MyDepositActivity;
@@ -39,8 +38,6 @@ public class WalletActivity extends AppCompatActivity implements View.OnClickLis
         initView();
 
 
-
-        /**/
 
     }
 
@@ -80,38 +77,28 @@ public class WalletActivity extends AppCompatActivity implements View.OnClickLis
                 break;
             case R.id.wallet_coupons:
                 Intent intent5=new Intent(WalletActivity.this, RedCouponsActivity.class);
-
-
                 startActivity(intent5);
                 break;
 
             case R.id.wallet_renewed://以旧换新
                 Intent intent4=new Intent(WalletActivity.this, MyTradeActivity.class);
-
-
                 startActivity(intent4);
 
                 break;
             case R.id.wallet_deposit://押金
                 Intent intent3=new Intent(WalletActivity.this, MyDepositActivity.class);
-
-
                 startActivity(intent3);
 
                 break;
             case R.id.wallet_rent:
 //                租金
                 Intent intent2=new Intent(WalletActivity.this, MyRentActivity.class);
-
-
                 startActivity(intent2);
 
                 break;
             case R.id.wallet_commission:
                 //推广佣金
                 Intent intent1=new Intent(WalletActivity.this, PromotionActivity.class);
-
-
                 startActivity(intent1);
                 break;
             case R.id.wallet_card://月卡办理
@@ -131,6 +118,5 @@ public class WalletActivity extends AppCompatActivity implements View.OnClickLis
 
         }
     }
-
 
 }
