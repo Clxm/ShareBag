@@ -277,7 +277,7 @@ private IWXAPI api;
                                         String sign = mayBean1.getInfo().getSign();
                                         String timestamp = mayBean1.getInfo().getTimestamp();
                                     Toast.makeText(RentActivity.this, appid+""+noncestr, Toast.LENGTH_SHORT).show();
-                                    android.util.Log.e("TAG",appid+""+noncestr);
+
                                 PayReq pay=new PayReq();
                                 pay.appId=appid;
                                 pay.partnerId= partnerid;
@@ -307,7 +307,7 @@ private IWXAPI api;
 
 
 
-//                window1.dismiss();
+                window1.dismiss();
             }
         });
         pay_zfb.setOnClickListener(new View.OnClickListener() {
@@ -331,20 +331,20 @@ private IWXAPI api;
 //                maymap.put("deposit","0.01");//押金（单个的实际应付押金）
 
 
-                String baglist_id1="1";
-                String old_price11="10";
-                String new_price11="0.01";
-                String discount_price11="";
-                String discount_id11="";
-                String deposit11="0.01";
-
-
-                String xiangqing="["
-                        +"baglist_id"+baglist_id1+","
-                        +"old_price1"+old_price11+","
-
-                        +"]";
-                maymap.put("",xiangqing);
+//                String baglist_id1="1";
+//                String old_price11="10";
+//                String new_price11="0.01";
+//                String discount_price11="";
+//                String discount_id11="";
+//                String deposit11="0.01";
+//
+//
+//                String xiangqing="["
+//                        +"baglist_id"+baglist_id1+","
+//                        +"old_price1"+old_price11+","
+//
+//                        +"]";
+//                maymap.put("",xiangqing);
 
                 OkHttpUtils.getInstance().post(SBUrls.ZHFPAY, maymap, new MyNetWorkCallback<MayBean>() {
                     @Override
