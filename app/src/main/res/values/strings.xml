@@ -67,6 +67,8 @@
     <string name="phone">手机号</string>
     <string name="data">个人资料</string>
     <string name="modify_number">修改绑定手机号</string>
+    <string name="save">保存</string>
+    <string name="modify_name">修改昵称</string>
     <string name="avatar">修改头像</string>
     <string name="album">相册</string>
     <string name="shoot">拍照</string>

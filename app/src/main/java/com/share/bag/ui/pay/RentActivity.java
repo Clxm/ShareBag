@@ -277,7 +277,7 @@ private IWXAPI api;
                                         String sign = mayBean1.getInfo().getSign();
                                         String timestamp = mayBean1.getInfo().getTimestamp();
                                     Toast.makeText(RentActivity.this, appid+""+noncestr, Toast.LENGTH_SHORT).show();
-
+Log.e("",noncestr+""+packageX+""+partnerid+""+prepayid+""+sign+""+timestamp);
                                 PayReq pay=new PayReq();
                                 pay.appId=appid;
                                 pay.partnerId= partnerid;
@@ -298,9 +298,6 @@ private IWXAPI api;
                             }
                         }
                    );
-
-
-
 
 
                     //微信支付点击事件

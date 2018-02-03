@@ -28,11 +28,15 @@ import com.share.bag.FileUtil;
 import com.share.bag.R;
 import com.share.bag.SBUrls;
 import com.share.bag.base.BaseActivity;
+import com.share.bag.entity.UserName;
 import com.share.bag.entity.selected.HeadImgBean;
 import com.share.bag.ui.activitys.mine.avatar.PhotoUtils;
 import com.share.bag.ui.activitys.mine.avatar.ToastUtils;
 import com.share.bag.utils.okhttp.OkHttpUtils;
 import com.share.bag.utils.okhttp.callback.MyNetWorkCallback;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -113,8 +117,19 @@ public class PersonalActivity extends BaseActivity {
         imageView12 = (ImageView) findViewById(R.id.imageView12);
 
         personal_signature = (RelativeLayout) findViewById(R.id.personal_signature);
+        EventBus.getDefault().register(this);
+       /*
+       *
+       *
+       *
+       *
+       * */
+
         Toast.makeText(this,personal_name1.getText().toString()+personal_number.getText().toString(), Toast.LENGTH_SHORT).show();
         FileUtil.Homepage(this,personal_name1,imgview,personal_number);
+
+
+
     }
 
     @Override
@@ -150,6 +165,7 @@ public class PersonalActivity extends BaseActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.personal_return://返回
+
                 finish();
 
                 break;
@@ -163,14 +179,24 @@ public class PersonalActivity extends BaseActivity {
 
                 break;
             case R.id.personal_nickname://昵称
-                Log.e("TAG======", "点击了4");
-                Toast.makeText(this, "444444444", Toast.LENGTH_SHORT).show();
+
+
+                startActivity(new Intent(PersonalActivity.this, NameActivity.class));
+
+
+
                 break;
             case R.id.personal_signature://个性签名
 
                 break;
         }
     }
+
+
+
+
+
+
 
     public void getPopupWindow() {
         WindowManager wm = (WindowManager) getApplication()
@@ -345,5 +371,20 @@ public class PersonalActivity extends BaseActivity {
         String state = Environment.getExternalStorageState();
         return state.equals(Environment.MEDIA_MOUNTED);
     }
+
+
+    @Subscribe  //订阅事件
+    public void onEventMainThread(UserName event) {
+        personal_name1.setText(event.getName());
+
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        //取消event注册
+        EventBus.getDefault().unregister(this);
+    }
+
 
 }

@@ -135,28 +135,27 @@
         <activity android:name=".ui.activitys.mine.wallet.MyRentActivity" />
         <activity android:name=".ui.activitys.mine.wallet.MyDepositActivity" />
         <activity android:name=".ui.activitys.mine.wallet.MyTradeActivity" />
-        <activity android:name=".ui.activitys.mine.wallet.RedCouponsActivity"></activity>
+        <activity android:name=".ui.activitys.mine.wallet.RedCouponsActivity" />
 
-        <!--微信支付-->
-        <!--<activity android:name=".wxapi.WXPayEntryActivity"-->
-            <!--android:exported="true"-->
-            <!--android:launchMode="singleTop"/>-->
+        <!-- 微信支付 -->
+        <!-- <activity android:name=".wxapi.WXPayEntryActivity" -->
+        <!-- android:exported="true" -->
+        <!-- android:launchMode="singleTop"/> -->
 
         <activity
-            android:name="com.share.bag.wxapi.WXPayEntryActivity"
+            android:name=".wxapi.WXPayEntryActivity"
             android:exported="true"
             android:launchMode="singleTop">
-
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <data android:scheme="your AppId"/>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:scheme="your AppId" />
             </intent-filter>
-
         </activity>
-
-
-
+        <activity android:name=".ui.activitys.mine.NameActivity" />
+        <activity android:name=".ui.activitys.mine.AddressActivity"></activity>
     </application>
 
 </manifest>

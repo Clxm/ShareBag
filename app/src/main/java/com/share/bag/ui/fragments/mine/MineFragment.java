@@ -17,6 +17,7 @@ import com.share.bag.Constant;
 import com.share.bag.FileUtil;
 import com.share.bag.R;
 import com.share.bag.base.BaseFragment;
+import com.share.bag.ui.activitys.mine.AddressActivity;
 import com.share.bag.ui.activitys.mine.LoginActivity;
 import com.share.bag.ui.activitys.mine.MySetActivity;
 import com.share.bag.ui.activitys.mine.PersonalActivity;
@@ -239,7 +240,9 @@ public class MineFragment extends BaseFragment {
                 break;
             case R.id.mine_address://我的地址
                 Toast.makeText(getActivity(), "点击了我的地址", Toast.LENGTH_SHORT).show();
-
+//                AppCompatActivity
+                Intent intent1=new Intent(getActivity(), AddressActivity.class);
+                startActivity(intent1);
                 break;
 
             case R.id.mine_contact://联系客服

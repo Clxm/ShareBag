@@ -204,9 +204,7 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
                 mLists.addAll(selectedBeens);
 
                 adapter.notifyDataSetChanged();
-
             }
-
             @Override
             public void onError(int errorCode, String errorMsg) {
 

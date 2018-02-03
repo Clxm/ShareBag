@@ -35,7 +35,13 @@ public  class FileUtil {
         editor.putString("imageurl",imageurl);//图片
         editor.commit();
     }
+    public static void saveName(Context context, String nickname) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("userinfo",context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
 
+        editor.putString("nickname",nickname);//昵称
+        editor.commit();
+    }
     /**
      * 使用SharedPreference进行读取保存的用户名和密码
      * @param context

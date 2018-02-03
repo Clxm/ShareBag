@@ -23,7 +23,10 @@ public class SBUrls {
 
     //    登录
     public static final String LOGINURL = "http://baobaoapi.ldlchat.com/Home/Public/login.html";
-//    注册
+//修改昵称
+    public static final String NICKNAME ="http://baobaoapi.ldlchat.com/index.php?s=/Home/My/getname.html";
+
+    //    注册
     public static final String REGISTEREDURL = "http://baobaoapi.ldlchat.com/Home/Public/registered.html";
 //    验证码                                                                                           getSmsk
     public static final String SMSURL = "http://baobaoapi.ldlchat.com/Home/Public/getSmsk.html";

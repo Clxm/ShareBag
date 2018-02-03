@@ -173,8 +173,6 @@ public class LoginActivity extends BaseActivity {
                     intent.putExtra("img",img);
                     setResult(0,intent);
                     finish();
-//
-//                    finish();
                 }
                 else {
                     Toast.makeText(LoginActivity.this, loginBean.getInfo(), Toast.LENGTH_SHORT).show();
@@ -207,18 +205,6 @@ public class LoginActivity extends BaseActivity {
         }
         @Override
         public void onComplete(SHARE_MEDIA platform, int action, Map<String, String> data) {
-//            String name = data.get("name");
-//            String uid = data.get("uid");
-//            String iconurl = data.get("iconurl");
-//            String gender = data.get("gender");
-//            Toast.makeText(getApplicationContext(),name+uid+gender+iconurl , Toast.LENGTH_SHORT).show();
-//            FileUtil.saveToPre1(LoginActivity.this, "","",uid,gender,name,iconurl);
-
-
-
-
-
-
 
 
         }

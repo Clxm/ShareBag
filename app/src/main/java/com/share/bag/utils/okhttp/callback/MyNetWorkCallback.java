@@ -9,6 +9,7 @@ import org.json.JSONException;
 public interface MyNetWorkCallback<T> {
 
     void onSuccess(T t) throws JSONException;
+
     void onError(int errorCode, String errorMsg);
 
 }
