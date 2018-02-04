@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -31,23 +32,24 @@
                     android:id="@+id/mine_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_above="@+id/textView3"
-                    android:layout_alignStart="@+id/textView3"
-                    android:layout_marginBottom="8dp"
-                    android:text="请登录"
-                    android:textColor="#FFF" />
 
-                <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignBottom="@+id/mine_avatar"
-                    android:layout_marginBottom="7dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_toEndOf="@+id/mine_avatar"
-                    android:text="青铜会员"
+                    android:text="请登录"
                     android:textColor="#FFF"
-                    android:textSize="26px" />
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@+id/mine_avatar"
+                    android:layout_marginStart="30px" />
+
+                <!--<TextView-->
+                    <!--android:id="@+id/textView3"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_alignBottom="@+id/mine_avatar"-->
+                    <!--android:layout_marginBottom="7dp"-->
+                    <!--android:layout_marginStart="10dp"-->
+                    <!--android:layout_toEndOf="@+id/mine_avatar"-->
+                    <!--android:text="青铜会员"-->
+                    <!--android:textColor="#FFF"-->
+                    <!--android:textSize="26px" />-->
 
                 <LinearLayout
                     android:id="@+id/mine_data"
@@ -197,7 +199,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10px"
                         android:text="代付款"
-                        android:textSize="40px"/>
+                        android:textSize="40px" />
 
                 </LinearLayout>
 
@@ -219,7 +221,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10px"
                         android:text="待签收"
-                        android:textSize="40px"/>
+                        android:textSize="40px" />
 
                 </LinearLayout>
 
@@ -241,7 +243,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10px"
                         android:text="代发货"
-                        android:textSize="40px"/>
+                        android:textSize="40px" />
 
                 </LinearLayout>
 
@@ -263,7 +265,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="0px"
                         android:text="待归还"
-                        android:textSize="40px"/>
+                        android:textSize="40px" />
 
                 </LinearLayout>
 

@@ -51,6 +51,12 @@ import butterknife.OnClick;
 *
 * */
 public class PersonalActivity extends BaseActivity {
+    public static Intent getIntent(Context context){
+        Intent intent=new Intent(context,PersonalActivity.class);
+        return intent;
+    }
+
+
     private int width;
     private int height;
     private PopupWindow window1;
@@ -102,7 +108,7 @@ public class PersonalActivity extends BaseActivity {
         personal_phone = (RelativeLayout) findViewById(R.id.personal_phone);
 
         personal_name1 = (TextView) findViewById(R.id.personal_name1);
-        String s = personal_name1.getText().toString();
+
 
         imageView11 = (ImageView) findViewById(R.id.imageView11);
 
@@ -118,12 +124,7 @@ public class PersonalActivity extends BaseActivity {
 
         personal_signature = (RelativeLayout) findViewById(R.id.personal_signature);
         EventBus.getDefault().register(this);
-       /*
-       *
-       *
-       *
-       *
-       * */
+
 
         Toast.makeText(this,personal_name1.getText().toString()+personal_number.getText().toString(), Toast.LENGTH_SHORT).show();
         FileUtil.Homepage(this,personal_name1,imgview,personal_number);
@@ -134,16 +135,6 @@ public class PersonalActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-//        昵称    头像  手机号
-
-//            FileUtil.Homepage(this,personalName1,personal_avatar1,personalNumber);
-//        Toast.makeText(this, "1111111111111", Toast.LENGTH_SHORT).show();
-//        Log.e("TAG","=====");
-//            FileUtil.MinereadFromPre(this,personalName1,personal_avatar1);
-
-//        String s = personalName1.getText().toString();
-//        Toast.makeText(this, "---------", Toast.LENGTH_SHORT).show();
-
 
     }
 
@@ -179,18 +170,17 @@ public class PersonalActivity extends BaseActivity {
 
                 break;
             case R.id.personal_nickname://昵称
-
-
-                startActivity(new Intent(PersonalActivity.this, NameActivity.class));
-
-
-
+                startActivityForResult(NameActivity.getIntent(this),1);
                 break;
             case R.id.personal_signature://个性签名
+
+
+
 
                 break;
         }
     }
+
 
 
 
@@ -245,7 +235,6 @@ public class PersonalActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
                 //拍照完成回调
@@ -271,6 +260,14 @@ public class PersonalActivity extends BaseActivity {
                     if (bitmap != null) {
                         showImages(bitmap);
                     }
+                    break;
+                case 1:
+                    Intent intent=getIntent();
+                    String str=data.getStringExtra("username");
+//                    String tmp = intent.getStringExtra("username");
+                    personal_name1.setText(str);
+                    setResult(RESULT_OK,intent);
+
                     break;
                 default:
             }

@@ -17,11 +17,11 @@ import com.share.bag.Constant;
 import com.share.bag.FileUtil;
 import com.share.bag.R;
 import com.share.bag.base.BaseFragment;
-import com.share.bag.ui.activitys.mine.AddressActivity;
 import com.share.bag.ui.activitys.mine.LoginActivity;
 import com.share.bag.ui.activitys.mine.MySetActivity;
 import com.share.bag.ui.activitys.mine.PersonalActivity;
 import com.share.bag.ui.activitys.mine.WalletActivity;
+import com.share.bag.ui.activitys.mine.address.HarvestActivity;
 import com.share.bag.ui.share.ShareActivity;
 import com.share.bag.utils.SharePreUtils;
 
@@ -30,6 +30,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 
+import static android.app.Activity.RESULT_OK;
 import static com.share.bag.R.id.mine_cabinets;
 import static com.share.bag.R.id.mine_data;
 /*
@@ -39,8 +40,8 @@ public class MineFragment extends BaseFragment {
 
     @BindView(R.id.mine_avatar)
     ImageView mineAvatar;
-    @BindView(R.id.textView3)
-    TextView textView3;
+//    @BindView(R.id.textView3)
+//    TextView textView3;
     @BindView(R.id.mine_data)
     LinearLayout mineData;
     @BindView(R.id.imageView2)
@@ -147,14 +148,10 @@ public class MineFragment extends BaseFragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode==0&&resultCode==0){
-
+        if (requestCode==0&&resultCode==RESULT_OK){
             if (data!=null){
                 String name = data.getStringExtra("name");
                 String img = data.getStringExtra("img");
-
-
-
                 String str = "1234567";
                 if(str.indexOf("23") != -1)
                 {
@@ -177,8 +174,13 @@ public class MineFragment extends BaseFragment {
             }
 
 
+        }else if (requestCode==1&&resultCode==RESULT_OK){
+
+
+
         }
     }
+
 
     @OnClick({ R.id.mine_data,R.id.mine_cabinets,R.id.mine_wallet,R.id.mine_shared,
             R.id.mine_Pay, R.id.mine_Sign,R.id.mine_ship, R.id.mine_return,
@@ -192,8 +194,7 @@ public class MineFragment extends BaseFragment {
                     loginintent = new Intent(getActivity(), LoginActivity.class);
                     startActivityForResult(loginintent,0);
                 }else {//个人中心
-                    loginintent=new Intent(getActivity(), PersonalActivity.class);
-                    startActivity(loginintent);
+                    startActivityForResult(PersonalActivity.getIntent(getActivity()),1);
                 }
 
                 break;
@@ -241,7 +242,8 @@ public class MineFragment extends BaseFragment {
             case R.id.mine_address://我的地址
                 Toast.makeText(getActivity(), "点击了我的地址", Toast.LENGTH_SHORT).show();
 //                AppCompatActivity
-                Intent intent1=new Intent(getActivity(), AddressActivity.class);
+//                Intent intent1=new Intent(getActivity(), AddressActivity.class);
+                Intent intent1=new Intent(getActivity(), HarvestActivity.class);
                 startActivity(intent1);
                 break;
 
@@ -277,6 +279,8 @@ public class MineFragment extends BaseFragment {
                 break;
         }
     }
+
+
 
 
     @Override

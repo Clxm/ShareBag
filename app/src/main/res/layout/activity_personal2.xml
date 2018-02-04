@@ -61,7 +61,6 @@
             android:text="@string/avatar" />
 
 
-
         <ImageView
             android:id="@+id/personal_avatar1"
             android:layout_width="124px"

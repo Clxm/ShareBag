@@ -10,38 +10,44 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.share.bag.R;
 import com.share.bag.SBUrls;
-import com.share.bag.entity.CollectionBean;
 import com.share.bag.entity.selected.SelectedBean;
-import com.share.bag.utils.okhttp.OkHttpUtils;
-import com.share.bag.utils.okhttp.callback.MyNetWorkCallback;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by Administrator on 2017/12/29.
  */
-
-public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.ViewHolder> {
+/*
+*
+* */
+public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHolder>{
     private Context context;
     private List<SelectedBean> list;
-
-    public PopularAdapter(Context context, List<SelectedBean> list) {
+    public AddressAdapter(Context context, List<SelectedBean> list) {
         this.context = context;
         this.list = list;
     }
 
     @Override
-    public PopularAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view = View.inflate(context, R.layout.recy_item1, null);
+        View view=View.inflate(context, R.layout.harvest_item1,null);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(PopularAdapter.ViewHolder holder, final int position) {
-        Glide.with(context).load(SBUrls.LOGURL + list.get(position).getImg()).into(holder.recyler_commodity);
+    public void onBindViewHolder(ViewHolder holder, final int position) {
+//        holder.recyler_commodity.setImageResource(list.get(position).getImg());
+        Glide.with(context).load(SBUrls.LOGURL+list.get(position).getImg()).into(holder.recyler_commodity);
+
+        if (list.get(position).getIslive().equals("false")) {
+            holder.recyler_Collection.setImageResource(R.mipmap.shoucang1);
+        }else {
+            holder.recyler_Collection.setImageResource(R.mipmap.shoucanghong1);
+        }
+
+
+
 
         holder.recyler_name.setText(list.get(position).getTitle());
         holder.recyler_price.setText(list.get(position).getDays_money());
@@ -49,69 +55,36 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.ViewHold
         holder.recyler_commodity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onitemlistener.Back(view, position);
+                onitemlistener.Back(view,position);
             }
         });
-
-        if (list.get(position).getIslive().equals("false")) {
-            holder.recyler_Collection.setImageResource(R.mipmap.shoucang1);
-        } else {
-            holder.recyler_Collection.setImageResource(R.mipmap.shoucanghong1);
-        }
-        holder.recyler_Collection.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Map<String ,String> collection=new HashMap();
-                collection.put("baglist_id",position+"");
-                OkHttpUtils.getInstance().post(SBUrls.COLLECTION, collection, new MyNetWorkCallback<CollectionBean>() {
-                    @Override
-                    public void onSuccess(CollectionBean collectionBean) {
-                    }
-
-                    @Override
-                    public void onError(int errorCode, String errorMsg) {
-                    }
-                });
-
-
-                if (list.get(position).getIslive().equals("false")) {
-                    list.get(position).setIslive("true");
-                } else {
-                    list.get(position).setIslive("false");
+       // int positions;
+//        if (onClickedListener != null) {
+            holder.recyler_Collection.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    callback.callBack(view, position);
                 }
-                notifyDataSetChanged();
-            }
-        });
-
-
-
+            });
+//        }
     }
-
     public interface AdapterCallback {
         public void callBack(View v, int position);
     }
-
     private AdapterCallback callback;
 
-    /**
-     * 通过该方法连接起来
-     **/
+    /**通过该方法连接起来**/
     public void setCallback(AdapterCallback callback) {
         this.callback = callback;
     }
-
-    private OnitemClickedListener onitemlistener;
-
+    private  OnitemClickedListener onitemlistener;
     public void setOnitemClickedListener(OnitemClickedListener Listener) {
         this.onitemlistener = Listener;
 
     }
-
     public interface OnitemClickedListener {
         public void Back(View v, int position);
     }
-
     @Override
     public int getItemCount() {
         return list.size();

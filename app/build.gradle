@@ -55,6 +55,7 @@ android {
 
 
 
+
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
@@ -86,6 +87,7 @@ dependencies {
     //EventBus
     compile files('libs/libammsdk.jar')
     compile 'org.greenrobot:eventbus:3.0.0'
+    //    compile 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.3'//这个的作用是当有特殊的上拉刷新布局时才用的到
     compile 'org.greenrobot:eventbus:3.0.0'
     compile 'com.android.support:multidex:1.0.1'
     compile 'com.jiechic.library:xUtils:2.6.14'
@@ -103,12 +105,11 @@ dependencies {
     compile 'org.greenrobot:greendao:3.0.1'
     compile 'org.greenrobot:greendao-generator:3.0.0'
     compile 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.3'
-//    compile 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.3'//这个的作用是当有特殊的上拉刷新布局时才用的到
     compile 'com.android.support:design:26.0.0-alpha1'
     compile 'com.chanven.lib:cptr:1.0.0'
     compile 'com.mcxiaoke.volley:library:1.0.16'
     compile 'com.jakewharton:butterknife:8.5.1'
+    compile 'com.contrarywind:Android-PickerView:3.2.5'
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
-    compile 'com.contrarywind:Android-PickerView:3.2.5'
 }

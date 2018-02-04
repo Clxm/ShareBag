@@ -8,9 +8,14 @@ import android.widget.Button;
 
 import com.bigkoo.pickerview.OptionsPickerView;
 import com.share.bag.R;
+import com.share.bag.utils.okhttp.OkHttpUtils;
+import com.share.bag.utils.okhttp.callback.MyNetWorkCallback;
+
+import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /*
@@ -36,30 +41,32 @@ public class AddressActivity extends AppCompatActivity implements View.OnClickLi
 //String dizhiurl="http://baobaoapi.ldlchat.com/Home/Personalcenter/getaddress.html";
 //               http://baobaoapi.ldlchat.com/Home/Personalcenter/getaddress.html
 
-        String dizhiurl="http://baobaoapi.ldlchat.com/Home/Personalcenter/getaddress.html ";
+        String dizhiurl = "http://baobaoapi.ldlchat.com/Home/Personalcenter/getaddress.html ";
 
         Map<String, String> map = new HashMap<>();
-        map.put("type","1");
-//        OkHttpUtils.getInstance().postList(dizhiurl, map, new MyNetWorkCallback<String>() {
-//
-//                @Override
-//            public void onSuccess(String provinceBean){
-//                                                    //fang
-//                    Type type1 = new TypeToken<List<>>(){}.getType();  //
-//                province = provinceBean.getProvince();
-//                //用于第二个网络请求  这是集合？？？？？？？？
-//                provinceid = provinceBean.getProvinceid();
-//                Log.e("TAG", "onSuccess: "+provinceid );
-//            }
-//
-//            @Override
-//            public void onError(int errorCode, String errorMsg) {
-//
-//            }
-//        });
+        map.put("type", "1");
 
-        }
 
+        OkHttpUtils.getInstance().post(dizhiurl, map, new MyNetWorkCallback<ProvinceBean>() {
+
+
+            @Override
+            public void onSuccess(ProvinceBean provinceBean) throws JSONException {
+                List<ProvinceBean.InfoBean> status = provinceBean.getInfo();
+                for (int i = 0; i < status.size(); i++) {
+                    String province = status.get(i).getProvince();
+
+
+
+                }
+            }
+
+            @Override
+            public void onError(int errorCode, String errorMsg) {
+
+            }
+        });
+    }
     private void initView() {
         btn_selector = (Button) findViewById(R.id.btn_selector_address);
 
@@ -84,7 +91,7 @@ public class AddressActivity extends AppCompatActivity implements View.OnClickLi
             @Override
             public void onOptionsSelect(int options1, int options2, int options3, View v) {
                 //返回的分别是三个级别的选中位置
-                String tx = options1Items.get(options1).getProvince()
+                String tx = options1Items.get(options1).getInfo().get(options1).getProvince()
                         + options2Items.get(options1).get(options2);
                 ((Button) v).setText(tx);
             }

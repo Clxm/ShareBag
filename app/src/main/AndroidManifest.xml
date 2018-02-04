@@ -155,7 +155,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.activitys.mine.NameActivity" />
-        <activity android:name=".ui.activitys.mine.AddressActivity"></activity>
+        <activity android:name=".ui.activitys.mine.AddressActivity" />
+        <activity android:name=".ui.activitys.mine.address.HarvestActivity"></activity>
     </application>
 
 </manifest>

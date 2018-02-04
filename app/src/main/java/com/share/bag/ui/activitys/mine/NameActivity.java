@@ -1,5 +1,7 @@
 package com.share.bag.ui.activitys.mine;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -27,6 +29,12 @@ import java.util.Map;
 * */
 public class NameActivity extends AppCompatActivity {
 
+    private String trim;
+
+    public static Intent getIntent(Context context){
+        Intent intent=new Intent(context,NameActivity.class);
+        return intent;
+    }
     private List<NaneBean> nameList=new ArrayList();
     private ImageView name_return;
     private TextView name_save;
@@ -48,12 +56,7 @@ public class NameActivity extends AppCompatActivity {
         name_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                submit();
-
-//                EventBus.getDefault().post(new UserName(edit));
-//                Toast.makeText(NameActivity.this, ""+edit, Toast.LENGTH_SHORT).show();
-              getname();
-
+             getname();
             }
         });
 
@@ -62,9 +65,6 @@ public class NameActivity extends AppCompatActivity {
 
             String info = nameList.get(i).getInfo();
             Toast.makeText(this, "---"+info, Toast.LENGTH_SHORT).show();
-
-
-
 
 
         }
@@ -81,24 +81,28 @@ public class NameActivity extends AppCompatActivity {
 
     private void submit() {
         // validate
-        edit = name_edit.getText().toString().trim();
-        if (TextUtils.isEmpty(edit)) {
-            Toast.makeText(this, "edit不能为空", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        // TODO validate success, do something
 
 
     }
 
     public void getname() {
-        Map<String,String> map=new HashMap<>();
-        String trim = name_edit.getText().toString().trim();
-        map.put("name",trim);
+        submit();
+
+
+        edit = name_edit.getText().toString().trim();
+        if (TextUtils.isEmpty(edit)) {
+            Toast.makeText(this, "昵称不能为空", Toast.LENGTH_SHORT).show();
+        } else {
+        Map<String, String> map = new HashMap<>();
+        trim = name_edit.getText().toString().trim();
+        map.put("name", trim);
         OkHttpUtils.getInstance().post(SBUrls.NICKNAME, map, new MyNetWorkCallback<NaneBean>() {
             @Override
             public void onSuccess(NaneBean naneBean) throws JSONException {
+                Intent intent = getIntent();
+                intent.putExtra("username", trim);
+                setResult(RESULT_OK, intent);
+                finish();
 
             }
 
@@ -106,37 +110,8 @@ public class NameActivity extends AppCompatActivity {
             public void onError(int errorCode, String errorMsg) {
 
             }
-        }); 
-//        OkHttpUtils.getInstance().postByte(SBUrls.NICKNAME, map, new ByteCallBack() {
-//            @Override
-//            public void onSuccess(String json) {
-//                Gson gson=new Gson();
-//                List<NaneBean> selectedBeens = gson.fromJson(json, new TypeToken<List<NaneBean>>() {
-//                }.getType());
-//                Toast.makeText(NameActivity.this, ""+selectedBeens.get(0).getInfo(), Toast.LENGTH_SHORT).show();
-////                nameList.addAll(selectedBeens);
-//
-//
-//            }
-//
-//            @Override
-//            public void onError(int errorCode, String errorMsg) {
-//
-//            }
-//        });
-
-
-//        OkHttpUtils.getInstance().post(SBUrls.NICKNAME, map, new MyNetWorkCallback<NaneBean>() {
-//            @Override
-//            public void onSuccess(NaneBean naneBean) {
-//                Log.e("TAGG","==========="+naneBean.getInfo());
-//            }
-//
-//            @Override
-//            public void onError(int errorCode, String errorMsg) {
-//
-//            }
-//        });
+        });
+    }
 
     }
 }

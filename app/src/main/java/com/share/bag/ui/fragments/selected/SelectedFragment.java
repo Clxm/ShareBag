@@ -122,37 +122,32 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
         });
 
 
-        adapter.setCallback(new PopularAdapter.AdapterCallback() {//收藏调用
-            @Override
-            public void callBack( View v, int position) {
-                if (select_user.getText().equals("")){
-                    Toast.makeText(getActivity(), "请先登录"+position, Toast.LENGTH_SHORT).show();
-                }else {
-                    getselect();
-                }
-            }
-        });
+//        adapter.setCallback(new PopularAdapter.AdapterCallback() {//收藏调用
+//            @Override
+//            public void callBack( View v, int position) {
+//                if (select_user.getText().equals("")){
+//                    Toast.makeText(getActivity(), "请先登录"+position, Toast.LENGTH_SHORT).show();
+//                }else {
+////                    getselect( position);
+//                }
+//            }
+//        });
 
     }
-    public void getselect() {
+    public void getselect(final int position) {
 
                     Map<String ,String> collection=new HashMap();
-                    collection.put("baglist_id","1");
+                    collection.put("baglist_id",position+"");
                     OkHttpUtils.getInstance().post(SBUrls.COLLECTION, collection, new MyNetWorkCallback<CollectionBean>() {
                         @Override
                         public void onSuccess(CollectionBean collectionBean) {
                             String status = collectionBean.getInfo();
-//                            Toast.makeText(getActivity(), "----"+status, Toast.LENGTH_SHORT).show();
-//                            getselect();
-                            if (status.toString().equals("收藏成功")){
-                                Toast.makeText(getContext(), "----"+status, Toast.LENGTH_SHORT).show();
 
-//                                getpopular();
-//                                adapter.notifyDataSetChanged();// 刷新
-                            }else {
-                                Toast.makeText(getContext(), "++++"+status, Toast.LENGTH_SHORT).show();
+                            if (status.toString().equals("收藏成功")){//成功
+                                Toast.makeText(getContext(), position+status, Toast.LENGTH_SHORT).show();
+                            }else {//失败
+                                Toast.makeText(getContext(), position+status, Toast.LENGTH_SHORT).show();
                             }
-
                             adapter.notifyDataSetChanged();// 刷新
 
                         }
