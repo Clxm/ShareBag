@@ -165,8 +165,6 @@ public class MineFragment extends BaseFragment {
 //                    Glide.with(getContext()).load("http://baobaoapi.ldlchat.com"+img).into(mineAvatar);
                     Glide.with(getContext()).load(img).into(mineAvatar);
                 }
-
-
 //            Glide.with(getActivity()).load("http://baobaoapi.ldlchat.com "+img).error(R.mipmap.ic_launcher).into(mineAvatar);
                 Log.e("2222222222222","http://baobaoapi.ldlchat.com "+img);
 //            Toast.makeText(getContext(), "http://baobaoapi.ldlchat.com "+img, Toast.LENGTH_SHORT).show();
@@ -240,9 +238,6 @@ public class MineFragment extends BaseFragment {
                 }
                 break;
             case R.id.mine_address://我的地址
-                Toast.makeText(getActivity(), "点击了我的地址", Toast.LENGTH_SHORT).show();
-//                AppCompatActivity
-//                Intent intent1=new Intent(getActivity(), AddressActivity.class);
                 Intent intent1=new Intent(getActivity(), HarvestActivity.class);
                 startActivity(intent1);
                 break;

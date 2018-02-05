@@ -111,7 +111,7 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
         adapter.setOnitemClickedListener(new PopularAdapter.OnitemClickedListener() {
             @Override
             public void Back(View v, int position) {//详情页
-
+                adapter.notifyDataSetChanged();
                     Intent intent1 = new Intent(getActivity(), DetailsActivity.class);
                     intent1.putExtra("details",position+"");
 
@@ -120,18 +120,6 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
                     startActivity(intent1);
             }
         });
-
-
-//        adapter.setCallback(new PopularAdapter.AdapterCallback() {//收藏调用
-//            @Override
-//            public void callBack( View v, int position) {
-//                if (select_user.getText().equals("")){
-//                    Toast.makeText(getActivity(), "请先登录"+position, Toast.LENGTH_SHORT).show();
-//                }else {
-////                    getselect( position);
-//                }
-//            }
-//        });
 
     }
     public void getselect(final int position) {

@@ -1,28 +1,30 @@
 package com.share.bag.ui.activitys.mine;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-
 import com.bigkoo.pickerview.OptionsPickerView;
 import com.share.bag.R;
 import com.share.bag.utils.okhttp.OkHttpUtils;
 import com.share.bag.utils.okhttp.callback.MyNetWorkCallback;
-
 import org.json.JSONException;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 /*
-* 收获地址
+* 新增收获地址
 * */
 public class AddressActivity extends AppCompatActivity implements View.OnClickListener {
-
+    public static Intent getIntent(Context context){
+        Intent intent=new Intent(context,AddressActivity.class);
+        return intent;
+    }
     private ArrayList<ProvinceBean> options1Items = new ArrayList<>();
     private ArrayList<ArrayList<String>> options2Items = new ArrayList<>();
     private Button btn_selector;
