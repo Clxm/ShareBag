@@ -86,39 +86,42 @@ checkbox.setChecked(true)选中。
 
 checkbox.setChecked(false)未选中。
 * */
-//        if (list.get(position).getIs_type().equals("0")) {
-//            holder.add_checkbox1.setChecked(false);
-//
-//        } else {
-//
-//            holder.add_checkbox1.setChecked(true);
-//        }
+        if (list.get(position).getIs_type().equals("0")) {
+            holder.add_checkbox1.setChecked(false);
+
+        } else {
+
+            holder.add_checkbox1.setChecked(true);
+        }
 
        holder.add_checkbox1.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
-               Toast.makeText(context, "设置为默认网址", Toast.LENGTH_SHORT).show();
-//                   String shoucangurl="http://baobaoapi.ldlchat.com/Home/Personalcenter/fortype.html";
-//                   Map<String ,String > stringStringMap=new HashMap<String, String>();
-//                   stringStringMap.put("id",""+position);
-//                   OkHttpUtils.getInstance().post(shoucangurl, stringStringMap, new MyNetWorkCallback<AddressAdapterBean>() {
-//                       @Override
-//                       public void onSuccess(AddressAdapterBean addressAdapterBean) throws JSONException {
-//                       }
-//
-//                       @Override
-//                       public void onError(int errorCode, String errorMsg) {
-//
-//                       }
-//                   });
-////               if (list.get(position).getIs_type().equals("1")) {
-////                   list.get(position).setIs_type("0");
-//////                   list.get(position).setIs_type("1");
-////               } else {
-////                   list.get(position).setIs_type("1");
-//////                   list.get(position).setIs_type("0");
-////               }
-//                notifyDataSetChanged();
+                   String shoucangurl="http://baobaoapi.ldlchat.com/Home/Personalcenter/fortype.html";
+                   Map<String ,String > stringStringMap=new HashMap<String, String>();
+                   stringStringMap.put("id",""+position);
+                   OkHttpUtils.getInstance().post(shoucangurl, stringStringMap, new MyNetWorkCallback<AddressAdapterBean>() {
+                       @Override
+                       public void onSuccess(AddressAdapterBean addressAdapterBean) throws JSONException {
+
+                           for (int i = 0; i < list.size(); i++) {
+                               if (list.get(position).getIs_type().equals("1")){
+                                   return;
+                               }
+                               list.get(i).setIs_type("0");
+                           }
+                           list.get(position).setIs_type("1");
+
+                           notifyDataSetChanged();
+
+
+                       }
+                       @Override
+                       public void onError(int errorCode, String errorMsg) {
+
+                       }
+                   });
+
            }
        });
     }

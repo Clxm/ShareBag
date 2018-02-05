@@ -8,7 +8,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.share.bag.R;
 import com.share.bag.adapter.AddressAdapter;
@@ -105,7 +104,7 @@ private List<AddBean1>list=new ArrayList();
             case R.id.harvest_add:
 
 
-                Toast.makeText(this, "新增地址", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(this, "新增地址", Toast.LENGTH_SHORT).show();
                 startActivityForResult(AddressActivity.getIntent(this),1);
 
                 break;
