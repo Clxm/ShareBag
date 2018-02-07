@@ -31,10 +31,12 @@ import com.share.bag.ui.activitys.home.DetailsActivity;
 import com.share.bag.utils.okhttp.OkHttpUtils;
 import com.share.bag.utils.okhttp.callback.ByteCallBack;
 import com.share.bag.utils.okhttp.callback.MyNetWorkCallback;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -101,8 +103,10 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
         }
         
 //     设置  Manager
-        GridLayoutManager manager = new GridLayoutManager(getContext(), 2);
-        selectedRecyclerview.setLayoutManager(manager);
+//        GridLayoutManager manager = new GridLayoutManager(getContext(), 2);
+
+//        gridlayoutmanager
+        selectedRecyclerview.setLayoutManager(new GridLayoutManager(getActivity(),2));
 //        初始化 界面
 
         adapter = new PopularAdapter(getContext(), mList);

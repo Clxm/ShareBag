@@ -37,7 +37,11 @@ public class SBUrls {
 //      选包（热门）界面
     public static final String POPULAR ="http://baobaoapi.ldlchat.com/Home/Backlist/bagtolist.html";
     public static final String LOGURL="http://baobaoapi.ldlchat.com";
-
+    public static final String CHECK_RECEIVING = "http://baobaoapi.ldlchat.com/Home/Personalcenter/getUserContent.html";
+/*
+* check
+Receiving
+* */
 //                        Collection收藏
     public static final String COLLECTION="http://baobaoapi.ldlchat.com/Home/Backcontent/collection.html";
     //    ------------------------------ 字符 -----------------------------------------''

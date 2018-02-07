@@ -238,8 +238,18 @@ public class MineFragment extends BaseFragment {
                 }
                 break;
             case R.id.mine_address://我的地址
-                Intent intent1=new Intent(getActivity(), HarvestActivity.class);
-                startActivity(intent1);
+
+
+                if (mine_name.getText().equals("请登录")) {//登录
+                    Intent intent = new Intent(getActivity(), LoginActivity.class);
+                    startActivity(intent);
+                } else {//分享界面
+                    Intent intent1=new Intent(getActivity(), HarvestActivity.class);
+                    startActivity(intent1);
+                }
+
+
+
                 break;
 
             case R.id.mine_contact://联系客服

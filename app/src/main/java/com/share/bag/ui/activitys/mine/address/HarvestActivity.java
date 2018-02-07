@@ -8,11 +8,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.share.bag.FileUtil;
 import com.share.bag.R;
+import com.share.bag.SBUrls;
 import com.share.bag.adapter.AddressAdapter;
 import com.share.bag.entity.AddressBean;
 import com.share.bag.ui.activitys.mine.AddressActivity;
+import com.share.bag.ui.activitys.mine.LoginActivity;
 import com.share.bag.utils.okhttp.OkHttpUtils;
 import com.share.bag.utils.okhttp.callback.MyNetWorkCallback;
 
@@ -29,37 +33,31 @@ import java.util.Map;
 public class HarvestActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ImageView match_return;
-    //    private TextView match_save;
     private RecyclerView harvest_recycler;
     private Button harvest_add;
     private List<AddressBean.InfoBean>  info=new ArrayList<>();
-private List<AddBean1>list=new ArrayList();
+    private List<AddBean1>list=new ArrayList();
+    private TextView yincangpanduan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_harvest);
         initView();
-        initdata();
-
-
-//        GridLayoutManager manager = ;
+//        initdata();
         harvest_recycler.setLayoutManager(new LinearLayoutManager(this));
-
-//        harvest_recycler.setLayoutManager(new GridLayoutManager(getContext(), 1));
         AddressAdapter adapter = new AddressAdapter(HarvestActivity.this,list );//适配器
         harvest_recycler.setAdapter(adapter);
 
-//        Toast.makeText(this, "走完了", Toast.LENGTH_SHORT).show();
     }
 
     private void initdata() {
 
-        String addurl="http://baobaoapi.ldlchat.com/Home/Personalcenter/getUserContent.html";
+//        String addurl="http://baobaoapi.ldlchat.com/Home/Personalcenter/getUserContent.html";
 
         Map<String,String> addmap=new HashMap<>();
 
-        OkHttpUtils.getInstance().post(addurl, addmap, new MyNetWorkCallback<AddressBean>() {
+        OkHttpUtils.getInstance().post(SBUrls.CHECK_RECEIVING, addmap, new MyNetWorkCallback<AddressBean>() {
             @Override
             public void onSuccess(AddressBean addressBean) throws JSONException {
 
@@ -86,6 +84,7 @@ private List<AddBean1>list=new ArrayList();
 
     private void initView() {
         match_return = (ImageView) findViewById(R.id.match_return);
+        yincangpanduan = (TextView) findViewById(R.id.yincangpanduan);
         harvest_recycler = (RecyclerView) findViewById(R.id.harvest_recycler);
         harvest_add = (Button) findViewById(R.id.harvest_add);
         harvest_add.setOnClickListener(this);
@@ -117,10 +116,56 @@ private List<AddBean1>list=new ArrayList();
 
         if(requestCode==1&&resultCode==1){
 //            ed.setText(data.getStringExtra("text"));
+
+            initdata();
         }
 
-
+//        initdata();
 
 
     }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        FileUtil.SelectedreadFromPre(this,yincangpanduan);
+        if (yincangpanduan.getText().equals("")) {//登录
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+        } else {
+
+            initdata();
+        }
+
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        initdata();
+
+
+    }
+
+//    @Override
+//    public void onActivityReenter(int resultCode, Intent data) {
+//        super.onActivityReenter(resultCode, data);
+//
+//
+//
+//
+//
+//
+//    }
+
+    //    @Override
+//    protected void onResume() {
+//        super.onResume();
+//
+//        initdata();
+//
+//
+//    }
 }

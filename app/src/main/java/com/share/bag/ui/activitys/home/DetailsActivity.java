@@ -34,6 +34,7 @@ import com.share.bag.ui.pay.RentActivity;
 import com.share.bag.utils.okhttp.OkHttpUtils;
 import com.share.bag.utils.okhttp.callback.MyNetWorkCallback;
 import com.umeng.socialize.ShareAction;
+import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.UMShareListener;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.media.UMImage;
@@ -302,7 +303,10 @@ public class DetailsActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 WXShareWeb("http://pic7.nipic.com/20100517/2474391_114652343079_2.jpg");
-//                Toast.makeText(DetailsActivity.this, "微信好友", Toast.LENGTH_SHORT).show();
+//                WXShareWeb("aaaaaaa");
+
+
+
                 window1.dismiss();
 
             }
@@ -399,7 +403,7 @@ public class DetailsActivity extends BaseActivity {
         new ShareAction(DetailsActivity.this).withMedia(web).setPlatform(SHARE_MEDIA.SINA).setCallback(shareListener).share();
     }
 
-    private void WXShareWeb(String thumb_img){
+    private void WXShareWeb(String thumb_img){//微信好友
         UMImage thumb = new UMImage(DetailsActivity.this,thumb_img);
         UMWeb web = new UMWeb("https://www.baidu.com/");
         web.setThumb(thumb);
@@ -414,7 +418,15 @@ public class DetailsActivity extends BaseActivity {
         web.setThumb(thumb);
         web.setDescription("这是一款应用共享的APP");
         web.setTitle("一位小主");
-        new ShareAction(DetailsActivity.this).withMedia(web).setPlatform(SHARE_MEDIA.WEIXIN_CIRCLE).setCallback(shareListener).share();
+        new ShareAction(DetailsActivity.this)
+                .withMedia(web)
+                .setPlatform(SHARE_MEDIA.WEIXIN_CIRCLE)
+                .setCallback(shareListener)
+                .share();
+
+
+
+
     }
     private void QzogShareWeb(String thumb_img){
         UMImage thumb = new UMImage(DetailsActivity.this,thumb_img);
@@ -422,7 +434,11 @@ public class DetailsActivity extends BaseActivity {
         web.setThumb(thumb);
         web.setDescription("这是一款应用共享的APP");
         web.setTitle("一位小主");
-        new ShareAction(DetailsActivity.this).withMedia(web).setPlatform(SHARE_MEDIA.QZONE).setCallback(shareListener).share();
+        new ShareAction(DetailsActivity.this)
+                .withMedia(web)
+                .setPlatform(SHARE_MEDIA.QZONE)
+                .setCallback(shareListener)
+                .share();
     }
     private UMShareListener shareListener = new UMShareListener() {
         /**
@@ -481,5 +497,12 @@ public class DetailsActivity extends BaseActivity {
     }
 
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
+
+
+    }
 }
 

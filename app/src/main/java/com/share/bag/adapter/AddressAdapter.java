@@ -1,6 +1,7 @@
 package com.share.bag.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 import com.share.bag.R;
 import com.share.bag.entity.AddressAdapterBean;
 import com.share.bag.ui.activitys.mine.address.AddBean1;
+import com.share.bag.ui.activitys.mine.address.ModifyActivity;
 import com.share.bag.utils.okhttp.OkHttpUtils;
 import com.share.bag.utils.okhttp.callback.MyNetWorkCallback;
 
@@ -51,12 +53,11 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
         holder.add_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "点击了修改", Toast.LENGTH_SHORT).show();
-
-
-
-
-
+//                Toast.makeText(context, "点击了修改", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context,ModifyActivity.class);
+                intent.putExtra("id",list.get(position).getId()+"");
+//                跳转这样写
+                context.startActivity(intent);
 
             }
         });
@@ -66,17 +67,25 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
             public void onClick(View view) {
                 String shanchuurl="http://baobaoapi.ldlchat.com/Home/Personalcenter/del.html";
                    Map<String ,String > stringString=new HashMap<String, String>();
-                   stringString.put("id",""+position);
+                   stringString.put("id",""+list.get(position).getId());
                    OkHttpUtils.getInstance().post(shanchuurl, stringString, new MyNetWorkCallback<AddressAdapterBean>() {
                        @Override
                        public void onSuccess(AddressAdapterBean addressAdapterBean) throws JSONException {
+                           String info = addressAdapterBean.getInfo();
+                           try {
+                               list.remove(position);
+                               notifyDataSetChanged();
+                               Toast.makeText(context, "删除返回值+"+info, Toast.LENGTH_SHORT).show();
+
+                           }catch(Exception e){
+                           }
+
                        }
                        @Override
                        public void onError(int errorCode, String errorMsg) {
                        }
                    });
-                        list.remove(position);
-                        notifyDataSetChanged();
+
             }
         });
 /*/*

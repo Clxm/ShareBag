@@ -17,7 +17,7 @@ public class APP extends Application{
 
     public static AppCompatActivity context;
 
-    {//584e36f6b03ede387ae9a29805bfab9d  AppSecret   584e36f6b03ede387ae9a29805bfab9d
+    {//wx38f75c7fdb68b2bf
         //应用签名      b8c48274438d1b31bae8462ba8a5bdaf
         PlatformConfig.setWeixin("wx38f75c7fdb68b2bf", "584e36f6b03ede387ae9a29805bfab9d");
         PlatformConfig.setQQZone("1106593131", "aTkZwsKLliMcSv7v");

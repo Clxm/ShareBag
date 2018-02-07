@@ -22,7 +22,6 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.share.bag.FileUtil;
 import com.share.bag.R;
@@ -126,7 +125,7 @@ public class PersonalActivity extends BaseActivity {
         EventBus.getDefault().register(this);
 
 
-        Toast.makeText(this,personal_name1.getText().toString()+personal_number.getText().toString(), Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this,personal_name1.getText().toString()+personal_number.getText().toString(), Toast.LENGTH_SHORT).show();
         FileUtil.Homepage(this,personal_name1,imgview,personal_number);
 
 

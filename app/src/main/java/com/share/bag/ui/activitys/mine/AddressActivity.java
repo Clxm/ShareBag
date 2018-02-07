@@ -18,10 +18,15 @@ import com.google.gson.Gson;
 import com.share.bag.R;
 import com.share.bag.ui.activitys.area.JsonBean;
 import com.share.bag.ui.activitys.area.JsonFileReader;
+import com.share.bag.utils.okhttp.OkHttpUtils;
+import com.share.bag.utils.okhttp.callback.MyNetWorkCallback;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /*
 * 新增收获地址
@@ -38,6 +43,9 @@ public class AddressActivity extends AppCompatActivity implements View.OnClickLi
     private ArrayList<JsonBean> options1Items = new ArrayList<>();
     private ArrayList<ArrayList<String>> options2Items = new ArrayList<>();
     private ArrayList<ArrayList<ArrayList<String>>> options3Items = new ArrayList<>();
+    private String address1;
+    private String address2;
+    private String address3;
 
     public static Intent getIntent(Context context) {
         Intent intent = new Intent(context, AddressActivity.class);
@@ -84,6 +92,7 @@ public class AddressActivity extends AppCompatActivity implements View.OnClickLi
     }
     private void showPickerView() {
         OptionsPickerView pvOptions=new OptionsPickerView.Builder(this, new OptionsPickerView.OnOptionsSelectListener() {
+
             @Override
             public void onOptionsSelect(int options1, int options2, int options3, View v) {
                 //返回的分别是三个级别的选中位置
@@ -91,12 +100,12 @@ public class AddressActivity extends AppCompatActivity implements View.OnClickLi
                         options2Items.get(options1).get(options2) +
                         options3Items.get(options1).get(options2).get(options3);
 
-                String address1=options1Items.get(options1).getPickerViewText();
-                String address2= options2Items.get(options1).get(options2);
+                address1 = options1Items.get(options1).getPickerViewText();
+                address2 = options2Items.get(options1).get(options2);
 
-                String address3=options3Items.get(options1).get(options2).get(options3);
+                address3 = options3Items.get(options1).get(options2).get(options3);
 
-                address_city.setText(address1+address2+address3);//赋值
+                address_city.setText(address1 + address2 + address3);//赋值
             }
         }).setTitleText("")
                 .setDividerColor(Color.GRAY)
@@ -121,7 +130,31 @@ public class AddressActivity extends AppCompatActivity implements View.OnClickLi
             Toast.makeText(this, "信息不完整，请补充", Toast.LENGTH_SHORT).show();
 
         }else {
-//            OkHttpUtils.getInstance().post("","",new );
+            String addurl="http://baobaoapi.ldlchat.com/Home/Personalcenter/address.html";
+
+            Map<String,String> map=new HashMap<>();
+
+            map.put("province",address1);//省
+            map.put("city",address2);//市
+            map.put("area",address3);//区
+            map.put("content",address);//详细地址
+            map.put("username",name);//姓名
+            map.put("phone",phone);//手机号
+
+            OkHttpUtils.getInstance().post(addurl,map, new MyNetWorkCallback<AddBean>() {
+                @Override
+                public void onSuccess(AddBean addBean) throws JSONException {
+                    finish();
+                }
+
+                @Override
+                public void onError(int errorCode, String errorMsg) {
+
+                }
+            });
+
+
+
 
         }
 /*
@@ -211,4 +244,14 @@ public class AddressActivity extends AppCompatActivity implements View.OnClickLi
         return detail;
     }
 
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+
+
+
+
+
+    }
 }

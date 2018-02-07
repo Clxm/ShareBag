@@ -353,13 +353,9 @@ public class HomeFragment extends BaseFragment {
                         //         宴会轻奢 Days with Money;
 
                         String days = bagthinks1.get(0).getDays();
-//                        Log.e("TAG_Title---------0", days);
                         String days1 = bagthinks1.get(1).getDays();
-//                        Log.e("TAG_Title---------1", days1);
                         String days2 = bagthinks1.get(2).getDays();
-//                        Log.e("TAG_Title---------2", days2);
                         String days3 = bagthinks1.get(3).getDays();
-//                        Log.e("TAG_Title---------3", days3);
 
                         String days_money = bagthinks1.get(0).getDays_money();
                         String days_money1 = bagthinks1.get(1).getDays_money();
@@ -464,29 +460,38 @@ public class HomeFragment extends BaseFragment {
                 Toast.makeText(context, "请求失败", Toast.LENGTH_SHORT).show();
             }
         });
-
-
-//        getmonitor();
     }
 
     private void forEashs(HomeFragmentBean homeFragmentBean, int i, HomeFragmentBean.ListBean listBean) {
+
+
+
         for (int j = 0; j < listBean.getBagthinks().size(); j++) {
-            HomeFragmentBean.ListBean.BagthinksBean bagthinksBean = listBean.getBagthinks().get(j);
-            String id = bagthinksBean.getId();
-            String id2= bagthinksBean.getId();
-            String id3 = bagthinksBean.getId();
+//            HomeFragmentBean.ListBean.BagthinksBean bagthinksBean = listBean.getBagthinks().get(j);
+            List<HomeFragmentBean.ListBean.BagthinksBean> bagthinks = listBean.getBagthinks();
+//            String id = bagthinksBean.getId();
+//            String id2= bagthinksBean.getId();
+//            String id3 = bagthinksBean.getId();
+            String id1 = bagthinks.get(0).getId();
+            String id2 = bagthinks.get(1).getId();
+            String id3 = bagthinks.get(2).getId();
+
+
+
 
 //            http://baobaoapi.ldlchat.com/Uploads/20180106/5a5069d43caaa.png,/Uploads/20180106/5a5069fc9c6af.png"
 
             //这个是第一个的所有图片
-            String img1 = bagthinksBean.getImg();
-            String img2 = bagthinksBean.getImg();
-            String img3 = bagthinksBean.getImg();
+//            String img1 = bagthinksBean.getImg();
+//            String img2 = bagthinksBean.getImg();
+//            String img3 = bagthinksBean.getImg();
+            String img1 = bagthinks.get(0).getImg();
+            String img2 = bagthinks.get(1).getImg();
+            String img3 = bagthinks.get(2).getImg();
 
             Glide.with(HomeFragment.this).load(img1).into(homeBrandimg1);//品牌专区1
             Glide.with(HomeFragment.this).load(img2).into(homeBrandimg2);//品牌专区2
             Glide.with(HomeFragment.this).load(img3).into(homeBrandimg3);//品牌专区3
-
 
         }
     }
