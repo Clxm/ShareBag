@@ -39,7 +39,7 @@
     <ImageView
         android:layout_width="200px"
         android:layout_height="200px"
-        android:src="@drawable/touxiang3"
+        android:src="@drawable/touxiang22"
         android:layout_marginTop="100px"
         android:id="@+id/imageView6"
         android:layout_alignParentTop="true"

@@ -36,6 +36,8 @@ import com.share.bag.ui.activitys.mine.avatar.ToastUtils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 import static com.share.bag.ui.activitys.mine.PersonalActivity.hasSdcard;
 
@@ -69,7 +71,7 @@ public class UploadActivity extends AppCompatActivity implements View.OnClickLis
     private EditText upload_sell;
     private TextView text8;
     private Button upload_submit;
-    private LinearLayout uplad_add1;
+    private LinearLayout uplad_add1,uplad_add2,uplad_add3;
     private PopupWindow window2;
 
     private static final int CODE_GALLERY_REQUEST = 0xa0;
@@ -120,6 +122,8 @@ public class UploadActivity extends AppCompatActivity implements View.OnClickLis
         upload_submit = (Button) findViewById(R.id.upload_submit);
 
         uplad_add1 = (LinearLayout) findViewById(R.id.uplad_add1);
+        uplad_add2 = (LinearLayout) findViewById(R.id.uplad_add2);
+        uplad_add3 = (LinearLayout) findViewById(R.id.uplad_add3);
         uplad_adding1_name = (TextView) findViewById(R.id.uplad_adding1_name);
 
 
@@ -135,6 +139,12 @@ public class UploadActivity extends AppCompatActivity implements View.OnClickLis
                 finish();
                 break;
             case R.id.uplad_add1:
+                getPopupWindow();
+                break;
+            case R.id.uplad_add2:
+                getPopupWindow();
+                break;
+            case R.id.uplad_add3:
                 getPopupWindow();
                 break;
             case R.id.upload_submit:
@@ -154,6 +164,14 @@ public class UploadActivity extends AppCompatActivity implements View.OnClickLis
         if (TextUtils.isEmpty(uplad_brand1)||TextUtils.isEmpty(upload_original1)||TextUtils.isEmpty(uplad_size1)||TextUtils.isEmpty(upload_material1)) {
             Toast.makeText(this, "请补全内容", Toast.LENGTH_SHORT).show();
         }else {
+
+
+            String shangchuanurl="";
+            Map<String,String> stringStringMap=new HashMap<>();
+
+
+//            OkHttpUtils.getInstance().post(shangchuanurl,stringStringMap,new );
+
 
 
 

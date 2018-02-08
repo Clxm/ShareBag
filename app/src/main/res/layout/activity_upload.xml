@@ -406,6 +406,7 @@
 </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/uplad_add2"
                 android:layout_margin="40px"
                 android:gravity="center"
                 android:layout_width="match_parent"
@@ -430,6 +431,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/uplad_add3"
                 android:layout_margin="40px"
                 android:gravity="center"
                 android:layout_width="match_parent"

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -93,6 +94,8 @@ public class DetailsActivity extends BaseActivity {
     private ImageView Details_shared;
     private String description_1;
 
+    List<String> img1;
+    private List<String> img2;
 
     @Override
     public int initLayout() {
@@ -134,17 +137,24 @@ public class DetailsActivity extends BaseActivity {
         OkHttpUtils.getInstance().post(SBUrls.DETAILSURL, map, new MyNetWorkCallback<DeailsBean>() {
             @Override
             public void onSuccess(DeailsBean deailsBean) {
+                img2 = deailsBean.getImg();
+
 
                 List<String> img = deailsBean.getCarousel();//carousel
 
                 for (int i = 0; i < img.size(); i++) {
-                    String s = "http://" + img.get(i);//http://baobaoapi.ldlchat.com/Uploads/20180108/5a531cb6077c9.jpg
+                    String s = "http://" + img.get(i);//轮播图的网址
+
                     heardimg.add(s);
                 }
 
                 //         BannerHeader Show
                 bannerHeaderShow();
                 TabPageShow();
+
+                img1 = deailsBean.getImg();
+
+
                 String title = deailsBean.getTitle();//简介
 //                String deposit = deailsBean.getDeposit();//原价
 //                String nowprice = deailsBean.getNowprice();//租金
@@ -302,7 +312,18 @@ public class DetailsActivity extends BaseActivity {
         details_share_wxfriends.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {//微信好友
-                WXShareWeb(R.drawable.fenxiang1);
+
+                for (int i = 0; i < img2.size(); i++) {
+
+                    String s = img2.get(i);
+
+
+                }
+
+
+                Toast.makeText(DetailsActivity.this, ""+img2.get(0), Toast.LENGTH_SHORT).show();
+                Log.e("TAGBV",""+img2.get(0));
+                WXShareWeb(""+img2.get(0));
                 window1.dismiss();
 
             }
@@ -321,6 +342,9 @@ public class DetailsActivity extends BaseActivity {
         details_share_qqfriends.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
+
                 QQShareWeb(R.drawable.fenxiang1);
 //                Toast.makeText(DetailsActivity.this, "QQ好友", Toast.LENGTH_SHORT).show();
                 window1.dismiss();
@@ -399,11 +423,11 @@ public class DetailsActivity extends BaseActivity {
         new ShareAction(DetailsActivity.this).withMedia(web).setPlatform(SHARE_MEDIA.SINA).setCallback(shareListener).share();
     }
 
-    private void WXShareWeb(int thumb_img){//微信好友
+    private void WXShareWeb(String thumb_img){//微信好友
         UMImage thumb = new UMImage(DetailsActivity.this,thumb_img);
         UMWeb web = new UMWeb("http://ywxz.ldlchat.com/fx/shop.html");
         web.setThumb(thumb);
-        web.setDescription("这是一款应用共享的APP");
+        web.setDescription("");
         web.setTitle("一位小主");
         new ShareAction(DetailsActivity.this).withMedia(web).setPlatform(SHARE_MEDIA.WEIXIN).setCallback(shareListener).share();
     }

@@ -16,21 +16,20 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="165px"
+        android:layout_marginBottom="106px"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true">
 
 
-
+        <!--android:visibility="gone"-->
         <Button
             android:id="@+id/bt_next"
-            android:visibility="gone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/textview1"
+            android:layout_width="286px"
+            android:layout_height="109px"
+            android:background="@drawable/textview5"
             android:text="立即体验"
-            android:textSize="20sp"
-            />
+            android:textSize="43px"
+            android:textColor="#FC655E"/>
     </RelativeLayout>
 
     <RelativeLayout

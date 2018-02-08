@@ -2,6 +2,7 @@ package com.share.bag.ui.fragments.mine;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -162,16 +163,14 @@ public class MineFragment extends BaseFragment {
                 {
                     System.out.println("包含该字符串");
                 }
-//                !img.toString().equals("Uploads")
+
                 if (img.indexOf("Uploads")!=-1){
                     Glide.with(getContext()).load("http://baobaoapi.ldlchat.com"+img).into(mineAvatar);
-//                    Glide.with(getContext()).load(img).into(mineAvatar);
+
                 }else {
-//                    Glide.with(getContext()).load("http://baobaoapi.ldlchat.com"+img).into(mineAvatar);
+
                     Glide.with(getContext()).load(img).into(mineAvatar);
                 }
-//            Glide.with(getActivity()).load("http://baobaoapi.ldlchat.com "+img).error(R.mipmap.ic_launcher).into(mineAvatar);
-//            Toast.makeText(getContext(), "http://baobaoapi.ldlchat.com "+img, Toast.LENGTH_SHORT).show();
                 mine_name.setText(name);
             }
 
@@ -313,6 +312,15 @@ public class MineFragment extends BaseFragment {
             isGetData = true;
             //   这里可以做网络请求或者需要的数据刷新操作
             FileUtil.MinereadFromPre(getActivity(),mine_name,mineAvatar);
+
+            String wwwwString = mine_name.getText().toString().trim();
+            if (TextUtils.isEmpty(wwwwString)) {
+                mine_name.setText("请登录");
+                Glide.with(getContext()).load(R.drawable.touxiang22).into(mineAvatar);
+            }
+
+
+
         } else {
             isGetData = false;
         }
@@ -325,6 +333,13 @@ public class MineFragment extends BaseFragment {
         if (!isGetData) {
             //   这里可以做网络请求或者需要的数据刷新操作
             FileUtil.MinereadFromPre(getActivity(),mine_name,mineAvatar);
+            String wwwwString = mine_name.getText().toString().trim();
+            if (TextUtils.isEmpty(wwwwString)) {
+                mine_name.setText("请登录");
+                Glide.with(getContext()).load(R.drawable.touxiang22).into(mineAvatar);
+
+            }
+
             isGetData = true;
         }
     }

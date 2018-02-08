@@ -14,7 +14,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import com.share.bag.MainActivity;
+import com.share.bag.Main2Activity;
 import com.share.bag.R;
 import java.util.ArrayList;
 import java.util.List;
@@ -147,7 +147,7 @@ public class UmentActivity extends AppCompatActivity {
                 SharedPreferences.Editor edit = sharedUser.edit();
                 edit.putString("YinDao","22");
                 edit.commit();
-                startActivity(new Intent(UmentActivity.this,MainActivity.class));
+                startActivity(new Intent(UmentActivity.this,Main2Activity.class));
                 finish();
             }
         });
@@ -169,7 +169,7 @@ public class UmentActivity extends AppCompatActivity {
         SharedPreferences welcome = getSharedPreferences("welcome", Activity.MODE_PRIVATE);
         String yinDao = welcome.getString("YinDao", "");
         if (yinDao.equals("22")){
-            startActivity(new Intent(this,MainActivity.class));
+            startActivity(new Intent(this,Main2Activity.class));
             finish();
         }
     }

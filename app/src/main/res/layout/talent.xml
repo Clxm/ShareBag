@@ -19,7 +19,7 @@
                 android:layout_height="138px"
                 android:layout_margin="34px"
                 android:scaleType="fitXY"
-                android:src="@drawable/touxiang3" />
+                android:src="@drawable/touxiang22" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
