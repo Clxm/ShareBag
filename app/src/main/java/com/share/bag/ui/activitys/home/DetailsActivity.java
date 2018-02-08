@@ -301,12 +301,8 @@ public class DetailsActivity extends BaseActivity {
 
         details_share_wxfriends.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                WXShareWeb("http://pic7.nipic.com/20100517/2474391_114652343079_2.jpg");
-//                WXShareWeb("aaaaaaa");
-
-
-
+            public void onClick(View view) {//微信好友
+                WXShareWeb(R.drawable.fenxiang1);
                 window1.dismiss();
 
             }
@@ -314,7 +310,7 @@ public class DetailsActivity extends BaseActivity {
         details_share_wxcircle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                WXpengyouShareWeb("http://pic7.nipic.com/20100517/2474391_114652343079_2.jpg");
+                WXpengyouShareWeb(R.drawable.fenxiang1);
 //                Toast.makeText(DetailsActivity.this, "微信朋友圈", Toast.LENGTH_SHORT).show();
                 window1.dismiss();
 
@@ -325,7 +321,7 @@ public class DetailsActivity extends BaseActivity {
         details_share_qqfriends.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                QQShareWeb("http://pic7.nipic.com/20100517/2474391_114652343079_2.jpg");
+                QQShareWeb(R.drawable.fenxiang1);
 //                Toast.makeText(DetailsActivity.this, "QQ好友", Toast.LENGTH_SHORT).show();
                 window1.dismiss();
 
@@ -335,7 +331,7 @@ public class DetailsActivity extends BaseActivity {
         details_share_wocircle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SinaShareWeb("http://pic7.nipic.com/20100517/2474391_114652343079_2.jpg");
+                SinaShareWeb(R.drawable.fenxiang1);
                 window1.dismiss();
 
             }
@@ -347,7 +343,7 @@ public class DetailsActivity extends BaseActivity {
             public void onClick(View view) {
 //                Toast.makeText(DetailsActivity.this, "QQ空间", Toast.LENGTH_SHORT).show();
 
-                QzogShareWeb("http://pic7.nipic.com/20100517/2474391_114652343079_2.jpg");
+                QzogShareWeb(R.drawable.fenxiang1);
 
                 window1.dismiss();
             }
@@ -385,36 +381,36 @@ public class DetailsActivity extends BaseActivity {
 
 
 
-    private void QQShareWeb(String thumb_img){
+    private void QQShareWeb(int thumb_img){
         UMImage thumb = new UMImage(DetailsActivity.this,thumb_img);
-        UMWeb web = new UMWeb("https://www.baidu.com/");
+        UMWeb web = new UMWeb("http://ywxz.ldlchat.com/fx/shop.html");
         web.setThumb(thumb);
         web.setDescription("这是一款应用共享的APP");
         web.setTitle("一位小主");
         new ShareAction(DetailsActivity.this).withMedia(web).setPlatform(SHARE_MEDIA.QQ).setCallback(shareListener).share();
     }
 
-    private void SinaShareWeb(String thumb_img){
+    private void SinaShareWeb(int thumb_img){
         UMImage thumb = new UMImage(DetailsActivity.this,thumb_img);
-        UMWeb web = new UMWeb("https://www.baidu.com/");
+        UMWeb web = new UMWeb("http://ywxz.ldlchat.com/fx/shop.html");
         web.setThumb(thumb);
         web.setDescription("这是一款应用共享的APP");
         web.setTitle("一位小主");
         new ShareAction(DetailsActivity.this).withMedia(web).setPlatform(SHARE_MEDIA.SINA).setCallback(shareListener).share();
     }
 
-    private void WXShareWeb(String thumb_img){//微信好友
+    private void WXShareWeb(int thumb_img){//微信好友
         UMImage thumb = new UMImage(DetailsActivity.this,thumb_img);
-        UMWeb web = new UMWeb("https://www.baidu.com/");
+        UMWeb web = new UMWeb("http://ywxz.ldlchat.com/fx/shop.html");
         web.setThumb(thumb);
         web.setDescription("这是一款应用共享的APP");
         web.setTitle("一位小主");
         new ShareAction(DetailsActivity.this).withMedia(web).setPlatform(SHARE_MEDIA.WEIXIN).setCallback(shareListener).share();
     }
 
-    private void WXpengyouShareWeb(String thumb_img){
+    private void WXpengyouShareWeb(int thumb_img){
         UMImage thumb = new UMImage(DetailsActivity.this,thumb_img);
-        UMWeb web = new UMWeb("https://www.baidu.com/");
+        UMWeb web = new UMWeb("http://ywxz.ldlchat.com/fx/shop.html");
         web.setThumb(thumb);
         web.setDescription("这是一款应用共享的APP");
         web.setTitle("一位小主");
@@ -428,9 +424,9 @@ public class DetailsActivity extends BaseActivity {
 
 
     }
-    private void QzogShareWeb(String thumb_img){
+    private void QzogShareWeb(int thumb_img){
         UMImage thumb = new UMImage(DetailsActivity.this,thumb_img);
-        UMWeb web = new UMWeb("https://www.baidu.com/");
+        UMWeb web = new UMWeb("http://ywxz.ldlchat.com/fx/shop.html");
         web.setThumb(thumb);
         web.setDescription("这是一款应用共享的APP");
         web.setTitle("一位小主");

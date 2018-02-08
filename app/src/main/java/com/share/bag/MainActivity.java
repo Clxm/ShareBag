@@ -14,7 +14,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -114,7 +113,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     //对返回键进行监听
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        Log.e("AEG", "方法进去了");
+//        Log.e("AEG", "方法进去了");
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
             exit();
             return true;
@@ -124,7 +123,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     public void exit() {
 
-        Log.e("AEG", "到这里了");
+//        Log.e("AEG", "到这里了");
 
         if ((System.currentTimeMillis() - mExitTime) > 2000) {
             Toast.makeText(MainActivity.this, "再按一次退出", Toast.LENGTH_SHORT).show();
@@ -314,9 +313,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         int[] location = new int[2];
         RadioButton v = (RadioButton) findViewById(R.id.video_radiobt);
         v.getLocationOnScreen(location);
-        //  window.showAtLocation(v,Gravity.NO_GRAVITY,location[0]+v.getWidth()/2,location[1]-measuredHeight);
         window.showAtLocation(v, Gravity.NO_GRAVITY, (location[0] + v.getWidth() / 2) - measuredWidth / 2, location[1] - measuredHeight);
-        //window.showAsDropDown(((FrameLayout) findViewById(R.id.fm_show)));
         LinearLayout pop_one = (LinearLayout) view.findViewById(R.id.pop_one);
         LinearLayout pop_two = (LinearLayout) view.findViewById(R.id.pop_two);
 

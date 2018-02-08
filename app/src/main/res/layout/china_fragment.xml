@@ -19,46 +19,58 @@
                 android:background="@drawable/wode_beijing3">
 
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/mine_avatar"
-                    android:layout_width="156px"
-                    android:layout_height="156px"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="84px"
-                    android:src="@drawable/touxiang22" />
-
-                <TextView
-                    android:id="@+id/mine_name"
+                <LinearLayout
+                    android:id="@+id/mine_log"
+                    android:gravity="center_vertical"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/mine_data"
+                    android:layout_alignParentStart="true">
 
-                    android:text="请登录"
-                    android:textColor="#FFF"
-                    android:layout_centerVertical="true"
-                    android:layout_toEndOf="@+id/mine_avatar"
-                    android:layout_marginStart="30px" />
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/mine_avatar"
+                        android:layout_width="156px"
+                        android:layout_height="156px"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="84px"
+                        android:src="@drawable/touxiang22" />
+
+                    <TextView
+                        android:id="@+id/mine_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="30px"
+                        android:layout_toEndOf="@+id/mine_avatar"
+                        android:text="请登录"
+                        android:textColor="#FFF" />
+
+
+                </LinearLayout>
+
 
                 <!--<TextView-->
-                    <!--android:id="@+id/textView3"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_alignBottom="@+id/mine_avatar"-->
-                    <!--android:layout_marginBottom="7dp"-->
-                    <!--android:layout_marginStart="10dp"-->
-                    <!--android:layout_toEndOf="@+id/mine_avatar"-->
-                    <!--android:text="青铜会员"-->
-                    <!--android:textColor="#FFF"-->
-                    <!--android:textSize="26px" />-->
+                <!--android:id="@+id/textView3"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_alignBottom="@+id/mine_avatar"-->
+                <!--android:layout_marginBottom="7dp"-->
+                <!--android:layout_marginStart="10dp"-->
+                <!--android:layout_toEndOf="@+id/mine_avatar"-->
+                <!--android:text="青铜会员"-->
+                <!--android:textColor="#FFF"-->
+                <!--android:textSize="26px" />-->
 
                 <LinearLayout
                     android:id="@+id/mine_data"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignBottom="@+id/mine_avatar"
-                    android:layout_alignParentEnd="true"
                     android:background="@mipmap/wodezhuye1"
-                    android:gravity="center_vertical">
+                    android:gravity="center_vertical"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentEnd="true">
 
                     <TextView
                         android:layout_width="wrap_content"

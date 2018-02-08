@@ -2,10 +2,10 @@ package com.share.bag.ui.fragments.mine;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -103,6 +103,11 @@ public class MineFragment extends BaseFragment {
     @BindView(R.id.mine_set)
     RelativeLayout mineSet;
     Unbinder unbinder;
+    @BindView(R.id.mine_log)
+    LinearLayout mine_log;
+
+    private boolean isGetData = false;
+
     private Intent loginintent;
     private Intent loginintent1;
     private Intent myset;
@@ -166,7 +171,6 @@ public class MineFragment extends BaseFragment {
                     Glide.with(getContext()).load(img).into(mineAvatar);
                 }
 //            Glide.with(getActivity()).load("http://baobaoapi.ldlchat.com "+img).error(R.mipmap.ic_launcher).into(mineAvatar);
-                Log.e("2222222222222","http://baobaoapi.ldlchat.com "+img);
 //            Toast.makeText(getContext(), "http://baobaoapi.ldlchat.com "+img, Toast.LENGTH_SHORT).show();
                 mine_name.setText(name);
             }
@@ -183,7 +187,7 @@ public class MineFragment extends BaseFragment {
     @OnClick({ R.id.mine_data,R.id.mine_cabinets,R.id.mine_wallet,R.id.mine_shared,
             R.id.mine_Pay, R.id.mine_Sign,R.id.mine_ship, R.id.mine_return,
             R.id.mine_invite, R.id.mine_address,R.id.mine_contact, R.id.mine_problem,
-            R.id.mine_Complaints,R.id.mine_cooperation, R.id.mine_set})
+            R.id.mine_Complaints,R.id.mine_cooperation, R.id.mine_set,R.id.mine_log})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case mine_data://我的主页
@@ -282,11 +286,16 @@ public class MineFragment extends BaseFragment {
                     startActivity(rentloginintent);
                 }
                 break;
+
+            case R.id.mine_log://头像
+                if (mine_name.getText().equals("请登录")) {//登录
+                    Intent intent = new Intent(getActivity(), LoginActivity.class);
+                    startActivity(intent);
+                } else {
+                }
+                break;
         }
     }
-
-
-
 
     @Override
     public void onHiddenChanged(boolean hidden) {
@@ -294,5 +303,35 @@ public class MineFragment extends BaseFragment {
         if (!hidden){
 
         }
+    }
+
+    @Override
+    public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {
+
+        //   进入当前Fragment
+        if (enter && !isGetData) {
+            isGetData = true;
+            //   这里可以做网络请求或者需要的数据刷新操作
+            FileUtil.MinereadFromPre(getActivity(),mine_name,mineAvatar);
+        } else {
+            isGetData = false;
+        }
+        return super.onCreateAnimation(transit, enter, nextAnim);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (!isGetData) {
+            //   这里可以做网络请求或者需要的数据刷新操作
+            FileUtil.MinereadFromPre(getActivity(),mine_name,mineAvatar);
+            isGetData = true;
+        }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        isGetData = false;
     }
 }
