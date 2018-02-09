@@ -166,7 +166,7 @@ public class UploadActivity extends AppCompatActivity implements View.OnClickLis
         }else {
 
 
-            String shangchuanurl="";
+            String shangchuanurl="www.baobaoapi.ldlchat.com/index.php?s=/Home/My/getcode.html";
             Map<String,String> stringStringMap=new HashMap<>();
 
 
@@ -223,18 +223,18 @@ public class UploadActivity extends AppCompatActivity implements View.OnClickLis
         int height = wm.getDefaultDisplay().getHeight();
 
         //设置contentView
-        View contentView = LayoutInflater.from(this).inflate(R.layout.popupwindow_avatar, null);
+        View contentView = LayoutInflater.from(this).inflate(R.layout.popupwindow_avatar1, null);
         window2 = new PopupWindow(contentView,
                 width, height);
         window2.setContentView(contentView);
         //设置各个控件的点击响应
-        LinearLayout popupwindow_avatar_shoot = (LinearLayout) contentView.findViewById(R.id.popupwindow_avatar_shoot);
-        LinearLayout popupwindow_avatar_album = (LinearLayout) contentView.findViewById(R.id.popupwindow_avatar_album);
+        LinearLayout popupwindow_avatar_shoot1 = (LinearLayout) contentView.findViewById(R.id.popupwindow_avatar_shoot1);
+        LinearLayout popupwindow_avatar_album1 = (LinearLayout) contentView.findViewById(R.id.popupwindow_avatar_album1);
 
         //显示PopupWindow
         View rootview = LayoutInflater.from(this).inflate(R.layout.activity_personal2, null);
         window2.showAtLocation(rootview, Gravity.CENTER, 0, 0);
-        popupwindow_avatar_shoot.setOnClickListener(new View.OnClickListener() {
+        popupwindow_avatar_shoot1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -243,7 +243,7 @@ public class UploadActivity extends AppCompatActivity implements View.OnClickLis
 //                finish();
             }
         });
-        popupwindow_avatar_album.setOnClickListener(new View.OnClickListener() {
+        popupwindow_avatar_album1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 autoObtainCameraPermission();

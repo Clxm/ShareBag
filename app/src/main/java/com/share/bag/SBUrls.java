@@ -46,8 +46,11 @@ Receiving
     public static final String COLLECTION="http://baobaoapi.ldlchat.com/Home/Backcontent/collection.html";
     //    ------------------------------ 字符 -----------------------------------------''
     public static final String TOKEN = "TOKEN";
+    //上传头像
 
     public static final String UPDATA_IMG = "http://baobaoapi.ldlchat.com/Home/Public/upheaderimg.html";
+    //上传头像
+//    public static final String UPDATA_IMG = "http://baobaoapi.ldlchat.com/Home/Public/upheaderimg.html";
 
     //popo
     public static final String JIAZHEN="http://baobaoapi.ldlchat.com/Home/Backlist/bagtolist.html";

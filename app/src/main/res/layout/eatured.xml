@@ -38,8 +38,6 @@
             android:textSize="15sp" />
         <include layout="@layout/featured_banquet" />
 
-
-
         <TextView
             android:id="@+id/mBusinessname"
             android:layout_width="wrap_content"
@@ -53,7 +51,6 @@
             android:textSize="15sp" />
 
         <include layout="@layout/featured_business" />
-
 
     </LinearLayout>
 

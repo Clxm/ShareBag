@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.share.bag"> <!-- 微信支付 -->
     <uses-sdk android:minSdkVersion="4" />
-    <!--  -->
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -164,7 +164,9 @@
         <activity android:name=".ui.activitys.mine.AddressActivity" />
         <activity android:name=".ui.activitys.mine.address.HarvestActivity" />
         <activity android:name=".ui.activitys.mine.address.ModifyActivity" />
-        <activity android:name=".Main2Activity"></activity>
+        <activity android:name=".Main2Activity" />
+        <activity android:name=".ui.activitys.mine.BusinessActivity" />
+        <activity android:name=".ui.activitys.mine.ProblemActivity"></activity>
     </application>
 
 </manifest>

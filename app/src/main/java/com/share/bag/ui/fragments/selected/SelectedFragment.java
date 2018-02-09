@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -81,7 +82,7 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
     private List<SelectedBean> mLists=new ArrayList();
     private PopupWindow window1;
     private View convertView;
-
+    private boolean isGetData = false;
     @Override
     public int initLayout() {
         return R.layout.live_fragment;
@@ -711,4 +712,44 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
                  break;
         }
     }
+
+
+
+
+
+    @Override
+    public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {
+        //   进入当前Fragment
+        if (enter && !isGetData) {
+            isGetData = true;
+            //   这里可以做网络请求或者需要的数据刷新操作
+            getpopular();
+            adapter.notifyDataSetChanged();
+
+        } else {
+            isGetData = false;
+        }
+        return super.onCreateAnimation(transit, enter, nextAnim);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (!isGetData) {
+            //   这里可以做网络请求或者需要的数据刷新操作
+            getpopular();
+            adapter.notifyDataSetChanged();
+
+            isGetData = true;
+        }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        isGetData = false;
+    }
+
+
+
 }

@@ -162,6 +162,7 @@ public class LoginActivity extends BaseActivity {
                     String nickname = (String) loginBean.getMsg().getName();//昵称
                     String iconurl = (String) loginBean.getMsg().getIconurl();//头像
 
+
                     FileUtil.saveToPre1(LoginActivity.this, username, password,id,gender,nickname,iconurl);
 
 //返回值是：39用户名17801190741密码25f9e794323b453885f5181f1b624d0b性别男图片/Uploads/20180115/5a5c759804236.png昵称5
@@ -211,12 +212,12 @@ public class LoginActivity extends BaseActivity {
 
         @Override
         public void onError(SHARE_MEDIA platform, int action, Throwable t) {
-            Toast.makeText( getApplicationContext(), "Authorize fail", Toast.LENGTH_SHORT).show();
+//            Toast.makeText( getApplicationContext(), "Authorize fail", Toast.LENGTH_SHORT).show();
         }
 
         @Override
         public void onCancel(SHARE_MEDIA platform, int action) {
-            Toast.makeText( getApplicationContext(), "Authorize cancel", Toast.LENGTH_SHORT).show();
+//            Toast.makeText( getApplicationContext(), "Authorize cancel", Toast.LENGTH_SHORT).show();
         }
     };
 

@@ -133,85 +133,92 @@ public class DetailsActivity extends BaseActivity {
 
         Map<String, String> map = new HashMap<>();
         map.put("id", tmp);
-        //请求网络
-        OkHttpUtils.getInstance().post(SBUrls.DETAILSURL, map, new MyNetWorkCallback<DeailsBean>() {
-            @Override
-            public void onSuccess(DeailsBean deailsBean) {
-                img2 = deailsBean.getImg();
 
 
-                List<String> img = deailsBean.getCarousel();//carousel
-
-                for (int i = 0; i < img.size(); i++) {
-                    String s = "http://" + img.get(i);//轮播图的网址
-
-                    heardimg.add(s);
-                }
-
-                //         BannerHeader Show
-                bannerHeaderShow();
-                TabPageShow();
-
-                img1 = deailsBean.getImg();
+        try {
+            //请求网络
+            OkHttpUtils.getInstance().post(SBUrls.DETAILSURL, map, new MyNetWorkCallback<DeailsBean>() {
+                @Override
+                public void onSuccess(DeailsBean deailsBean) {
+                    img2 = deailsBean.getImg();
 
 
-                String title = deailsBean.getTitle();//简介
+                    List<String> img = deailsBean.getCarousel();//carousel
+
+                    for (int i = 0; i < img.size(); i++) {
+                        String s = "http://" + img.get(i);//轮播图的网址
+
+                        heardimg.add(s);
+                    }
+
+                    //         BannerHeader Show
+                    bannerHeaderShow();
+                    TabPageShow();
+
+                    img1 = deailsBean.getImg();
+
+
+                    String title = deailsBean.getTitle();//简介
 //                String deposit = deailsBean.getDeposit();//原价
 //                String nowprice = deailsBean.getNowprice();//租金
-                String title1 = deailsBean.getTitle();//品牌
-                String color = deailsBean.getColor();//颜色
-                String material = deailsBean.getMaterial();//材质
-                String title2 = deailsBean.getBagSize().getTitle();//尺寸
+                    String title1 = deailsBean.getTitle();//品牌
+                    String color = deailsBean.getColor();//颜色
+                    String material = deailsBean.getMaterial();//材质
+                    String title2 = deailsBean.getBagSize().getTitle();//尺寸
 
-                List<String> contentimg = deailsBean.getContentimg();
-                description_1 = "http://" +contentimg.get(0);
-                String description_2 = "http://" +contentimg.get(1);
-                EventBus.getDefault().post(new Student(title,title1,color,material,title2, description_1,description_2));
+                    List<String> contentimg = deailsBean.getContentimg();
+                    description_1 = "http://" +contentimg.get(0);
+                    String description_2 = "http://" +contentimg.get(1);
+                    EventBus.getDefault().post(new Student(title,title1,color,material,title2, description_1,description_2));
 
-            }
+                }
 
-            private void TabPageShow() {
+                private void TabPageShow() {
 
-                //           Voluation  Tab
-                tab.addTab(tab.newTab().setText(DETAILS));
-                tab.addTab(tab.newTab().setText(COMMENTS + "(+" + NUM + "+)"));
+                    //           Voluation  Tab
+                    tab.addTab(tab.newTab().setText(DETAILS));
+                    tab.addTab(tab.newTab().setText(COMMENTS + "(+" + NUM + "+)"));
 
-                stringList.add(DETAILS);
-                stringList.add(COMMENTS);
-
-
-                //     Add  Fragment  to fragmentList.
-                fragmentList.add(new DetalisFragment());
-                fragmentList.add(new CommentsFragment());
-
-                //     Associate ViewPage and Fragment
+                    stringList.add(DETAILS);
+                    stringList.add(COMMENTS);
 
 
-                tab.setupWithViewPager(pager);
+                    fragmentList.add(new DetalisFragment());
+                    fragmentList.add(new CommentsFragment());
 
-                //        Show  Adapter
-                mCosTomPageAdapter = new CosTomPageAdapter(fragmentManager, stringList, fragmentList);
-                pager.setAdapter(mCosTomPageAdapter);
-                pager.setCurrentItem(0);
-                pager.setCurrentItem(1);
 
-            }
 
-            private void bannerHeaderShow() {
+                    tab.setupWithViewPager(pager);
 
-                DetailsBanner.setImages(heardimg)//添加图片集合或图片url集合
-                        .setDelayTime(2000)//设置轮播时间
-                        .setBannerStyle(BannerConfig.CIRCLE_INDICATOR)
-                        .setImageLoader(new GlideImage())//加载图片
-                        .setIndicatorGravity(BannerConfig.CENTER)//设置指示器位置
-                        .start();
-            }
+                    //        Show  Adapter
+                    mCosTomPageAdapter = new CosTomPageAdapter(fragmentManager, stringList, fragmentList);
+                    pager.setAdapter(mCosTomPageAdapter);
+                    pager.setCurrentItem(0);
+                    pager.setCurrentItem(1);
 
-            @Override
-            public void onError(int errorCode, String errorMsg) {
-                Toast.makeText(DetailsActivity.this, "Request unsuccessful", Toast.LENGTH_SHORT).show();
-            }
-        });
+                }
+
+                private void bannerHeaderShow() {
+
+                    DetailsBanner.setImages(heardimg)//添加图片集合或图片url集合
+                            .setDelayTime(2000)//设置轮播时间
+                            .setBannerStyle(BannerConfig.CIRCLE_INDICATOR)
+                            .setImageLoader(new GlideImage())//加载图片
+                            .setIndicatorGravity(BannerConfig.CENTER)//设置指示器位置
+                            .start();
+                }
+
+                @Override
+                public void onError(int errorCode, String errorMsg) {
+                    Toast.makeText(DetailsActivity.this, "Request unsuccessful", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+        }catch(Exception e){
+//异常处理
+        }
+
+
 
     }
 
@@ -237,7 +244,15 @@ public class DetailsActivity extends BaseActivity {
                     Intent intent = new Intent(DetailsActivity.this, LoginActivity.class);
                     startActivity(intent);
                 } else {
-                    getselect();
+
+
+                    try {
+                        getselect();
+                    }catch(Exception e){
+//异常处理
+                    }
+
+
                 }
                 break;
             case R.id.details_button_rent://租下

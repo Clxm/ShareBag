@@ -18,9 +18,11 @@ import com.share.bag.Constant;
 import com.share.bag.FileUtil;
 import com.share.bag.R;
 import com.share.bag.base.BaseFragment;
+import com.share.bag.ui.activitys.mine.BusinessActivity;
 import com.share.bag.ui.activitys.mine.LoginActivity;
 import com.share.bag.ui.activitys.mine.MySetActivity;
 import com.share.bag.ui.activitys.mine.PersonalActivity;
+import com.share.bag.ui.activitys.mine.ProblemActivity;
 import com.share.bag.ui.activitys.mine.WalletActivity;
 import com.share.bag.ui.activitys.mine.address.HarvestActivity;
 import com.share.bag.ui.share.ShareActivity;
@@ -34,6 +36,7 @@ import butterknife.Unbinder;
 import static android.app.Activity.RESULT_OK;
 import static com.share.bag.R.id.mine_cabinets;
 import static com.share.bag.R.id.mine_data;
+
 /*
 * 我的
 * */
@@ -261,18 +264,19 @@ public class MineFragment extends BaseFragment {
                 break;
 
             case R.id.mine_problem://常见问题
-                Toast.makeText(getActivity(), "点击了常见问题", Toast.LENGTH_SHORT).show();
+                Intent intent3=new Intent(getActivity(), ProblemActivity.class);
+                startActivity(intent3);
+
                 break;
-//
             case R.id.mine_Complaints://投诉建议
                 Toast.makeText(getActivity(), "点击了投诉建议", Toast.LENGTH_SHORT).show();
 
                 break;
             case R.id.mine_cooperation://商务合作
-                Toast.makeText(getActivity(), "退出", Toast.LENGTH_SHORT).show();
-                FileUtil.shanchu(getActivity());//清空
-                Glide.with(getContext()).load(R.mipmap.ic_launcher).into(mineAvatar);
-                 mine_name.setText("请登录");
+
+
+                Intent intent1=new Intent(getActivity(), BusinessActivity.class);
+                startActivity(intent1);
 
                 break;
             case R.id.mine_set://设置
@@ -339,7 +343,6 @@ public class MineFragment extends BaseFragment {
                 Glide.with(getContext()).load(R.drawable.touxiang22).into(mineAvatar);
 
             }
-
             isGetData = true;
         }
     }

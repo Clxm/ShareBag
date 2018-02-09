@@ -68,7 +68,11 @@ public  class FileUtil {
         String nickname1 = sharedPreferences.getString("nickname", "");
         String imageurl = sharedPreferences.getString("imageurl", "");
         nickname.setText(nickname1);
-        Glide.with(context).load("http://baobaoapi.ldlchat.com/"+imageurl).into(touxiangurl);
+//        Glide.with(context).load("http://baobaoapi.ldlchat.com/"+imageurl).into(touxiangurl);
+        Glide.with(context).load(imageurl).into(touxiangurl);
+
+
+
     }
 
 //                                                 昵称    头像  手机号

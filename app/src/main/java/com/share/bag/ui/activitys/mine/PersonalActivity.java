@@ -39,6 +39,8 @@ import org.greenrobot.eventbus.Subscribe;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -50,8 +52,11 @@ import butterknife.OnClick;
 *
 * */
 public class PersonalActivity extends BaseActivity {
-    public static Intent getIntent(Context context){
-        Intent intent=new Intent(context,PersonalActivity.class);
+
+    private Uri newUri;
+
+    public static Intent getIntent(Context context) {
+        Intent intent = new Intent(context, PersonalActivity.class);
         return intent;
     }
 
@@ -126,8 +131,7 @@ public class PersonalActivity extends BaseActivity {
 
 
 //        Toast.makeText(this,personal_name1.getText().toString()+personal_number.getText().toString(), Toast.LENGTH_SHORT).show();
-        FileUtil.Homepage(this,personal_name1,imgview,personal_number);
-
+        FileUtil.Homepage(this, personal_name1, imgview, personal_number);
 
 
     }
@@ -169,22 +173,14 @@ public class PersonalActivity extends BaseActivity {
 
                 break;
             case R.id.personal_nickname://昵称
-                startActivityForResult(NameActivity.getIntent(this),1);
+                startActivityForResult(NameActivity.getIntent(this), 1);
                 break;
             case R.id.personal_signature://个性签名
-
-
 
 
                 break;
         }
     }
-
-
-
-
-
-
 
 
     public void getPopupWindow() {
@@ -240,37 +236,72 @@ public class PersonalActivity extends BaseActivity {
                 case CODE_CAMERA_REQUEST:
                     cropImageUri = Uri.fromFile(fileCropUri);
                     PhotoUtils.cropImageUri(this, imageUri, cropImageUri, 1, 1, OUTPUT_X, OUTPUT_Y, CODE_RESULT_REQUEST);
+                    Log.e("WOTAG1", "00000" + cropImageUri);
+                    initLogin(cropImageUri);
+
+
                     break;
                 //访问相册完成回调
                 case CODE_GALLERY_REQUEST:
                     if (hasSdcard()) {
                         cropImageUri = Uri.fromFile(fileCropUri);
-                        Uri newUri = Uri.parse(PhotoUtils.getPath(this, data.getData()));
+                        newUri = Uri.parse(PhotoUtils.getPath(this, data.getData()));
+                        Log.e("WOTAG1", "22222222222" + newUri);
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                             newUri = FileProvider.getUriForFile(this, "com.zz.fileprovider", new File(newUri.getPath()));
+                            initLogin(newUri);
                         }
                         PhotoUtils.cropImageUri(this, newUri, cropImageUri, 1, 1, OUTPUT_X, OUTPUT_Y, CODE_RESULT_REQUEST);
+
                     } else {
                         ToastUtils.showShort(this, "设备没有SD卡！");
                     }
+
+
                     break;
                 case CODE_RESULT_REQUEST:
                     Bitmap bitmap = PhotoUtils.getBitmapFromUri(cropImageUri, this);
+
+
                     if (bitmap != null) {
                         showImages(bitmap);
                     }
                     break;
                 case 1:
-                    Intent intent=getIntent();
-                    String str=data.getStringExtra("username");
+                    Intent intent = getIntent();
+                    String str = data.getStringExtra("username");
+
 //                    String tmp = intent.getStringExtra("username");
                     personal_name1.setText(str);
-                    setResult(RESULT_OK,intent);
+                    setResult(RESULT_OK, intent);
 
                     break;
                 default:
             }
         }
+    }
+
+    private void initLogin(Uri newUri) {
+        Map<String,String> stringStringMap =new HashMap<>();
+
+//        OkHttpUtils.getInstance().updataImg(SBUrls.UPDATA_IMG, stringStringMap, new MyNetWorkCallback<HeadImgBean>() {
+//            @Override
+//            public void onSuccess(HeadImgBean headImgBean) {
+//
+////                com.share.bag.utils.ToastUtils.show(PersonalActivity.this, bytes.toString() + "" + headImgBean.getInfo() + "-----" + headImgBean.getStatus());
+//
+////                Log.e("TAG", bytes.toString() + "" + headImgBean.getInfo() + "-----" + headImgBean.getStatus());
+//
+//
+//            }
+//
+//            @Override
+//            public void onError(int errorCode, String errorMsg) {
+//                com.share.bag.utils.ToastUtils.show(PersonalActivity.this, "失败" + errorMsg);
+//            }
+//        });
+
+
     }
 
     //    展示图片 进行网络请求
@@ -283,7 +314,6 @@ public class PersonalActivity extends BaseActivity {
         ByteArrayOutputStream onputStream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, onputStream);
         final byte[] bytes = onputStream.toByteArray();
-
 
 //           final Map<String, String> map = new HashMap<>();
 //            final Map<String, String> stringObserverMap=new HashMap<>();
@@ -305,13 +335,14 @@ public class PersonalActivity extends BaseActivity {
 //
 //            }
 //        });
+
         OkHttpUtils.getInstance().updataImg(SBUrls.UPDATA_IMG, bytes, new MyNetWorkCallback<HeadImgBean>() {
             @Override
             public void onSuccess(HeadImgBean headImgBean) {
 
                 com.share.bag.utils.ToastUtils.show(PersonalActivity.this, bytes.toString() + "" + headImgBean.getInfo() + "-----" + headImgBean.getStatus());
 
-                Log.e("TAG", bytes.toString() + "" + headImgBean.getInfo() + "-----" + headImgBean.getStatus());
+//                Log.e("TAG", bytes.toString() + "" + headImgBean.getInfo() + "-----" + headImgBean.getStatus());
 
 
             }
@@ -352,7 +383,6 @@ public class PersonalActivity extends BaseActivity {
                     imageUri = FileProvider.getUriForFile(PersonalActivity.this, "com.zz.fileprovider", fileUri);
                 }
                 PhotoUtils.takePicture(this, imageUri, CODE_CAMERA_REQUEST);
-
             } else {
                 ToastUtils.showShort(this, "设备没有SD卡！");
             }
