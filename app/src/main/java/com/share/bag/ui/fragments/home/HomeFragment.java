@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.share.bag.FileUtil;
 import com.share.bag.R;
 import com.share.bag.SBUrls;
 import com.share.bag.base.BaseFragment;
@@ -179,12 +180,12 @@ public class HomeFragment extends BaseFragment {
     //包包达人
     @BindView(R.id.mLinearBaoBao)
     LinearLayout mLinearBaoBao;
-    @BindView(R.id.textView5)
-    TextView textView5;
-    @BindView(R.id.imageView10)
-    ImageView imageView10;
-    @BindView(R.id.textView6)
-    TextView textView6;
+//    @BindView(R.id.textView5)
+//    TextView textView5;
+//    @BindView(R.id.imageView10)
+//    ImageView imageView10;
+//    @BindView(R.id.textView6)
+//    TextView textView6;
     @BindView(R.id.linearLayout)
     LinearLayout linearLayout;
     @BindView(R.id.imageView)
@@ -223,6 +224,8 @@ public class HomeFragment extends BaseFragment {
 
     @BindView(R.id.home_business_img4)
     RelativeLayout home_business_img4;
+    @BindView(R.id.shouye)
+    TextView shouye;
 
 
     //分享图片
@@ -543,11 +546,21 @@ public class HomeFragment extends BaseFragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case brand_img1://品牌专区图片1 
-//                Toast.makeText(context, "点击了图片", Toast.LENGTH_SHORT).show();
-                Intent intent1 = new Intent(context, DetailsActivity.class);
+                FileUtil.SelectedreadFromPre(getActivity(),shouye);
+                if (shouye.getText().equals("")){
+                    Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
+                }else {
 
-                intent1.putExtra("details", homeBrandimg1id2);
-                startActivity(intent1);
+
+                    Intent intent1 = new Intent(context, DetailsActivity.class);
+
+                    intent1.putExtra("details", homeBrandimg1id2);
+                    startActivity(intent1);
+
+                }
+
+
+
 //                Log.e("TAG","---------"+homeBrandimg1id);
 
 //                Intent intent1 = new Intent(context, DetailsActivity.class);
@@ -560,7 +573,7 @@ public class HomeFragment extends BaseFragment {
 
                 break;
             case R.id.brand_img2://品牌专区图片2
-                Toast.makeText(context, "点击了图片", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "点击了图片", Toast.LENGTH_SHORT).show();
                 Intent intent2 = new Intent(context, DetailsActivity.class);
 
                 intent2.putExtra("details", homeBrandimg1id2);
@@ -570,35 +583,28 @@ public class HomeFragment extends BaseFragment {
                 startActivity(intent2);
                 break;
             case R.id.brand_img3://品牌专区图片3
-                Toast.makeText(context, "点击了图片", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "点击了图片", Toast.LENGTH_SHORT).show();
                 Intent intent3 = new Intent(context, DetailsActivity.class);
 
                 intent3.putExtra("details", homeBrandimg1id3);
-
-//                Log.e("sss", "initView: " + homeBrandimg1id3);
 
                 startActivity(intent3);
                 break;
 
 //           每日精选——休闲度假
             case R.id.home_leisure_img1://休闲度假1
-                Toast.makeText(context, "点击了图片", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "点击了图片", Toast.LENGTH_SHORT).show();
                 Intent intent4 = new Intent(context, DetailsActivity.class);
 
                 intent4.putExtra("details", homeBrandimg1id3);
-
-//                Log.e("sss", "initView: " + homeBrandimg1id3);
 
                 startActivity(intent4);
                 break;
 
             case R.id.home_leisure_img2://休闲度假2
-                Toast.makeText(context, "点击了图片", Toast.LENGTH_SHORT).show();
                 Intent intent5 = new Intent(context, DetailsActivity.class);
 
                 intent5.putExtra("details", homeBrandimg1id3);
-
-//                Log.e("sss", "initView: " + homeBrandimg1id3);
 
                 startActivity(intent5);
                 break;
@@ -609,8 +615,6 @@ public class HomeFragment extends BaseFragment {
                 Intent intent6 = new Intent(context, DetailsActivity.class);
 
                 intent6.putExtra("details", homeBrandimg1id3);
-
-//                Log.e("sss", "initView: " + homeBrandimg1id3);
 
                 startActivity(intent6);
                 break;
@@ -627,7 +631,6 @@ public class HomeFragment extends BaseFragment {
 
 
             case R.id.home_banquet_img2://休闲度假3
-//                Toast.makeText(context, "点击了图片", Toast.LENGTH_SHORT).show();
                 Intent intent8 = new Intent(context, DetailsActivity.class);
 
                 intent8.putExtra("details", homeBrandimg1id3);
@@ -636,7 +639,6 @@ public class HomeFragment extends BaseFragment {
                 break;
 
             case R.id.home_banquet_img3://休闲度假3
-//                Toast.makeText(context, "点击了图片", Toast.LENGTH_SHORT).show();
                 Intent intent9 = new Intent(context, DetailsActivity.class);
 
                 intent9.putExtra("details", homeBrandimg1id3);
@@ -646,7 +648,6 @@ public class HomeFragment extends BaseFragment {
 
 
             case R.id.home_banquet_img4://休闲度假3
-//                Toast.makeText(context, "点击了图片", Toast.LENGTH_SHORT).show();
                 Intent intent0 = new Intent(context, DetailsActivity.class);
 
                 intent0.putExtra("details", homeBrandimg1id3);
@@ -657,7 +658,6 @@ public class HomeFragment extends BaseFragment {
 //            android:id="@+id/home_business_img1"
 //            每日精选——商务办公
             case R.id.home_business_img1://商务办公1
-//                Toast.makeText(context, "点击了图片", Toast.LENGTH_SHORT).show();
                 Intent intent11 = new Intent(context, DetailsActivity.class);
 
                 intent11.putExtra("details", homeBrandimg1id3);
@@ -666,7 +666,6 @@ public class HomeFragment extends BaseFragment {
                 break;
 
             case R.id.home_business_img2://商务办公2
-//                Toast.makeText(context, "点击了图片", Toast.LENGTH_SHORT).show();
                 Intent intent12 = new Intent(context, DetailsActivity.class);
 
                 intent12.putExtra("details", homeBrandimg1id3);
@@ -675,7 +674,6 @@ public class HomeFragment extends BaseFragment {
                 break;
 
             case R.id.home_business_img3://商务办公3
-//                Toast.makeText(context, "点击了图片", Toast.LENGTH_SHORT).show();
                 Intent intent13 = new Intent(context, DetailsActivity.class);
 
                 intent13.putExtra("details", homeBrandimg1id3);
@@ -684,16 +682,12 @@ public class HomeFragment extends BaseFragment {
                 break;
 
             case R.id.home_business_img4://商务办公4
-//                Toast.makeText(context, "点击了图片", Toast.LENGTH_SHORT).show();
                 Intent intent14 = new Intent(context, DetailsActivity.class);
 
                 intent14.putExtra("details", homeBrandimg1id3);
 
                 startActivity(intent14);
                 break;
-
-
-
 
         }
     }

@@ -69,7 +69,7 @@ public class MySetActivity extends BaseActivity {
                 Toast.makeText(MySetActivity.this, "帐号安全", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.myset_updated:
-                Toast.makeText(MySetActivity.this, "版本更新", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MySetActivity.this, "当前是最新版本", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.myset_clear:
                 Toast.makeText(MySetActivity.this, "清除缓存", Toast.LENGTH_SHORT).show();
@@ -81,18 +81,8 @@ public class MySetActivity extends BaseActivity {
                 Toast.makeText(MySetActivity.this, "确认退出", Toast.LENGTH_SHORT).show();
                 FileUtil.shanchu(MySetActivity.this);//清空
 
-//                Intent intent=new Intent();
-//                intent.setClass(LoginActivity.this, MainActivity.class);
-//                String name= (String) loginBean.getMsg().getName();
-//                intent.putExtra("name",name);
-//                String img= (String) loginBean.getMsg().getIconurl();
-//                intent.putExtra("img",img);
-//                setResult(0,intent);
                 finish();
 
-
-//                Glide.with(MySetActivity.this).load(R.mipmap.ic_launcher).into(mineAvatar);
-//                mine_name.setText("请登录");
 
                 break;
         }

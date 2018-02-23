@@ -7,6 +7,10 @@ import java.util.List;
  */
 
 public class DeailsBean {
+
+
+
+
     /**
      * id : 4
      * title : wwww

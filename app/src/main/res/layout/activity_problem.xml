@@ -28,12 +28,14 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:text="商务合作"
+            android:text="常见问题"
             android:textSize="50px"
             android:textColor="#000"/>
 
 
     </RelativeLayout>
+
+
     <WebView
         android:id="@+id/problem_wv"
         android:layout_width="match_parent"
