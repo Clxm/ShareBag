@@ -12,15 +12,18 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="46px">
 
             <ImageView
                 android:id="@+id/talent_avatar"
-                android:layout_width="138px"
-                android:layout_height="138px"
-                android:layout_margin="34px"
+                android:layout_width="180px"
+                android:layout_height="180px"
                 android:scaleType="fitXY"
-                android:src="@drawable/touxiang22" />
+                android:src="@drawable/touxiang22"
+                android:layout_marginLeft="36px"
+                android:layout_marginTop="34px"
+                />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -31,11 +34,13 @@
                     android:id="@+id/talent_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginTop="34px"
                     android:text="俏佳人"
-                    android:textSize="40px" />
+                    android:textSize="36px"
+                    android:textColor="#303030"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="12px"
+                    android:layout_marginTop="68px"/>
 
 
                 <!--<ImageView-->
@@ -54,9 +59,66 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="50px"
                     android:text="2017-11-22"
-                    android:textSize="40px" />
+                    android:textSize="40px"
+                    android:layout_marginTop="74px"
+                    android:layout_marginEnd="36px"/>
+
+
+
+
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignStart="@+id/talent_name"
+                    android:layout_marginBottom="18px">
+
+
+                    <TextView
+                        android:background="@drawable/textview6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="白领"
+                       android:padding="8px"
+                        android:textSize="30px"
+                        android:textColor="#838383"
+                        />
+
+
+
+                    <TextView
+                        android:background="@drawable/textview6"
+                        android:layout_marginLeft="18px"
+                        android:layout_marginRight="18px"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="白领"
+                        android:padding="8px"
+                        android:textSize="30px"
+                        android:textColor="#838383"/>
+
+
+                    <TextView
+                        android:background="@drawable/textview6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="白领"
+                        android:padding="8px"
+                        android:textSize="30px"
+                        android:textColor="#838383"/>
+
+
+
+
+                </LinearLayout>
+
+
+
+
+
 
             </RelativeLayout>
 
@@ -103,7 +165,7 @@
 
 
             <LinearLayout
-                android:id="@+id/linearLayout"
+              android:id="@+id/daren_linear1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -119,22 +181,19 @@
 
 
             <LinearLayout
-                android:id="@+id/linearLayout2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/linearLayout"
+                android:layout_alignBottom="@+id/daren_linear1"
                 android:layout_marginEnd="14dp"
-                android:layout_toStartOf="@+id/linearLayout"
+                android:layout_toStartOf="@+id/daren_linear1"
                 android:gravity="center_vertical">
 
                 <ImageView
-                    android:id="@+id/imageView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/dianzan2" />
 
                 <TextView
-                    android:id="@+id/textView8"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10px"
@@ -143,28 +202,28 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/linearLayout"
-                android:layout_marginEnd="14dp"
-                android:layout_toStartOf="@+id/linearLayout2"
-                android:gravity="center_vertical">
+            <!--<LinearLayout-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_alignBottom="@+id/daren_linear1"-->
+                <!--android:layout_marginEnd="14dp"-->
+                <!--android:layout_toStartOf="@+id/daren_linear1"-->
+                <!--android:gravity="center_vertical">-->
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/xiaoxiwei" />
+                <!--<ImageView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:src="@drawable/xiaoxiwei" />-->
 
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10px"
-                    android:text="20"
-                    android:textSize="30px" />
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginLeft="10px"-->
+                    <!--android:text="20"-->
+                    <!--android:textSize="30px" />-->
 
-            </LinearLayout>
+            <!--</LinearLayout>-->
 
         </RelativeLayout>
 

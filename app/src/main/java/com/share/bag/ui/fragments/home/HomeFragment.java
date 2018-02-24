@@ -20,7 +20,6 @@ import com.share.bag.R;
 import com.share.bag.SBUrls;
 import com.share.bag.base.BaseFragment;
 import com.share.bag.entity.HomeFragmentBean;
-import com.share.bag.ui.activitys.collection.TalentActivity;
 import com.share.bag.ui.activitys.home.DetailsActivity;
 import com.share.bag.utils.okhttp.OkHttpUtils;
 import com.share.bag.utils.okhttp.callback.MyNetWorkCallback;
@@ -186,14 +185,14 @@ public class HomeFragment extends BaseFragment {
 //    ImageView imageView10;
 //    @BindView(R.id.textView6)
 //    TextView textView6;
-    @BindView(R.id.linearLayout)
-    LinearLayout linearLayout;
-    @BindView(R.id.imageView)
-    ImageView imageView;
-    @BindView(R.id.textView8)
-    TextView textView8;
-    @BindView(R.id.linearLayout2)
-    LinearLayout linearLayout2;
+//    @BindView(R.id.linearLayout)
+//    LinearLayout linearLayout;
+//    @BindView(R.id.imageView)
+//    ImageView imageView;
+//    @BindView(R.id.textView8)
+//    TextView textView8;
+//    @BindView(R.id.linearLayout2)
+//    LinearLayout linearLayout2;
 
 
 
@@ -699,8 +698,8 @@ public class HomeFragment extends BaseFragment {
 
     @OnClick(R.id.mLinearBaoBao)
     public void onViewLinear() {
-        Intent intent = new Intent(context, TalentActivity.class);
-        startActivity(intent);
+//        Intent intent = new Intent(context, TalentActivity.class);
+//        startActivity(intent);
     }
 
 

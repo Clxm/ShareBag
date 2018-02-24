@@ -66,6 +66,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     public void initView() {
+
+
+
+
         // 友盟屏幕适配
         if (Build.VERSION.SDK_INT >= 23) {
             String[] mPermissionList = new String[]{

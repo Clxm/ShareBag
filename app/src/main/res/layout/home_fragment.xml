@@ -3,37 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#FFF">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone"
         android:id="@+id/shouye"/>
-
-
-
-    <LinearLayout
-        android:layout_width="@dimen/x1080"
-        android:layout_height="wrap_content"
-        android:focusable="true"
-        android:focusableInTouchMode="true">
-
-        <EditText
-            android:id="@+id/home_searchView"
-            android:layout_width="@dimen/x1080"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_margin="10dp"
-            android:background="#F7F7F7"
-            android:drawableLeft="@drawable/fangdaxiao"
-            android:drawablePadding="5dp"
-            android:hint="请输入关键字"
-            android:imeOptions="actionSearch"
-            android:inputType="text"
-            android:textSize="16sp" />
-
-    </LinearLayout>
 
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
@@ -57,18 +34,46 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <com.zhouwei.mzbanner.MZBannerView
-                        android:id="@+id/first_vp"
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/y370"
-                        app:canLoop="true"
-                        app:indicatorAlign="center"
-                        app:indicatorPaddingLeft="10px"
-                        app:open_mz_mode="false" />
+                        android:layout_height="wrap_content">
+
+                        <com.zhouwei.mzbanner.MZBannerView
+                            android:id="@+id/first_vp"
+                            android:layout_width="match_parent"
+                            android:layout_height="552px"
+                            app:canLoop="true"
+                            app:indicatorAlign="center"
+                            app:indicatorPaddingLeft="10px"
+                            app:open_mz_mode="false" />
+
+                        <!--<EditText-->
+                            <!--android:id="@+id/home_searchView"-->
+                            <!--android:layout_width="@dimen/x1080"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_gravity="center_vertical"-->
+                            <!--android:layout_margin="10dp"-->
+                            <!--android:drawableLeft="@drawable/fangdaxiao"-->
+                            <!--android:drawablePadding="5dp"-->
+                            <!--android:hint="请输入关键字"-->
+                            <!--android:imeOptions="actionSearch"-->
+                            <!--android:inputType="text"-->
+                            <!--android:textSize="16sp"-->
+                            <!--android:background="#F7F7F7"-->
+                            <!--android:layout_marginLeft="20px"-->
+                            <!--android:layout_marginRight="20px"/>-->
+                    </RelativeLayout>
+
+
+
+
 
 
                 </LinearLayout>
-
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="18px"
+                    android:background="#F2F2F2" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -80,38 +85,40 @@
 
                     <!--画左边的那条线-->
                     <View
-                        android:layout_width="@dimen/x100"
-                        android:layout_height="1dp"
+                        android:layout_width="120px"
+                        android:layout_height="2px"
                         android:layout_weight="1"
-                        android:background="@android:color/darker_gray" />
+                        android:background="#E8E8E8" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
+                        android:layout_marginLeft="29px"
+                        android:layout_marginRight="29px"
                         android:text="品牌专区"
                         android:textColor="@android:color/black"
                         android:textSize="18sp" />
                     <!--画右边的那条线-->
                     <View
-                        android:layout_width="@dimen/x100"
-                        android:layout_height="1dp"
+                        android:layout_width="120px"
+                        android:layout_height="2px"
                         android:layout_weight="1"
-                        android:background="@android:color/darker_gray" />
+                        android:background="#E8E8E8" />
 
                 </LinearLayout>
                 <!--品牌专区-->
                 <include layout="@layout/brand" />
 
-                <LinearLayout
+                <View
                     android:layout_width="match_parent"
-                    android:layout_height="24px"
+                    android:layout_height="18px"
                     android:background="#F1F1F1" />
 
                 <LinearLayout
-                    android:layout_width="@dimen/x1080"
-                    android:layout_height="@dimen/y180"
+                    android:layout_marginTop="60px"
+                    android:layout_marginBottom="48px"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:gravity="center"
                     android:orientation="horizontal"
                     android:paddingLeft="250px"
@@ -119,27 +126,36 @@
 
                     <!--画左边的那条线-->
                     <View
-                        android:layout_width="100px"
-                        android:layout_height="1dp"
+                        android:layout_width="120px"
+                        android:layout_height="2px"
                         android:layout_weight="1"
-                        android:background="@android:color/darker_gray" />
+                        android:background="#E8E8E8" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
+                        android:layout_marginLeft="29px"
+                        android:layout_marginRight="29px"
                         android:text="每日精选"
                         android:textColor="@android:color/black"
                         android:textSize="18sp" />
                     <!--画右边的那条线-->
                     <View
-                        android:layout_width="@dimen/x100"
-                        android:layout_height="@dimen/y1"
+                        android:layout_width="120px"
+                        android:layout_height="2px"
                         android:layout_weight="1"
-                        android:background="@android:color/darker_gray" />
+                        android:background="#E8E8E8" />
 
                 </LinearLayout>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="3px"
+                    android:background="#DFDFDF"
+                    android:layout_marginLeft="36px"
+                    android:layout_marginRight="36px"/>
+
 
                 <!--每日精选-->
                 <include
@@ -147,21 +163,35 @@
                     layout="@layout/eatured" />
 
                 <!--包包达人-->
-
+                <View
+                    android:layout_marginTop="46px"
+                    android:layout_width="match_parent"
+                    android:layout_height="18px"
+                    android:background="#F1F1F1" />
                 <LinearLayout
-                    android:layout_width="@dimen/x1080"
-                    android:layout_height="@dimen/y150"
+                    android:layout_marginTop="60px"
+                    android:layout_marginBottom="48px"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:gravity="center"
                     android:orientation="horizontal"
                     android:paddingLeft="250px"
                     android:paddingRight="250px">
 
                     <!--画左边的那条线-->
+                    <!--<View-->
+                        <!--android:layout_width="@dimen/x100"-->
+                        <!--android:layout_height="1dp"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:background="@android:color/darker_gray" />-->
+
+
                     <View
-                        android:layout_width="@dimen/x100"
-                        android:layout_height="1dp"
+                        android:layout_width="120px"
+                        android:layout_height="2px"
                         android:layout_weight="1"
-                        android:background="@android:color/darker_gray" />
+                        android:background="#E8E8E8" />
+
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -172,13 +202,29 @@
                         android:textColor="@android:color/black"
                         android:textSize="18sp" />
                     <!--画右边的那条线-->
+                    <!--<View-->
+                        <!--android:layout_width="100px"-->
+                        <!--android:layout_height="@dimen/y1"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:background="@android:color/darker_gray" />-->
+
                     <View
-                        android:layout_width="100px"
-                        android:layout_height="@dimen/y1"
+                        android:layout_width="120px"
+                        android:layout_height="2px"
                         android:layout_weight="1"
-                        android:background="@android:color/darker_gray" />
+                        android:background="#E8E8E8" />
+
 
                 </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="3px"
+                    android:background="#DFDFDF"
+                    android:layout_marginLeft="36px"
+                    android:layout_marginRight="36px"/>
+
+
                 <!--包包达人详情-->
                 <include
 
