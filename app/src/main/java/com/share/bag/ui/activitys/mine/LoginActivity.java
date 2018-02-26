@@ -60,17 +60,24 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     public int initLayout() {
+//        loginPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+
         return R.layout.activity_login2;
 
     }
 
     @Override
     public void initView() {
+//        loginPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+
+
 
     }
 
     @Override
     protected void initData() {
+//        loginPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+
 
     }
 
@@ -93,7 +100,7 @@ public class LoginActivity extends BaseActivity {
                goLogin();
                 break;
             case R.id.login_registered://注册
-                Intent intent=new Intent(LoginActivity.this,RegisteredActivity.class);
+                Intent intent=new Intent(LoginActivity.this,Registered.class);
                 startActivity(intent);
                 break;
             case R.id.login_forget://忘记密码

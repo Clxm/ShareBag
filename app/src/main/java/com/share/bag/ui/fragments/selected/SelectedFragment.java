@@ -102,16 +102,12 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
 //           登录成功后网络请求
             getpopular();
         }
-        
-//     设置  Manager
-//        GridLayoutManager manager = new GridLayoutManager(getContext(), 2);
 
 //        gridlayoutmanager
         selectedRecyclerview.setLayoutManager(new GridLayoutManager(getActivity(),2));
 //        初始化 界面
 
         adapter = new PopularAdapter(getContext(), mList);
-//        RecyclerAdapterWithHF recyclerAdapterWithHF = new RecyclerAdapterWithHF(adapter);
         selectedRecyclerview.setAdapter(adapter);
         adapter.setOnitemClickedListener(new PopularAdapter.OnitemClickedListener() {
             @Override
@@ -152,6 +148,8 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
                     });
 
     }
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // TODO: inflate aj fragment view
@@ -187,7 +185,7 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
 
                 List<SelectedBean> selectedBeens = gson.fromJson(json, new TypeToken<List<SelectedBean>>() {
                 }.getType());
-//                Log.e("TAG",selectedBeens.toString());
+
                 mList.addAll(selectedBeens);
                 mLists.addAll(selectedBeens);
 

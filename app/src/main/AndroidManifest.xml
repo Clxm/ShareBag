@@ -166,7 +166,9 @@
         <activity android:name=".ui.activitys.mine.address.ModifyActivity" />
         <activity android:name=".Main2Activity" />
         <activity android:name=".ui.activitys.mine.BusinessActivity" />
-        <activity android:name=".ui.activitys.mine.ProblemActivity"></activity>
+        <activity android:name=".ui.activitys.mine.ProblemActivity" />
+        <activity android:name=".ui.activitys.mine.Registered" />
+        <activity android:name=".ui.activitys.mine.Login"></activity>
     </application>
 
 </manifest>

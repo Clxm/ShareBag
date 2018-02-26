@@ -406,12 +406,16 @@ public class OkHttpUtils implements IHttp {
      */
     private <T> T getGeneric(String jsonData,MyNetWorkCallback<T> callBack){
         Gson gson = new Gson();
-        //通过反射获取泛型的实例   这是刘炎浩写的
-        Type[] types = callBack.getClass().getGenericInterfaces();
-        Type[] actualTypeArguments = ((ParameterizedType) types[0]).getActualTypeArguments();
-        Type type = actualTypeArguments[0];
-        T t = gson.fromJson(jsonData,type);
-        return t;
+
+
+          //通过反射获取泛型的实例   这是刘炎浩写的
+          Type[] types = callBack.getClass().getGenericInterfaces();
+          Type[] actualTypeArguments = ((ParameterizedType) types[0]).getActualTypeArguments();
+          Type type = actualTypeArguments[0];
+          T t = gson.fromJson(jsonData,type);
+          return t;
+
+
     }
 
     private <T> T getByteGeneric(String jsonData, MyNetWorkCallback<T> callback){

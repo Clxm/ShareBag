@@ -27,7 +27,7 @@ import com.share.bag.base.BaseActivity;
 import com.share.bag.entity.CollectionBean;
 import com.share.bag.entity.DeailsBean;
 import com.share.bag.entity.Student;
-import com.share.bag.ui.activitys.mine.LoginActivity;
+import com.share.bag.ui.activitys.mine.Login;
 import com.share.bag.ui.fragments.page.CommentsFragment;
 import com.share.bag.ui.fragments.page.DetalisFragment;
 import com.share.bag.ui.pay.BuyActivity;
@@ -241,7 +241,7 @@ public class DetailsActivity extends BaseActivity {
                 if (details__user.getText().equals("")) {
                     Toast.makeText(DetailsActivity.this, "请先登录", Toast.LENGTH_SHORT).show();
 
-                    Intent intent = new Intent(DetailsActivity.this, LoginActivity.class);
+                    Intent intent = new Intent(DetailsActivity.this, Login.class);
                     startActivity(intent);
                 } else {
 
@@ -257,7 +257,7 @@ public class DetailsActivity extends BaseActivity {
                 break;
             case R.id.details_button_rent://租下
                 if (details__user.getText().equals("")) {
-                    Intent intent = new Intent(DetailsActivity.this, LoginActivity.class);
+                    Intent intent = new Intent(DetailsActivity.this, Login.class);
                     startActivity(intent);
                 } else {
 
@@ -279,7 +279,7 @@ public class DetailsActivity extends BaseActivity {
                 break;
             case R.id.details_button_buy://确认买
                 if (details__user.getText().equals("")) {
-                    Intent intent = new Intent(DetailsActivity.this, LoginActivity.class);
+                    Intent intent = new Intent(DetailsActivity.this, Login.class);
                     startActivity(intent);
                 } else {
                     Intent rentloginintent = new Intent(DetailsActivity.this, BuyActivity.class);

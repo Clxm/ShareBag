@@ -107,7 +107,6 @@
         <EditText
             android:id="@+id/login_password"
             android:textSize="15sp"
-            style="?android:attr/textViewStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"

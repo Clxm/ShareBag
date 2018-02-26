@@ -65,24 +65,25 @@
 
 <View
     android:layout_width="match_parent"
-    android:layout_height="4px"
+    android:layout_height="3px"
     android:background="#F1F1F1"/>
             <android.support.design.widget.TabLayout
                 android:id="@+id/tab"
                 android:layout_width="match_parent"
                 android:layout_height="130px" />
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="3px"
+                android:background="#F2F2F2"/>
+
+
             <com.zhouwei.mzbanner.CustomViewPager
 
                 android:id="@+id/pager"
                 android:layout_width="match_parent"
                 android:layout_height="2800px">
-                <!--android:layout_height="@dimen/y1920"-->
             </com.zhouwei.mzbanner.CustomViewPager>
-            <!--<android.support.v4.view.ViewPager-->
-            <!--android:id="@+id/pager"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content" />-->
 
 
         </LinearLayout>

@@ -19,7 +19,7 @@ import com.share.bag.FileUtil;
 import com.share.bag.R;
 import com.share.bag.base.BaseFragment;
 import com.share.bag.ui.activitys.mine.BusinessActivity;
-import com.share.bag.ui.activitys.mine.LoginActivity;
+import com.share.bag.ui.activitys.mine.Login;
 import com.share.bag.ui.activitys.mine.MySetActivity;
 import com.share.bag.ui.activitys.mine.PersonalActivity;
 import com.share.bag.ui.activitys.mine.ProblemActivity;
@@ -195,7 +195,7 @@ public class MineFragment extends BaseFragment {
             case mine_data://我的主页
                 s = mine_name.getText().toString();
                 if (s.toString().equals("请登录")){//登录
-                    loginintent = new Intent(getActivity(), LoginActivity.class);
+                    loginintent = new Intent(getActivity(), Login.class);
                     startActivityForResult(loginintent,0);
                 }else {//个人中心
                     startActivityForResult(PersonalActivity.getIntent(getActivity()),1);
@@ -208,7 +208,7 @@ public class MineFragment extends BaseFragment {
             case R.id.mine_wallet://我的钱包
                 if(SharePreUtils.getString(Constant.COOKIE , "").isEmpty()){
                     //登录
-                    loginintent1 = new Intent(getActivity(), LoginActivity.class);
+                    loginintent1 = new Intent(getActivity(), Login.class);
                 }else{
                     //我的钱包
                     loginintent1=new Intent(getActivity(), WalletActivity.class);
@@ -235,7 +235,7 @@ public class MineFragment extends BaseFragment {
             case R.id.mine_invite://邀请好友
 
                 if (mine_name.getText().equals("请登录")) {//登录
-                    Intent intent = new Intent(getActivity(), LoginActivity.class);
+                    Intent intent = new Intent(getActivity(), Login.class);
                     startActivity(intent);
                 } else {//分享界面
 //
@@ -247,7 +247,7 @@ public class MineFragment extends BaseFragment {
 
 
                 if (mine_name.getText().equals("请登录")) {//登录
-                    Intent intent = new Intent(getActivity(), LoginActivity.class);
+                    Intent intent = new Intent(getActivity(), Login.class);
                     startActivity(intent);
                 } else {//分享界面
                     Intent intent1=new Intent(getActivity(), HarvestActivity.class);
@@ -279,7 +279,7 @@ public class MineFragment extends BaseFragment {
                 break;
             case R.id.mine_set://设置
                 if (mine_name.getText().equals("请登录")) {//登录
-                    Intent intent = new Intent(getActivity(), LoginActivity.class);
+                    Intent intent = new Intent(getActivity(), Login.class);
                     startActivity(intent);
                 } else {//分享界面
 //
@@ -290,7 +290,7 @@ public class MineFragment extends BaseFragment {
 
             case R.id.mine_log://头像
                 if (mine_name.getText().equals("请登录")) {//登录
-                    Intent intent = new Intent(getActivity(), LoginActivity.class);
+                    Intent intent = new Intent(getActivity(), Login.class);
                     startActivity(intent);
                 } else {
                 }

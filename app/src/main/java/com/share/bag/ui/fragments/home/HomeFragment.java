@@ -572,17 +572,13 @@ public class HomeFragment extends BaseFragment {
 
                 break;
             case R.id.brand_img2://品牌专区图片2
-//                Toast.makeText(context, "点击了图片", Toast.LENGTH_SHORT).show();
                 Intent intent2 = new Intent(context, DetailsActivity.class);
 
                 intent2.putExtra("details", homeBrandimg1id2);
 
-//                Log.e("sss", "initView: " + homeBrandimg1id2);
-
                 startActivity(intent2);
                 break;
             case R.id.brand_img3://品牌专区图片3
-//                Toast.makeText(context, "点击了图片", Toast.LENGTH_SHORT).show();
                 Intent intent3 = new Intent(context, DetailsActivity.class);
 
                 intent3.putExtra("details", homeBrandimg1id3);
@@ -592,7 +588,6 @@ public class HomeFragment extends BaseFragment {
 
 //           每日精选——休闲度假
             case R.id.home_leisure_img1://休闲度假1
-//                Toast.makeText(context, "点击了图片", Toast.LENGTH_SHORT).show();
                 Intent intent4 = new Intent(context, DetailsActivity.class);
 
                 intent4.putExtra("details", homeBrandimg1id3);

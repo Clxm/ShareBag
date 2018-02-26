@@ -16,7 +16,7 @@ import com.share.bag.SBUrls;
 import com.share.bag.adapter.AddressAdapter;
 import com.share.bag.entity.AddressBean;
 import com.share.bag.ui.activitys.mine.AddressActivity;
-import com.share.bag.ui.activitys.mine.LoginActivity;
+import com.share.bag.ui.activitys.mine.Login;
 import com.share.bag.utils.okhttp.OkHttpUtils;
 import com.share.bag.utils.okhttp.callback.MyNetWorkCallback;
 
@@ -130,7 +130,7 @@ public class HarvestActivity extends AppCompatActivity implements View.OnClickLi
         super.onRestart();
         FileUtil.SelectedreadFromPre(this,yincangpanduan);
         if (yincangpanduan.getText().equals("")) {//登录
-            Intent intent = new Intent(this, LoginActivity.class);
+            Intent intent = new Intent(this, Login.class);
             startActivity(intent);
         } else {
 
