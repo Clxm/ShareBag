@@ -254,8 +254,6 @@ public class MineFragment extends BaseFragment {
                     startActivity(intent1);
                 }
 
-
-
                 break;
 
             case R.id.mine_contact://联系客服
@@ -320,8 +318,6 @@ public class MineFragment extends BaseFragment {
                 mine_name.setText("请登录");
                 Glide.with(getContext()).load(R.drawable.touxiang22).into(mineAvatar);
             }
-
-
 
         } else {
             isGetData = false;

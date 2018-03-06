@@ -82,7 +82,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 break;
             case R.id.login_forget:
 
-
                 break;
 
             case R.id.login_qq:
@@ -97,7 +96,15 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-
+/*
+*
+*Map<String, String> map = new HashMap<>();
+        map.put("username", 17801190741);
+        map.put("password", 123456789);
+        map.put("type", "3");
+        OkHttpUtils.getInstance().post(SBUrls.LOGINURL, map, new MyNetWorkCallback<LoginBean>() {
+            @Override
+* */
     private void goLogin() {
         Map<String, String> map = new HashMap<>();
         map.put("username", login_phone.getText().toString().trim());

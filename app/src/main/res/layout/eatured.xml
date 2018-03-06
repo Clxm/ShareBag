@@ -25,6 +25,7 @@
             android:textSize="15sp" />
 
         <include layout="@layout/featured_leisure" />
+
         <TextView
             android:id="@+id/mFestname"
             android:layout_width="wrap_content"
