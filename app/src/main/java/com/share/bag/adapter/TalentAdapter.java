@@ -7,8 +7,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.share.bag.DateUtils;
 import com.share.bag.R;
-import com.share.bag.entity.selected.SelectedBean;
+import com.share.bag.entity.TalentBean;
 
 import java.util.List;
 
@@ -18,9 +19,9 @@ import java.util.List;
 
 public class TalentAdapter extends RecyclerView.Adapter<TalentAdapter.ViewHolder> {
     private Context context;
-    private List<SelectedBean> list;
+    private List<TalentBean.InfoBean> list;
 
-    public TalentAdapter(Context context, List<SelectedBean> list) {
+    public TalentAdapter(Context context, List<TalentBean.InfoBean> list) {
         this.context = context;
         this.list = list;
     }
@@ -34,10 +35,25 @@ public class TalentAdapter extends RecyclerView.Adapter<TalentAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
+
+
+/*
+
+ String create_time = list.get(position).getUser().getCreate_time();
+        String content = list.get(position).getContent();
+
+
+* */
+
 //        Glide.with(context).load(SBUrls.LOGURL + list.get(position).getImg()).into(holder.recyler_commodity);
 //
-//        holder.recyler_name.setText(list.get(position).getTitle());
-//        holder.recyler_price.setText(list.get(position).getDays_money());
+
+        String time = list.get(position).getTime();
+        String strTime = DateUtils.getStrTime(time);
+        String create_time = list.get(position).getUserinfo().getCreate_time();
+        holder.talent_name.setText(list.get(position).getUserinfo().getName());
+        holder.talent_time.setText(strTime);
+        holder.talent_dynamic.setText(create_time);
 //        holder.recyler_money.setText(list.get(position).getOriginalprice());
 
 

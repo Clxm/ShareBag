@@ -19,7 +19,7 @@ import com.share.bag.R;
 import com.share.bag.SBUrls;
 import com.share.bag.base.BaseFragment;
 import com.share.bag.entity.HomeFragmentBean;
-import com.share.bag.ui.activitys.home.DetailsActivity;
+import com.share.bag.ui.activitys.home.Details;
 import com.share.bag.ui.activitys.home.TradeActivity;
 import com.share.bag.ui.share.ShareActivity;
 import com.share.bag.utils.okhttp.OkHttpUtils;
@@ -78,7 +78,6 @@ public class HomeFragment extends BaseFragment {
     @BindView(R.id.home_leisureimg3)
     ImageView homeLeisureimg3;
 
-
     //每日精选——宴会轻奢
     @BindView(R.id.mFestname)
     TextView mFestname;
@@ -104,26 +103,14 @@ public class HomeFragment extends BaseFragment {
     ImageView home_business_img4;
     @BindView(R.id.shouye)
     TextView shouye;
-//    @BindView(R.id.home_business_img1)
-//    ImageView home_business_img1;
-//    @BindView(R.id.home_business_img2)
-//    ImageView home_business_img2;
-//    @BindView(R.id.home_business_img3)
-//    ImageView home_business_img3;
-//    @BindView(R.id.home_business_img4)
-//    ImageView home_business_img4;
+
     //包包达人
     @BindView(R.id.mLinearBaoBao)
     LinearLayout mLinearBaoBao;
 
-    //商务办公  R.id.home_business_img4
-
-
     //包包达人
     @BindView(R.id.talent_dynamic)
     TextView talent_dynamic;
-
-
     //分享图片
     @BindView(R.id.home_share)
     ImageView homeShare;
@@ -389,7 +376,7 @@ public class HomeFragment extends BaseFragment {
                 if (shouye.getText().equals("")){
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
                 }else {
-                    Intent intent_brandid0 = new Intent(context, DetailsActivity.class);
+                    Intent intent_brandid0 = new Intent(context, Details.class);
                     intent_brandid0.putExtra("details", brandid0);
                     startActivity(intent_brandid0);
                 }
@@ -402,7 +389,7 @@ public class HomeFragment extends BaseFragment {
                 if (shouye.getText().equals("")){
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
                 }else {
-                    Intent intent_brandid1 = new Intent(context, DetailsActivity.class);
+                    Intent intent_brandid1 = new Intent(context, Details.class);
                     intent_brandid1.putExtra("details", brandid1);
                     startActivity(intent_brandid1);
                 }
@@ -414,7 +401,7 @@ public class HomeFragment extends BaseFragment {
                 if (shouye.getText().equals("")){
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
                 }else {
-                    Intent intent_brandid2 = new Intent(context, DetailsActivity.class);
+                    Intent intent_brandid2 = new Intent(context, Details.class);
                     intent_brandid2.putExtra("details", brandid2);
                     startActivity(intent_brandid2);
                 }
@@ -429,7 +416,7 @@ public class HomeFragment extends BaseFragment {
                 if (shouye.getText().equals("")){
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
                 }else {
-                    Intent intent_leisure0 = new Intent(context, DetailsActivity.class);
+                    Intent intent_leisure0 = new Intent(context, Details.class);
                     intent_leisure0.putExtra("details", leisureid0);
                     startActivity(intent_leisure0);
                 }
@@ -443,7 +430,7 @@ public class HomeFragment extends BaseFragment {
                 if (shouye.getText().equals("")){
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
                 }else {
-                    Intent intent_leisure1 = new Intent(context, DetailsActivity.class);
+                    Intent intent_leisure1 = new Intent(context, Details.class);
                     intent_leisure1.putExtra("details", leisureid1);
                     startActivity(intent_leisure1);
                 }
@@ -457,7 +444,7 @@ public class HomeFragment extends BaseFragment {
                 if (shouye.getText().equals("")){
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
                 }else {
-                    Intent intent_leisure2 = new Intent(context, DetailsActivity.class);
+                    Intent intent_leisure2 = new Intent(context, Details.class);
                     intent_leisure2.putExtra("details", leisureid2);
                     startActivity(intent_leisure2);
                 }
@@ -471,7 +458,7 @@ public class HomeFragment extends BaseFragment {
                 if (shouye.getText().equals("")){
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
                 }else {
-                    Intent intent_banquetid0 = new Intent(context, DetailsActivity.class);
+                    Intent intent_banquetid0 = new Intent(context, Details.class);
                     intent_banquetid0.putExtra("details", banquetid0);
                     startActivity(intent_banquetid0);
                 }
@@ -485,7 +472,7 @@ public class HomeFragment extends BaseFragment {
                 if (shouye.getText().equals("")){
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
                 }else {
-                    Intent intent_banquetid1 = new Intent(context, DetailsActivity.class);
+                    Intent intent_banquetid1 = new Intent(context, Details.class);
                     intent_banquetid1.putExtra("details", banquetid1);
                     startActivity(intent_banquetid1);
                 }
@@ -499,7 +486,7 @@ public class HomeFragment extends BaseFragment {
                 if (shouye.getText().equals("")){
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
                 }else {
-                    Intent intent_banquetid2 = new Intent(context, DetailsActivity.class);
+                    Intent intent_banquetid2 = new Intent(context, Details.class);
                     intent_banquetid2.putExtra("details", banquetid2);
                     startActivity(intent_banquetid2);
                 }
@@ -513,7 +500,7 @@ public class HomeFragment extends BaseFragment {
                 if (shouye.getText().equals("")){
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
                 }else {
-                    Intent intent_banquetid3 = new Intent(context, DetailsActivity.class);
+                    Intent intent_banquetid3 = new Intent(context, Details.class);
                     intent_banquetid3.putExtra("details", banquetid3);
                     startActivity(intent_banquetid3);
                 }
@@ -527,7 +514,7 @@ public class HomeFragment extends BaseFragment {
                 if (shouye.getText().equals("")){
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
                 }else {
-                    Intent intent_businessid1 = new Intent(context, DetailsActivity.class);
+                    Intent intent_businessid1 = new Intent(context, Details.class);
                     intent_businessid1.putExtra("details", businessid0);
                     startActivity(intent_businessid1);
                 }
@@ -541,7 +528,7 @@ public class HomeFragment extends BaseFragment {
                 if (shouye.getText().equals("")){
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
                 }else {
-                    Intent intent_businessid2 = new Intent(context, DetailsActivity.class);
+                    Intent intent_businessid2 = new Intent(context, Details.class);
                     intent_businessid2.putExtra("details", businessid1);
                     startActivity(intent_businessid2);
                 }
@@ -555,7 +542,7 @@ public class HomeFragment extends BaseFragment {
                 if (shouye.getText().equals("")){
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
                 }else {
-                    Intent intent_businessid3 = new Intent(context, DetailsActivity.class);
+                    Intent intent_businessid3 = new Intent(context, Details.class);
                     intent_businessid3.putExtra("details", businessid2);
                     startActivity(intent_businessid3);
                 }
@@ -569,7 +556,7 @@ public class HomeFragment extends BaseFragment {
                 if (shouye.getText().equals("")){
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
                 }else {
-                    Intent intent_businessid4 = new Intent(context, DetailsActivity.class);
+                    Intent intent_businessid4 = new Intent(context, Details.class);
                     intent_businessid4.putExtra("details", businessid3);
                     startActivity(intent_businessid4);
                 }

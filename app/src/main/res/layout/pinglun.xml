@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="270px"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/send_button"
+            android:layout_width="40dp"
+            android:layout_height="25dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="10dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/send_button_style"
+            android:text="发送"
+            android:textColor="#ffffff"
+            android:textSize="12sp" />
+
+        <EditText
+            android:layout_marginLeft="34px"
+            android:layout_marginTop="20px"
+            android:id="@+id/et_input_content"
+            android:layout_width="match_parent"
+            android:layout_height="250px"
+            android:hint="欢迎评价~"
+            android:gravity="top"
+            android:minLines="4"
+            android:padding="2dp"
+            android:background="@drawable/content_edittext_style"
+            android:layout_toLeftOf="@id/send_button" />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="8dp"
+        android:text="请将字数控制在140字以下呦~" />
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="336px"-->
+        <!--android:orientation="vertical">-->
+
+
+
+
+    <!--<RelativeLayout-->
+        <!--android:layout_width="1000px"-->
+        <!--android:layout_height="252px"-->
+        <!--android:layout_marginTop="20px"-->
+        <!--android:layout_marginLeft="34px">-->
+
+
+
+        <!--<EditText-->
+            <!--android:id="@+id/details_pinglun"-->
+            <!--android:layout_weight="1"-->
+            <!--android:layout_width="865px"-->
+            <!--android:layout_height="252px"-->
+            <!--android:hint="欢迎评价～"-->
+            <!--android:textSize="30px"-->
+            <!--android:background="@drawable/pinglun"/>-->
+
+
+<!--<TextView-->
+    <!--android:id="@+id/details_pinglun_but"-->
+    <!--android:layout_width="96px"-->
+    <!--android:layout_height="52px"-->
+    <!--android:text="发送"-->
+    <!--android:textSize="28px"-->
+    <!--android:textColor="#FFF"-->
+    <!--android:gravity="center"-->
+    <!--android:layout_alignBottom="@+id/details_pinglun"-->
+    <!--android:layout_toEndOf="@+id/details_pinglun"-->
+    <!--android:layout_marginStart="8dp"-->
+    <!--android:background="@drawable/pinglun_fasong"/>-->
+
+
+
+
+
+
+
+
+    <!--</RelativeLayout>-->
+
+        <!--<TextView-->
+            <!--android:layout_marginTop="18px"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:gravity="center_horizontal"-->
+            <!--android:text="@string/details_pinglun_text"-->
+            <!--android:textColor="#999999"-->
+            <!--android:textSize="36px"/>-->
+
+    <!--</LinearLayout>-->
+
+
+<!--&lt;!&ndash;-->
+
+<!--865，252，12，2-->
+
+<!--&ndash;&gt;-->
+
+
+</LinearLayout>

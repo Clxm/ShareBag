@@ -42,7 +42,6 @@ public class DetalisFragment extends BaseFragment {
         detalis_numbering = view.findViewById(R.id.detalis_numbering);
         detalis_colour = view.findViewById(R.id.detalis_colour);
         detalis_material = view.findViewById(R.id.detalis_material);
-
         detalis_size = view.findViewById(R.id.detalis_size);
         detalis_description_img1 = view.findViewById(R.id.detalis_description_img1);
         detalis_description_img2 = view.findViewById(R.id.detalis_description_img2);

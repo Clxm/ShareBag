@@ -8,6 +8,16 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.share.bag.R;
+import com.share.bag.adapter.TalentAdapter;
+import com.share.bag.entity.TalentBean;
+import com.share.bag.utils.okhttp.OkHttpUtils;
+import com.share.bag.utils.okhttp.callback.MyNetWorkCallback;
+
+import org.json.JSONException;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /*
 * 包包达人
@@ -23,15 +33,41 @@ public class TalentActivity extends AppCompatActivity {
         setContentView(R.layout.activity_talent);
         initView();
         initdata();
-        talent_listview.setLayoutManager(new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL));
-
-//        TalentAdapter adapter = new TalentAdapter(TalentActivity.this,list);
-
-//        talent_listview.setAdapter(adapter);
 
     }
 
     private void initdata() {
+
+            String  str="http://baobaoapi.ldlchat.com/Home/Cabinet/masterlist.html";
+            Map<String, String> map = new HashMap<>();
+            try {
+                //请求网络
+                OkHttpUtils.getInstance().post(str, map, new MyNetWorkCallback<TalentBean>() {
+                    @Override
+                    public void onSuccess(TalentBean talentBean) throws JSONException {
+                        List<TalentBean.InfoBean> info = talentBean.getInfo();
+                        
+                        talent_listview.setLayoutManager(new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL));
+
+                        TalentAdapter adapter = new TalentAdapter(TalentActivity.this,info);
+
+                        talent_listview.setAdapter(adapter);
+
+                    }
+
+                    @Override
+                    public void onError(int errorCode, String errorMsg) {
+
+                    }
+                });
+            }catch (Exception e){
+
+            }
+
+
+
+
+
 
     }
 

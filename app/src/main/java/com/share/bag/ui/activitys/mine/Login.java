@@ -28,15 +28,11 @@ import java.util.Map;
 
 public class Login extends AppCompatActivity implements View.OnClickListener {
 
-//    private ImageView imageView6;
     private EditText login_phone;
-//    private LinearLayout linearLayout3;
     private EditText login_password;
-//    private LinearLayout linearLayout4;
     private Button login_login;
     private TextView login_registered;
     private TextView login_forget;
-//    private LinearLayout linearLayout5;
     private ImageView login_qq;
     private ImageView login_weixin;
 
@@ -50,15 +46,11 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     }
 
     private void initView() {
-//        imageView6 = (ImageView) findViewById(R.id.imageView6);
         login_phone = (EditText) findViewById(R.id.login_phone);
-//        linearLayout3 = (LinearLayout) findViewById(R.id.linearLayout3);
         login_password = (EditText) findViewById(R.id.login_password);
-//        linearLayout4 = (LinearLayout) findViewById(R.id.linearLayout4);
         login_login = (Button) findViewById(R.id.login_login);
         login_registered = (TextView) findViewById(R.id.login_registered);
         login_forget = (TextView) findViewById(R.id.login_forget);
-//        linearLayout5 = (LinearLayout) findViewById(R.id.linearLayout5);
         login_qq = (ImageView) findViewById(R.id.login_qq);
         login_weixin = (ImageView) findViewById(R.id.login_weixin);
 

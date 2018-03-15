@@ -231,11 +231,36 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="14px"
-                        android:text="代付款"
+                        android:text="待付款"
                         android:textSize="30px"
                         android:textColor="#303030"/>
 
                 </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/mine_ship"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:layout_marginTop="61px">
+
+                    <ImageView
+                        android:layout_width="67px"
+                        android:layout_height="69px"
+                        android:src="@mipmap/wode_daifa" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14px"
+                        android:text="待发货"
+                        android:textSize="30px"
+                        android:textColor="#303030" />
+
+                </LinearLayout>
+
 
                 <LinearLayout
                     android:id="@+id/mine_Sign"
@@ -261,29 +286,7 @@
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/mine_ship"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:layout_marginTop="61px">
 
-                    <ImageView
-                        android:layout_width="67px"
-                        android:layout_height="69px"
-                        android:src="@mipmap/wode_daifa" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="14px"
-                        android:text="代发货"
-                        android:textSize="30px"
-                        android:textColor="#303030" />
-
-                </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/mine_return"

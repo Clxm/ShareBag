@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/mLinearBaoBao">
+    android:id="@+id/mLinearBaoBao"
+    android:background="#FFF">
 
 
     <LinearLayout
@@ -148,6 +149,62 @@
                 android:src="@drawable/mo1" />
 
         </LinearLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="225px"
+            android:layout_marginLeft="35px"
+            android:layout_marginRight="35px"
+            android:layout_marginTop="34px"
+            android:background="@drawable/baobaodaren">
+
+
+            <ImageView
+                android:id="@+id/talent_commodity_img"
+                android:layout_width="184px"
+                android:layout_height="178px"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="20px"
+                android:scaleType="fitXY"
+                android:src="@drawable/mo1" />
+
+
+            <TextView
+                android:id="@+id/talent_commodity_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="60px"
+                android:text="名称"
+                android:textSize="26px"
+                android:layout_alignTop="@+id/talent_commodity_img"
+                android:layout_toEndOf="@+id/talent_commodity_img"
+                android:layout_marginTop="29px" />
+
+
+
+            <TextView
+                android:id="@+id/talent_commodity_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="价格"
+                android:textSize="26px"
+                android:layout_below="@+id/talent_commodity_name"
+                android:layout_alignStart="@+id/talent_commodity_name"
+                android:layout_marginTop="64px" />
+
+
+            <!--<ImageView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:src="@drawable/"/>-->
+
+
+
+
+        </RelativeLayout>
+
 
         <RelativeLayout
             android:layout_width="match_parent"

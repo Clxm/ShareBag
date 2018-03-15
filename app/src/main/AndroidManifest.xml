@@ -169,7 +169,8 @@
         <activity android:name=".ui.activitys.mine.ProblemActivity" />
         <activity android:name=".ui.activitys.mine.Registered" />
         <activity android:name=".ui.activitys.mine.Login" />
-        <activity android:name=".ui.activitys.home.TradeActivity"></activity>
+        <activity android:name=".ui.activitys.home.TradeActivity" />
+        <activity android:name=".ui.activitys.home.Details"></activity>
     </application>
 
 </manifest>

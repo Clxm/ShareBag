@@ -156,33 +156,12 @@
         android:background="#F1F1F1"/>
 
 
-    <TextView
-        android:layout_marginLeft="74px"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="74px"
-        android:text="内容描述"
-        android:textColor="#838383"
-        android:textSize="14sp" />
-
-
     <ImageView
         android:id="@+id/detalis_description_img1"
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/mo1"
-       />
-
-
-    <TextView
-        android:layout_marginLeft="74px"
-        android:layout_marginTop="74px"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="cant/侧面"
-        android:textColor="#838383"
-        android:textSize="16sp" />
+        android:scaleType="fitXY" />
 
 
     <ImageView
@@ -190,7 +169,7 @@
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/mo1" />
+        android:scaleType="fitXY" />
 
 
 </LinearLayout>

@@ -28,7 +28,7 @@ import com.share.bag.adapter.PopularAdapter;
 import com.share.bag.base.BaseFragment;
 import com.share.bag.entity.CollectionBean;
 import com.share.bag.entity.selected.SelectedBean;
-import com.share.bag.ui.activitys.home.DetailsActivity;
+import com.share.bag.ui.activitys.home.Details;
 import com.share.bag.utils.okhttp.OkHttpUtils;
 import com.share.bag.utils.okhttp.callback.ByteCallBack;
 import com.share.bag.utils.okhttp.callback.MyNetWorkCallback;
@@ -113,7 +113,7 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
             @Override
             public void Back(View v, int position) {//详情页
                 adapter.notifyDataSetChanged();
-                    Intent intent1 = new Intent(getActivity(), DetailsActivity.class);
+                    Intent intent1 = new Intent(getActivity(), Details.class);
                     intent1.putExtra("details",position+"");
 
                     intent1.putExtra("details",mList.get(position).getId());
