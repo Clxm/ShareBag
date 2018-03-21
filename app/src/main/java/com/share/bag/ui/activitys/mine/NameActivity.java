@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.share.bag.FileUtil;
 import com.share.bag.R;
 import com.share.bag.SBUrls;
 import com.share.bag.entity.NaneBean;
@@ -30,7 +31,11 @@ import java.util.Map;
 public class NameActivity extends AppCompatActivity {
 
     private String trim;
-
+    public static void actionStart(Context context, String data1) {
+        Intent intent = new Intent(context, NameActivity.class);
+        intent.putExtra("nickname", data1);
+        context.startActivity(intent);
+    }
     public static Intent getIntent(Context context){
         Intent intent=new Intent(context,NameActivity.class);
         return intent;
@@ -94,16 +99,20 @@ public class NameActivity extends AppCompatActivity {
             Toast.makeText(this, "昵称不能为空", Toast.LENGTH_SHORT).show();
         } else {
         Map<String, String> map = new HashMap<>();
-        trim = name_edit.getText().toString().trim();
-        map.put("name", trim);
+
+        map.put("nickname", edit);
         OkHttpUtils.getInstance().post(SBUrls.NICKNAME, map, new MyNetWorkCallback<NaneBean>() {
             @Override
             public void onSuccess(NaneBean naneBean) throws JSONException {
-                Intent intent = getIntent();
-                intent.putExtra("username", trim);
-                setResult(RESULT_OK, intent);
-                finish();
+                String info = naneBean.getInfo();
+//                Toast.makeText(NameActivity.this,info, Toast.LENGTH_SHORT).show();
+//                Intent intent = getIntent();
+//                intent.putExtra("username", trim);
+//                setResult(RESULT_OK, intent);
+                FileUtil.saveName(NameActivity.this,edit);
+//                PersonalActivity.actionStart(NameActivity.this,trim );
 
+                finish();
             }
 
             @Override

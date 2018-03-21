@@ -23,12 +23,16 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.share.bag.FileUtil;
+import com.share.bag.LikeAdapter;
 import com.share.bag.R;
 import com.share.bag.SBUrls;
-import com.share.bag.entity.AddComment;
+import com.share.bag.adapter.PopularAdapter;
+import com.share.bag.entity.AddCommentBean;
 import com.share.bag.entity.CollectionBean;
 import com.share.bag.entity.CommentBean;
 import com.share.bag.entity.DeailsBean;
+import com.share.bag.entity.LikeBean;
+import com.share.bag.entity.selected.SelectedBean;
 import com.share.bag.ui.activitys.mine.Login;
 import com.share.bag.ui.pay.BuyActivity;
 import com.share.bag.ui.pay.RentActivity;
@@ -51,6 +55,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/*
+* 包包详情
+* */
 public class Details extends AppCompatActivity implements View.OnClickListener {
 
     private ImageView Details_return;
@@ -100,6 +107,12 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
     private PopupWindow pw;
     private EditText et_input_content;
 
+
+
+    private List<SelectedBean> mList=new ArrayList();
+    private List<SelectedBean> mLists=new ArrayList();
+    private PopularAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -111,8 +124,20 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
 //        Toast.makeText(this, tmp, Toast.LENGTH_SHORT).show();
 
         initView();
+//        details_comment_layout_recy.setNestedScrollingEnabled(false);
         FileUtil.SelectedreadFromPre(Details.this, details__user);
         getinitData();
+        getinitData1();
+
+        Details_return.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
+
+
         //详情
         details_details.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -677,9 +702,9 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
         map.put("content",butttString);
 //        try {
             //请求网络
-            OkHttpUtils.getInstance().post(str, map, new MyNetWorkCallback<AddComment>() {
+            OkHttpUtils.getInstance().post(str, map, new MyNetWorkCallback<AddCommentBean>() {
                 @Override
-                public void onSuccess(AddComment addComment) throws JSONException {
+                public void onSuccess(AddCommentBean addComment) throws JSONException {
                     pw.dismiss();
 
                     getinitdatacomment();
@@ -693,6 +718,36 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
             });
 
                     }
+
+    public void getinitData1() {
+
+String likeurl="http://baobaoapi.ldlchat.com/Home/Backcontent/ifyoulike.html";
+        Map<String,String >stringMap= new HashMap<>();
+
+        OkHttpUtils.getInstance().post(likeurl, stringMap, new MyNetWorkCallback<LikeBean>() {
+            @Override
+            public void onSuccess(LikeBean likeBean) throws JSONException {
+
+                List<LikeBean.InfoBean> info = likeBean.getInfo();
+                details_like_recycler.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
+
+                LikeAdapter likeAdapter=new LikeAdapter(Details.this,info);
+                details_like_recycler.setAdapter(likeAdapter);
+
+            }
+
+            @Override
+            public void onError(int errorCode, String errorMsg) {
+
+            }
+        });
+
+
+
+
+
+                }
+
 
     //                      Banner Volder
     public class GlideImage extends ImageLoader {

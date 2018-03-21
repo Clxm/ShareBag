@@ -40,7 +40,7 @@
             android:layout_width="100px"
             android:layout_height="100px"
             android:text="@string/save"
-            android:textSize="40px"
+            android:textSize="45px"
             android:layout_centerVertical="true"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="36px" />
@@ -69,7 +69,9 @@
     android:layout_marginLeft="96px"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="联系人"/>
+    android:text="联系人"
+    android:textSize="50px"
+    android:textColor="#454545"/>
 
 
 
@@ -80,7 +82,9 @@
         android:layout_marginLeft="110px"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="姓名"/>
+        android:hint="姓名"
+        android:textSize="40px"
+        android:textColor="#C8C8C8"/>
 
 
 </LinearLayout>
@@ -102,7 +106,9 @@
             android:layout_marginLeft="96px"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="电话"/>
+            android:text="电话"
+            android:textSize="50px"
+            android:textColor="#454545"/>
 
 
 
@@ -113,7 +119,9 @@
             android:layout_marginLeft="110px"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="收货人电话"/>
+            android:hint="收货人电话"
+            android:textSize="40px"
+            android:textColor="#C8C8C8"/>
 
 
     </LinearLayout>
@@ -137,7 +145,9 @@
             android:layout_marginLeft="96px"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="城市"/>
+            android:text="城市"
+            android:textSize="50px"
+            android:textColor="#454545"/>
 
 
 
@@ -147,7 +157,9 @@
             android:layout_marginLeft="110px"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="选择收获地址"/>
+            android:hint="选择收获地址"
+            android:textSize="40px"
+            android:textColor="#C8C8C8"/>
 
 
     </LinearLayout>
@@ -171,7 +183,9 @@
             android:layout_marginLeft="96px"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="地址"/>
+            android:text="地址"
+            android:textSize="50px"
+            android:textColor="#454545"/>
 
 
 
@@ -182,7 +196,9 @@
             android:layout_marginLeft="110px"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="详细地址"/>
+            android:hint="详细地址"
+            android:textSize="40px"
+            android:textColor="#C8C8C8"/>
 
 
     </LinearLayout>

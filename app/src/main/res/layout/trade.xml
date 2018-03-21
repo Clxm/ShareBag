@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EEEEEE">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="330px"
+        android:background="@drawable/background1"
+        android:layout_marginLeft="30px"
+        android:layout_marginRight="30px"
+        android:layout_marginTop="22px"
+        android:paddingLeft="62px"
+        android:paddingRight="62px">
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center_vertical">
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="红包"
+                android:textColor="#333333"
+                android:textSize="54px"
+                android:id="@+id/crade_name" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="部分品牌包包适用"
+                android:textSize="37px"
+                android:textColor="#999999"
+                android:id="@+id/card_Introduce" />
+
+
+
+
+
+
+
+        </LinearLayout>
+
+
+
+
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="余额"
+    android:textColor="#F96662"
+    android:textSize="37px"
+    android:layout_alignParentTop="true"
+    android:layout_alignParentEnd="true"
+    android:layout_marginEnd="234px"
+    android:layout_marginTop="30px"
+    android:id="@+id/textView6" />
+
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView6"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="26px"
+            android:id="@+id/linearLayout">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="￥"
+                android:textSize="51px"
+                android:textColor="#F96662"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="100"
+                android:textSize="90px"
+                android:textStyle="bold"
+                android:textColor="#F96662"/>
+        </LinearLayout>
+
+
+
+
+<ImageView
+    android:layout_width="186px"
+    android:layout_height="58px"
+    android:src="@drawable/use"
+    android:layout_below="@+id/linearLayout"
+    android:layout_alignParentEnd="true"
+    android:layout_marginTop="44px"/>
+
+    </RelativeLayout>
+
+
+</LinearLayout>

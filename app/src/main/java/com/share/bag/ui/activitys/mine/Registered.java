@@ -37,7 +37,7 @@ public class Registered extends AppCompatActivity implements View.OnClickListene
     private EditText registered_verification;
     private TextView registered_obtain;
     private LinearLayout linearLayout7;
-    private EditText registered_password;
+    private EditText registered_password,registered_password1,registered_invite;
     private LinearLayout linearLayout8;
     private Button registered_login;
 
@@ -77,6 +77,9 @@ public class Registered extends AppCompatActivity implements View.OnClickListene
         linearLayout7 = (LinearLayout) findViewById(R.id.linearLayout7);
         registered_password = (EditText) findViewById(R.id.registered_password);
         linearLayout8 = (LinearLayout) findViewById(R.id.linearLayout8);
+        registered_password1 = (EditText) findViewById(R.id.registered_password1);
+
+        registered_invite = (EditText) findViewById(R.id.registered_invite);
         registered_login = (Button) findViewById(R.id.registered_login);
 
         registered_login.setOnClickListener(this);
@@ -154,8 +157,15 @@ public class Registered extends AppCompatActivity implements View.OnClickListene
 
     //  注册--登录
     private void goRegistered() {
+
         String phone = registered_phone.getText().toString().trim();
         if (TextUtils.isEmpty(phone)) {
+            Toast.makeText(this, "phone不能为空", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        String password1 = registered_password1.getText().toString().trim();
+        if (TextUtils.isEmpty(password1)) {
             Toast.makeText(this, "phone不能为空", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -178,6 +188,7 @@ public class Registered extends AppCompatActivity implements View.OnClickListene
         map.put("username", registered_phone.getText().toString().trim());
         map.put("code", registered_verification.getText().toString().trim());
         map.put("password", registered_password.getText().toString().trim());
+
 //        username   用户名    password 密码     code手机验证码
         OkHttpUtils.getInstance().post(SBUrls.REGISTEREDURL, map, new MyNetWorkCallback<LoginBean>() {
 
@@ -198,8 +209,4 @@ public class Registered extends AppCompatActivity implements View.OnClickListene
             }
         });
     }
-
-
-
-
 }

@@ -6,6 +6,24 @@ package com.share.bag;
  */
 
 public class SBUrls {
+
+    //网址拼接头
+    public static final String HEAD ="http://baobaoapi.ldlchat.com";
+    //    登录
+    public static final String LOGINURL ="http://baobaoapi.ldlchat.com/Home/user/login.html";
+    //    钱包
+    public static final String WALLET ="http://baobaoapi.ldlchat.com/Home/wallet/balance.html";
+    //修改昵称
+    public static final String NICKNAME ="http://baobaoapi.ldlchat.com/Home/my/setnickname.html";
+    //卡劵
+    public static final String RED ="http://baobaoapi.ldlchat.com/Home/wallet/coupon.html";
+
+//                                              baobaoapi.ldlchat.com/Home/wallet/coupon.html
+
+
+
+
+
 //    ------------------------------ url -----------------------------------------
 
     //支付
@@ -21,14 +39,10 @@ public class SBUrls {
 
     //微信
 
-    //    登录
-    public static final String LOGINURL = "http://baobaoapi.ldlchat.com/Home/Public/login.html";
-//修改昵称
-    public static final String NICKNAME ="http://baobaoapi.ldlchat.com/index.php?s=/Home/My/getname.html";
 
     //    注册
     public static final String REGISTEREDURL = "http://baobaoapi.ldlchat.com/Home/Public/registered.html";
-//    验证码                                                                                           getSmsk
+//    验证码
     public static final String SMSURL = "http://baobaoapi.ldlchat.com/Home/Public/getSmsk.html";
 //      首页
     public static final String HOMEURL ="http://baobaoapi.ldlchat.com/Home/Index/index.html";
@@ -51,8 +65,9 @@ Receiving
     //    ------------------------------ 字符 -----------------------------------------''
     public static final String TOKEN = "TOKEN";
     //上传头像
-
-    public static final String UPDATA_IMG = "http://baobaoapi.ldlchat.com/Home/Public/upheaderimg.html";
+//
+    public static final String UPDATA_IMG = "http://baobaoapi.ldlchat.com/Home/My/uploadheaderimg.html";
+//    public static final String UPDATA_IMG = "http://baobaoapi.ldlchat.com/Home/Public/upheaderimg.html";
     //上传头像
 //    public static final String UPDATA_IMG = "http://baobaoapi.ldlchat.com/Home/Public/upheaderimg.html";
 

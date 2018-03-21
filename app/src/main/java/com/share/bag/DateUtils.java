@@ -27,6 +27,27 @@ public class DateUtils {
         return re_StrTime;
     }
 
+
+    /**
+     * 时间戳转为时间(年月日
+     *
+     * @param cc_time 时间戳
+     * @return
+     */
+    public static String getStrTime1(String cc_time) {
+        String re_StrTime = null;
+        //同理也可以转为其它样式的时间格式.例如："yyyy/MM/dd HH:mm"
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+        // 例如：cc_time=1291778220
+        long lcc_time = Long.valueOf(cc_time);
+        re_StrTime = sdf.format(new Date(lcc_time * 1000L));
+
+        return re_StrTime;
+    }
+
+
+
+
     /**
      * 时间转换为时间戳
      *

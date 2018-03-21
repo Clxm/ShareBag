@@ -74,6 +74,9 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 break;
             case R.id.login_forget:
 
+                Toast.makeText(this, "忘记密码", Toast.LENGTH_SHORT).show();
+                
+                
                 break;
 
             case R.id.login_qq:
@@ -89,13 +92,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     }
 
 /*
-*
-*Map<String, String> map = new HashMap<>();
-        map.put("username", 17801190741);
-        map.put("password", 123456789);
-        map.put("type", "3");
-        OkHttpUtils.getInstance().post(SBUrls.LOGINURL, map, new MyNetWorkCallback<LoginBean>() {
-            @Override
+*登录
 * */
     private void goLogin() {
         Map<String, String> map = new HashMap<>();
@@ -109,25 +106,24 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 String info = loginBean.getStatus();
 
                 if (info.equals("1")){
-                    String username = loginBean.getMsg().getUsername();//用户名
-                    String password = loginBean.getMsg().getPassword();//密码
-                    String gender = (String) loginBean.getMsg().getGender();//性别
-                    String id = loginBean.getMsg().getId();//id
-                    String nickname = (String) loginBean.getMsg().getName();//昵称
-                    String iconurl = (String) loginBean.getMsg().getIconurl();//头像
-
-
-                    FileUtil.saveToPre1(Login.this, username, password,id,gender,nickname,iconurl);
-
-//返回值是：39用户名17801190741密码25f9e794323b453885f5181f1b624d0b性别男图片/Uploads/20180115/5a5c759804236.png昵称5
+                    String nickname = loginBean.getUser().getName();//昵称
+                    String username = loginBean.getUser().getUsernameX();//用户名
+                    String password =loginBean.getUser().getPasswordX();//密码
+                    String gender = loginBean.getUser().getGender();//性别
+//                    String strtou= SBUrls.HEAD+loginBean.getUser().getIconurl();//头像
+                    String strtou=loginBean.getUser().getIconurl();//头像
+                    String id = loginBean.getUser().getId();//id
+                    FileUtil.saveToPre1(Login.this, username, password,id,gender,nickname,strtou);
+////返回值是：39用户名17801190741密码25f9e794323b453885f5181f1b624d0b性别男图片/Uploads/20180115/5a5c759804236.png昵称5
                     Intent intent=new Intent();
                     intent.setClass(Login.this, MainActivity.class);
-                    String name= (String) loginBean.getMsg().getName();
+                    String name=username;
                     intent.putExtra("name",name);
-                    String img= (String) loginBean.getMsg().getIconurl();
+                    String img= strtou;
                     intent.putExtra("img",img);
                     setResult(0,intent);
                     finish();
+                    Toast.makeText(Login.this, loginBean.getInfo(), Toast.LENGTH_SHORT).show();
                 }
                 else {
                     Toast.makeText(Login.this, loginBean.getInfo(), Toast.LENGTH_SHORT).show();
@@ -156,7 +152,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
             String s2 = map.get("iconurl");
             String s3 = map.get("gender");
             Toast.makeText(Login.this, s+s2, Toast.LENGTH_SHORT).show();
-            Log.e("TAG","---------"+s2);
+            Log.e("TAG",s1+"---------"+s2);
             Intent intent=new Intent();
             intent.setClass(Login.this, MainActivity.class);
             intent.putExtra("name",s);

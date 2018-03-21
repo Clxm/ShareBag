@@ -108,6 +108,7 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
 //        初始化 界面
 
         adapter = new PopularAdapter(getContext(), mList);
+
         selectedRecyclerview.setAdapter(adapter);
         adapter.setOnitemClickedListener(new PopularAdapter.OnitemClickedListener() {
             @Override

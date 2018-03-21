@@ -54,12 +54,17 @@ import butterknife.OnClick;
 public class PersonalActivity extends BaseActivity {
 
     private Uri newUri;
+    private String ssssssssString=null;
 
-    public static Intent getIntent(Context context) {
+    //    public static Intent getIntent(Context context) {
+//        Intent intent = new Intent(context, PersonalActivity.class);
+//        return intent;
+//    }
+    public static void actionStart(Context context, String data1) {
         Intent intent = new Intent(context, PersonalActivity.class);
-        return intent;
+        intent.putExtra("nickname", data1);
+        context.startActivity(intent);
     }
-
 
     private int width;
     private int height;
@@ -129,11 +134,14 @@ public class PersonalActivity extends BaseActivity {
         personal_signature = (RelativeLayout) findViewById(R.id.personal_signature);
         EventBus.getDefault().register(this);
 
-
 //        Toast.makeText(this,personal_name1.getText().toString()+personal_number.getText().toString(), Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         FileUtil.Homepage(this, personal_name1, imgview, personal_number);
-
-
     }
 
     @Override
@@ -164,19 +172,15 @@ public class PersonalActivity extends BaseActivity {
 
                 break;
             case R.id.personal_avatar://修改头像
-
                 getPopupWindow();
                 break;
             case R.id.personal_phone://手机号
-
                 startActivity(new Intent(PersonalActivity.this, PhoneActivity.class));
-
                 break;
             case R.id.personal_nickname://昵称
                 startActivityForResult(NameActivity.getIntent(this), 1);
                 break;
             case R.id.personal_signature://个性签名
-
 
                 break;
         }
@@ -342,8 +346,7 @@ public class PersonalActivity extends BaseActivity {
 
                 com.share.bag.utils.ToastUtils.show(PersonalActivity.this, bytes.toString() + "" + headImgBean.getInfo() + "-----" + headImgBean.getStatus());
 
-//                Log.e("TAG", bytes.toString() + "" + headImgBean.getInfo() + "-----" + headImgBean.getStatus());
-
+                Log.e("TAG11111",  headImgBean.getInfo() + "-----" + headImgBean.getStatus());
 
             }
 

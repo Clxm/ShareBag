@@ -85,6 +85,7 @@ public class OkHttpUtils implements IHttp {
             url = sb.deleteCharAt(sb.length()-1).toString();
         }
         Request request = new Request.Builder().url(url).addHeader("cookie",SharePreUtils.getString(Constant.COOKIE,"")).build();
+
         okHttpClient.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, final IOException e) {

@@ -198,7 +198,11 @@ public class MineFragment extends BaseFragment {
                     loginintent = new Intent(getActivity(), Login.class);
                     startActivityForResult(loginintent,0);
                 }else {//个人中心
-                    startActivityForResult(PersonalActivity.getIntent(getActivity()),1);
+//                    startActivityForResult(PersonalActivity.getIntent(getActivity()),1);
+                    startActivity(new Intent(getActivity(),PersonalActivity.class));
+
+
+
                 }
 
                 break;

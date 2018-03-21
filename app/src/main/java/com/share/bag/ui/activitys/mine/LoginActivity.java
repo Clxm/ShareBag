@@ -11,7 +11,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.share.bag.FileUtil;
 import com.share.bag.MainActivity;
 import com.share.bag.R;
 import com.share.bag.SBUrls;
@@ -62,7 +61,7 @@ public class LoginActivity extends BaseActivity {
     public int initLayout() {
 //        loginPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
 
-        return R.layout.activity_login2;
+        return R.layout.activity_login3;
 
     }
 
@@ -162,25 +161,25 @@ public class LoginActivity extends BaseActivity {
                 String info = loginBean.getStatus();
 
                 if (info.equals("1")){
-                    String username = loginBean.getMsg().getUsername();//用户名
-                    String password = loginBean.getMsg().getPassword();//密码
-                    String gender = (String) loginBean.getMsg().getGender();//性别
-                    String id = loginBean.getMsg().getId();//id
-                    String nickname = (String) loginBean.getMsg().getName();//昵称
-                    String iconurl = (String) loginBean.getMsg().getIconurl();//头像
-
-
-                    FileUtil.saveToPre1(LoginActivity.this, username, password,id,gender,nickname,iconurl);
-
-//返回值是：39用户名17801190741密码25f9e794323b453885f5181f1b624d0b性别男图片/Uploads/20180115/5a5c759804236.png昵称5
-                    Intent intent=new Intent();
-                    intent.setClass(LoginActivity.this, MainActivity.class);
-                    String name= (String) loginBean.getMsg().getName();
-                    intent.putExtra("name",name);
-                    String img= (String) loginBean.getMsg().getIconurl();
-                    intent.putExtra("img",img);
-                    setResult(0,intent);
-                    finish();
+//                    String username = loginBean.getMsg().getUsername();//用户名
+//                    String password = loginBean.getMsg().getPassword();//密码
+//                    String gender = (String) loginBean.getMsg().getGender();//性别
+//                    String id = loginBean.getMsg().getId();//id
+//                    String nickname = (String) loginBean.getMsg().getName();//昵称
+//                    String iconurl = (String) loginBean.getMsg().getIconurl();//头像
+//
+//
+//                    FileUtil.saveToPre1(LoginActivity.this, username, password,id,gender,nickname,iconurl);
+//
+////返回值是：39用户名17801190741密码25f9e794323b453885f5181f1b624d0b性别男图片/Uploads/20180115/5a5c759804236.png昵称5
+//                    Intent intent=new Intent();
+//                    intent.setClass(LoginActivity.this, MainActivity.class);
+//                    String name= (String) loginBean.getMsg().getName();
+//                    intent.putExtra("name",name);
+//                    String img= (String) loginBean.getMsg().getIconurl();
+//                    intent.putExtra("img",img);
+//                    setResult(0,intent);
+//                    finish();
                 }
                 else {
                     Toast.makeText(LoginActivity.this, loginBean.getInfo(), Toast.LENGTH_SHORT).show();
