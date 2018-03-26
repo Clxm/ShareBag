@@ -13,6 +13,11 @@ public class SMSBean {
 
     private String status;
     private String info;
+    /**
+     * phone : 1780119074
+     */
+
+    private String phone;
 
     public String getStatus() {
         return status;
@@ -28,5 +33,14 @@ public class SMSBean {
 
     public void setInfo(String info) {
         this.info = info;
+    }
+
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }

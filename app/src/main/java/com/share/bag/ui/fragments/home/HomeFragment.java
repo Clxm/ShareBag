@@ -8,17 +8,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.share.bag.DateUtils;
 import com.share.bag.FileUtil;
+import com.share.bag.GlideCircleTransform;
 import com.share.bag.R;
 import com.share.bag.SBUrls;
 import com.share.bag.base.BaseFragment;
 import com.share.bag.entity.HomeFragmentBean;
+import com.share.bag.ui.activitys.collection.TalentActivity;
 import com.share.bag.ui.activitys.home.Details;
 import com.share.bag.ui.activitys.home.TradeActivity;
 import com.share.bag.ui.share.ShareActivity;
@@ -27,6 +29,8 @@ import com.share.bag.utils.okhttp.callback.MyNetWorkCallback;
 import com.zhouwei.mzbanner.MZBannerView;
 import com.zhouwei.mzbanner.holder.MZHolderCreator;
 import com.zhouwei.mzbanner.holder.MZViewHolder;
+
+import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -105,12 +109,21 @@ public class HomeFragment extends BaseFragment {
     TextView shouye;
 
     //包包达人
-    @BindView(R.id.mLinearBaoBao)
-    LinearLayout mLinearBaoBao;
+//    @BindView(R.id.mLinearBaoBao)
+//    LinearLayout mLinearBaoBao;
 
     //包包达人
-    @BindView(R.id.talent_dynamic)
-    TextView talent_dynamic;
+    @BindView(R.id.home_dynamic)
+    TextView home_dynamic;
+
+    @BindView(R.id.home_avatar)
+    ImageView  home_avatar;
+
+    @BindView(R.id.home_name)
+    TextView  home_name;
+
+    @BindView(R.id.home_time)
+    TextView  home_time;
     //分享图片
     @BindView(R.id.home_share)
     ImageView homeShare;
@@ -154,8 +167,8 @@ public class HomeFragment extends BaseFragment {
         @Override
     protected void initData() {
 
-            talent_dynamic.setEllipsize(TextUtils.TruncateAt.END);//收缩
-            talent_dynamic.setOnClickListener(new View.OnClickListener() {
+            home_dynamic.setEllipsize(TextUtils.TruncateAt.END);//收缩
+            home_dynamic.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
 
@@ -164,8 +177,56 @@ public class HomeFragment extends BaseFragment {
                 }
             });
 
+//            baobaoapi.ldlchat.com/Home/Cabinet/falsemasterlist.html
+        Map<String,String> stringMap=new HashMap<>();
+            String strurl="http://baobaoapi.ldlchat.com/Home/Cabinet/falsemasterlist.html";
+            OkHttpUtils.getInstance().post(strurl, stringMap, new MyNetWorkCallback<HomeTalentBean>() {
+                @Override
+                public void onSuccess(HomeTalentBean homeTalentBean) throws JSONException {
 
 
+                    List<HomeTalentBean.InfoBean> info = homeTalentBean.getInfo();
+
+
+                    for (int i = 0; i < info.size(); i++) {
+
+                        String iconurl = info.get(i).getUserinfo().getIconurl();
+                        Glide.with(context)
+                                .load(iconurl)
+                                //设置圆角图片
+//                .transform(new GlideRoundTransform(MainActivity.this, 10))
+                                //设置圆形图片
+                                .transform(new GlideCircleTransform(context))
+                                .crossFade()
+                                .into(home_avatar);
+                        info.get(i).getUserinfo().getUsername();
+                        home_name.setText(info.get(i).getUserinfo().getName());
+
+                        String strTime = DateUtils.getStrTime1(info.get(i).getUserinfo().getCreate_time());
+                        home_time.setText(strTime);
+
+
+//                        String content = info.get(i).getContent();//内容
+                        home_dynamic.setText(info.get(i).getContent());//内容
+
+
+
+
+                    }
+
+
+                }
+
+                @Override
+                public void onError(int errorCode, String errorMsg) {
+
+                }
+            });
+            
+            
+            
+            
+            
         headerimg = new ArrayList<>();
         final Map<String, String> map = new HashMap<>();
         OkHttpUtils.getInstance().post(SBUrls.HOMEURL, map, new MyNetWorkCallback<HomeFragmentBean>() {
@@ -579,8 +640,11 @@ public class HomeFragment extends BaseFragment {
 
     @OnClick(R.id.mLinearBaoBao)
     public void onViewLinear() {
-//        Intent intent = new Intent(context, TalentActivity.class);
-//        startActivity(intent);
+
+//        Toast.makeText(context, "点击了包包达人", Toast.LENGTH_SHORT).show();
+        
+        Intent intent = new Intent(context, TalentActivity.class);
+        startActivity(intent);//TalentActivity
     }
 
 

@@ -9,7 +9,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="150px"
+        android:layout_height="126px"
         android:id="@+id/relativeLayout">
 
 
@@ -29,7 +29,8 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:text="@string/registered_registered"
-            android:textSize="20sp" />
+            android:textSize="46px"
+            android:textColor="#2b2b2b"/>
         <!--android:textStyle="bold"-->
 
 
@@ -40,8 +41,8 @@
     <View
         android:layout_below="@+id/relativeLayout"
         android:layout_width="match_parent"
-        android:layout_height="2px"
-        android:background="#F2F2F2"/>
+        android:layout_height="4px"
+        android:background="#dedede"/>
 
 
     <ScrollView
@@ -337,231 +338,5 @@
 
 
     </ScrollView>
-
-
-
-
-    <!--<RelativeLayout-->
-
-
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content">-->
-
-
-
-
-        <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="手机号"-->
-
-            <!--android:layout_alignParentTop="true"-->
-            <!--android:layout_alignParentStart="true"-->
-            <!--android:id="@+id/textView8" />-->
-
-
-        <!--<View-->
-            <!--android:layout_width="3px"-->
-            <!--android:layout_height="78px"-->
-            <!--android:background="#666666"-->
-            <!--android:layout_alignBottom="@+id/textView8"-->
-            <!--android:layout_toEndOf="@+id/textView8"-->
-            <!--android:layout_marginStart="78px"-->
-            <!--android:id="@+id/view2" />-->
-
-
-
-        <!--<EditText-->
-            <!--android:id="@+id/registered_phone"-->
-            <!--android:textSize="50px"-->
-            <!--style="?android:attr/textViewStyle"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:background="@null"-->
-            <!--android:hint="@string/login_phone"-->
-            <!--android:digits="1234567890"-->
-            <!--android:maxLength="11"-->
-            <!--android:layout_marginStart="38px"-->
-            <!--android:layout_alignParentTop="true"-->
-            <!--android:layout_toEndOf="@+id/view2" />-->
-        <!--&lt;!&ndash;&lt;!&ndash;xml：android:maxLength="10"&ndash;&gt;&ndash;&gt;-->
-        <!--<View-->
-            <!--android:layout_marginTop="104px"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="2px"-->
-            <!--android:background="#DFDFDF"-->
-            <!--android:id="@+id/view1" />-->
-
-
-        <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="验证码"-->
-            <!--android:textSize="50px"-->
-            <!--android:textColor="#333333"-->
-            <!--android:layout_below="@+id/view1"-->
-            <!--android:layout_alignParentStart="true"-->
-            <!--android:layout_marginTop="76px"-->
-            <!--android:id="@+id/textView14" />-->
-        <!--<View-->
-            <!--android:layout_width="3px"-->
-            <!--android:layout_height="78px"-->
-            <!--android:layout_alignBottom="@+id/textView14"-->
-            <!--android:layout_toEndOf="@+id/textView14"-->
-            <!--android:layout_marginStart="78px"-->
-            <!--android:background="#666666"-->
-            <!--android:id="@+id/view4" />-->
-
-
-        <!--<EditText-->
-            <!--android:layout_weight="1"-->
-            <!--android:id="@+id/registered_verification"-->
-            <!--android:textSize="50px"-->
-            <!--style="?android:attr/textViewStyle"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:background="@null"-->
-            <!--android:hint="@string/verification"-->
-            <!--android:layout_alignBottom="@+id/view4"-->
-            <!--android:layout_alignStart="@+id/registered_phone" />-->
-
-
-
-        <!--<TextView-->
-            <!--android:id="@+id/registered_obtain"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="@string/verification1"-->
-            <!--android:textSize="50px"-->
-            <!--android:textColor="#FC655E"-->
-            <!--android:layout_marginRight="5px"-->
-            <!--android:layout_alignBaseline="@+id/registered_verification"-->
-            <!--android:layout_alignBottom="@+id/registered_verification"-->
-            <!--android:layout_alignParentEnd="true"-->
-            <!--android:layout_marginEnd="5px" />-->
-
-
-        <!--<View-->
-            <!--android:layout_marginTop="288px"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="2px"-->
-            <!--android:background="#DFDFDF"-->
-            <!--android:id="@+id/view3" />-->
-
-
-        <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="设置密码"-->
-            <!--android:textSize="50px"-->
-            <!--android:textColor="#333333"-->
-            <!--android:layout_below="@+id/view3"-->
-            <!--android:layout_alignParentStart="true"-->
-            <!--android:layout_marginTop="76px"-->
-            <!--android:id="@+id/textView20" />-->
-
-<!--<View-->
-    <!--android:layout_width="7px"-->
-    <!--android:layout_height="78px"-->
-    <!--android:background="#666666"-->
-    <!--android:layout_alignBottom="@+id/textView20"-->
-    <!--android:layout_toEndOf="@+id/textView20"-->
-
-    <!--android:layout_marginStart="78px"  />-->
-
-
-
-
-
-
-
-
-        <!--<View-->
-            <!--android:layout_marginTop="480px"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="2px"-->
-            <!--android:background="#DFDFDF" />-->
-        <!--<View-->
-            <!--android:layout_marginTop="664px"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="2px"-->
-            <!--android:background="#DFDFDF" />-->
-
-    <!--</RelativeLayout>-->
-
-
-
-
-
-
-    <!--<LinearLayout-->
-        <!--android:layout_marginLeft="32px"-->
-        <!--android:layout_marginRight="32px"-->
-        <!--android:id="@+id/linearLayout7"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content">-->
-
-
-
-        <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content">-->
-
-
-
-
-
-
-        <!--</LinearLayout>-->
-        <!--&lt;!&ndash;xml：android:maxLength="10"&ndash;&gt;-->
-    <!--</LinearLayout>-->
-    <!--<View-->
-        <!--android:layout_marginLeft="32px"-->
-        <!--android:layout_marginRight="32px"-->
-        <!--android:layout_marginTop="30px"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="2px"-->
-        <!--android:background="#DFDFDF"/>-->
-
-
-    <!--<LinearLayout-->
-        <!--android:layout_marginLeft="32px"-->
-        <!--android:layout_marginRight="32px"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:id="@+id/linearLayout8">-->
-
-
-
-
-        <!--<EditText-->
-            <!--android:layout_marginLeft="118px"-->
-            <!--android:textColor="50px"-->
-            <!--android:id="@+id/registered_password"-->
-            <!--android:textSize="15sp"-->
-            <!--style="?android:attr/textViewStyle"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:background="@null"-->
-            <!--android:hint="@string/login_password"-->
-            <!--android:paddingBottom="15dip"-->
-            <!--android:paddingTop="15dip"-->
-            <!--android:maxLength="16"-->
-            <!--/>-->
-
-        <!--&lt;!&ndash;xml：android:maxLength="10"&ndash;&gt;-->
-    <!--</LinearLayout>-->
-
-    <!--<View-->
-        <!--android:layout_marginTop="30px"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="2px"-->
-        <!--android:background="#DFDFDF"/>-->
-
-
-
-
-
-
 
 </LinearLayout>

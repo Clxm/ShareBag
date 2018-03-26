@@ -17,6 +17,7 @@ import org.greenrobot.eventbus.Subscribe;
  */
 /*
 * 详情页的详情页
+* 无用
 * */
 public class DetalisFragment extends BaseFragment {
 

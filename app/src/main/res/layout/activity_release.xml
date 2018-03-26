@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFF"
+    tools:context="com.share.bag.ui.activitys.collection.ReleaseActivity">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="124px"
+    android:gravity="center_vertical"
+    android:background="#FFF">
+
+    <ImageView
+        android:layout_marginLeft="30px"
+        android:id="@+id/release_return"
+        android:layout_width="27px"
+        android:layout_height="42px"
+        android:src="@mipmap/xiaoyu3"
+        android:scaleType="fitXY"/>
+
+    <TextView
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/Bags_select"
+        android:layout_marginRight="57px"
+        android:textSize="46px"
+        android:textColor="#2b2b2b"/>
+
+</LinearLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3px"
+        android:background="#EDEDED"
+        />
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+        <EditText
+
+            android:id="@+id/release_et_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="10dp"
+            android:background="#F7F7F7"
+            android:drawableLeft="@drawable/fangdaxiao"
+            android:drawablePadding="5dp"
+            android:hint="请输入关键字"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:textSize="16sp" />
+
+
+    </LinearLayout>
+
+
+
+<android.support.v7.widget.RecyclerView
+    android:id="@+id/release_recycler"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"/>
+
+
+</LinearLayout>

@@ -13,7 +13,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="194px">
+        android:layout_height="126px">
 
         <ImageView
             android:id="@+id/personal_return"
@@ -30,7 +30,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/data"
-            android:textSize="50px"
+            android:textSize="46px"
+            android:textColor="#2b2b2b"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true" />
 

@@ -23,7 +23,6 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.share.bag.FileUtil;
 import com.share.bag.R;
 import com.share.bag.SBUrls;
 import com.share.bag.base.BaseActivity;
@@ -141,7 +140,7 @@ public class PersonalActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        FileUtil.Homepage(this, personal_name1, imgview, personal_number);
+//        FileUtil.Homepage(this, personal_name1, imgview, personal_number);
     }
 
     @Override
@@ -269,6 +268,7 @@ public class PersonalActivity extends BaseActivity {
 
                     if (bitmap != null) {
                         showImages(bitmap);
+                        imgview.setImageBitmap(bitmap);
                     }
                     break;
                 case 1:
@@ -339,7 +339,7 @@ public class PersonalActivity extends BaseActivity {
 //
 //            }
 //        });
-
+        // s上传头像
         OkHttpUtils.getInstance().updataImg(SBUrls.UPDATA_IMG, bytes, new MyNetWorkCallback<HeadImgBean>() {
             @Override
             public void onSuccess(HeadImgBean headImgBean) {

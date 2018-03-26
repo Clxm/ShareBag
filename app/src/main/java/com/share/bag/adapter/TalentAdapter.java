@@ -37,7 +37,7 @@ public class TalentAdapter extends RecyclerView.Adapter<TalentAdapter.ViewHolder
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view = View.inflate(context, R.layout.talent, null);
+        View view = View.inflate(context, R.layout.talent1, null);
         return new ViewHolder(view);
     }
 

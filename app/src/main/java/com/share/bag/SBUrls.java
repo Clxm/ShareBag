@@ -17,9 +17,12 @@ public class SBUrls {
     public static final String NICKNAME ="http://baobaoapi.ldlchat.com/Home/my/setnickname.html";
     //卡劵
     public static final String RED ="http://baobaoapi.ldlchat.com/Home/wallet/coupon.html";
+    // 验证码
+    public static final String SMSURL = "http://baobaoapi.ldlchat.com/Home/public/getSmsCode.html";
+//    public static final String SMSURL = "http://baobaoapi.ldlchat.com//Home/common/getSmsCode.html";
 
-//                                              baobaoapi.ldlchat.com/Home/wallet/coupon.html
-
+    // 注册
+    public static final String REGISTEREDURL = "http://baobaoapi.ldlchat.com/Home/user/register.html";
 
 
 
@@ -39,11 +42,12 @@ public class SBUrls {
 
     //微信
 
-
-    //    注册
-    public static final String REGISTEREDURL = "http://baobaoapi.ldlchat.com/Home/Public/registered.html";
+//
+//    //    注册                                    http://baobaoapi.ldlchat.com/Home/user/register.html
+//    public static final String REGISTEREDURL = "http://baobaoapi.ldlchat.com/Home/Public/registered.html";
 //    验证码
-    public static final String SMSURL = "http://baobaoapi.ldlchat.com/Home/Public/getSmsk.html";
+//    public static final String SMSURL = "http://baobaoapi.ldlchat.com/Home/Public/getSmsk.html";
+//                                         http://baobaoapi.ldlchat.com//Home/common/getSmsCode.html
 //      首页
     public static final String HOMEURL ="http://baobaoapi.ldlchat.com/Home/Index/index.html";
 //    详情

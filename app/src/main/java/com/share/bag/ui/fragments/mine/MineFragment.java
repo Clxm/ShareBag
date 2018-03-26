@@ -40,6 +40,15 @@ import static com.share.bag.R.id.mine_data;
 /*
 * 我的
 * */
+
+
+
+/*
+*
+* <!--1、所有导航栏h：126px，白底；字：46px；#2b2b2b；中等（辅助文字40px，常规）导航栏下方线h:4px;#dedede
+
+ -->
+* */
 public class MineFragment extends BaseFragment {
 
     @BindView(R.id.mine_avatar)

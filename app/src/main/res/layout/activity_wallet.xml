@@ -11,7 +11,7 @@
     <!--android:background="@drawable/my_beijing"-->
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="100px">
+        android:layout_height="126px">
 
         <ImageView
             android:id="@+id/wallet_return"
@@ -21,7 +21,9 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="50px"
             android:src="@mipmap/baixiaoyu2" />
+        <!--1、所有导航栏h：126px，白底；字：46px；#2b2b2b；中等（辅助文字40px，常规）导航栏下方线h:4px;#dedede
 
+                -->
 
         <TextView
             android:layout_width="wrap_content"
@@ -29,7 +31,7 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:text="@string/my_wallet"
-            android:textSize="50px"
+            android:textSize="46px"
             android:textColor="@color/color_White"/>
 
 

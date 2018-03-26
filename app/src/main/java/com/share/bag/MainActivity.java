@@ -25,7 +25,7 @@ import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.share.bag.base.BaseActivity;
-import com.share.bag.ui.activitys.collection.TalentActivity;
+import com.share.bag.ui.activitys.collection.ReleaseActivity;
 import com.share.bag.ui.activitys.collection.UploadActivity;
 import com.share.bag.ui.fragments.collection.CollectionFragment;
 import com.share.bag.ui.fragments.home.HomeFragment;
@@ -333,9 +333,16 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         pop_two.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Toast.makeText(MainActivity.this, "点击了包包达人", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(MainActivity.this, TalentActivity.class);
+//               点击了包包达人
+//                Intent intent = new Intent(MainActivity.this, TalentActivity.class);
+//                startActivity(intent);
+
+           //发布包包大人界面
+                Intent intent = new Intent(MainActivity.this, ReleaseActivity.class);
                 startActivity(intent);
+
+
+
             }
         });
 

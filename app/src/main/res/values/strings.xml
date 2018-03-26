@@ -25,6 +25,7 @@
 
     <string name="registered_registered">新用户注册</string>
 
+    <string name="registered_forget">找回密码</string>
 
     <string name="login_phone">请输入手机号</string>
     <string name="login_password">请输入密码</string>
@@ -60,6 +61,7 @@
     <string name="submit_but">确认提交</string>
 
     <string name="add_photos">添加照片</string>
+    <string name="Bags_select">选择你要晒得包</string>
 
     <string name="yes1">是</string>
     <string name="no1">否</string>
@@ -82,12 +84,7 @@
     <string name="pay_result_callback_msg" formatted="false">微信支付结果：%s</string>
 
 
-
-    <string name="details_pinglun_text" >请将字数控制在140字以下哟～</string>
-
-
-
-
+    <string name="details_pinglun_text">请将字数控制在140字以下哟～</string>
 
 
 </resources>

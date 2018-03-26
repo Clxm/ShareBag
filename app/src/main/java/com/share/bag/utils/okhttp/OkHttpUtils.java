@@ -438,6 +438,7 @@ public class OkHttpUtils implements IHttp {
         RequestBody requestBody = builder.build();
 
         Request request = new Request.Builder()
+                .addHeader("Cookie",SharePreUtils.getString("cookie" , "").trim())
                 .url(url)
                 .post(requestBody)
                 .build();

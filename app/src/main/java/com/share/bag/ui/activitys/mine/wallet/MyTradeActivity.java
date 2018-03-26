@@ -42,7 +42,7 @@ public class MyTradeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_trade);
         initView();
         gettadachange();
-//        getdata();
+        getdata();
 //        TradeAdapter tradeAdapter=new TradeAdapter(this,list);
         card_use.setOnClickListener(new View.OnClickListener() {
             @Override

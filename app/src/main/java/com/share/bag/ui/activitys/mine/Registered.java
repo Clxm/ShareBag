@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,6 +23,7 @@ import com.share.bag.utils.okhttp.callback.MyNetWorkCallback;
 
 import java.util.HashMap;
 import java.util.Map;
+
 /*
 用户注册
 *
@@ -47,6 +47,7 @@ public class Registered extends AppCompatActivity implements View.OnClickListene
         setContentView(R.layout.activity_registered3);
         initView();
         registered_password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        registered_password1.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
 
         registered_return.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,9 +115,6 @@ public class Registered extends AppCompatActivity implements View.OnClickListene
             return;
         }
 
-        // TODO validate success, do something
-
-
     }
 
 
@@ -139,7 +137,6 @@ public class Registered extends AppCompatActivity implements View.OnClickListene
                     @Override
                     public void onError(int errorCode, String errorMsg) {
                         Toast.makeText(Registered.this, "失败"+errorMsg.toString()+errorCode, Toast.LENGTH_SHORT).show();
-                        Log.e("TAG",errorMsg.toString()+errorCode);
                     }
                 });
             }catch (Exception e){
@@ -164,7 +161,7 @@ public class Registered extends AppCompatActivity implements View.OnClickListene
             return;
         }
 
-        String password1 = registered_password1.getText().toString().trim();
+        String password1 = registered_password1.getText().toString().trim();//重新输入密码
         if (TextUtils.isEmpty(password1)) {
             Toast.makeText(this, "phone不能为空", Toast.LENGTH_SHORT).show();
             return;
@@ -176,37 +173,45 @@ public class Registered extends AppCompatActivity implements View.OnClickListene
             return;
         }
 
-        String password = registered_password.getText().toString().trim();
+        String password = registered_password.getText().toString().trim();//输入密码
         if (TextUtils.isEmpty(password)) {
             Toast.makeText(this, "password不能为空", Toast.LENGTH_SHORT).show();
             return;
         }
 
-
+        String invite = registered_invite.getText().toString().trim();
 
         Map<String, String> map = new HashMap<>();
-        map.put("username", registered_phone.getText().toString().trim());
-        map.put("code", registered_verification.getText().toString().trim());
-        map.put("password", registered_password.getText().toString().trim());
+        map.put("username", registered_phone.getText().toString().trim());//手机号
+        map.put("code", registered_verification.getText().toString().trim());//验证码
+        map.put("password", registered_password.getText().toString().trim());//密码
+        map.put("alipay",invite+"");//邀请码
+        map.put("type",3+"");
+        if (password.equals(password1)){
 
 //        username   用户名    password 密码     code手机验证码
-        OkHttpUtils.getInstance().post(SBUrls.REGISTEREDURL, map, new MyNetWorkCallback<LoginBean>() {
+            OkHttpUtils.getInstance().post(SBUrls.REGISTEREDURL, map, new MyNetWorkCallback<LoginBean>() {
 
-            @Override
-            public void onSuccess(LoginBean loginBean) {
-                Log.e("TGA",loginBean.getStatus()+loginBean.getInfo());
-//                Toast.makeText(context, loginBean.getStatus()+"-------"+loginBean.getInfo(), Toast.LENGTH_SHORT).show();
-                if(loginBean.getStatus().equals("0")){
-                    Toast.makeText(Registered.this,loginBean.getInfo(),Toast.LENGTH_SHORT).show();
-                }else{
-                    startActivity(new Intent(Registered.this, Login.class));
+                @Override
+                public void onSuccess(LoginBean loginBean) {
+                     if(loginBean.getStatus().equals("0")){
+                        Toast.makeText(Registered.this,loginBean.getInfo(),Toast.LENGTH_SHORT).show();
+                    }else{
+                        startActivity(new Intent(Registered.this, Login.class));
+                    }
                 }
-            }
 
-            @Override
-            public void onError(int errorCode, String errorMsg) {
+                @Override
+                public void onError(int errorCode, String errorMsg) {
 //                ToastUtils.show(context, context.getClass().getSimpleName() + errorMsg);
-            }
-        });
+                }
+            });
+
+        }else {
+
+            Toast.makeText(this, "两次输入的密码不一致", Toast.LENGTH_SHORT).show();
+
+        }
+
     }
 }

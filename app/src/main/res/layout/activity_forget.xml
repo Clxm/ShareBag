@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.share.bag.ui.activitys.mine.ForgetActivity">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="126px"
+        android:id="@+id/relativeLayout">
+
+
+        <ImageView
+            android:id="@+id/forget_return"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="60px"
+            android:src="@mipmap/xiaoyu3" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="@string/registered_forget"
+            android:textSize="46px"
+            android:textColor="#2b2b2b"/>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_below="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="4px"
+        android:background="#dedede"/>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+
+            <LinearLayout
+                android:layout_marginTop="87px"
+                android:layout_marginLeft="32px"
+                android:layout_marginRight="32px"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="224px"
+                    android:layout_height="wrap_content"
+                    android:text="手机号"
+                    android:textColor="#333333"
+                    android:textSize="50px"/>
+
+
+                <View
+                    android:layout_width="3px"
+                    android:layout_height="80px"
+                    android:background="#666666"/>
+
+                <EditText
+                    android:layout_marginLeft="38px"
+                    android:id="@+id/forget_phone"
+                    android:textSize="50px"
+                    style="?android:attr/textViewStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:hint="@string/login_phone"
+                    android:digits="1234567890"
+                    android:maxLength="11"
+                    />
+                <!--xml：android:maxLength="10"-->
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_marginLeft="32px"
+                android:layout_marginRight="32px"
+                android:layout_marginTop="30px"
+                android:layout_width="wrap_content"
+                android:layout_height="2px"
+                android:background="#DFDFDF"/>
+
+
+            <LinearLayout
+                android:layout_marginTop="78px"
+                android:orientation="vertical"
+                android:layout_marginLeft="32px"
+                android:layout_marginRight="32px"
+                android:id="@+id/linearLayout7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:layout_width="224px"
+                        android:layout_height="wrap_content"
+                        android:text="验证码"
+                        android:textColor="#333333"
+                        android:textSize="50px"/>
+
+
+                    <View
+                        android:layout_width="3px"
+                        android:layout_height="80px"
+                        android:background="#666666"/>
+
+
+                    <EditText
+                        android:layout_marginLeft="38px"
+                        android:id="@+id/forget_verification"
+                        android:textSize="50px"
+                        style="?android:attr/textViewStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:hint="@string/verification" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:layout_weight="1"/>
+                    <!--registered_obtain-->
+                    <TextView
+                        android:textSize="50px"
+                        android:textColor="#FC655E"
+                        android:id="@+id/forget_obtain"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/verification1"/>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+            <View
+                android:layout_marginLeft="32px"
+                android:layout_marginRight="32px"
+                android:layout_marginTop="30px"
+                android:layout_width="wrap_content"
+                android:layout_height="2px"
+                android:background="#DFDFDF"/>
+
+            <LinearLayout
+                android:layout_marginTop="78px"
+                android:layout_marginLeft="32px"
+                android:layout_marginRight="32px"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/linearLayout7"
+                android:layout_alignParentStart="true"
+                android:id="@+id/linearLayout8"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="224px"
+                    android:layout_height="wrap_content"
+                    android:text="设置密码"
+                    android:textColor="#333333"
+                    android:textSize="50px"/>
+
+                <View
+                    android:layout_width="3px"
+                    android:layout_height="80px"
+                    android:background="#666666"/>
+
+                <EditText
+                    android:layout_marginLeft="38px"
+                    android:id="@+id/forget_password"
+                    android:textSize="15sp"
+                    style="?android:attr/textViewStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:hint="@string/login_password"
+                    android:maxLength="16"
+                    />
+
+            </LinearLayout>
+
+            <View
+                android:layout_marginLeft="32px"
+                android:layout_marginRight="32px"
+                android:layout_marginTop="30px"
+                android:layout_width="wrap_content"
+                android:layout_height="2px"
+                android:background="#DFDFDF"/>
+
+            <LinearLayout
+                android:layout_marginTop="78px"
+                android:layout_marginLeft="32px"
+                android:layout_marginRight="32px"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="224px"
+                    android:layout_height="wrap_content"
+                    android:text="确认密码"
+                    android:textColor="#333333"
+                    android:textSize="50px"/>
+
+
+                <View
+                    android:layout_width="3px"
+                    android:layout_height="80px"
+                    android:background="#666666"/>
+                <EditText
+                    android:layout_marginLeft="38px"
+                    android:id="@+id/forget_password1"
+                    android:textSize="15sp"
+                    style="?android:attr/textViewStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:hint="@string/login_password1"
+                    android:maxLength="16"
+                    />
+
+            </LinearLayout>
+            <View
+                android:layout_marginLeft="32px"
+                android:layout_marginRight="32px"
+                android:layout_marginTop="30px"
+                android:layout_width="wrap_content"
+                android:layout_height="2px"
+                android:background="#DFDFDF"/>
+
+
+
+
+            <Button
+                android:id="@+id/forget_login"
+                android:layout_marginLeft="150px"
+                android:layout_marginRight="150px"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/confirm"
+                android:textColor="#FFF"
+                android:background="#FC655E"
+                android:layout_below="@+id/linearLayout8"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="116px" />
+
+        </LinearLayout>
+
+
+
+    </ScrollView>
+
+
+
+
+
+</LinearLayout>

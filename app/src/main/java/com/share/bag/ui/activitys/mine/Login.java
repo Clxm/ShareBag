@@ -67,16 +67,17 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
             case R.id.login_login:
                 goLogin();
                 break;
-            case R.id.login_registered:
+            case R.id.login_registered://用户注册
                 Intent intent=new Intent(Login.this,Registered.class);
                 startActivity(intent);
 
                 break;
             case R.id.login_forget:
 
-                Toast.makeText(this, "忘记密码", Toast.LENGTH_SHORT).show();
-                
-                
+//                Toast.makeText(this, "忘记密码", Toast.LENGTH_SHORT).show();
+
+                Intent forget=new Intent(Login.this,ForgetActivity.class);
+                startActivity(forget);
                 break;
 
             case R.id.login_qq:

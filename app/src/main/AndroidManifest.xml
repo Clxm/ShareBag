@@ -170,7 +170,9 @@
         <activity android:name=".ui.activitys.mine.Registered" />
         <activity android:name=".ui.activitys.mine.Login" />
         <activity android:name=".ui.activitys.home.TradeActivity" />
-        <activity android:name=".ui.activitys.home.Details"></activity>
+        <activity android:name=".ui.activitys.home.Details" />
+        <activity android:name=".ui.activitys.mine.ForgetActivity" />
+        <activity android:name=".ui.activitys.collection.ReleaseActivity"></activity>
     </application>
 
 </manifest>
