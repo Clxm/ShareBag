@@ -12,7 +12,6 @@ import android.widget.Toast;
 import com.share.bag.R;
 import com.share.bag.SBUrls;
 import com.share.bag.ui.activitys.mine.wallet.MyTradeActivity;
-import com.share.bag.ui.activitys.mine.wallet.PromotionActivity;
 import com.share.bag.utils.okhttp.OkHttpUtils;
 import com.share.bag.utils.okhttp.callback.MyNetWorkCallback;
 
@@ -31,7 +30,7 @@ public class WalletActivity extends AppCompatActivity implements View.OnClickLis
     private TextView wallet_amount;
     private TextView wallet_deposit;
     private LinearLayout wallet_voucher;
-    private LinearLayout wallet_promotion;
+//    private LinearLayout wallet_promotion;
     private LinearLayout wallet_monthly_card;
     private LinearLayout wallet_bill;
     private LinearLayout wallet_withdraw;
@@ -51,14 +50,14 @@ public class WalletActivity extends AppCompatActivity implements View.OnClickLis
         wallet_amount = (TextView) findViewById(R.id.wallet_amount);//金额
         wallet_deposit = (TextView) findViewById(R.id.wallet_deposit);//押金
         wallet_voucher = (LinearLayout) findViewById(R.id.wallet_voucher);
-        wallet_promotion = (LinearLayout) findViewById(R.id.wallet_promotion);
+//        wallet_promotion = (LinearLayout) findViewById(R.id.wallet_promotion);
         wallet_monthly_card = (LinearLayout) findViewById(R.id.wallet_monthly_card);
         wallet_bill = (LinearLayout) findViewById(R.id.wallet_bill);
         wallet_withdraw = (LinearLayout) findViewById(R.id.wallet_withdraw);
 
         wallet_return.setOnClickListener(this);
         wallet_voucher.setOnClickListener(this);
-        wallet_promotion.setOnClickListener(this);
+//        wallet_promotion.setOnClickListener(this);
         wallet_monthly_card.setOnClickListener(this);
         wallet_bill.setOnClickListener(this);
         wallet_withdraw.setOnClickListener(this);
@@ -75,11 +74,11 @@ public class WalletActivity extends AppCompatActivity implements View.OnClickLis
                 startActivity(intent4);
 //                Toast.makeText(this, "卡卷", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.wallet_promotion:
-                //推广佣金
-                Intent intent1=new Intent(WalletActivity.this, PromotionActivity.class);
-                startActivity(intent1);
-                break;
+//            case R.id.wallet_promotion:
+//                //推广佣金
+//                Intent intent1=new Intent(WalletActivity.this, PromotionActivity.class);
+//                startActivity(intent1);
+//                break;
             case R.id.wallet_monthly_card://月卡办理
 
                 Toast.makeText(this, "暂缓开通,敬请谅解", Toast.LENGTH_SHORT).show();

@@ -9,6 +9,7 @@
     tools:context="com.share.bag.ui.activitys.collection.ReleaseActivity">
 
 <LinearLayout
+
     android:layout_width="match_parent"
     android:layout_height="124px"
     android:gravity="center_vertical"
@@ -31,6 +32,8 @@
         android:textSize="46px"
         android:textColor="#2b2b2b"/>
 
+
+
 </LinearLayout>
 
 
@@ -43,26 +46,33 @@
 
 
     <LinearLayout
+        android:layout_marginLeft="35px"
+        android:layout_marginRight="35px"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:focusable="true"
-        android:focusableInTouchMode="true">
+        android:focusableInTouchMode="true"
+        android:gravity="center"
+        android:background="#F7F7F7">
 
         <EditText
-
+            android:layout_weight="1"
             android:id="@+id/release_et_input"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="86px"
             android:layout_gravity="center_vertical"
-            android:layout_margin="10dp"
             android:background="#F7F7F7"
             android:drawableLeft="@drawable/fangdaxiao"
             android:drawablePadding="5dp"
             android:hint="请输入关键字"
             android:imeOptions="actionSearch"
             android:inputType="text"
-            android:textSize="16sp" />
-
+            android:textSize="16sp"
+            />
+<ImageView
+    android:layout_width="50px"
+    android:layout_height="50px"
+    android:src="@drawable/close"/>
 
     </LinearLayout>
 

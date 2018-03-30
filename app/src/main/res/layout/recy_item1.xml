@@ -1,29 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="#FFF"
-    android:layout_margin="20px"
+    android:layout_width="496px"
+    android:layout_height="580px"
+    android:background="#F2F2F2"
     android:orientation="vertical">
 
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="20px"
+        android:layout_marginTop="13px"
+        android:layout_marginBottom="13px"
+        android:layout_marginLeft="10px"
+        android:layout_marginRight="10px"
+        android:layout_width="496px"
+        android:layout_height="580px"
         android:orientation="vertical"
-        android:background="#f2f2f2">
+        android:background="#FFF">
 
 
         <ImageView
             android:id="@+id/recyler_commodity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-           />
-        <!--android:src="@drawable/bbb"-->
-        <!--android:scaleType="fitXY"-->
+            android:layout_width="match_parent"
+            android:layout_height="300px"
+          android:scaleType="fitXY"
+            android:src="@drawable/mo1"/>
+
 
         <LinearLayout
+            android:layout_marginTop="35px"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical">
@@ -34,8 +37,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:text="品牌"
-                android:textSize="15sp" />
+                android:text="品牌品牌品牌品牌"
+                android:textSize="15sp"
+                android:maxEms="5"
+                android:singleLine="true"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -55,6 +60,7 @@
 
 
         <LinearLayout
+            android:layout_marginTop="35px"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 

@@ -62,6 +62,8 @@
 
     <string name="add_photos">添加照片</string>
     <string name="Bags_select">选择你要晒得包</string>
+    <string name="shared_release">发布包包</string>
+    <string name="my_cabinet">我的包柜</string>
 
     <string name="yes1">是</string>
     <string name="no1">否</string>

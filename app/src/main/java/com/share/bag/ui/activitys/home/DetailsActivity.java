@@ -357,9 +357,9 @@ public class DetailsActivity extends BaseActivity {
 //
 //        Map<String, String> collection = new HashMap();
 //        collection.put("baglist_id", "1");
-//        OkHttpUtils.getInstance().post(SBUrls.COLLECTION, collection, new MyNetWorkCallback<CollectionBean>() {
+//        OkHttpUtils.getInstance().post(SBUrls.COLLECTION, collection, new MyNetWorkCallback<CollectionLookBean>() {
 //            @Override
-//            public void onSuccess(CollectionBean collectionBean) {
+//            public void onSuccess(CollectionLookBean collectionBean) {
 //                String status = collectionBean.getInfo();
 //                if (status.toString().equals("收藏成功")) {
 //

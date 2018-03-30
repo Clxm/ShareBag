@@ -23,10 +23,23 @@ public class SBUrls {
 
     // 注册
     public static final String REGISTEREDURL = "http://baobaoapi.ldlchat.com/Home/user/register.html";
+    // 要晒的包
+    public static final String SHOW = "http://baobaoapi.ldlchat.com/Home/Cabinet/getBagList.html";
+    // 猜你喜欢
+    public static final String LIKE = "http://baobaoapi.ldlchat.com/Home/Backcontent/ifyoulike.html";
+    // 我的包柜                 Cabinet
+    public static final String CABINET = "http://baobaoapi.ldlchat.com/Home/Cabinet/cabinetlist.html";
+    // 展示收藏
+    public static final String COLLECTION = "http://baobaoapi.ldlchat.com/Home/Backcontent/collectionlist.html";
+    //                        Collection收藏
+//    public static final String COLLECTION="http://baobaoapi.ldlchat.com/Home/Backcontent/collection.html";
+    // 以旧换新界面                Cabinet
+    public static final String CHANGE = "http://baobaoapi.ldlchat.com/Home/backlist/oldnewlist.html";
+    // 正在共享
+    public static final String SHARED = "http://baobaoapi.ldlchat.com/Home/Backlist/share.html";
 
 
-
-
+//String url="http://baobaoapi.ldlchat.com/Home/Backlist/share.html";
 //    ------------------------------ url -----------------------------------------
 
     //支付
@@ -64,8 +77,7 @@ public class SBUrls {
 * check
 Receiving
 * */
-//                        Collection收藏
-    public static final String COLLECTION="http://baobaoapi.ldlchat.com/Home/Backcontent/collection.html";
+
     //    ------------------------------ 字符 -----------------------------------------''
     public static final String TOKEN = "TOKEN";
     //上传头像

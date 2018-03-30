@@ -3,6 +3,7 @@ package com.share.bag.ui.activitys.collection;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
@@ -10,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.share.bag.R;
+import com.share.bag.SBUrls;
 import com.share.bag.utils.okhttp.OkHttpUtils;
 import com.share.bag.utils.okhttp.callback.MyNetWorkCallback;
 
@@ -18,13 +20,15 @@ import org.json.JSONException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+/*
+* 选择要晒的包包
+* */
 public class ReleaseActivity extends AppCompatActivity {
 
     private ImageView release_return;
     private EditText release_et_input;
     private RecyclerView release_recycler;
-
+    private ReleaseAdapter releaseAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,23 +62,18 @@ public class ReleaseActivity extends AppCompatActivity {
 
         // TODO validate success, do something
 
-
     }
 
     public void getdata() {
-        
-        String strurl="http://baobaoapi.ldlchat.com/Home/Cabinet/getBagList.html";
         Map<String,String> map=new HashMap<>();
 
-        OkHttpUtils.getInstance().post(strurl, map, new MyNetWorkCallback<ReleaseBean>() {
+        OkHttpUtils.getInstance().post(SBUrls.SHOW, map, new MyNetWorkCallback<ReleaseBean>() {
             @Override
             public void onSuccess(ReleaseBean releaseBean) throws JSONException {
-
                 List<ReleaseBean.InfoBean> info = releaseBean.getInfo();
-
-
-//                ReleaseAdapter releaseAdapter=new ReleaseAdapter()；
-
+                release_recycler.setLayoutManager(new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL));
+                releaseAdapter = new ReleaseAdapter(ReleaseActivity.this,info);
+                release_recycler.setAdapter(releaseAdapter);
             }
 
             @Override
@@ -82,11 +81,6 @@ public class ReleaseActivity extends AppCompatActivity {
 
             }
         });
-
-
-
-
-
 
     }
 }

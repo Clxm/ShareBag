@@ -2,30 +2,38 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F2F2F2"
+    android:background="#FFF"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:focusable="true"
-        android:focusableInTouchMode="true">
+        android:focusableInTouchMode="true"
+        android:background="#F7F7F7"
+        android:gravity="center"
+        android:layout_marginLeft="35px"
+        android:layout_marginRight="35px">
 
         <EditText
-
+            android:layout_weight="1"
             android:id="@+id/search_et_input"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="86px"
             android:layout_gravity="center_vertical"
-            android:layout_margin="10dp"
             android:background="#F7F7F7"
             android:drawableLeft="@drawable/fangdaxiao"
-            android:drawablePadding="5dp"
+            android:drawablePadding="54px"
             android:hint="请输入关键字"
             android:imeOptions="actionSearch"
             android:inputType="text"
-            android:textSize="16sp" />
+            android:textSize="34px"
+            android:textColor="#A9A9A9" />
 
+        <ImageView
+            android:layout_width="50px"
+            android:layout_height="50px"
+            android:src="@drawable/close"/>
 
     </LinearLayout>
 
@@ -104,7 +112,7 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#FFF">
+            android:background="#F2F2F2">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -115,10 +123,8 @@
                     android:id="@+id/selected_recyclerview"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginBottom="30sp"
-                    android:layout_marginLeft="10sp"
-                    android:layout_marginRight="10sp"
-                    android:layout_marginTop="30sp"></android.support.v7.widget.RecyclerView>
+                    android:layout_marginLeft="24px"
+                    android:layout_marginRight="24px"></android.support.v7.widget.RecyclerView>
 
 
             </LinearLayout>

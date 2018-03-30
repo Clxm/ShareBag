@@ -722,9 +722,10 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
     public void getinitData1() {
 
 String likeurl="http://baobaoapi.ldlchat.com/Home/Backcontent/ifyoulike.html";
+//                          baobaoapi.ldlchat.com/Home/Backcontent/ifyoulike.html
         Map<String,String >stringMap= new HashMap<>();
 
-        OkHttpUtils.getInstance().post(likeurl, stringMap, new MyNetWorkCallback<LikeBean>() {
+        OkHttpUtils.getInstance().post(SBUrls.LIKE, stringMap, new MyNetWorkCallback<LikeBean>() {
             @Override
             public void onSuccess(LikeBean likeBean) throws JSONException {
 

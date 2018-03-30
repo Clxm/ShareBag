@@ -6,6 +6,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +20,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.share.bag.FileUtil;
 import com.share.bag.R;
@@ -29,9 +29,12 @@ import com.share.bag.base.BaseFragment;
 import com.share.bag.entity.CollectionBean;
 import com.share.bag.entity.selected.SelectedBean;
 import com.share.bag.ui.activitys.home.Details;
+import com.share.bag.ui.activitys.home.DetailsBean;
 import com.share.bag.utils.okhttp.OkHttpUtils;
 import com.share.bag.utils.okhttp.callback.ByteCallBack;
 import com.share.bag.utils.okhttp.callback.MyNetWorkCallback;
+
+import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -78,7 +81,7 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
     private Button XuiXian, YanHui;
     private Button Wubai, Yiqian, Reqian, Reqingyishang;
     private Button ChongZhi,QueDing;
-    private List<SelectedBean> mList=new ArrayList();
+    private List<DetailsBean.InfoBean> mList=new ArrayList();
     private List<SelectedBean> mLists=new ArrayList();
     private PopupWindow window1;
     private View convertView;
@@ -178,26 +181,50 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
     }
 
     public void getpopular() {
-        Map<String,String >stringMap= new HashMap<>();
-        OkHttpUtils.getInstance().postByte(SBUrls.POPULAR, stringMap, new ByteCallBack() {
+        
+        
+        Map<String,String> map=new HashMap<>();
+        OkHttpUtils.getInstance().post(SBUrls.POPULAR, map, new MyNetWorkCallback<DetailsBean>() {
             @Override
-            public void onSuccess(String json) {
-                Gson gson = new Gson();
+            public void onSuccess(DetailsBean detailsBean) throws JSONException {
+                List<DetailsBean.InfoBean> info = detailsBean.getInfo();
+                selectedRecyclerview.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
+                adapter = new PopularAdapter(getContext(), info);
 
-                List<SelectedBean> selectedBeens = gson.fromJson(json, new TypeToken<List<SelectedBean>>() {
-                }.getType());
+                selectedRecyclerview.setAdapter(adapter);
 
-                mList.addAll(selectedBeens);
-                mLists.addAll(selectedBeens);
+
 
                 adapter.notifyDataSetChanged();
             }
+
             @Override
             public void onError(int errorCode, String errorMsg) {
 
             }
         });
-
+        
+        
+//        Map<String,String >stringMap= new HashMap<>();
+//        OkHttpUtils.getInstance().postByte(SBUrls.POPULAR, stringMap, new ByteCallBack() {
+//            @Override
+//            public void onSuccess(String json) {
+//                Gson gson = new Gson();
+//
+//                List<SelectedBean> selectedBeens = gson.fromJson(json, new TypeToken<List<SelectedBean>>() {
+//                }.getType());
+//
+//                mList.addAll(selectedBeens);
+//                mLists.addAll(selectedBeens);
+//
+//                adapter.notifyDataSetChanged();
+//            }
+//            @Override
+//            public void onError(int errorCode, String errorMsg) {
+//
+//            }
+//        });
+//
 
 
     }
@@ -206,8 +233,8 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.search_popular:
-                mList.clear();
-                mList.addAll(mLists);
+//                mList.clear();
+//                mList.addAll(mLists);
                 adapter.notifyDataSetChanged();
 //               Toast.makeText(getContext(), "点击了热门", Toast.LENGTH_SHORT).show();
                 // getPopupWindow();
@@ -329,10 +356,11 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
                 OkHttpUtils.getInstance().postByte(SBUrls.JIAZHEN, map4, new ByteCallBack() {
                     @Override
                     public void onSuccess(String json) {
-                        Gson gson = new Gson();
-                        List<SelectedBean> selectBeen = gson.fromJson(json, new TypeToken<List<SelectedBean>>() {}.getType());
-                        mList.addAll(selectBeen);
-                        adapter.notifyDataSetChanged();
+//                        Gson gson = new Gson();
+//                        List<SelectedBean> selectBeen = gson.fromJson(json,
+//                                new TypeToken<List<SelectedBean>>() {}.getType());
+//                        mList.addAll(selectBeen);
+//                        adapter.notifyDataSetChanged();
                     }
 
                     @Override
@@ -364,10 +392,10 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
                 OkHttpUtils.getInstance().postByte(SBUrls.JIAZHEN, map3, new ByteCallBack() {
                     @Override
                     public void onSuccess(String json) {
-                        Gson gson = new Gson();
-                        List<SelectedBean> selectBeen = gson.fromJson(json, new TypeToken<List<SelectedBean>>() {}.getType());
-                        mList.addAll(selectBeen);
-                        adapter.notifyDataSetChanged();
+//                        Gson gson = new Gson();
+//                        List<SelectedBean> selectBeen = gson.fromJson(json, new TypeToken<List<SelectedBean>>() {}.getType());
+//                        mList.addAll(selectBeen);
+//                        adapter.notifyDataSetChanged();
                     }
 
                     @Override
@@ -400,10 +428,10 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
                     @Override
                     public void onSuccess(String json) {
                         Gson gson = new Gson();
-                        List<SelectedBean> selectBeen = gson.fromJson(json, new TypeToken<List<SelectedBean>>() {
-                        }.getType());
-                        mList.addAll(selectBeen);
-                        adapter.notifyDataSetChanged();
+//                        List<SelectedBean> selectBeen = gson.fromJson(json, new TypeToken<List<SelectedBean>>() {
+//                        }.getType());
+//                        mList.addAll(selectBeen);
+//                        adapter.notifyDataSetChanged();
                     }
 
                     @Override
@@ -436,10 +464,10 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
                     @Override
                     public void onSuccess(String json) {
                         Gson gson = new Gson();
-                        List<SelectedBean> selectBeen = gson.fromJson(json, new TypeToken<List<SelectedBean>>() {
-                        }.getType());
-                        mList.addAll(selectBeen);
-                        adapter.notifyDataSetChanged();
+//                        List<SelectedBean> selectBeen = gson.fromJson(json, new TypeToken<List<SelectedBean>>() {
+//                        }.getType());
+//                        mList.addAll(selectBeen);
+//                        adapter.notifyDataSetChanged();
                     }
 
                     @Override

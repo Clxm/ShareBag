@@ -37,9 +37,9 @@
     </RelativeLayout>
 
 
-    <LinearLayout
+    <View
         android:layout_width="match_parent"
-        android:layout_height="5px"
+        android:layout_height="4px"
         android:background="#F2F2F2"/>
 
     <!--ScrollView-->

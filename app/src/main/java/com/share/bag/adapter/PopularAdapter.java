@@ -1,6 +1,7 @@
 package com.share.bag.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +12,8 @@ import com.bumptech.glide.Glide;
 import com.share.bag.R;
 import com.share.bag.SBUrls;
 import com.share.bag.entity.CollectionBean;
-import com.share.bag.entity.selected.SelectedBean;
+import com.share.bag.ui.activitys.home.Details;
+import com.share.bag.ui.activitys.home.DetailsBean;
 import com.share.bag.utils.okhttp.OkHttpUtils;
 import com.share.bag.utils.okhttp.callback.MyNetWorkCallback;
 
@@ -22,12 +24,12 @@ import java.util.Map;
 /**
  * Created by Administrator on 2017/12/29.
  */
-
+//
 public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.ViewHolder> {
     private Context context;
-    private List<SelectedBean> list;
+    private List<DetailsBean.InfoBean> list;
 
-    public PopularAdapter(Context context, List<SelectedBean> list) {
+    public PopularAdapter(Context context, List<DetailsBean.InfoBean> list) {
         this.context = context;
         this.list = list;
     }
@@ -49,7 +51,14 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.ViewHold
         holder.recyler_commodity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onitemlistener.Back(view, position);
+//                onitemlistener.Back(view, position);
+//                Toast.makeText(context, "我点击了什么"+list.get(position).getId(), Toast.LENGTH_SHORT).show();
+
+
+                Intent intent_brandid0 = new Intent(context, Details.class);
+                intent_brandid0.putExtra("details", list.get(position).getId()+"");
+                context.startActivity(intent_brandid0);
+
             }
         });
 
@@ -61,10 +70,14 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.ViewHold
         holder.recyler_Collection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+String url="http://baobaoapi.ldlchat.com/Home/Backcontent/content.html";
                 Map<String ,String> collection=new HashMap();
                 collection.put("baglist_id",position+"");
-                OkHttpUtils.getInstance().post(SBUrls.COLLECTION, collection, new MyNetWorkCallback<CollectionBean>() {
+                Map<String ,String> collection1=new HashMap();
+                collection1.put("id",position+"");
+//                OkHttpUtils.getInstance().post(SBUrls.COLLECTION, collection, new MyNetWorkCallback<CollectionLookBean>() {
+                OkHttpUtils.getInstance().post(url, collection1, new MyNetWorkCallback<CollectionBean>() {
+
                     @Override
                     public void onSuccess(CollectionBean collectionBean) {
                     }

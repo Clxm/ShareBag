@@ -1,13 +1,17 @@
 package com.share.bag.ui.activitys.collection;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.share.bag.R;
+import com.share.bag.SBUrls;
 
 import java.util.List;
 
@@ -33,21 +37,32 @@ public class ReleaseAdapter extends RecyclerView.Adapter<ReleaseAdapter.ViewHold
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
 
-//
-//        holder.add_name.setText(list.get(position).getUsername());
-//        holder.add_dizhi.setText(list.get(position).getAddress());
-//        holder.add_shoujihao.setText(list.get(position).getPhone());
-//        holder.add_add.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-////                Toast.makeText(context, "点击了修改", Toast.LENGTH_SHORT).show();
-//                Intent intent = new Intent(context,ModifyActivity.class);
+        Glide.with(context).load(SBUrls.HEAD+list.get(position).getImg()).into(holder.release_adapter_img);
+        holder.release_adapter_name.setText(list.get(position).getTitle());
+
+
+
+        holder.release_adapter_brands.setText(list.get(position).getBagbrand_id());
+
+
+//        holder.release_adapter_numbering.setText(list.get(position).getTitle());
+
+
+        holder.release_adapter_materials.setText(list.get(position).getMaterial());
+        holder.release_adapter_size.setText(list.get(position).getBagsize_id());
+
+        holder.release_adapter_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(context,Release.class);
 //                intent.putExtra("id",list.get(position).getId()+"");
-////                跳转这样写
-//                context.startActivity(intent);
-//
-//            }
-//        });
+//                跳转这样写
+                context.startActivity(intent);
+
+
+            }
+        });
 
 
     }
@@ -77,15 +92,17 @@ public class ReleaseAdapter extends RecyclerView.Adapter<ReleaseAdapter.ViewHold
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView release_adapter_name,release_adapter_brands,
-                release_adapter_numbering,release_adapter_colour,release_adapter_materials,release_adapter_size;
+               release_adapter_materials,release_adapter_size;
         private final ImageView release_adapter_img;
+        private final LinearLayout release_adapter_layout;
         public ViewHolder(View itemView) {
             super(itemView);
+
+            release_adapter_layout =(LinearLayout)itemView.findViewById(R.id.release_adapter_layout);
             release_adapter_img =  itemView.findViewById(R.id.release_adapter_img);
             release_adapter_name = (TextView) itemView.findViewById(R.id.release_adapter_name);
             release_adapter_brands = (TextView) itemView.findViewById(R.id.release_adapter_brands);
-            release_adapter_numbering = (TextView) itemView.findViewById(R.id.release_adapter_numbering);
-            release_adapter_colour = (TextView) itemView.findViewById(R.id.release_adapter_colour);
+//            release_adapter_numbering = (TextView) itemView.findViewById(R.id.release_adapter_numbering);
             release_adapter_materials = (TextView) itemView.findViewById(R.id.release_adapter_materials);
             release_adapter_size = (TextView) itemView.findViewById(R.id.release_adapter_size);
         }

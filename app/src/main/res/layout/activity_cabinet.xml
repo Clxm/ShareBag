@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFF"
+    tools:context="com.share.bag.ui.activitys.mine.cabinet.CabinetActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="124px"
+        android:gravity="center_vertical"
+        android:background="#FFF">
+
+        <ImageView
+            android:id="@+id/cablinet_return"
+            android:layout_marginLeft="30px"
+            android:layout_width="27px"
+            android:layout_height="42px"
+            android:src="@mipmap/xiaoyu3"
+            android:scaleType="fitXY"/>
+
+        <TextView
+            android:gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/my_cabinet"
+            android:layout_marginRight="57px"
+            android:textSize="46px"
+            android:textColor="#2b2b2b"/>
+
+    </LinearLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3px"
+        android:background="#EDEDED"
+        />
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <android.support.v7.widget.RecyclerView
+        android:id="@+id/cablinet_recycler1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+
+        <TextView
+        android:layout_width="match_parent"
+        android:layout_height="150px"
+        android:gravity="center"
+        android:text="猜你喜欢"
+        android:background="#FFF"
+        android:textSize="46px"
+        android:textColor="#2C2C2C"/>
+
+        <android.support.v7.widget.RecyclerView
+        android:id="@+id/cablinet_recycler2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

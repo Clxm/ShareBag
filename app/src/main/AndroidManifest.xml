@@ -172,7 +172,10 @@
         <activity android:name=".ui.activitys.home.TradeActivity" />
         <activity android:name=".ui.activitys.home.Details" />
         <activity android:name=".ui.activitys.mine.ForgetActivity" />
-        <activity android:name=".ui.activitys.collection.ReleaseActivity"></activity>
+        <activity android:name=".ui.activitys.collection.ReleaseActivity" />
+        <activity android:name=".ui.activitys.collection.Release" />
+        <activity android:name=".ui.activitys.mine.cabinet.CabinetActivity" />
+        <activity android:name=".ui.activitys.mine.shared.SharedActivity"></activity>
     </application>
 
 </manifest>

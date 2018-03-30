@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.share.bag.entity.CollectionBean;
@@ -20,7 +21,7 @@ import java.util.Map;
 /**
  * Created by Administrator on 2018/3/15.
  */
-
+//CoollectionAdapter
 public class LikeAdapter extends RecyclerView.Adapter<LikeAdapter.ViewHolder> {
         private Context context;
         private List<LikeBean.InfoBean> list;
@@ -47,7 +48,10 @@ public class LikeAdapter extends RecyclerView.Adapter<LikeAdapter.ViewHolder> {
             holder.recyler_commodity.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    onitemlistener.Back(view, position);
+                    Toast.makeText(context, "点击了图片", Toast.LENGTH_SHORT).show();
+                    
+                    
+//                    onitemlistener.Back(view, position);
                 }
             });
 //list.get(position).get
@@ -65,6 +69,9 @@ public class LikeAdapter extends RecyclerView.Adapter<LikeAdapter.ViewHolder> {
                     OkHttpUtils.getInstance().post(SBUrls.COLLECTION, collection, new MyNetWorkCallback<CollectionBean>() {
                         @Override
                         public void onSuccess(CollectionBean collectionBean) {
+                            String info = collectionBean.getInfo();
+                            Toast.makeText(context, ""+info, Toast.LENGTH_SHORT).show();
+
                         }
 
                         @Override

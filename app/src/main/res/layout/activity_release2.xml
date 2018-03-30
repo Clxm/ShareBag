@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFF"
+    tools:context="com.share.bag.ui.activitys.collection.Release">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="124px"
+        android:gravity="center_vertical"
+        android:background="#FFF">
+
+        <ImageView
+            android:id="@+id/release2_return"
+            android:layout_marginLeft="30px"
+            android:layout_width="27px"
+            android:layout_height="42px"
+            android:src="@mipmap/xiaoyu3"
+            android:scaleType="fitXY"/>
+
+        <TextView
+            android:gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/shared_release"
+            android:layout_marginRight="57px"
+            android:textSize="46px"
+            android:textColor="#2b2b2b"/>
+
+    </LinearLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3px"
+        android:background="#EDEDED"
+        />
+
+
+    <LinearLayout
+        android:layout_marginTop="24px"
+      android:layout_marginLeft="24px"
+        android:layout_marginRight="24px"
+        android:layout_width="match_parent"
+        android:layout_height="362px"
+        android:background="@drawable/enter"
+        android:orientation="vertical">
+
+
+        <EditText
+            android:id="@+id/release_et_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:background="#F2F2F2"
+            android:drawablePadding="5dp"
+            android:hint="最多可输入140字"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:textSize="43px"
+            android:textColor="#999999"
+            />
+        <!--android:drawableLeft="@drawable/fangdaxiao"-->
+
+
+    </LinearLayout>
+
+
+
+    <TextView
+        android:layout_marginLeft="92px"
+        android:layout_marginTop="48px"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="请上传高清图片，通过效率更高～"
+        android:textColor="#838383"
+        android:textSize="40px"/>
+
+
+
+
+<LinearLayout
+    android:layout_marginTop="72px"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="1">
+
+<ImageView
+    android:id="@+id/release2_add_photo1"
+    android:layout_marginLeft="138px"
+    android:layout_width="290px"
+    android:layout_height="290px"
+    android:src="@drawable/add_photo"/>
+    <ImageView
+        android:id="@+id/release2_add_photo2"
+        android:layout_marginLeft="184px"
+        android:layout_width="290px"
+        android:layout_height="290px"
+        android:src="@drawable/add_photo"/>
+
+
+
+</LinearLayout>
+<Button
+    android:id="@+id/release2_button"
+    android:layout_width="match_parent"
+    android:layout_height="106px"
+
+    android:text="我要发布"
+    android:gravity="center"
+    android:background="@drawable/discoloration"/>
+
+    <!--android:background="#F2F2F2"-->
+
+</LinearLayout>

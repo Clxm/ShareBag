@@ -6,6 +6,7 @@
 
 
 <LinearLayout
+    android:id="@+id/release_adapter_layout"
     android:layout_width="match_parent"
     android:layout_height="352px">
     
@@ -62,51 +63,51 @@
 
 
 
-        <LinearLayout
-            android:layout_marginTop="18px"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+        <!--<LinearLayout-->
+            <!--android:layout_marginTop="18px"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content">-->
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="商品标号："
-                android:textColor="#5D5E66"
-                android:textSize="25px"/>
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="商品标号："-->
+                <!--android:textColor="#5D5E66"-->
+                <!--android:textSize="25px"/>-->
 
-            <TextView
-                android:id="@+id/release_adapter_numbering"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textColor="#5D5E66"
-                android:textSize="25px"/>
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_marginTop="18px"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="颜色："
-                android:textColor="#5D5E66"
-                android:textSize="25px"/>
-
-            <TextView
-                android:id="@+id/release_adapter_colour"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textColor="#5D5E66"
-                android:textSize="25px"/>
+            <!--<TextView-->
+                <!--android:id="@+id/release_adapter_numbering"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text=""-->
+                <!--android:textColor="#5D5E66"-->
+                <!--android:textSize="25px"/>-->
 
 
-        </LinearLayout>
+        <!--</LinearLayout>-->
+
+        <!--<LinearLayout-->
+            <!--android:layout_marginTop="18px"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content">-->
+
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="颜色："-->
+                <!--android:textColor="#5D5E66"-->
+                <!--android:textSize="25px"/>-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/release_adapter_colour"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text=""-->
+                <!--android:textColor="#5D5E66"-->
+                <!--android:textSize="25px"/>-->
+
+
+        <!--</LinearLayout>-->
 
         <LinearLayout
             android:layout_marginTop="18px"

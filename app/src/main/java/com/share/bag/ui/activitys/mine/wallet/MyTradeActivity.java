@@ -41,9 +41,14 @@ public class MyTradeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trade);
         initView();
-        gettadachange();
-        getdata();
-//        TradeAdapter tradeAdapter=new TradeAdapter(this,list);
+        gettadachange();//以旧换新卡卷
+        getdata();//红包卷
+
+
+
+
+
+//        Trade1Adapter tradeAdapter=new Trade1Adapter(this,list);
         card_use.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -84,7 +89,18 @@ public class MyTradeActivity extends AppCompatActivity {
                 List<RedEnvelopeBean.InfoBean> info = redEnvelopeBean.getInfo();
                 for (int i = 0; i < info.size(); i++) {
 
+                    /*LinearLayoutManager  layoutManager = new LinearLayoutManager (MyTradeActivity.this) {
+                        @Override
+                        canScrollVertically
+                        public boolean canScrollVertically() {
+                            // 直接禁止垂直滑动
+                            return false;
+                        }
+                    };*/
+
                     mydeposit_recycler.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL));
+
+
 
                     redEnvelopeAdapter = new RedEnvelopeAdapter(MyTradeActivity.this, info);
                     mydeposit_recycler.setAdapter(redEnvelopeAdapter);
@@ -109,9 +125,9 @@ public class MyTradeActivity extends AppCompatActivity {
         OkHttpUtils.getInstance().post(SBUrls.RED, stringStringMap, new MyNetWorkCallback<ChangeBean>() {
             @Override
             public void onSuccess(ChangeBean changeBean) throws JSONException {
-                crade_name.setText(changeBean.getInfo().getTitle());
-                card_Introduce.setText(changeBean.getInfo().getContent());
-                card_money.setText(changeBean.getInfo().getGoodsTotal()+"");
+//                crade_name.setText(changeBean.getInfo().getTitle());
+//                card_Introduce.setText(changeBean.getInfo().getContent());
+                card_money.setText(changeBean.getInfo().get_$0().getAmount()+"");
             }
 
             @Override

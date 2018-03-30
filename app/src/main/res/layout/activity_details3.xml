@@ -17,8 +17,8 @@
 
         <ImageView
             android:id="@+id/Details_return"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="27px"
+            android:layout_height="42px"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:layout_marginStart="32px"
@@ -38,8 +38,9 @@
 
         <ImageView
             android:id="@+id/Details_shared"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50px"
+            android:layout_height="50px"
+            android:scaleType="fitXY"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:layout_marginEnd="32px"

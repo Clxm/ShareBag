@@ -37,34 +37,49 @@
         android:layout_width="match_parent"
         android:layout_height="4px"
         android:background="#dedede" />
+<ScrollView
+    android:layout_weight="1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/collection_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="150px"
+            android:gravity="center"
+            android:text="猜你喜欢"
+            android:background="#FFF"
+            android:textSize="46px"
+            android:textColor="#2C2C2C"/>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/collection_recycler2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
 
 
-    <!--<RelativeLayout-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="200px">-->
+
+    </LinearLayout>
 
 
-    <!--&lt;!&ndash;<ImageView&ndash;&gt;-->
-    <!--&lt;!&ndash;android:id="@+id/set_return"&ndash;&gt;-->
-    <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
-    <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
-    <!--&lt;!&ndash;android:layout_alignParentStart="true"&ndash;&gt;-->
-    <!--&lt;!&ndash;android:layout_centerVertical="true"&ndash;&gt;-->
-    <!--&lt;!&ndash;android:layout_marginStart="60px"&ndash;&gt;-->
-    <!--&lt;!&ndash;android:src="@mipmap/xiaoyu3" />&ndash;&gt;-->
 
+</ScrollView>
 
-    <!--<TextView-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_centerHorizontal="true"-->
-    <!--android:layout_centerVertical="true"-->
-    <!--android:text="@string/set_set"-->
-    <!--android:textSize="70px" />-->
-    <!--android:textStyle="bold"-->
-
-
-    <!--</RelativeLayout>-->
+<Button
+    android:id="@+id/collection_clearing"
+    android:layout_width="match_parent"
+    android:layout_height="154px"
+    android:text="结算"
+    android:textColor="#FFF"
+    android:background="#FC655E"/>
 
 
 </LinearLayout>

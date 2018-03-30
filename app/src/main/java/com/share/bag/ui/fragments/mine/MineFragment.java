@@ -25,6 +25,8 @@ import com.share.bag.ui.activitys.mine.PersonalActivity;
 import com.share.bag.ui.activitys.mine.ProblemActivity;
 import com.share.bag.ui.activitys.mine.WalletActivity;
 import com.share.bag.ui.activitys.mine.address.HarvestActivity;
+import com.share.bag.ui.activitys.mine.cabinet.CabinetActivity;
+import com.share.bag.ui.activitys.mine.shared.SharedActivity;
 import com.share.bag.ui.share.ShareActivity;
 import com.share.bag.utils.SharePreUtils;
 
@@ -217,6 +219,16 @@ public class MineFragment extends BaseFragment {
                 break;
             case mine_cabinets://我的包柜
                 Toast.makeText(getActivity(), "我的包柜", Toast.LENGTH_SHORT).show();
+
+                if(SharePreUtils.getString(Constant.COOKIE , "").isEmpty()){
+                    //登录
+                    loginintent1 = new Intent(getActivity(), Login.class);
+                }else{
+                    //我的包柜
+                    loginintent1=new Intent(getActivity(), CabinetActivity.class);
+                }
+                startActivity(loginintent1);
+
                 break;
             case R.id.mine_wallet://我的钱包
                 if(SharePreUtils.getString(Constant.COOKIE , "").isEmpty()){
@@ -229,7 +241,17 @@ public class MineFragment extends BaseFragment {
                 startActivity(loginintent1);
                 break;
             case R.id.mine_shared://正在共享
-                Toast.makeText(getActivity(), "点击了正在共享", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(), "点击了正在共享", Toast.LENGTH_SHORT).show();
+                if(SharePreUtils.getString(Constant.COOKIE , "").isEmpty()){
+                    //登录
+                    loginintent1 = new Intent(getActivity(), Login.class);
+                }else{
+                    //正在共享
+                    loginintent1=new Intent(getActivity(), SharedActivity.class);
+                }
+                startActivity(loginintent1);
+
+
                 break;
             case R.id.mine_Pay://代付款
                 Toast.makeText(getActivity(), "点击了代付款", Toast.LENGTH_SHORT).show();

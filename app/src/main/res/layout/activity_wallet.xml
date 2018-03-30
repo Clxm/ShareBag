@@ -155,32 +155,56 @@
                     android:layout_width="match_parent"
                     android:layout_height="2px"
                     android:background="#F0F0F0"/>
+                <!--<LinearLayout-->
+                    <!--android:id="@+id/wallet_promotion"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="150px"-->
+                    <!--android:gravity="center_vertical">-->
+
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="推广佣金"-->
+                        <!--android:textSize="48px"-->
+                        <!--android:textColor="#333333"/>-->
+
+                    <!--<View-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"/>-->
+
+                    <!--<ImageView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:src="@mipmap/dayu3"/>-->
+
+                <!--</LinearLayout>-->
                 <LinearLayout
-                    android:id="@+id/wallet_promotion"
-                    android:layout_weight="1"
-                    android:layout_width="match_parent"
-                    android:layout_height="150px"
-                    android:gravity="center_vertical">
+                android:id="@+id/wallet_bill"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="150px"
+                android:gravity="center_vertical">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="推广佣金"
-                        android:textSize="48px"
-                        android:textColor="#333333"/>
+                <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="账单"
+                android:textSize="48px"
+                android:textColor="#333333"/>
 
-                    <View
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"/>
+                <View
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@mipmap/dayu3"/>
+                <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/dayu3"/>
 
                 </LinearLayout>
-
                 <View
                     android:layout_marginLeft="50px"
                     android:layout_marginRight="50px"
@@ -237,31 +261,7 @@
                 android:paddingRight="70px"
                 android:paddingLeft="78px">
 
-                <LinearLayout
-                    android:id="@+id/wallet_bill"
-                    android:layout_weight="1"
-                    android:layout_width="match_parent"
-                    android:layout_height="150px"
-                    android:gravity="center_vertical">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="账单"
-                        android:textSize="48px"
-                        android:textColor="#333333"/>
-
-                    <View
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"/>
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@mipmap/dayu3"/>
-
-                </LinearLayout>
 
                 <View
                     android:layout_marginLeft="50px"

@@ -61,6 +61,7 @@ public class RedEnvelopeAdapter extends RecyclerView.Adapter<RedEnvelopeAdapter.
         }
         String amount = list.get(position).getAmount();
         String intNumber = amount.substring(0,amount.indexOf("."));
+        Toast.makeText(context, intNumber, Toast.LENGTH_SHORT).show();
         holder.redenvelope_amount.setText(intNumber);//金额
         holder.redenvelope_use.setOnClickListener(new View.OnClickListener() {
             @Override
