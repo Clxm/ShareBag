@@ -75,8 +75,8 @@ public class SharedAdapter extends RecyclerView.Adapter<SharedAdapter.ViewHolder
         public ImageView shared_adapter_img;
         private final TextView shared_adapter_name;
         private final TextView shared_adapter_brands;
-        private final TextView shared_adapter_numbering;
-        private final TextView shared_adapter_colour;
+//        private final TextView shared_adapter_numbering;
+//        private final TextView shared_adapter_colour;
         private final TextView shared_adapter_size;
         private final TextView shared_adapter_buyout1;
         private final TextView shared_adapter_buyout2;
@@ -87,8 +87,8 @@ public class SharedAdapter extends RecyclerView.Adapter<SharedAdapter.ViewHolder
             shared_adapter_img = (ImageView) itemView.findViewById(R.id.shared_adapter_img);
             shared_adapter_name = (TextView) itemView.findViewById(R.id.shared_adapter_name);
             shared_adapter_brands = (TextView) itemView.findViewById(R.id.shared_adapter_brands);
-            shared_adapter_numbering = (TextView) itemView.findViewById(R.id.shared_adapter_numbering);
-            shared_adapter_colour = (TextView) itemView.findViewById(R.id.shared_adapter_colour);
+//            shared_adapter_numbering = (TextView) itemView.findViewById(R.id.shared_adapter_numbering);
+//            shared_adapter_colour = (TextView) itemView.findViewById(R.id.shared_adapter_colour);
             shared_adapter_size = (TextView) itemView.findViewById(R.id.shared_adapter_size);
             shared_adapter_buyout1 = (TextView) itemView.findViewById(R.id.shared_adapter_buyout1);
             shared_adapter_buyout2 = (TextView) itemView.findViewById(R.id.shared_adapter_buyout2);

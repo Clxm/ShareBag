@@ -63,7 +63,7 @@ public class CollectionFragment extends BaseFragment {
                 List<CollectionLookBean.InfoBean> info = collectionLookBean.getInfo();
 
 
-                collection_recycler.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
+                collection_recycler.setLayoutManager(new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL));
 
 
                 CoollectionAdapter likeAdapter=new CoollectionAdapter(getContext(),info);

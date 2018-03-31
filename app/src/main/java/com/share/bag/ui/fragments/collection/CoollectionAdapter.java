@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -11,13 +12,8 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.share.bag.R;
 import com.share.bag.SBUrls;
-import com.share.bag.entity.CollectionBean;
-import com.share.bag.utils.okhttp.OkHttpUtils;
-import com.share.bag.utils.okhttp.callback.MyNetWorkCallback;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by Administrator on 2018/3/28.
@@ -41,12 +37,34 @@ public class CoollectionAdapter extends RecyclerView.Adapter<CoollectionAdapter.
 
     @Override
     public void onBindViewHolder(CoollectionAdapter.ViewHolder holder, final int position) {
-        Glide.with(context).load(SBUrls.LOGURL + list.get(position).getImg()).into(holder.recyler_commodity);
 
-        holder.recyler_name.setText(list.get(position).getTitle());
-        holder.recyler_price.setText(list.get(position).getDays_money());
-        holder.recyler_money.setText(list.get(position).getOriginalprice());
-        holder.recyler_commodity.setOnClickListener(new View.OnClickListener() {
+        String s = SBUrls.LOGURL + list.get(position).getImg();
+
+
+        Glide.with(context).load(SBUrls.LOGURL + list.get(position).getImg()).into(holder.collection_adapter_image);
+        holder.collection_name.setText(list.get(position).getTitle());
+        holder.collection_original.setText(list.get(position).getOriginalprice());
+//        holder.collection_sale.setText(list.get(position).get);
+
+
+        holder.collection_salebutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(context, "购买成功", Toast.LENGTH_SHORT).show();
+            }
+        });
+        holder.collection_rentbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(context, "租下成功", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+//        holder.recyler_name.setText(list.get(position).getTitle());
+//        holder.recyler_price.setText(list.get(position).getDays_money());
+//        holder.recyler_money.setText(list.get(position).getOriginalprice());
+     /*   holder.recyler_commodity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(context, "点击了图片", Toast.LENGTH_SHORT).show();
@@ -54,14 +72,14 @@ public class CoollectionAdapter extends RecyclerView.Adapter<CoollectionAdapter.
 
 //                    onitemlistener.Back(view, position);
             }
-        });
+        });*/
 //list.get(position).get
 //            if (list.get(position).getIslive().equals("false")) {
 //                holder.recyler_Collection.setImageResource(R.mipmap.shoucang1);
 //            } else {
 //                holder.recyler_Collection.setImageResource(R.mipmap.shoucanghong1);
 //            }
-        holder.recyler_Collection.setOnClickListener(new View.OnClickListener() {
+     /*   holder.recyler_Collection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -81,14 +99,9 @@ public class CoollectionAdapter extends RecyclerView.Adapter<CoollectionAdapter.
                 });
 
 
-//                    if (list.get(position).getIslive().equals("false")) {
-//                        list.get(position).setIslive("true");
-//                    } else {
-//                        list.get(position).setIslive("false");
-//                    }
                 notifyDataSetChanged();
             }
-        });
+        });*/
 
 
 
@@ -124,20 +137,32 @@ public class CoollectionAdapter extends RecyclerView.Adapter<CoollectionAdapter.
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public ImageView recyler_commodity;
-        private final ImageView recyler_Collection;
-        private final TextView recyler_name;
-        private final TextView recyler_price;
-        private final TextView recyler_money;
 
+//        private final ImageView recyler_Collection;
+
+        public ImageView collection_adapter_image;
+        private final TextView collection_name;
+        private final TextView collection_sale;
+        private final TextView collection_rent;
+        private final TextView  collection_original;
+        private final CheckBox  collection_adapter_checkBox;
+        private final TextView  collection_rentbutton;
+        private final TextView  collection_salebutton;
         public ViewHolder(View itemView) {
             super(itemView);
-            recyler_commodity = (ImageView) itemView.findViewById(R.id.recyler_commodity);
-            recyler_Collection = (ImageView) itemView.findViewById(R.id.recyler_Collection);
-            recyler_name = (TextView) itemView.findViewById(R.id.recyler_name);
-            recyler_price = (TextView) itemView.findViewById(R.id.recyler_price);
-            recyler_money = (TextView) itemView.findViewById(R.id.recyler_money);
 
+            /* <CheckBox
+           android:id="@+id/collection_adapter_checkBox"
+         */
+
+            collection_adapter_checkBox=(CheckBox)   itemView.findViewById(R.id.collection_adapter_checkBox);
+            collection_adapter_image = (ImageView) itemView.findViewById(R.id.collection_adapter_image);
+            collection_name = (TextView) itemView.findViewById(R.id.collection_name);
+            collection_rent = (TextView) itemView.findViewById(R.id.collection_rent);
+            collection_sale = (TextView) itemView.findViewById(R.id.collection_sale);
+            collection_original = (TextView) itemView.findViewById(R.id.collection_original);
+            collection_salebutton = (TextView) itemView.findViewById(R.id.collection_salebutton);
+            collection_rentbutton = (TextView) itemView.findViewById(R.id.collection_rentbutton);
         }
     }
 

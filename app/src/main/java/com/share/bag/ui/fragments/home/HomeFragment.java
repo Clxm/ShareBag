@@ -184,9 +184,7 @@ public class HomeFragment extends BaseFragment {
                 @Override
                 public void onSuccess(HomeTalentBean homeTalentBean) throws JSONException {
 
-
                     List<HomeTalentBean.InfoBean> info = homeTalentBean.getInfo();
-
 
                     for (int i = 0; i < info.size(); i++) {
 
@@ -199,22 +197,13 @@ public class HomeFragment extends BaseFragment {
                                 .transform(new GlideCircleTransform(context))
                                 .crossFade()
                                 .into(home_avatar);
-                        info.get(i).getUserinfo().getUsername();
+
                         home_name.setText(info.get(i).getUserinfo().getName());
 
-                        String strTime = DateUtils.getStrTime1(info.get(i).getUserinfo().getCreate_time());
+                        String strTime = DateUtils.getStrTime1(info.get(i).getTime());
                         home_time.setText(strTime);
-
-
-//                        String content = info.get(i).getContent();//内容
-                        home_dynamic.setText(info.get(i).getContent());//内容
-
-
-
-
+                        home_dynamic.setText(info.get(i).getContent());
                     }
-
-
                 }
 
                 @Override
@@ -222,11 +211,7 @@ public class HomeFragment extends BaseFragment {
 
                 }
             });
-            
-            
-            
-            
-            
+
         headerimg = new ArrayList<>();
         final Map<String, String> map = new HashMap<>();
         OkHttpUtils.getInstance().post(SBUrls.HOMEURL, map, new MyNetWorkCallback<HomeFragmentBean>() {
@@ -244,8 +229,6 @@ public class HomeFragment extends BaseFragment {
                     }
 
                 }
-
-
 
                 //                  轮播图赋值
                 mzBannerView.setPages(headerimg, new MZHolderCreator<BannerViewHolder>() {
