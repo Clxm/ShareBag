@@ -17,8 +17,8 @@
 
         <ImageView
             android:id="@+id/personal_return"
-            android:layout_width="50px"
-            android:layout_height="wrap_content"
+            android:layout_width="27px"
+            android:layout_height="42px"
             android:src="@mipmap/xiaoyu3"
             android:layout_marginStart="27dp"
             android:layout_centerVertical="true"

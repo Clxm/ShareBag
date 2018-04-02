@@ -175,7 +175,8 @@
         <activity android:name=".ui.activitys.collection.ReleaseActivity" />
         <activity android:name=".ui.activitys.collection.Release" />
         <activity android:name=".ui.activitys.mine.cabinet.CabinetActivity" />
-        <activity android:name=".ui.activitys.mine.shared.SharedActivity"></activity>
+        <activity android:name=".ui.activitys.mine.shared.SharedActivity" />
+        <activity android:name=".ui.ship.ShipActivity"></activity>
     </application>
 
 </manifest>

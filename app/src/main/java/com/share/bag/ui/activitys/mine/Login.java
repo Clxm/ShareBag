@@ -81,12 +81,12 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 break;
 
             case R.id.login_qq:
-                UMShareAPI.get(this).getPlatformInfo(this, SHARE_MEDIA.QQ, authListener);
+                UMShareAPI.get(this).getPlatformInfo(this, SHARE_MEDIA.QQ, authListener1);
 
                 break;
             case R.id.login_weixin:
 
-                UMShareAPI.get(this).getPlatformInfo(this, SHARE_MEDIA.WEIXIN, authListener);
+                UMShareAPI.get(this).getPlatformInfo(this, SHARE_MEDIA.WEIXIN,authListener );//    authListener
 
                 break;
         }
@@ -111,7 +111,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                     String username = loginBean.getUser().getUsernameX();//用户名
                     String password =loginBean.getUser().getPasswordX();//密码
                     String gender = loginBean.getUser().getGender();//性别
-//                    String strtou= SBUrls.HEAD+loginBean.getUser().getIconurl();//头像
                     String strtou=loginBean.getUser().getIconurl();//头像
                     String id = loginBean.getUser().getId();//id
                     FileUtil.saveToPre1(Login.this, username, password,id,gender,nickname,strtou);
@@ -138,7 +137,55 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         });
 
     }
+    UMAuthListener authListener1 = new UMAuthListener() {
+        /**
+         * @desc 授权开始的回调
+         * @param platform 平台名称
+         */
+        @Override
+        public void onStart(SHARE_MEDIA platform) {
 
+        }
+
+        /**
+         * @desc 授权成功的回调
+         * @param platform 平台名称
+         * @param action 行为序号，开发者用不上
+         * @param data 用户资料返回
+         */
+        @Override
+        public void onComplete(SHARE_MEDIA platform, int action, Map<String, String> data) {
+
+            String s = data.get("uid");
+            Toast.makeText(Login.this, "========="+s, Toast.LENGTH_SHORT).show();
+
+            Toast.makeText(Login.this, "成功了", Toast.LENGTH_LONG).show();
+
+        }
+
+        /**
+         * @desc 授权失败的回调
+         * @param platform 平台名称
+         * @param action 行为序号，开发者用不上
+         * @param t 错误原因
+         */
+        @Override
+        public void onError(SHARE_MEDIA platform, int action, Throwable t) {
+
+            Toast.makeText(Login.this, "失败：" + t.getMessage(), Toast.LENGTH_LONG).show();
+        }
+
+        /**
+         * @desc 授权取消的回调
+         * @param platform 平台名称
+         * @param action 行为序号，开发者用不上
+         */
+        @Override
+        public void onCancel(SHARE_MEDIA platform, int action) {
+
+            Toast.makeText(Login.this, "取消了", Toast.LENGTH_LONG).show();
+        }
+    };
     UMAuthListener authListener=new UMAuthListener() {
         @Override
         public void onStart(SHARE_MEDIA share_media) {
@@ -147,7 +194,13 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
         @Override
         public void onComplete(SHARE_MEDIA share_media, int i, Map<String, String> map) {
-            Toast.makeText(Login.this, "成功", Toast.LENGTH_SHORT).show();
+
+            String s = map.get("uid");
+            Toast.makeText(Login.this, "uid"+s, Toast.LENGTH_SHORT).show();
+            Log.e("TAG","--------"+s);
+
+
+          /*  Toast.makeText(Login.this, "成功", Toast.LENGTH_SHORT).show();
             String s = map.get("name");
             String s1 = map.get("uid");
             String s2 = map.get("iconurl");
@@ -159,7 +212,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
             intent.putExtra("name",s);
             intent.putExtra("img",s2);
             setResult(0,intent);
-            finish();
+            finish();*/
 
         }
 

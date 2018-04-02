@@ -4,6 +4,7 @@ package com.share.bag;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.text.TextUtils;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -69,7 +70,17 @@ public  class FileUtil {
         String imageurl = sharedPreferences.getString("imageurl", "");
         nickname.setText(nickname1);
 //        Glide.with(context).load("http://baobaoapi.ldlchat.com/"+imageurl).into(touxiangurl);
-        Glide.with(context).load(imageurl).into(touxiangurl);
+                            if (TextUtils.isEmpty(imageurl)) {
+
+                                Glide.with(context).load("http://om6im9i3r.bkt.clouddn.com/2018-03-31_5abf5e2c3c574.png").into(touxiangurl);
+
+//                        return;
+                    }else {
+                                Glide.with(context).load(imageurl).into(touxiangurl);
+                            }
+
+
+
 
 
 

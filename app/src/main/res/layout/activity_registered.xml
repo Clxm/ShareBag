@@ -4,20 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFF"
     tools:context="administrator.example.com.baobao.ui.login.RegisteredActivity">
 
 
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="150px"
+        android:layout_height="126px"
         android:id="@+id/relativeLayout">
 
 
         <ImageView
             android:id="@+id/registered_return"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="27px"
+            android:layout_height="42px"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:layout_marginStart="60px"
@@ -30,7 +31,8 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:text="@string/registered_registered"
-            android:textSize="20sp" />
+            android:textSize="46px"
+            android:textColor="#2b2b2b"/>
         <!--android:textStyle="bold"-->
 
 

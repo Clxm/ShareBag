@@ -9,7 +9,7 @@ import com.share.bag.LikeAdapter;
 import com.share.bag.R;
 import com.share.bag.SBUrls;
 import com.share.bag.base.BaseFragment;
-import com.share.bag.entity.*;
+import com.share.bag.entity.LikeBean;
 import com.share.bag.utils.okhttp.OkHttpUtils;
 import com.share.bag.utils.okhttp.callback.MyNetWorkCallback;
 
@@ -26,6 +26,7 @@ public class CollectionFragment extends BaseFragment {
 
     private TextView collection_management;
     private RecyclerView collection_recycler,collection_recycler2;
+    private CoollectionAdapter likeAdapter;
 
     @Override
     public int initLayout() {
@@ -36,7 +37,6 @@ public class CollectionFragment extends BaseFragment {
     public void initView(View view) {
 
         collection_management = view.findViewById(R.id.collection_management);
-
         collection_recycler = view.findViewById(R.id.collection_recycler);
         collection_recycler2 = view.findViewById(R.id.collection_recycler2);
     }
@@ -46,30 +46,17 @@ public class CollectionFragment extends BaseFragment {
         getinitData();
         getinitData1();
 
+
     }
     public void getinitData() {
-        /*
-        *    List<LikeBean.InfoBean> info = likeBean.getInfo();
-                collection_recycler.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
-
-                LikeAdapter likeAdapter=new LikeAdapter(getContext(),info);
-                collection_recycler.setAdapter(likeAdapter);
-        * */
         Map<String,String > stringMap= new HashMap<>();
-
         OkHttpUtils.getInstance().post(SBUrls.COLLECTION, stringMap, new MyNetWorkCallback<CollectionLookBean>() {
             @Override
             public void onSuccess(CollectionLookBean collectionLookBean) throws JSONException {
                 List<CollectionLookBean.InfoBean> info = collectionLookBean.getInfo();
-
-
                 collection_recycler.setLayoutManager(new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL));
-
-
-                CoollectionAdapter likeAdapter=new CoollectionAdapter(getContext(),info);
+                likeAdapter = new CoollectionAdapter(getContext(),info);
                 collection_recycler.setAdapter(likeAdapter);
-
-
             }
 
             @Override

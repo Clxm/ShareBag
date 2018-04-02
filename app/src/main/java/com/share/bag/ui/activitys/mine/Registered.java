@@ -1,6 +1,5 @@
 package com.share.bag.ui.activitys.mine;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
@@ -16,10 +15,12 @@ import android.widget.Toast;
 
 import com.share.bag.R;
 import com.share.bag.SBUrls;
-import com.share.bag.entity.LoginBean;
 import com.share.bag.entity.SMSBean;
+import com.share.bag.ui.activitys.mine.registered.RegisteredBean;
 import com.share.bag.utils.okhttp.OkHttpUtils;
 import com.share.bag.utils.okhttp.callback.MyNetWorkCallback;
+
+import org.json.JSONException;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -95,29 +96,6 @@ public class Registered extends AppCompatActivity implements View.OnClickListene
         }
     }
 
-    private void submit() {
-        // validate
-        String phone = registered_phone.getText().toString().trim();
-        if (TextUtils.isEmpty(phone)) {
-            Toast.makeText(this, "phone不能为空", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        String verification = registered_verification.getText().toString().trim();
-        if (TextUtils.isEmpty(verification)) {
-            Toast.makeText(this, "verification不能为空", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        String password = registered_password.getText().toString().trim();
-        if (TextUtils.isEmpty(password)) {
-            Toast.makeText(this, "password不能为空", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-    }
-
-
     // 获取验证码
     private void goSMS() {
         Map<String, String> map = new HashMap<>();
@@ -190,27 +168,24 @@ public class Registered extends AppCompatActivity implements View.OnClickListene
         if (password.equals(password1)){
 
 //        username   用户名    password 密码     code手机验证码
-            OkHttpUtils.getInstance().post(SBUrls.REGISTEREDURL, map, new MyNetWorkCallback<LoginBean>() {
-
+            OkHttpUtils.getInstance().post(SBUrls.REGISTEREDURL, map, new MyNetWorkCallback<RegisteredBean>() {
                 @Override
-                public void onSuccess(LoginBean loginBean) {
-                     if(loginBean.getStatus().equals("0")){
-                        Toast.makeText(Registered.this,loginBean.getInfo(),Toast.LENGTH_SHORT).show();
-                    }else{
-                        startActivity(new Intent(Registered.this, Login.class));
+                public void onSuccess(RegisteredBean registeredBean) throws JSONException {
+                    String info = registeredBean.getInfo();
+                    if (info.equals("注册成功")){
+                        finish();
+                    }else {
+                        Toast.makeText(Registered.this, info, Toast.LENGTH_SHORT).show();
                     }
                 }
 
                 @Override
                 public void onError(int errorCode, String errorMsg) {
-//                ToastUtils.show(context, context.getClass().getSimpleName() + errorMsg);
                 }
             });
 
         }else {
-
             Toast.makeText(this, "两次输入的密码不一致", Toast.LENGTH_SHORT).show();
-
         }
 
     }

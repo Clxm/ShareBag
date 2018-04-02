@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.share.bag.ui.ship.ShipActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="126px">
+
+        <ImageView
+            android:id="@+id/ship_return"
+            android:layout_width="27px"
+            android:layout_height="42px"
+            android:src="@mipmap/xiaoyu3"
+            android:layout_marginStart="27dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:id="@+id/ship_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="46px"
+            android:textColor="#2b2b2b"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
+
+
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/ship_tabs"
+        android:layout_width="match_parent"
+        android:layout_height="105px"
+        app:tabIndicatorColor="#FC655E"
+        app:tabSelectedTextColor="#FC655E"
+        app:tabTextColor="#303030"></android.support.design.widget.TabLayout>
+
+    <!--可滑动的布局内容-->
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/ship_vp_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></android.support.v4.view.ViewPager>
+
+</LinearLayout>

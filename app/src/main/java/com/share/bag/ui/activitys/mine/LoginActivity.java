@@ -114,6 +114,11 @@ public class LoginActivity extends BaseActivity {
                 break;
         }
     }
+
+
+
+
+
     UMAuthListener authListener=new UMAuthListener() {
         @Override
         public void onStart(SHARE_MEDIA share_media) {

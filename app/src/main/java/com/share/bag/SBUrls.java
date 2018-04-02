@@ -9,6 +9,12 @@ public class SBUrls {
 
     //网址拼接头
     public static final String HEAD ="http://baobaoapi.ldlchat.com";
+    // 验证码
+    public static final String SMSURL = "http://baobaoapi.ldlchat.com/Home/public/getSmsCode.html";
+    // 注册
+    public static final String REGISTEREDURL = "http://baobaoapi.ldlchat.com/Home/user/register.html";
+    // 忘记密码
+    public static final String FORGET = "http://baobaoapi.ldlchat.com/Home/user/getnewpwd.html";
     //    登录
     public static final String LOGINURL ="http://baobaoapi.ldlchat.com/Home/user/login.html";
     //    钱包
@@ -17,12 +23,7 @@ public class SBUrls {
     public static final String NICKNAME ="http://baobaoapi.ldlchat.com/Home/my/setnickname.html";
     //卡劵
     public static final String RED ="http://baobaoapi.ldlchat.com/Home/wallet/coupon.html";
-    // 验证码
-    public static final String SMSURL = "http://baobaoapi.ldlchat.com/Home/public/getSmsCode.html";
-//    public static final String SMSURL = "http://baobaoapi.ldlchat.com//Home/common/getSmsCode.html";
 
-    // 注册
-    public static final String REGISTEREDURL = "http://baobaoapi.ldlchat.com/Home/user/register.html";
     // 要晒的包
     public static final String SHOW = "http://baobaoapi.ldlchat.com/Home/Cabinet/getBagList.html";
     // 猜你喜欢

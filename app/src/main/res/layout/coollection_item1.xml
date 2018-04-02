@@ -50,8 +50,11 @@
                    android:layout_height="wrap_content"
                    android:text="包包的名字"
                    android:textColor="#2c2c2c"
-                   android:textSize="34px" />
-
+                   android:textSize="34px"
+                   android:lines="1"
+                   android:singleLine="true"/>
+<!--android:lines="1"（设置文本最大的显示行数）
+android:singleLine="true"-->
 
                <TextView
                    android:layout_width="wrap_content"

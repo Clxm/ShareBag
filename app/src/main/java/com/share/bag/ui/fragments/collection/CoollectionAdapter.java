@@ -44,7 +44,6 @@ public class CoollectionAdapter extends RecyclerView.Adapter<CoollectionAdapter.
         Glide.with(context).load(SBUrls.LOGURL + list.get(position).getImg()).into(holder.collection_adapter_image);
         holder.collection_name.setText(list.get(position).getTitle());
         holder.collection_original.setText(list.get(position).getOriginalprice());
-//        holder.collection_sale.setText(list.get(position).get);
 
 
         holder.collection_salebutton.setOnClickListener(new View.OnClickListener() {
@@ -59,49 +58,6 @@ public class CoollectionAdapter extends RecyclerView.Adapter<CoollectionAdapter.
                 Toast.makeText(context, "租下成功", Toast.LENGTH_SHORT).show();
             }
         });
-
-
-//        holder.recyler_name.setText(list.get(position).getTitle());
-//        holder.recyler_price.setText(list.get(position).getDays_money());
-//        holder.recyler_money.setText(list.get(position).getOriginalprice());
-     /*   holder.recyler_commodity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(context, "点击了图片", Toast.LENGTH_SHORT).show();
-
-
-//                    onitemlistener.Back(view, position);
-            }
-        });*/
-//list.get(position).get
-//            if (list.get(position).getIslive().equals("false")) {
-//                holder.recyler_Collection.setImageResource(R.mipmap.shoucang1);
-//            } else {
-//                holder.recyler_Collection.setImageResource(R.mipmap.shoucanghong1);
-//            }
-     /*   holder.recyler_Collection.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Map<String ,String> collection=new HashMap();
-                collection.put("baglist_id",position+"");
-                OkHttpUtils.getInstance().post(SBUrls.COLLECTION, collection, new MyNetWorkCallback<CollectionBean>() {
-                    @Override
-                    public void onSuccess(CollectionBean collectionBean) {
-                        String info = collectionBean.getInfo();
-                        Toast.makeText(context, ""+info, Toast.LENGTH_SHORT).show();
-
-                    }
-
-                    @Override
-                    public void onError(int errorCode, String errorMsg) {
-                    }
-                });
-
-
-                notifyDataSetChanged();
-            }
-        });*/
 
 
 

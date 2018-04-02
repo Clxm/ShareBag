@@ -28,6 +28,7 @@ import com.share.bag.ui.activitys.mine.address.HarvestActivity;
 import com.share.bag.ui.activitys.mine.cabinet.CabinetActivity;
 import com.share.bag.ui.activitys.mine.shared.SharedActivity;
 import com.share.bag.ui.share.ShareActivity;
+import com.share.bag.ui.ship.ShipActivity;
 import com.share.bag.utils.SharePreUtils;
 
 import butterknife.BindView;
@@ -144,6 +145,9 @@ public class MineFragment extends BaseFragment {
     protected void initData() {
 
         FileUtil.MinereadFromPre(getActivity(),mine_name,mineAvatar);
+
+
+
         if (mine_name.getText().equals("")){
             Glide.with(getContext()).load(R.drawable.touxiang22).into(mineAvatar);
             mine_name.setText("请登录");
@@ -211,15 +215,10 @@ public class MineFragment extends BaseFragment {
                 }else {//个人中心
 //                    startActivityForResult(PersonalActivity.getIntent(getActivity()),1);
                     startActivity(new Intent(getActivity(),PersonalActivity.class));
-
-
-
                 }
 
                 break;
             case mine_cabinets://我的包柜
-                Toast.makeText(getActivity(), "我的包柜", Toast.LENGTH_SHORT).show();
-
                 if(SharePreUtils.getString(Constant.COOKIE , "").isEmpty()){
                     //登录
                     loginintent1 = new Intent(getActivity(), Login.class);
@@ -254,17 +253,65 @@ public class MineFragment extends BaseFragment {
 
                 break;
             case R.id.mine_Pay://代付款
-                Toast.makeText(getActivity(), "点击了代付款", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(), "点击了代付款", Toast.LENGTH_SHORT).show();
+                  if(SharePreUtils.getString(Constant.COOKIE , "").isEmpty()){
+                    //登录
+                    loginintent1 = new Intent(getActivity(), Login.class);
+                }else{
+                    //点击了代付款
+                    loginintent1=new Intent(getActivity(),ShipActivity.class);
+                      loginintent1.putExtra("ship","代付款");
+                }
+                startActivity(loginintent1);
+
+
+
                 break;
             case R.id.mine_Sign://待签收
                 Toast.makeText(getActivity(), "点击了待签收", Toast.LENGTH_SHORT).show();
+
+                if(SharePreUtils.getString(Constant.COOKIE , "").isEmpty()){
+                    //登录
+                    loginintent1 = new Intent(getActivity(), Login.class);
+                }else{
+                    //点击了待签收
+                    loginintent1=new Intent(getActivity(),ShipActivity.class);
+
+                    loginintent1.putExtra("ship","待签收");
+                }
+                startActivity(loginintent1);
+
+
+
                 break;
             case R.id.mine_ship://代发货
                 Toast.makeText(getActivity(), "点击了代发货", Toast.LENGTH_SHORT).show();
+                if(SharePreUtils.getString(Constant.COOKIE , "").isEmpty()){
+                    //登录
+                    loginintent1 = new Intent(getActivity(), Login.class);
+                }else{
+                    //点击了代发货
+                    loginintent1=new Intent(getActivity(),ShipActivity.class);
+
+                    loginintent1.putExtra("ship","代发货");
+                }
+                startActivity(loginintent1);
+
                 break;
             case R.id.mine_return://代归还
 
                 Toast.makeText(getActivity(), "点击了代归还", Toast.LENGTH_SHORT).show();
+                if(SharePreUtils.getString(Constant.COOKIE , "").isEmpty()){
+                    //登录
+                    loginintent1 = new Intent(getActivity(), Login.class);
+                }else{
+                    //点击了代归还
+                    loginintent1=new Intent(getActivity(),ShipActivity.class);
+
+                    loginintent1.putExtra("ship","代归还");
+                }
+                startActivity(loginintent1);
+
 
                 break;
             case R.id.mine_invite://邀请好友

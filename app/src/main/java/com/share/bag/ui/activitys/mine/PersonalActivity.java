@@ -12,6 +12,7 @@ import android.os.Environment;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -22,7 +23,10 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.share.bag.GlideCircleTransform;
 import com.share.bag.R;
 import com.share.bag.SBUrls;
 import com.share.bag.base.BaseActivity;
@@ -30,19 +34,24 @@ import com.share.bag.entity.UserName;
 import com.share.bag.entity.selected.HeadImgBean;
 import com.share.bag.ui.activitys.mine.avatar.PhotoUtils;
 import com.share.bag.ui.activitys.mine.avatar.ToastUtils;
+import com.share.bag.ui.activitys.mine.homepage.HomepageBean;
 import com.share.bag.utils.okhttp.OkHttpUtils;
 import com.share.bag.utils.okhttp.callback.MyNetWorkCallback;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
+import org.json.JSONException;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
+import static com.share.bag.R.id.personal_avatar1;
 
 
 /*
@@ -104,7 +113,7 @@ public class PersonalActivity extends BaseActivity {
     public void initView() {
 
         personal_return = (ImageView) findViewById(R.id.personal_return);
-        imgview = (ImageView) findViewById(R.id.personal_avatar1);
+        imgview = (ImageView) findViewById(personal_avatar1);
         imageView8 = (ImageView) findViewById(R.id.imageView8);
 
         personal_avatar = (RelativeLayout) findViewById(R.id.personal_avatar);
@@ -140,6 +149,74 @@ public class PersonalActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
+        String url="http://baobaoapi.ldlchat.com/Home/my/getprofile.html";
+        Map<String,String> map=new HashMap<>();
+//SBUrls.APPID
+
+        OkHttpUtils.getInstance().post(url, map, new MyNetWorkCallback<HomepageBean>() {
+            @Override
+            public void onSuccess(HomepageBean homepageBean) throws JSONException {
+
+                HomepageBean.InfoBean info = homepageBean.getInfo();
+
+                String iconurl = info.getIconurl();
+
+
+                if (TextUtils.isEmpty(iconurl)) {
+
+                    Glide.with(PersonalActivity.this)
+                            .load("http://om6im9i3r.bkt.clouddn.com/2018-03-31_5abf5e2c3c574.png")
+                            //设置圆角图片
+//                .transform(new GlideRoundTransform(MainActivity.this, 10))
+                            //设置圆形图片
+                            .transform(new GlideCircleTransform(PersonalActivity.this))
+                            .crossFade()
+                            .into(imgview);
+//                        return;
+                }else {
+
+                    Glide.with(PersonalActivity.this)
+                            .load(iconurl)
+                            //设置圆角图片
+//                .transform(new GlideRoundTransform(MainActivity.this, 10))
+                            //设置圆形图片
+                            .transform(new GlideCircleTransform(PersonalActivity.this))
+                            .crossFade()
+                            .into(imgview);
+                }
+                String username = info.getUsername();
+                personal_number.setText(username);
+                String name = info.getName();
+                personal_name1.setText(name);
+
+                List<String> labels = info.getLabels();
+
+
+//                for (int i = 0; i < labels.size(); i++) {
+//
+//                    String s = labels.get(i);
+//
+//                    personal_avatar1
+//
+//
+//
+//                }
+
+
+
+            }
+
+            @Override
+            public void onError(int errorCode, String errorMsg) {
+
+            }
+        });
+
+
+
+        Toast.makeText(this, "重新显示", Toast.LENGTH_SHORT).show();
+        
 //        FileUtil.Homepage(this, personal_name1, imgview, personal_number);
     }
 

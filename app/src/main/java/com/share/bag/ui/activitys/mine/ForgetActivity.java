@@ -2,7 +2,6 @@ package com.share.bag.ui.activitys.mine;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -78,47 +77,37 @@ public class ForgetActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.forget_login:
-//                submit();
-
 
 //                                       baobaoapi.ldlchat.com/Home/user/getnewpwd.html
                 String strurl="http://baobaoapi.ldlchat.com/Home/user/getnewpwd.html";
+
                 Map<String,String> stringStringMap=new HashMap<>();
                 stringStringMap.put("username",forget_phone.getText().toString().trim());
                 stringStringMap.put("newpwd",forget_password.getText().toString().trim());
                 stringStringMap.put("confirmpwd",forget_password1.getText().toString().trim());
                 stringStringMap.put("code",forget_verification.getText().toString().trim());
 
-                OkHttpUtils.getInstance().post(strurl, stringStringMap, new MyNetWorkCallback<ForgetBean>() {
+                OkHttpUtils.getInstance().post(SBUrls.FORGET, stringStringMap, new MyNetWorkCallback<ForgetBean>() {
                     @Override
                     public void onSuccess(ForgetBean forgetBean) throws JSONException {
 
-//                    String username = forgetBean.getUsername();
-
-//                    if (username.equals("")){
-
-                        Toast.makeText(ForgetActivity.this, "返回正常", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ForgetActivity.this, "返回正常"+forgetBean.getInfo(), Toast.LENGTH_SHORT).show();
                         Log.e("TTAAG",forgetBean.getStatus()+"======="+forgetBean.getInfo());
-//                    }else {
-//                        Toast.makeText(ForgetActivity.this, forgetBean.getInfo(), Toast.LENGTH_SHORT).show();
-//                    }
+
+                        String info = forgetBean.getInfo();
+
+                        if (info.equals("修改成功")){
+                            finish();
+                        }else {
+                            Toast.makeText(ForgetActivity.this, "请重新输入", Toast.LENGTH_SHORT).show();
+                            forget_phone.setText(null);
+                            forget_password.setText(null);
+                            forget_password1.setText(null);
+                            forget_verification.setText(null);
+
+                        }
 
 
-/*/
-*
-* {
-    "status": "1",
-    "info": "修改成功",
-    "username": "17801190741"
-}
-*
-*
- * {
-    "status": 0,
-    "info": "不能和与密码一致"
-}
-  *
-  * */
 
 
                     }
@@ -133,11 +122,8 @@ public class ForgetActivity extends AppCompatActivity implements View.OnClickLis
                     finish();
                 break;
             case R.id.forget_obtain:
-//                String phone1 = forget_phone.getText().toString().trim();
                 Map<String,String> map=new HashMap<>();
-//                map.put("type",""+1);
                 map.put("username",forget_phone.getText().toString().trim());
-
                 OkHttpUtils.getInstance().post(SBUrls.SMSURL, map, new MyNetWorkCallback<SMSBean>() {
                     @Override
                     public void onSuccess(SMSBean loginBean) {
@@ -150,22 +136,11 @@ public class ForgetActivity extends AppCompatActivity implements View.OnClickLis
                         Toast.makeText(ForgetActivity.this, "失败"+errorMsg.toString()+errorCode, Toast.LENGTH_SHORT).show();
                     }
                 });
-     /*     OkHttpUtils.getInstance().post(SBUrls.SMSURL, map, new MyNetWorkCallback<SMSBean>() {
-              @Override
-              public void onSuccess(SMSBean smsBean) throws JSONException {
-                  Toast.makeText(ForgetActivity.this, "发送成功"+smsBean.getInfo(), Toast.LENGTH_SHORT).show();
-              }
-
-              @Override
-              public void onError(int errorCode, String errorMsg) {
-
-              }
-          });*/
                 break;
         }
     }
 
-    private void submit() {
+/*    private void submit() {
 
         String phone = forget_phone.getText().toString().trim();
         if (TextUtils.isEmpty(phone)) {
@@ -224,20 +199,6 @@ public class ForgetActivity extends AppCompatActivity implements View.OnClickLis
         }else {
             Toast.makeText(this, "输入的密码不一致", Toast.LENGTH_SHORT).show();
         }
-        
-        
-        
-        
-/*
-* username   账号
-newpwd     密码
-confirmpwd 确认密码
-code 	   验证码
-* */
 
-
-
-
-
-    }
+    }*/
 }
