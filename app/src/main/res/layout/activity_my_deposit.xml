@@ -10,16 +10,15 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="140px">
+        android:layout_height="@dimen/x144">
 
 
         <ImageView
             android:id="@+id/myrent_return"
-            android:layout_width="31px"
-            android:layout_height="56px"
-            android:layout_alignParentStart="true"
+            android:layout_width="20dp"
+            android:layout_height="18dp"
             android:layout_centerVertical="true"
-            android:layout_marginStart="30px"
+            android:layout_marginLeft="10dp"
             android:src="@mipmap/xiaoyuhei" />
 
 
@@ -29,16 +28,16 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:text="我的押金"
-            android:textColor="#000"
-            android:textSize="51px" />
+            android:textColor="@color/navigation_bar_text_color"
+            android:textSize="@dimen/x46" />
 
     </RelativeLayout>
 
     
     <View
         android:layout_width="match_parent"
-        android:layout_height="2px"
-        android:background="#E9E9E9"/>
+        android:layout_height="@dimen/x4"
+        android:background="@color/navigation_bar_line_color"/>
     
     
 <LinearLayout

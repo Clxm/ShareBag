@@ -8,43 +8,43 @@ package com.share.bag;
 public class SBUrls {
 
     //网址拼接头
-    public static final String HEAD ="http://baobaoapi.ldlchat.com";
+    public static final String HEAD ="https://baobaoapi.ldlchat.com";
     // 验证码
-    public static final String SMSURL = "http://baobaoapi.ldlchat.com/Home/public/getSmsCode.html";
+    public static final String SMSURL = "https://baobaoapi.ldlchat.com/Home/public/getSmsCode.html";
     // 注册
-    public static final String REGISTEREDURL = "http://baobaoapi.ldlchat.com/Home/user/register.html";
+    public static final String REGISTEREDURL = "https://baobaoapi.ldlchat.com/Home/user/register.html";
     // 忘记密码
-    public static final String FORGET = "http://baobaoapi.ldlchat.com/Home/user/getnewpwd.html";
+    public static final String FORGET = "https://baobaoapi.ldlchat.com/Home/user/getnewpwd.html";
     //    登录
-    public static final String LOGINURL ="http://baobaoapi.ldlchat.com/Home/user/login.html";
+    public static final String LOGINURL ="https://baobaoapi.ldlchat.com/Home/user/login.html";
     //    钱包
-    public static final String WALLET ="http://baobaoapi.ldlchat.com/Home/wallet/balance.html";
+    public static final String WALLET ="https://baobaoapi.ldlchat.com/Home/wallet/balance.html";
     //修改昵称
-    public static final String NICKNAME ="http://baobaoapi.ldlchat.com/Home/my/setnickname.html";
+    public static final String NICKNAME ="https://baobaoapi.ldlchat.com/Home/my/setnickname.html";
     //卡劵
-    public static final String RED ="http://baobaoapi.ldlchat.com/Home/wallet/coupon.html";
+    public static final String RED ="https://baobaoapi.ldlchat.com/Home/wallet/coupon.html";
 
     // 要晒的包
-    public static final String SHOW = "http://baobaoapi.ldlchat.com/Home/Cabinet/getBagList.html";
+    public static final String SHOW = "https://baobaoapi.ldlchat.com/Home/Cabinet/getBagList.html";
     // 猜你喜欢
-    public static final String LIKE = "http://baobaoapi.ldlchat.com/Home/Backcontent/ifyoulike.html";
+    public static final String LIKE = "https://baobaoapi.ldlchat.com/Home/Backcontent/ifyoulike.html";
     // 我的包柜                 Cabinet
-    public static final String CABINET = "http://baobaoapi.ldlchat.com/Home/Cabinet/cabinetlist.html";
+    public static final String CABINET = "https://baobaoapi.ldlchat.com/Home/Cabinet/cabinetlist.html";
     // 展示收藏
-    public static final String COLLECTION = "http://baobaoapi.ldlchat.com/Home/Backcontent/collectionlist.html";
+    public static final String COLLECTION = "https://baobaoapi.ldlchat.com/Home/Backcontent/collectionlist.html";
     //                        Collection收藏
 //    public static final String COLLECTION="http://baobaoapi.ldlchat.com/Home/Backcontent/collection.html";
     // 以旧换新界面                Cabinet
-    public static final String CHANGE = "http://baobaoapi.ldlchat.com/Home/backlist/oldnewlist.html";
+    public static final String CHANGE = "https://baobaoapi.ldlchat.com/Home/backlist/oldnewlist.html";
     // 正在共享
-    public static final String SHARED = "http://baobaoapi.ldlchat.com/Home/Backlist/share.html";
+    public static final String SHARED = "https://baobaoapi.ldlchat.com/Home/Backlist/share.html";
 
 
 //String url="http://baobaoapi.ldlchat.com/Home/Backlist/share.html";
 //    ------------------------------ url -----------------------------------------
 
     //支付
-    public static final String ZHFPAY ="http://baobaoapi.ldlchat.com/Home/Pay/alipaystodo.html";
+    public static final String ZHFPAY ="https://baobaoapi.ldlchat.com/Home/Pay/alipaystodo.html";
     //APP_ID
     public static final String APPID = "2018010201523821";
     //PID
@@ -63,17 +63,17 @@ public class SBUrls {
 //    public static final String SMSURL = "http://baobaoapi.ldlchat.com/Home/Public/getSmsk.html";
 //                                         http://baobaoapi.ldlchat.com//Home/common/getSmsCode.html
 //      首页
-    public static final String HOMEURL ="http://baobaoapi.ldlchat.com/Home/Index/index.html";
+    public static final String HOMEURL ="https://baobaoapi.ldlchat.com/Home/Index/index.html";
 //    详情
-    public static final String DETAILSURL ="http://baobaoapi.ldlchat.com/Home/Backcontent/content.html";
+    public static final String DETAILSURL ="https://baobaoapi.ldlchat.com/Home/Backcontent/content.html";
 //    展示评论
-    public static final String COMMENT ="http://baobaoapi.ldlchat.com/index.php?s=/Home/comment/index.html";
+    public static final String COMMENT ="https://baobaoapi.ldlchat.com/index.php?s=/Home/comment/index.html";
 
 
     //      选包（热门）界面
-    public static final String POPULAR ="http://baobaoapi.ldlchat.com/Home/Backlist/bagtolist.html";
-    public static final String LOGURL="http://baobaoapi.ldlchat.com";
-    public static final String CHECK_RECEIVING = "http://baobaoapi.ldlchat.com/Home/Personalcenter/getUserContent.html";
+    public static final String POPULAR ="https://baobaoapi.ldlchat.com/Home/Backlist/bagtolist.html";
+    public static final String LOGURL="https://baobaoapi.ldlchat.com";
+    public static final String CHECK_RECEIVING = "https://baobaoapi.ldlchat.com/Home/Personalcenter/getUserContent.html";
 /*
 * check
 Receiving
@@ -83,11 +83,13 @@ Receiving
     public static final String TOKEN = "TOKEN";
     //上传头像
 //
-    public static final String UPDATA_IMG = "http://baobaoapi.ldlchat.com/Home/My/uploadheaderimg.html";
+    public static final String UPDATA_IMG = "https://baobaoapi.ldlchat.com/Home/My/uploadheaderimg.html";
 //    public static final String UPDATA_IMG = "http://baobaoapi.ldlchat.com/Home/Public/upheaderimg.html";
     //上传头像
 //    public static final String UPDATA_IMG = "http://baobaoapi.ldlchat.com/Home/Public/upheaderimg.html";
 
     //popo
-    public static final String JIAZHEN="http://baobaoapi.ldlchat.com/Home/Backlist/bagtolist.html";
+    public static final String JIAZHEN="https://baobaoapi.ldlchat.com/Home/Backlist/bagtolist.html";
+    //上传文字和包包图片
+    public static final String RELEASE_TEXT_BAG = "https://baobaoapi.ldlchat.com/Home/Userupload/publishbag.html";
 }

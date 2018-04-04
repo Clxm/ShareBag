@@ -150,7 +150,7 @@ public class PersonalActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
 
-        String url="http://baobaoapi.ldlchat.com/Home/my/getprofile.html";
+        String url="https://baobaoapi.ldlchat.com/Home/my/getprofile.html";
         Map<String,String> map=new HashMap<>();
 //SBUrls.APPID
 
@@ -490,7 +490,16 @@ public class PersonalActivity extends BaseActivity {
         super.onDestroy();
         //取消event注册
         EventBus.getDefault().unregister(this);
+        if (window1 != null) {
+            window1.dismiss();
+        }
     }
 
-
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (window1 != null) {
+            window1.dismiss();
+        }
+    }
 }

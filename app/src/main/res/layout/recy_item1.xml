@@ -1,26 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="496px"
-    android:layout_height="580px"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+              android:padding="6dp"
     android:background="#F2F2F2"
     android:orientation="vertical">
 
 
     <LinearLayout
-        android:layout_marginTop="13px"
-        android:layout_marginBottom="13px"
-        android:layout_marginLeft="10px"
-        android:layout_marginRight="10px"
-        android:layout_width="496px"
-        android:layout_height="580px"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/x565"
         android:orientation="vertical"
         android:background="#FFF">
 
 
         <ImageView
             android:id="@+id/recyler_commodity"
-            android:layout_width="match_parent"
-            android:layout_height="300px"
+            android:layout_width="@dimen/x496"
+            android:layout_height="@dimen/x384"
           android:scaleType="fitXY"
             android:src="@drawable/mo1"/>
 
@@ -36,9 +33,10 @@
                 android:id="@+id/recyler_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="10dp"
                 android:text="品牌品牌品牌品牌"
-                android:textSize="15sp"
+                android:textSize="14sp"
+                android:textColor="@color/selectf_bag_name"
                 android:maxEms="5"
                 android:singleLine="true"/>
 
@@ -51,7 +49,7 @@
                 android:id="@+id/recyler_Collection"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="20dp"
+                android:layout_marginRight="10dp"
                 android:src="@mipmap/shoucang1"
                 />
 
@@ -61,6 +59,7 @@
 
         <LinearLayout
             android:layout_marginTop="35px"
+            android:layout_marginBottom="4dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -71,10 +70,10 @@
                 android:layout_height="wrap_content"
                 android:layout_alignStart="@+id/recyler_name"
                 android:layout_below="@+id/recyler_Collection"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="10dp"
                 android:text="￥"
                 android:textColor="#FD7872"
-                android:textSize="13sp" />
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/recyler_price"
@@ -85,7 +84,7 @@
                 android:layout_toEndOf="@+id/recyler_text1"
                 android:text="200/3天"
                 android:textColor="#FD7872"
-                android:textSize="13sp" />
+                android:textSize="12sp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -99,7 +98,8 @@
                 android:layout_alignBottom="@+id/recyler_text1"
                 android:layout_toStartOf="@+id/recyler_Collection"
                 android:text="原价："
-                android:textColor="#838383" />
+                android:textSize="12sp"
+                android:textColor="@color/selectf_original_price" />
 
             <TextView
                 android:id="@+id/recyler_money"
@@ -107,9 +107,10 @@
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/recyler_price"
                 android:layout_alignEnd="@+id/recyler_Collection"
-                android:layout_marginRight="20dp"
+                android:layout_marginRight="10dp"
                 android:text="5000"
-                android:textColor="#838383" />
+                android:textSize="12sp"
+                android:textColor="@color/selectf_original_price" />
 
 
         </LinearLayout>

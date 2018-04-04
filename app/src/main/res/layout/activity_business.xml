@@ -12,16 +12,16 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="100px"
+        android:layout_height="@dimen/x144"
         android:id="@+id/relativeLayout2">
 
         <ImageView
             android:id="@+id/business_return"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="20dp"
+            android:layout_height="18dp"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
-            android:layout_marginStart="50px"
+            android:layout_marginLeft="10dp"
             android:src="@mipmap/xiaoyuhei" />
 
 
@@ -31,11 +31,15 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:text="商务合作"
-            android:textSize="50px"
-            android:textColor="#000"/>
+            android:textSize="@dimen/x46"
+            android:textColor="@color/navigation_bar_text_color"/>
 
 
     </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x4"
+        android:background="@color/navigation_bar_line_color"/>
 
 
         <WebView

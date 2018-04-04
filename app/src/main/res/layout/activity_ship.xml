@@ -9,7 +9,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="126px">
+        android:layout_height="@dimen/x144">
 
         <ImageView
             android:id="@+id/ship_return"
@@ -25,8 +25,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=""
-            android:textSize="46px"
-            android:textColor="#2b2b2b"
+            android:textSize="@dimen/x46"
+            android:textColor="@color/navigation_bar_text_color"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true" />
     </RelativeLayout>

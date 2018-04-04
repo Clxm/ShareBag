@@ -13,7 +13,7 @@
     <RelativeLayout
         android:background="#FFF"
         android:layout_width="match_parent"
-        android:layout_height="140px">
+        android:layout_height="@dimen/x144">
 
 
         <ImageView
@@ -21,9 +21,8 @@
             android:id="@+id/redcoupons_return"
             android:layout_width="31px"
             android:layout_height="56px"
-            android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
-            android:layout_marginStart="30px"
+            android:layout_marginLeft="10dp"
             android:src="@mipmap/xiaoyuhei" />
 
 
@@ -33,8 +32,8 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:text="红包卷"
-            android:textColor="#000"
-            android:textSize="51px" />
+            android:textColor="@color/navigation_bar_text_color"
+            android:textSize="@dimen/x46" />
 
     </RelativeLayout>
 

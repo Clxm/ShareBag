@@ -327,6 +327,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 //                Toast.makeText(MainActivity.this, "点击了上传", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(MainActivity.this, UploadActivity.class);
                 startActivity(intent);
+                window.dismiss();
 
             }
         });
@@ -340,7 +341,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
            //发布包包大人界面
                 Intent intent = new Intent(MainActivity.this, ReleaseActivity.class);
                 startActivity(intent);
-
+                window.dismiss();
 
 
             }
@@ -353,5 +354,22 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     public void onRequestPermissionsResult(int requestCode,
                                            String permissions[], int[] grantResults) {
 
+    }
+
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (window != null) {
+            window.dismiss();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (window != null) {
+            window.dismiss();
+        }
     }
 }

@@ -42,7 +42,7 @@ public class RentActivity extends AppCompatActivity {
     private static final int SDK_PAY_FLAG = 1;
     private static final int SDK_AUTH_FLAG = 2;
     //支付
-    public static final String PAY ="http://baobaoapi.ldlchat.com/index.php?s=/Home/Pay/alipaystodo.html";
+    public static final String PAY ="https://baobaoapi.ldlchat.com/index.php?s=/Home/Pay/alipaystodo.html";
     //APP_ID
     public static final String APPID = "2018010201523821";
     //PID

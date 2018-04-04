@@ -56,7 +56,7 @@ public class ReleaseAdapter extends RecyclerView.Adapter<ReleaseAdapter.ViewHold
             public void onClick(View view) {
 
                 Intent intent = new Intent(context,Release.class);
-//                intent.putExtra("id",list.get(position).getId()+"");
+                intent.putExtra("id",list.get(position).getId()+"");
 //                跳转这样写
                 context.startActivity(intent);
 

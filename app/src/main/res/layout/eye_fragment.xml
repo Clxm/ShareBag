@@ -6,7 +6,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="126px">
+        android:layout_height="@dimen/x144">
 
         <TextView
             android:layout_width="wrap_content"
@@ -14,8 +14,8 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:text="@string/collection_collection"
-            android:textSize="46px"
-            android:textColor="#2b2b2b"
+            android:textSize="@dimen/x46"
+            android:textColor="@color/navigation_bar_text_color"
             />
 
 
@@ -27,16 +27,17 @@
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:layout_marginEnd="12dp"
+            android:textColor="@color/navigation_bar_text_color"
             android:text="@string/collection_management"
-            android:textSize="40px"/>
+            android:textSize="@dimen/x40"/>
 
 
     </RelativeLayout>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="4px"
-        android:background="#dedede" />
+        android:layout_height="@dimen/x4"
+        android:background="@color/navigation_bar_line_color" />
 <ScrollView
     android:layout_weight="1"
     android:layout_width="match_parent"
@@ -54,12 +55,12 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="150px"
+            android:layout_height="@dimen/x144"
             android:gravity="center"
             android:text="猜你喜欢"
             android:background="#FFF"
-            android:textSize="46px"
-            android:textColor="#2C2C2C"/>
+            android:textSize="@dimen/x46"
+            android:textColor="@color/navigation_bar_text_color"/>
         <android.support.v7.widget.RecyclerView
             android:id="@+id/collection_recycler2"
             android:layout_width="match_parent"

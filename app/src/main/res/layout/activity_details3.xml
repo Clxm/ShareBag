@@ -12,16 +12,15 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="126px">
+        android:layout_height="@dimen/x144">
 
 
         <ImageView
             android:id="@+id/Details_return"
-            android:layout_width="27px"
-            android:layout_height="42px"
-            android:layout_alignParentStart="true"
+            android:layout_width="20dp"
+            android:layout_height="18dp"
             android:layout_centerVertical="true"
-            android:layout_marginStart="32px"
+            android:layout_marginLeft="10dp"
             android:src="@mipmap/xiaoyu3" />
 
 
@@ -31,8 +30,8 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:text="详情"
-            android:textSize="46px"
-            android:textColor="#2b2b2b"/>
+            android:textSize="@dimen/x46"
+            android:textColor="@color/navigation_bar_text_color"/>
         <!--android:textStyle="bold"-->
 
 
@@ -43,7 +42,7 @@
             android:scaleType="fitXY"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:layout_marginEnd="32px"
+            android:layout_marginRight="10dp"
             android:src="@mipmap/fenxiang02" />
 
 
@@ -51,8 +50,8 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="4px"
-        android:background="#dedede" />
+        android:layout_height="@dimen/x4"
+        android:background="@color/navigation_bar_line_color" />
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

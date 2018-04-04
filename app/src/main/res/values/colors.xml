@@ -7,8 +7,11 @@
     <color name="color_00BADB">#00BADB</color>
     <color name="color_White">#FFF</color>
     <color name="color_black">#000</color>
-
-
-
+    <color name="main_color">#FC655E</color>
+    <color name="selectf_bag_name">#1D1D1D</color>
+    <color name="selectf_original_price">#7F7F7F</color>
+    <color name="navigation_bar_text_color">#303030</color>
+    <color name="navigation_bar_line_color">#E2E2E2</color>
+    <color name="cutting_line">#F0F0F0</color>
 
 </resources>

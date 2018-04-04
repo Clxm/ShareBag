@@ -11,14 +11,14 @@
     <RelativeLayout
         android:background="#FFF"
         android:layout_width="match_parent"
-        android:layout_height="194px">
+        android:layout_height="@dimen/x144">
 
         <ImageView
             android:id="@+id/address_return"
-            android:layout_width="50px"
-            android:layout_height="wrap_content"
+            android:layout_width="20dp"
+            android:layout_height="18dp"
             android:src="@mipmap/xiaoyu3"
-            android:layout_marginStart="27dp"
+            android:layout_marginLeft="10dp"
             android:layout_centerVertical="true"
             android:layout_alignParentStart="true" />
 
@@ -29,7 +29,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="添加新的收货地址"
-            android:textSize="50px"
+            android:textSize="@dimen/x46"
+            android:textColor="@color/navigation_bar_text_color"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true" />
 
@@ -37,13 +38,15 @@
         <TextView
             android:id="@+id/address_save"
             android:gravity="center"
-            android:layout_width="100px"
-            android:layout_height="100px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
             android:text="@string/save"
-            android:textSize="45px"
+            android:textColor="@color/navigation_bar_text_color"
+            android:textSize="@dimen/x46"
             android:layout_centerVertical="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="36px" />
+            android:layout_marginRight="10dp"/>
 
 
 
@@ -55,22 +58,22 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="2px"
-        android:background="#D7D7D7"/>
+        android:layout_height="@dimen/x4"
+        android:background="@color/navigation_bar_line_color"/>
 
 <LinearLayout
     android:gravity="center_vertical"
     android:layout_width="match_parent"
-    android:layout_height="140px">
+    android:layout_height="50dp">
 
 
 
 <TextView
-    android:layout_marginLeft="96px"
-    android:layout_width="wrap_content"
+    android:layout_marginLeft="10dp"
+    android:layout_width="60dp"
     android:layout_height="wrap_content"
     android:text="联系人"
-    android:textSize="50px"
+    android:textSize="16sp"
     android:textColor="#454545"/>
 
 
@@ -79,11 +82,13 @@
     <EditText
         android:id="@+id/address_name"
         android:background="@null"
-        android:layout_marginLeft="110px"
-        android:layout_width="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_width="0dp"
+        android:layout_weight="1"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:hint="姓名"
-        android:textSize="40px"
+        android:textSize="14sp"
         android:textColor="#C8C8C8"/>
 
 
@@ -98,16 +103,16 @@
     <LinearLayout
         android:gravity="center_vertical"
         android:layout_width="match_parent"
-        android:layout_height="140px">
+        android:layout_height="50dp">
 
 
 
         <TextView
-            android:layout_marginLeft="96px"
-            android:layout_width="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:text="电话"
-            android:textSize="50px"
+            android:textSize="16sp"
             android:textColor="#454545"/>
 
 
@@ -116,11 +121,11 @@
         <EditText
             android:id="@+id/address_phone"
             android:background="@null"
-            android:layout_marginLeft="110px"
+            android:layout_marginLeft="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="收货人电话"
-            android:textSize="40px"
+            android:textSize="14sp"
             android:textColor="#C8C8C8"/>
 
 
@@ -137,16 +142,16 @@
         android:id="@+id/address_layout_city"
         android:gravity="center_vertical"
         android:layout_width="match_parent"
-        android:layout_height="140px">
+        android:layout_height="50dp">
 
 
 
         <TextView
-            android:layout_marginLeft="96px"
-            android:layout_width="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:text="城市"
-            android:textSize="50px"
+            android:textSize="16sp"
             android:textColor="#454545"/>
 
 
@@ -154,11 +159,11 @@
 
         <TextView
             android:id="@+id/address_city"
-            android:layout_marginLeft="110px"
+            android:layout_marginLeft="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="选择收获地址"
-            android:textSize="40px"
+            android:textSize="14sp"
             android:textColor="#C8C8C8"/>
 
 
@@ -175,16 +180,16 @@
     <LinearLayout
         android:gravity="center_vertical"
         android:layout_width="match_parent"
-        android:layout_height="140px">
+        android:layout_height="50dp">
 
 
 
         <TextView
-            android:layout_marginLeft="96px"
-            android:layout_width="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:text="地址"
-            android:textSize="50px"
+            android:textSize="16sp"
             android:textColor="#454545"/>
 
 
@@ -193,15 +198,20 @@
         <EditText
             android:id="@+id/address_address"
             android:background="@null"
-            android:layout_marginLeft="110px"
+            android:layout_marginLeft="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="详细地址"
-            android:textSize="40px"
+            android:textSize="14sp"
             android:textColor="#C8C8C8"/>
-
-
     </LinearLayout>
+
+    <View
+        android:layout_marginLeft="32px"
+        android:layout_marginRight="32px"
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:background="#D7D7D7"/>
 
 
 </LinearLayout>

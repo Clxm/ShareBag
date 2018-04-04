@@ -11,16 +11,15 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="128px"
+        android:layout_height="@dimen/x144"
         android:background="#FFF">
 
         <ImageView
             android:id="@+id/rent_return"
-            android:layout_width="50px"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
+            android:layout_width="20dp"
+            android:layout_height="18dp"
             android:layout_centerVertical="true"
-            android:layout_marginStart="32px"
+            android:layout_marginLeft="10dp"
             android:src="@mipmap/xiaoyu3" />
 
 
@@ -30,16 +29,15 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:text="@string/confirm_rent"
-            android:textColor="#616267"
-            android:textSize="51px"
-            android:textStyle="bold" />
+            android:textColor="@color/navigation_bar_text_color"
+            android:textSize="@dimen/x46" />
 
     </RelativeLayout>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="2px"
-        android:background="#D9D9D9" />
+        android:layout_height="@dimen/x4"
+        android:background="@color/navigation_bar_line_color" />
 
     <ScrollView
         android:layout_weight="1"
@@ -390,16 +388,6 @@
 
             </LinearLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="40px"
-                android:background="#F2F2F2" />
-
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="44px"
-                android:background="#F2F2F2" />
 
             <LinearLayout
                 android:layout_width="match_parent"

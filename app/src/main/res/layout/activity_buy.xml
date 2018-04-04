@@ -11,16 +11,15 @@
     
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="194px">
+        android:layout_height="@dimen/x144">
 
         <ImageView
             android:id="@+id/buy_return"
-            android:layout_width="50px"
-            android:layout_height="wrap_content"
+            android:layout_width="20dp"
+            android:layout_height="18dp"
             android:src="@mipmap/xiaoyu3"
-            android:layout_marginStart="27dp"
-            android:layout_centerVertical="true"
-            android:layout_alignParentStart="true" />
+            android:layout_marginLeft="10dp"
+            android:layout_centerVertical="true" />
 
 
 
@@ -28,7 +27,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/confirm_buy"
-            android:textSize="50px"
+            android:textSize="@dimen/x46"
+            android:textColor="@color/navigation_bar_text_color"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true" />
 
@@ -39,8 +39,8 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="2px"
-        android:background="#D9D9D9" />
+        android:layout_height="@dimen/x4"
+        android:background="@color/navigation_bar_line_color"/>
 
     <ScrollView
         android:layout_weight="1"

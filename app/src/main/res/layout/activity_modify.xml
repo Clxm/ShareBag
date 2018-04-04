@@ -11,14 +11,14 @@
     <RelativeLayout
         android:background="#FFF"
         android:layout_width="match_parent"
-        android:layout_height="194px">
+        android:layout_height="@dimen/x144">
 
         <ImageView
             android:id="@+id/modify_return"
-            android:layout_width="50px"
-            android:layout_height="wrap_content"
+            android:layout_width="20dp"
+            android:layout_height="18dp"
             android:src="@mipmap/xiaoyu3"
-            android:layout_marginStart="27dp"
+            android:layout_marginLeft="10dp"
             android:layout_centerVertical="true"
             android:layout_alignParentStart="true" />
 
@@ -29,7 +29,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="修改收货地址"
-            android:textSize="50px"
+            android:textSize="@dimen/x46"
+            android:textColor="@color/navigation_bar_text_color"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true" />
 
@@ -40,10 +41,11 @@
             android:layout_width="100px"
             android:layout_height="100px"
             android:text="@string/save"
-            android:textSize="40px"
+            android:textSize="@dimen/x40"
+            android:textColor="@color/navigation_bar_text_color"
             android:layout_centerVertical="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="36px" />
+            android:layout_marginRight="10dp"/>
 
 
 
@@ -55,8 +57,8 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="2px"
-        android:background="#D7D7D7"/>
+        android:layout_height="@dimen/x4"
+        android:background="@color/navigation_bar_line_color"/>
 
     <LinearLayout
         android:gravity="center_vertical"

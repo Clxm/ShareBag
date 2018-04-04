@@ -9,16 +9,14 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="128px">
+        android:layout_height="@dimen/x144">
 
         <ImageView
             android:id="@+id/Share_return"
-            android:layout_width="32px"
-            android:layout_height="51px"
-            android:scaleType="fitXY"
-            android:layout_alignParentStart="true"
+            android:layout_width="20dp"
+            android:layout_height="18dp"
+            android:layout_marginLeft="10dp"
             android:layout_centerVertical="true"
-            android:layout_marginStart="32px"
             android:src="@mipmap/xiaoyuhei" />
 
         <TextView
@@ -27,8 +25,8 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:text="分享一位小主"
-            android:textSize="52px"
-            android:textColor="#424242"/>
+            android:textSize="@dimen/x46"
+            android:textColor="@color/navigation_bar_text_color"/>
 
 
     </RelativeLayout>

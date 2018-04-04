@@ -12,14 +12,14 @@
     <RelativeLayout
         android:background="#FFF"
         android:layout_width="match_parent"
-        android:layout_height="128px">
+        android:layout_height="@dimen/x144">
 
         <ImageView
             android:id="@+id/phone_return"
             android:layout_width="50px"
             android:layout_height="wrap_content"
             android:src="@mipmap/xiaoyu3"
-            android:layout_marginStart="27dp"
+            android:layout_marginLeft="10dp"
             android:layout_centerVertical="true"
             android:layout_alignParentStart="true" />
 
@@ -29,7 +29,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/modify_number"
-            android:textSize="50px"
+            android:textSize="@dimen/x46"
+            android:textColor="@color/navigation_bar_text_color"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true" />
 
@@ -44,15 +45,15 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="110px"
+        android:layout_height="@dimen/x110"
         android:gravity="center_vertical">
 
    <TextView
-       android:layout_marginLeft="36px"
+       android:layout_marginLeft="10dp"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
        android:text="请输入你需要绑定的新手机号"
-       android:textSize="31px"
+       android:textSize="12sp"
        android:textColor="#808080" />
 
     </LinearLayout>
@@ -60,22 +61,24 @@
 
 
     <LinearLayout
-        android:paddingLeft="36px"
         android:background="#FFF"
         android:layout_width="match_parent"
-        android:layout_height="110px"
+        android:layout_height="50dp"
         android:gravity="center_vertical">
 
        <TextView
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
+           android:layout_marginLeft="10dp"
+           android:textColor="@color/navigation_bar_text_color"
+           android:textSize="16sp"
            android:text="@string/personal_phone"/>
 
 
 
         <EditText
             android:id="@+id/phone_phone"
-            android:layout_marginLeft="36px"
+            android:layout_marginLeft="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@null"
@@ -88,23 +91,26 @@
 
 
     <LinearLayout
-        android:paddingRight="98px"
-        android:paddingLeft="36px"
+        android:layout_marginTop="1dp"
         android:background="#FFF"
         android:layout_width="match_parent"
-        android:layout_height="110px"
+        android:layout_height="50dp"
         android:gravity="center_vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/navigation_bar_text_color"
             android:text="@string/verificationcode"/>
 
 
         <EditText
             android:id="@+id/phonre_verification"
             android:layout_weight="1"
-            android:layout_marginLeft="36px"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@null"
@@ -117,6 +123,8 @@
             android:background="@drawable/frame"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:layout_marginRight="20dp"
             android:text="@string/verification2"/>
 
 
@@ -130,8 +138,8 @@
 
     <Button
         android:id="@+id/phone_confirm"
-        android:layout_width="864px"
-        android:layout_height="145px"
+        android:layout_width="@dimen/x864"
+        android:layout_height="@dimen/x145"
         android:text="@string/confirm"
         android:textColor="#FFF"
         android:textSize="51px"

@@ -194,7 +194,6 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
                 selectedRecyclerview.setAdapter(adapter);
 
 
-
                 adapter.notifyDataSetChanged();
             }
 

@@ -179,7 +179,7 @@ public class HomeFragment extends BaseFragment {
 
 //            baobaoapi.ldlchat.com/Home/Cabinet/falsemasterlist.html
         Map<String,String> stringMap=new HashMap<>();
-            String strurl="http://baobaoapi.ldlchat.com/Home/Cabinet/falsemasterlist.html";
+            String strurl="https://baobaoapi.ldlchat.com/Home/Cabinet/falsemasterlist.html";
             OkHttpUtils.getInstance().post(strurl, stringMap, new MyNetWorkCallback<HomeTalentBean>() {
                 @Override
                 public void onSuccess(HomeTalentBean homeTalentBean) throws JSONException {

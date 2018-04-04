@@ -10,7 +10,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="126px"
+        android:layout_height="@dimen/x144"
         android:id="@+id/relativeLayout">
 
 
@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
-            android:layout_marginStart="60px"
+            android:layout_marginLeft="10dp"
             android:src="@mipmap/xiaoyu3" />
 
 
@@ -30,16 +30,16 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:text="@string/registered_forget"
-            android:textSize="46px"
-            android:textColor="#2b2b2b"/>
+            android:textSize="@dimen/x46"
+            android:textColor="@color/navigation_bar_text_color"/>
 
     </RelativeLayout>
 
     <View
         android:layout_below="@+id/relativeLayout"
         android:layout_width="match_parent"
-        android:layout_height="4px"
-        android:background="#dedede"/>
+        android:layout_height="@dimen/x4"
+        android:background="@color/navigation_bar_line_color"/>
 
 
     <ScrollView

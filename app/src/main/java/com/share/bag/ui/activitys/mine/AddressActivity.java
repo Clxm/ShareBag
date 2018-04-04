@@ -111,6 +111,8 @@ public class AddressActivity extends AppCompatActivity implements View.OnClickLi
                 .setDividerColor(Color.GRAY)
                 .setTextColorCenter(Color.GRAY)
                 .setContentTextSize(13)
+                .setSubmitColor(Color.parseColor("#FC655E"))
+                .setCancelColor(Color.parseColor("#FC655E"))
                 .setOutSideCancelable(false)
                 .build();
           /*pvOptions.setPicker(options1Items);//一级选择器

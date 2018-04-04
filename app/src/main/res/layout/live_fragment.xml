@@ -6,11 +6,13 @@
     android:orientation="vertical">
 
     <LinearLayout
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:background="#F7F7F7"
+        android:padding="4dp"
         android:gravity="center"
         android:layout_marginLeft="35px"
         android:layout_marginRight="35px">
@@ -19,7 +21,7 @@
             android:layout_weight="1"
             android:id="@+id/search_et_input"
             android:layout_width="match_parent"
-            android:layout_height="86px"
+            android:layout_height="@dimen/x100"
             android:layout_gravity="center_vertical"
             android:background="#F7F7F7"
             android:drawableLeft="@drawable/fangdaxiao"
@@ -40,7 +42,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="120px"
-        android:layout_marginTop="20px"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="6dp"
         android:background="#FFF">
 
         <LinearLayout
@@ -51,11 +54,12 @@
             android:gravity="center">
 
             <TextView
+                android:id="@+id/textView3"
+                android:textColor="@color/main_color"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:text="热门" />
+                android:layout_centerVertical="true" android:text="热门"/>
 
 
         </LinearLayout>
@@ -71,12 +75,13 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/main_color"
                 android:text="价格" />
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/jiagexiao" />
+                android:src="@mipmap/selectf_price_red" />
 
         </LinearLayout>
 
@@ -89,6 +94,7 @@
             android:gravity="center">
 
             <TextView
+                android:textColor="@color/main_color"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="筛选" />
@@ -96,7 +102,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/shaixuanxiao" />
+                android:src="@mipmap/selectf_filter_red" />
 
         </LinearLayout>
 

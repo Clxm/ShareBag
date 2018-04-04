@@ -13,16 +13,15 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="126px">
+        android:layout_height="@dimen/x144">
 
         <ImageView
             android:id="@+id/personal_return"
-            android:layout_width="27px"
-            android:layout_height="42px"
+            android:layout_width="20dp"
+            android:layout_height="18dp"
+            android:layout_marginLeft="10dp"
             android:src="@mipmap/xiaoyu3"
-            android:layout_marginStart="27dp"
-            android:layout_centerVertical="true"
-            android:layout_alignParentStart="true" />
+            android:layout_centerVertical="true" />
 
 
 
@@ -30,8 +29,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/data"
-            android:textSize="46px"
-            android:textColor="#2b2b2b"
+            android:textSize="@dimen/x46"
+            android:textColor="@color/navigation_bar_text_color"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true" />
 
@@ -43,29 +42,30 @@
 
 <View
     android:layout_width="match_parent"
-    android:layout_height="2px"
-    android:background="#EDEDED"/>
+    android:layout_height="@dimen/x4"
+    android:background="@color/navigation_bar_line_color"/>
 
 
 <!--头像-->
     <RelativeLayout
         android:id="@+id/personal_avatar"
         android:layout_width="match_parent"
-        android:layout_height="174px">
+        android:layout_height="50dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
-            android:layout_marginStart="36px"
+            android:textColor="@color/navigation_bar_text_color"
+            android:textSize="16sp"
+            android:layout_marginLeft="10dp"
             android:text="@string/avatar" />
 
 
         <ImageView
             android:id="@+id/personal_avatar1"
-            android:layout_width="124px"
-            android:layout_height="124px"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_centerVertical="true"
             android:layout_marginEnd="44px"
             android:layout_toStartOf="@+id/imageView8"
@@ -93,16 +93,17 @@
     <RelativeLayout
         android:id="@+id/personal_phone"
         android:layout_width="match_parent"
-        android:layout_height="134px">
+        android:layout_height="50dp">
 
         <TextView
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/phone"
-            android:layout_centerVertical="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="50px" />
+            android:textColor="@color/navigation_bar_text_color"
+            android:textSize="16sp"
+            android:layout_marginLeft="10dp"
+            android:layout_centerVertical="true" />
 
 
 
@@ -142,15 +143,17 @@
     <RelativeLayout
         android:id="@+id/personal_nickname"
         android:layout_width="match_parent"
-        android:layout_height="134px">
+        android:layout_height="50dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/nickname"
+            android:textColor="@color/navigation_bar_text_color"
+            android:textSize="16sp"
+            android:layout_marginLeft="10dp"
             android:layout_centerVertical="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="50px" />
+            android:layout_alignParentStart="true" />
 
 
 <TextView
@@ -189,51 +192,62 @@
     <RelativeLayout
         android:id="@+id/personal_signature"
         android:layout_width="match_parent"
-        android:layout_height="134px">
+        android:layout_height="50dp">
 
         <TextView
             android:id="@+id/textView17"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
-            android:layout_marginStart="50px"
+            android:textColor="@color/navigation_bar_text_color"
+            android:textSize="16sp"
+            android:layout_marginLeft="10dp"
             android:text="@string/signature" />
 
 
         <TextView
             android:id="@+id/textView15"
-            android:layout_width="146px"
-            android:layout_height="78px"
-            android:layout_marginEnd="10dp"
-            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_centerVertical="true"
             android:text="爱包"
             android:background="#F2F2F2"
-            android:layout_alignBaseline="@+id/textView17"
-            android:layout_alignBottom="@+id/textView17"
-            android:layout_toStartOf="@+id/imageView12" />
+            android:textSize="14sp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp"
+            android:layout_toLeftOf="@+id/imageView12"
+            />
 
         <TextView
             android:id="@+id/textView16"
-            android:layout_width="146px"
-            android:layout_height="78px"
-            android:layout_alignBaseline="@+id/textView17"
-            android:layout_alignBottom="@+id/textView17"
-            android:layout_marginEnd="7dp"
-            android:layout_toStartOf="@+id/textView15"
-            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/textView15"
+            android:layout_marginRight="10dp"
             android:text="小资"
             android:background="#F2F2F2"/>
 
 
         <TextView
             android:background="#F2F2F2"
-            android:layout_width="146px"
-            android:layout_height="78px"
-            android:layout_alignBaseline="@+id/textView17"
-            android:layout_alignBottom="@+id/textView17"
-            android:layout_centerHorizontal="true"
-            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp"
+            android:textSize="14sp"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@+id/textView16"
+            android:layout_centerVertical="true"
             android:text="白领" />
 
         <ImageView

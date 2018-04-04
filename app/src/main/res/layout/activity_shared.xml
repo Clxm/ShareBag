@@ -11,15 +11,14 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="126px">
+        android:layout_height="@dimen/x144">
 
         <ImageView
             android:id="@+id/shared_return"
-            android:layout_width="27px"
-            android:layout_height="42px"
-            android:layout_alignParentStart="true"
+            android:layout_width="20dp"
+            android:layout_height="18dp"
             android:layout_centerVertical="true"
-            android:layout_marginStart="34px"
+            android:layout_marginLeft="10dp"
             android:src="@mipmap/xiaoyu3" />
 
 
@@ -29,8 +28,8 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:text="共享包包"
-            android:textSize="46px"
-            android:textColor="#2b2b2b"/>
+            android:textSize="@dimen/x46"
+            android:textColor="@color/navigation_bar_text_color"/>
 
 
     </RelativeLayout>
@@ -38,8 +37,8 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="4px"
-        android:background="#dedede"/>
+        android:layout_height="@dimen/x4"
+        android:background="@color/navigation_bar_line_color"/>
 
 
     <android.support.v7.widget.RecyclerView

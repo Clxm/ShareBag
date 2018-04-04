@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -38,7 +39,7 @@ public class TalentActivity extends AppCompatActivity {
 
     private void initdata() {
 
-            String  str="http://baobaoapi.ldlchat.com/Home/Cabinet/masterlist.html";
+            String  str="https://baobaoapi.ldlchat.com/Home/Cabinet/masterlist.html";
             Map<String, String> map = new HashMap<>();
             try {
                 //请求网络
