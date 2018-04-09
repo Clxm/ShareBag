@@ -15,7 +15,6 @@ import com.umeng.socialize.UMShareAPI;
 
 public class APP extends Application{
 
-
     public static AppCompatActivity context;
 
     {//wx38f75c7fdb68b2bf
