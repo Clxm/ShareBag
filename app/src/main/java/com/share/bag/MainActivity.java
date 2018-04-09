@@ -38,7 +38,7 @@ import java.util.List;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
-    //网络状态工具类
+    //网络状态工具类1
     private Netwoke netwoke;
     //退出时的时间
     private long mExitTime;
