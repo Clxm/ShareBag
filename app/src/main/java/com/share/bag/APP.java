@@ -14,7 +14,7 @@ import com.umeng.socialize.UMShareAPI;
  */
 
 public class APP extends Application{
-
+    //提交测试
     public static AppCompatActivity context;
 
     {//wx38f75c7fdb68b2bf
