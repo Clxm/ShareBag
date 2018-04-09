@@ -75,7 +75,7 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
     private ImageView detalis_description_img1;
     private ImageView detalis_description_img2;
     private LinearLayout details_details_layout;
-//    private ImageView details_comment_avatar;
+    //    private ImageView details_comment_avatar;
 //    private TextView details_comment_name;
 //    private TextView details_comment_time;
 //    private TextView details_comment_signature1;
@@ -92,12 +92,12 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
     List<String> img1;
     private List<String> img2;
     private String tmp;
-//    private String description_1;
+    //    private String description_1;
     private List<String> heardimg = new ArrayList<>();
     private Banner details_banner;
     private TextView details_comment_number;
     private RecyclerView details_comment_layout_recy;
-//    List<CommentBean.DataBean> list = new ArrayList<>();
+    //    List<CommentBean.DataBean> list = new ArrayList<>();
     private CommentAdapter commentAdapter;
     private TextView details_comment_layout_text;
     private String comment_count1;
@@ -108,21 +108,18 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
     private EditText et_input_content;
 
 
-
-    private List<SelectedBean> mList=new ArrayList();
-    private List<SelectedBean> mLists=new ArrayList();
+    private List<SelectedBean> mList = new ArrayList();
+    private List<SelectedBean> mLists = new ArrayList();
     private PopularAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details3);
-        Intent intent = getIntent();
-
-        //      得到传过来的ID  通过id来取值
-        tmp= intent.getStringExtra("details");
-//        Toast.makeText(this, tmp, Toast.LENGTH_SHORT).show();
-
+        if (getIntent() != null) {
+            Intent intent = getIntent();
+            tmp = intent.getStringExtra("details");
+        }
         initView();
 //        details_comment_layout_recy.setNestedScrollingEnabled(false);
         FileUtil.SelectedreadFromPre(Details.this, details__user);
@@ -135,7 +132,6 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
                 finish();
             }
         });
-
 
 
         //详情
@@ -165,7 +161,7 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
 
                 if (comment_count1.equals("0")) {
                     details_comment_layout_text.setVisibility(View.VISIBLE);
-                }else {
+                } else {
                     getinitdatacomment();
                 }
             }
@@ -186,10 +182,6 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
                 getPopupWindow();
             }
         });
-
-
-
-
     }
 
     private void setPopupWindows() {
@@ -293,7 +285,7 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
 
                     try {
                         getselect();
-                    }catch(Exception e){
+                    } catch (Exception e) {
 //异常处理
                     }
 
@@ -305,18 +297,14 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
                     Intent intent = new Intent(Details.this, Login.class);
                     startActivity(intent);
                 } else {
-
-//                    Toast.makeText(this, ""+description_1, Toast.LENGTH_SHORT).show();
-
                     Intent rentloginintent = new Intent(Details.this, RentActivity.class);
-                    rentloginintent.putExtra("","");
-                    rentloginintent.putExtra("","");
-                    rentloginintent.putExtra("","");
-                    rentloginintent.putExtra("","");
-                    rentloginintent.putExtra("","");
-                    rentloginintent.putExtra("","");
-                    rentloginintent.putExtra("","");
-
+                    rentloginintent.putExtra("", "");
+                    rentloginintent.putExtra("", "");
+                    rentloginintent.putExtra("", "");
+                    rentloginintent.putExtra("", "");
+                    rentloginintent.putExtra("", "");
+                    rentloginintent.putExtra("", "");
+                    rentloginintent.putExtra("", "");
 
 
                     startActivity(rentloginintent);
@@ -343,14 +331,15 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
         OkHttpUtils.getInstance().post(SBUrls.COLLECTION, collection, new MyNetWorkCallback<CollectionBean>() {
             @Override
             public void onSuccess(CollectionBean collectionBean) {
-                String status = collectionBean.getInfo();
-                if (status.toString().equals("收藏成功")) {
-
-                    Toast.makeText(Details.this, "" + status, Toast.LENGTH_SHORT).show();
-
-                } else {
-                    Toast.makeText(Details.this, "" + status, Toast.LENGTH_SHORT).show();
-                }
+                Toast.makeText(Details.this, "点击收藏", Toast.LENGTH_SHORT).show();
+//                String status = collectionBean.getInfo();
+//                if (status.toString().equals("收藏成功")) {
+//
+//                    Toast.makeText(Details.this, "" + status, Toast.LENGTH_SHORT).show();
+//
+//                } else {
+//                    Toast.makeText(Details.this, "" + status, Toast.LENGTH_SHORT).show();
+//                }
 
 
             }
@@ -398,8 +387,6 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
         });
 
 
-
-
         details_share_wxfriends.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {//微信好友
@@ -412,9 +399,9 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
                 }
 
 
-                Toast.makeText(Details.this, ""+img2.get(0), Toast.LENGTH_SHORT).show();
-                Log.e("TAGBV",""+img2.get(0));
-                WXShareWeb(""+img2.get(0));
+                Toast.makeText(Details.this, "" + img2.get(0), Toast.LENGTH_SHORT).show();
+                Log.e("TAGBV", "" + img2.get(0));
+                WXShareWeb("" + img2.get(0));
                 window1.dismiss();
 
             }
@@ -433,7 +420,6 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
         details_share_qqfriends.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
 
 
                 QQShareWeb(R.drawable.fenxiang1);
@@ -465,8 +451,8 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
         });
     }
 
-    private void QQShareWeb(int thumb_img){
-        UMImage thumb = new UMImage(Details.this,thumb_img);
+    private void QQShareWeb(int thumb_img) {
+        UMImage thumb = new UMImage(Details.this, thumb_img);
         UMWeb web = new UMWeb("http://ywxz.ldlchat.com/fx/shop.html");
         web.setThumb(thumb);
         web.setDescription("这是一款应用共享的APP");
@@ -474,8 +460,8 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
         new ShareAction(Details.this).withMedia(web).setPlatform(SHARE_MEDIA.QQ).setCallback(shareListener).share();
     }
 
-    private void SinaShareWeb(int thumb_img){
-        UMImage thumb = new UMImage(Details.this,thumb_img);
+    private void SinaShareWeb(int thumb_img) {
+        UMImage thumb = new UMImage(Details.this, thumb_img);
         UMWeb web = new UMWeb("http://ywxz.ldlchat.com/fx/shop.html");
         web.setThumb(thumb);
         web.setDescription("这是一款应用共享的APP");
@@ -483,8 +469,8 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
         new ShareAction(Details.this).withMedia(web).setPlatform(SHARE_MEDIA.SINA).setCallback(shareListener).share();
     }
 
-    private void WXShareWeb(String thumb_img){//微信好友
-        UMImage thumb = new UMImage(Details.this,thumb_img);
+    private void WXShareWeb(String thumb_img) {//微信好友
+        UMImage thumb = new UMImage(Details.this, thumb_img);
         UMWeb web = new UMWeb("http://ywxz.ldlchat.com/fx/shop.html");
         web.setThumb(thumb);
         web.setDescription("");
@@ -492,8 +478,8 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
         new ShareAction(Details.this).withMedia(web).setPlatform(SHARE_MEDIA.WEIXIN).setCallback(shareListener).share();
     }
 
-    private void WXpengyouShareWeb(int thumb_img){
-        UMImage thumb = new UMImage(Details.this,thumb_img);
+    private void WXpengyouShareWeb(int thumb_img) {
+        UMImage thumb = new UMImage(Details.this, thumb_img);
         UMWeb web = new UMWeb("http://ywxz.ldlchat.com/fx/shop.html");
         web.setThumb(thumb);
         web.setDescription("这是一款应用共享的APP");
@@ -505,11 +491,10 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
                 .share();
 
 
-
-
     }
-    private void QzogShareWeb(int thumb_img){
-        UMImage thumb = new UMImage(Details.this,thumb_img);
+
+    private void QzogShareWeb(int thumb_img) {
+        UMImage thumb = new UMImage(Details.this, thumb_img);
         UMWeb web = new UMWeb("http://ywxz.ldlchat.com/fx/shop.html");
         web.setThumb(thumb);
         web.setDescription("这是一款应用共享的APP");
@@ -520,6 +505,7 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
                 .setCallback(shareListener)
                 .share();
     }
+
     private UMShareListener shareListener = new UMShareListener() {
         /**
          * @descrption 分享开始的回调
@@ -536,7 +522,7 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
          */
         @Override
         public void onResult(SHARE_MEDIA platform) {
-            Toast.makeText(Details.this,"成功了",Toast.LENGTH_LONG).show();
+            Toast.makeText(Details.this, "成功了", Toast.LENGTH_LONG).show();
         }
 
         /**
@@ -546,7 +532,7 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
          */
         @Override
         public void onError(SHARE_MEDIA platform, Throwable t) {
-            Toast.makeText(Details.this,"失败"+t.getMessage(),Toast.LENGTH_LONG).show();
+            Toast.makeText(Details.this, "失败" + t.getMessage(), Toast.LENGTH_LONG).show();
         }
 
         /**
@@ -555,10 +541,11 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
          */
         @Override
         public void onCancel(SHARE_MEDIA platform) {
-            Toast.makeText(Details.this,"取消了",Toast.LENGTH_LONG).show();
+            Toast.makeText(Details.this, "取消了", Toast.LENGTH_LONG).show();
 
         }
     };
+
     // 详情
     public void getinitData() {
 
@@ -566,106 +553,96 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
         Map<String, String> map = new HashMap<>();
         map.put("id", tmp);
 
+        OkHttpUtils.getInstance().post(SBUrls.DETAILSURL, map, new MyNetWorkCallback<DeailsBean>() {
+            @Override
+            public void onSuccess(DeailsBean deailsBean) {
+                img2 = deailsBean.getImg();
 
-        try {
-            //请求网络
-            OkHttpUtils.getInstance().post(SBUrls.DETAILSURL, map, new MyNetWorkCallback<DeailsBean>() {
-                @Override
-                public void onSuccess(DeailsBean deailsBean) {
-                    img2 = deailsBean.getImg();
+                List<String> img = deailsBean.getCarousel();//carousel
 
+                for (int i = 0; i < img.size(); i++) {
+                    String s = "https://" + img.get(i);//轮播图的网址
 
-                    List<String> img = deailsBean.getCarousel();//carousel
-
-                    for (int i = 0; i < img.size(); i++) {
-                        String s = "http://" + img.get(i);//轮播图的网址
-
-                        heardimg.add(s);
-                    }
-
-                    //         BannerHeader Show
-                    bannerHeaderShow();
-                    TabPageShow();
-
-                    img1 = deailsBean.getImg();
-
-
-                    String title = deailsBean.getTitle();//简介
-//                String deposit = deailsBean.getDeposit();//原价
-//                String nowprice = deailsBean.getNowprice();//租金
-                    String create_time = deailsBean.getCreate_time();
-                    String color = deailsBean.getColor();//颜色
-                    String material = deailsBean.getMaterial();//材质
-                    String title2 = deailsBean.getBagSize().getTitle();//尺寸
-                    comment_count1 = deailsBean.getComment_count();
-                    List<String> contentimg = deailsBean.getContentimg();
-                    String description_1 = "http://" +contentimg.get(0);
-                    String description_2 = "http://" +contentimg.get(1);
-
-
-
-                    details_comment_number.setText("("+ comment_count1 +")");
-                    detalis_colour.setText(color);
-                    detalis_brand.setText(title);
-                    detalis_numbering.setText(create_time);
-                    detalis_material.setText(material);
-                    detalis_size.setText(title2);
-
-                    Glide.with(Details.this).load(description_1).into(detalis_description_img1);
-                    Glide.with(Details.this).load(description_2).into(detalis_description_img2);
-
-
-
+                    heardimg.add(s);
                 }
 
-                private void TabPageShow() {
+                //         BannerHeader Show
+                bannerHeaderShow();
+                TabPageShow();
 
-                    //           Voluation  Tab
+                img1 = deailsBean.getImg();
+
+
+                String title = deailsBean.getTitle();//简介
+//                String deposit = deailsBean.getDeposit();//原价
+//                String nowprice = deailsBean.getNowprice();//租金
+                String create_time = deailsBean.getCreate_time();
+                String color = deailsBean.getColor();//颜色
+                String material = deailsBean.getMaterial();//材质
+                String title2 = deailsBean.getBagSize().getTitle();//尺寸
+                comment_count1 = deailsBean.getComment_count();
+                List<String> contentimg = deailsBean.getContentimg();
+                String description_1 = "https://" + contentimg.get(0);
+                String description_2 = "https://" + contentimg.get(1);
+
+
+                details_comment_number.setText("(" + comment_count1 + ")");
+                detalis_colour.setText(color);
+                detalis_brand.setText(title);
+                detalis_numbering.setText(create_time);
+                detalis_material.setText(material);
+                detalis_size.setText(title2);
+
+                Glide.with(Details.this).load(description_1).into(detalis_description_img1);
+                Glide.with(Details.this).load(description_2).into(detalis_description_img2);
+
+
+            }
+
+            private void TabPageShow() {
+
+                //           Voluation  Tab
 //                    tab.addTab(tab.newTab().setText(DETAILS));
 //                    tab.addTab(tab.newTab().setText(COMMENTS + "(+" + NUM + "+)"));
 
 //                    stringList.add(DETAILS);
 //                    stringList.add(COMMENTS);
 
-                    //界面
+                //界面
 //                    fragmentList.add(new DetalisFragment());//详情
 //                    fragmentList.add(new CommentsFragment());//评论
 
 //                    tab.setupWithViewPager(pager);
 
-                    //        Show  Adapter
+                //        Show  Adapter
 //                    mCosTomPageAdapter = new CosTomPageAdapter(fragmentManager, stringList, fragmentList);
 //                    pager.setAdapter(mCosTomPageAdapter);
 //                    pager.setCurrentItem(0);
 //                    pager.setCurrentItem(1);
 
-                }
+            }
 
-                private void bannerHeaderShow() {
+            private void bannerHeaderShow() {
 
-                    details_banner.setImages(heardimg)//添加图片集合或图片url集合
-                            .setDelayTime(2000)//设置轮播时间
-                            .setBannerStyle(BannerConfig.CIRCLE_INDICATOR)
-                            .setImageLoader(new GlideImage())//加载图片
-                            .setIndicatorGravity(BannerConfig.CENTER)//设置指示器位置
-                            .start();
-                }
+                details_banner.setImages(heardimg)//添加图片集合或图片url集合
+                        .setDelayTime(2000)//设置轮播时间
+                        .setBannerStyle(BannerConfig.CIRCLE_INDICATOR)
+                        .setImageLoader(new GlideImage())//加载图片
+                        .setIndicatorGravity(BannerConfig.CENTER)//设置指示器位置
+                        .start();
+            }
 
-                @Override
-                public void onError(int errorCode, String errorMsg) {
-                    Toast.makeText(Details.this, "Request unsuccessful", Toast.LENGTH_SHORT).show();
-                }
-            });
-
-        }catch(Exception e){
-//异常处理
-        }
-
+            @Override
+            public void onError(int errorCode, String errorMsg) {
+                Toast.makeText(Details.this, "Request unsuccessful", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
+
     //评论
     public void getinitdatacomment() {
         Map<String, String> map = new HashMap<>();
-        map.put("baglist_id",tmp+"");
+        map.put("baglist_id", tmp + "");
         try {
             //请求网络
             OkHttpUtils.getInstance().post(SBUrls.COMMENT, map, new MyNetWorkCallback<CommentBean>() {
@@ -673,8 +650,8 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
                 public void onSuccess(CommentBean commentBean) throws JSONException {
                     List<CommentBean.DataBean> data = commentBean.getData();
 
-                    details_comment_layout_recy.setLayoutManager(new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL));
-                    commentAdapter = new CommentAdapter(Details.this,data);
+                    details_comment_layout_recy.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL));
+                    commentAdapter = new CommentAdapter(Details.this, data);
                     details_comment_layout_recy.setAdapter(commentAdapter);
 
                 }
@@ -684,10 +661,10 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
 
                 }
             });
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
-                    }
+    }
 
     public void getpinglun() {
         String butttString = et_input_content.getText().toString().trim();
@@ -695,45 +672,19 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
             Toast.makeText(this, "butttString不能为空", Toast.LENGTH_SHORT).show();
             return;
         }
-        String  str="http://baobaoapi.ldlchat.com/index.php?s=/Home/comment/publish.html";
+        String str = "https://baobaoapi.ldlchat.com/index.php?s=/Home/comment/publish.html";
         Map<String, String> map = new HashMap<>();
 //        map.put("photo",null);
-        map.put("baglist_id",tmp+"");
-        map.put("content",butttString);
+        map.put("baglist_id", tmp + "");
+        map.put("content", butttString);
 //        try {
-            //请求网络
-            OkHttpUtils.getInstance().post(str, map, new MyNetWorkCallback<AddCommentBean>() {
-                @Override
-                public void onSuccess(AddCommentBean addComment) throws JSONException {
-                    pw.dismiss();
-
-                    getinitdatacomment();
-
-                }
-
-                @Override
-                public void onError(int errorCode, String errorMsg) {
-
-                }
-            });
-
-                    }
-
-    public void getinitData1() {
-
-String likeurl="http://baobaoapi.ldlchat.com/Home/Backcontent/ifyoulike.html";
-//                          baobaoapi.ldlchat.com/Home/Backcontent/ifyoulike.html
-        Map<String,String >stringMap= new HashMap<>();
-
-        OkHttpUtils.getInstance().post(SBUrls.LIKE, stringMap, new MyNetWorkCallback<LikeBean>() {
+        //请求网络
+        OkHttpUtils.getInstance().post(str, map, new MyNetWorkCallback<AddCommentBean>() {
             @Override
-            public void onSuccess(LikeBean likeBean) throws JSONException {
+            public void onSuccess(AddCommentBean addComment) throws JSONException {
+                pw.dismiss();
 
-                List<LikeBean.InfoBean> info = likeBean.getInfo();
-                details_like_recycler.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
-
-                LikeAdapter likeAdapter=new LikeAdapter(Details.this,info);
-                details_like_recycler.setAdapter(likeAdapter);
+                getinitdatacomment();
 
             }
 
@@ -743,12 +694,33 @@ String likeurl="http://baobaoapi.ldlchat.com/Home/Backcontent/ifyoulike.html";
             }
         });
 
+    }
+
+    public void getinitData1() {
+
+        String likeurl = "http://baobaoapi.ldlchat.com/Home/Backcontent/ifyoulike.html";
+//                          baobaoapi.ldlchat.com/Home/Backcontent/ifyoulike.html
+        Map<String, String> stringMap = new HashMap<>();
+
+        OkHttpUtils.getInstance().post(SBUrls.LIKE, stringMap, new MyNetWorkCallback<LikeBean>() {
+            @Override
+            public void onSuccess(LikeBean likeBean) throws JSONException {
+
+                List<LikeBean.InfoBean> info = likeBean.getInfo();
+                details_like_recycler.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+
+                LikeAdapter likeAdapter = new LikeAdapter(Details.this, info);
+                details_like_recycler.setAdapter(likeAdapter);
+            }
+
+            @Override
+            public void onError(int errorCode, String errorMsg) {
+
+            }
+        });
 
 
-
-
-                }
-
+    }
 
     //                      Banner Volder
     public class GlideImage extends ImageLoader {
@@ -757,13 +729,6 @@ String likeurl="http://baobaoapi.ldlchat.com/Home/Backcontent/ifyoulike.html";
             Glide.with(context.getApplicationContext()).load(path).into(imageView);
         }
     }
-
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        // TODO: add setContentView(...) invocation
-//        ButterKnife.bind(this);
-//    }
 
 
     @Override

@@ -2,6 +2,7 @@ package com.share.bag.ui.fragments.selected;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -14,6 +15,7 @@ import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
@@ -56,7 +58,7 @@ import static com.share.bag.R.id.DanJianTwo;
  */
 //选包
 public class SelectedFragment extends BaseFragment implements View.OnClickListener {
-@BindView(R.id.select_user)
+    @BindView(R.id.select_user)
     TextView select_user;
     @BindView(R.id.search_et_input)
     EditText searchEtInput;
@@ -71,6 +73,16 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
     LinearLayout searchPrice;
     @BindView(R.id.search_filter)
     LinearLayout searchFilter;
+    @BindView(R.id.tv_hot)
+    TextView mTvHot;
+    @BindView(R.id.tv_price)
+    TextView mTvPrice;
+    @BindView(R.id.iv_price)
+    ImageView mIvPrice;
+    @BindView(R.id.tv_filter)
+    TextView mTvFilter;
+    @BindView(R.id.iv_filter)
+    ImageView mIvFilter;
     private int width;
     private int height;
     private PopularAdapter adapter;
@@ -80,12 +92,13 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
     private Button Coach, Hermes;
     private Button XuiXian, YanHui;
     private Button Wubai, Yiqian, Reqian, Reqingyishang;
-    private Button ChongZhi,QueDing;
-    private List<DetailsBean.InfoBean> mList=new ArrayList();
-    private List<SelectedBean> mLists=new ArrayList();
+    private Button ChongZhi, QueDing;
+    private List<DetailsBean.InfoBean> mList = new ArrayList();
+    private List<SelectedBean> mLists = new ArrayList();
     private PopupWindow window1;
     private View convertView;
     private boolean isGetData = false;
+
     @Override
     public int initLayout() {
         return R.layout.live_fragment;
@@ -98,16 +111,16 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
 
     @Override
     protected void initData() {
-        FileUtil.SelectedreadFromPre(getActivity(),select_user);
-        if (select_user.getText().equals("")){
+        FileUtil.SelectedreadFromPre(getActivity(), select_user);
+        if (select_user.getText().equals("")) {
             Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
-        }else {
+        } else {
 //           登录成功后网络请求
             getpopular();
         }
 
 //        gridlayoutmanager
-        selectedRecyclerview.setLayoutManager(new GridLayoutManager(getActivity(),2));
+        selectedRecyclerview.setLayoutManager(new GridLayoutManager(getActivity(), 2));
 //        初始化 界面
 
         adapter = new PopularAdapter(getContext(), mList);
@@ -117,39 +130,40 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
             @Override
             public void Back(View v, int position) {//详情页
                 adapter.notifyDataSetChanged();
-                    Intent intent1 = new Intent(getActivity(), Details.class);
-                    intent1.putExtra("details",position+"");
+                Intent intent1 = new Intent(getActivity(), Details.class);
+                intent1.putExtra("details", position + "");
 
-                    intent1.putExtra("details",mList.get(position).getId());
+                intent1.putExtra("details", mList.get(position).getId());
 
-                    startActivity(intent1);
+                startActivity(intent1);
             }
         });
 
     }
+
     public void getselect(final int position) {
 
-                    Map<String ,String> collection=new HashMap();
-                    collection.put("baglist_id",position+"");
-                    OkHttpUtils.getInstance().post(SBUrls.COLLECTION, collection, new MyNetWorkCallback<CollectionBean>() {
-                        @Override
-                        public void onSuccess(CollectionBean collectionBean) {
-                            String status = collectionBean.getInfo();
+        Map<String, String> collection = new HashMap();
+        collection.put("baglist_id", position + "");
+        OkHttpUtils.getInstance().post(SBUrls.COLLECTION, collection, new MyNetWorkCallback<CollectionBean>() {
+            @Override
+            public void onSuccess(CollectionBean collectionBean) {
+                String status = collectionBean.getInfo();
 
-                            if (status.toString().equals("收藏成功")){//成功
-                                Toast.makeText(getContext(), position+status, Toast.LENGTH_SHORT).show();
-                            }else {//失败
-                                Toast.makeText(getContext(), position+status, Toast.LENGTH_SHORT).show();
-                            }
-                            adapter.notifyDataSetChanged();// 刷新
+                if (status.toString().equals("收藏成功")) {//成功
+                    Toast.makeText(getContext(), position + status, Toast.LENGTH_SHORT).show();
+                } else {//失败
+                    Toast.makeText(getContext(), position + status, Toast.LENGTH_SHORT).show();
+                }
+                adapter.notifyDataSetChanged();// 刷新
 
-                        }
+            }
 
-                        @Override
-                        public void onError(int errorCode, String errorMsg) {
+            @Override
+            public void onError(int errorCode, String errorMsg) {
 //                            Toast.makeText(getActivity(), "----"+errorMsg, Toast.LENGTH_SHORT).show();
-                        }
-                    });
+            }
+        });
 
     }
 
@@ -181,14 +195,14 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
     }
 
     public void getpopular() {
-        
-        
-        Map<String,String> map=new HashMap<>();
+
+
+        Map<String, String> map = new HashMap<>();
         OkHttpUtils.getInstance().post(SBUrls.POPULAR, map, new MyNetWorkCallback<DetailsBean>() {
             @Override
             public void onSuccess(DetailsBean detailsBean) throws JSONException {
                 List<DetailsBean.InfoBean> info = detailsBean.getInfo();
-                selectedRecyclerview.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
+                selectedRecyclerview.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
                 adapter = new PopularAdapter(getContext(), info);
 
                 selectedRecyclerview.setAdapter(adapter);
@@ -202,8 +216,8 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
 
             }
         });
-        
-        
+
+
 //        Map<String,String >stringMap= new HashMap<>();
 //        OkHttpUtils.getInstance().postByte(SBUrls.POPULAR, stringMap, new ByteCallBack() {
 //            @Override
@@ -232,6 +246,7 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.search_popular:
+                changeHotState();
 //                mList.clear();
 //                mList.addAll(mLists);
                 adapter.notifyDataSetChanged();
@@ -239,17 +254,46 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
                 // getPopupWindow();
                 break;
             case R.id.search_price:
+                changePriceState();
 //                Toast.makeText(getContext(), "点击了价格", Toast.LENGTH_SHORT).show();
                 getPopupWindow();
 
                 break;
             case R.id.search_filter:
+                changeFilterState();
 //                Toast.makeText(getContext(), "点击了筛选", Toast.LENGTH_SHORT).show();
 
                 getPopupWindowTwo();
 
                 break;
         }
+    }
+
+    private void changeFilterState() {
+        mTvFilter.setTextColor(Color.parseColor("#FC655E"));
+        mIvFilter.setImageResource(R.drawable.selectf_filter_red);
+
+        mTvHot.setTextColor(Color.parseColor("#292929"));
+        mTvPrice.setTextColor(Color.parseColor("#292929"));
+        mIvPrice.setImageResource(R.drawable.jiagexiao);
+    }
+
+    private void changePriceState() {
+        mTvPrice.setTextColor(Color.parseColor("#FC655E"));
+        mIvPrice.setImageResource(R.drawable.selectf_price_red);
+
+        mTvHot.setTextColor(Color.parseColor("#292929"));
+        mTvFilter.setTextColor(Color.parseColor("#292929"));
+        mIvFilter.setImageResource(R.drawable.shaixuanxiao);
+    }
+
+    private void changeHotState() {
+        mTvHot.setTextColor(Color.parseColor("#FC655E"));
+
+        mTvPrice.setTextColor(Color.parseColor("#292929"));
+        mIvPrice.setImageResource(R.drawable.jiagexiao);
+        mTvFilter.setTextColor(Color.parseColor("#292929"));
+        mIvFilter.setImageResource(R.drawable.shaixuanxiao);
     }
 
     //价格
@@ -321,9 +365,9 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
         Reqian.setOnClickListener(this);
         Reqingyishang = inflate.findViewById(R.id.Reqianyishang);
         Reqingyishang.setOnClickListener(this);
-        ChongZhi=inflate.findViewById(Chongzhi);
+        ChongZhi = inflate.findViewById(Chongzhi);
         ChongZhi.setOnClickListener(this);
-        QueDing=inflate.findViewById(R.id.QueDing);
+        QueDing = inflate.findViewById(R.id.QueDing);
         QueDing.setOnClickListener(this);
 
 
@@ -350,8 +394,8 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
 //                }
                 mList.clear();
                 Map<String, String> map4 = new HashMap<>();
-                map4.put("type",2+"");
-                map4.put("priceType",4+"");
+                map4.put("type", 2 + "");
+                map4.put("priceType", 4 + "");
                 OkHttpUtils.getInstance().postByte(SBUrls.JIAZHEN, map4, new ByteCallBack() {
                     @Override
                     public void onSuccess(String json) {
@@ -386,8 +430,8 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
 //                }
                 mList.clear();
                 Map<String, String> map3 = new HashMap<>();
-                map3.put("type ",2+"");
-                map3.put("priceType",3+"");
+                map3.put("type ", 2 + "");
+                map3.put("priceType", 3 + "");
                 OkHttpUtils.getInstance().postByte(SBUrls.JIAZHEN, map3, new ByteCallBack() {
                     @Override
                     public void onSuccess(String json) {
@@ -421,8 +465,8 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
 //                }
                 mList.clear();
                 Map<String, String> map2 = new HashMap<>();
-                map2.put("type ",2+"");
-                map2.put("priceType",2+" ");
+                map2.put("type ", 2 + "");
+                map2.put("priceType", 2 + " ");
                 OkHttpUtils.getInstance().postByte(SBUrls.JIAZHEN, map2, new ByteCallBack() {
                     @Override
                     public void onSuccess(String json) {
@@ -457,8 +501,8 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
 //                }
                 mList.clear();
                 Map<String, String> map1 = new HashMap<>();
-                map1.put("type ",2+"");
-                map1.put("priceType",1+"");
+                map1.put("type ", 2 + "");
+                map1.put("priceType", 1 + "");
                 OkHttpUtils.getInstance().postByte(SBUrls.JIAZHEN, map1, new ByteCallBack() {
                     @Override
                     public void onSuccess(String json) {
@@ -648,7 +692,7 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
                     Reqian.setBackground(getResources().getDrawable(R.drawable.textview));
                     Yiqian.setSelected(false);
                     Yiqian.setBackground(getResources().getDrawable(R.drawable.textview));
-                   }
+                }
                 break;
             //500-1000
             case R.id.Yiqian:
@@ -703,16 +747,16 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
             case Chongzhi:
 //                    ChongZhi.setSelected(true);
 //                    ChongZhi.setBackground(getResources().getDrawable(R.drawable.red));
-                    Reqingyishang.setSelected(true);
-                    Reqingyishang.setBackground(getResources().getDrawable(R.drawable.red));
-                    Wubai.setSelected(false);
-                    Wubai.setBackground(getResources().getDrawable(R.drawable.textview));
-                    Reqian.setSelected(false);
-                    Reqian.setBackground(getResources().getDrawable(R.drawable.textview));
-                    Yiqian.setSelected(false);
-                    Yiqian.setBackground(getResources().getDrawable(R.drawable.textview));
-                    Reqingyishang.setSelected(false);
-                    Reqingyishang.setBackground(getResources().getDrawable(R.drawable.textview));
+                Reqingyishang.setSelected(true);
+                Reqingyishang.setBackground(getResources().getDrawable(R.drawable.red));
+                Wubai.setSelected(false);
+                Wubai.setBackground(getResources().getDrawable(R.drawable.textview));
+                Reqian.setSelected(false);
+                Reqian.setBackground(getResources().getDrawable(R.drawable.textview));
+                Yiqian.setSelected(false);
+                Yiqian.setBackground(getResources().getDrawable(R.drawable.textview));
+                Reqingyishang.setSelected(false);
+                Reqingyishang.setBackground(getResources().getDrawable(R.drawable.textview));
                 XuiXian.setSelected(false);
                 XuiXian.setBackground(getResources().getDrawable(R.drawable.textview));
                 YanHui.setSelected(false);
@@ -735,12 +779,9 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
                 DanJiantwo.setBackground(getResources().getDrawable(R.drawable.textview));
                 DanJinFuor.setSelected(false);
                 DanJinFuor.setBackground(getResources().getDrawable(R.drawable.textview));
-                 break;
+                break;
         }
     }
-
-
-
 
 
     @Override
@@ -775,7 +816,6 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
         super.onPause();
         isGetData = false;
     }
-
 
 
 }

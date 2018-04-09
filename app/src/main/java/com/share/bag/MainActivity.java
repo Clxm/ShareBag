@@ -23,7 +23,6 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RadioButton;
 import android.widget.Toast;
-
 import com.share.bag.base.BaseActivity;
 import com.share.bag.ui.activitys.collection.ReleaseActivity;
 import com.share.bag.ui.activitys.collection.UploadActivity;

@@ -127,6 +127,7 @@ public class MyTradeActivity extends AppCompatActivity {
             public void onSuccess(ChangeBean changeBean) throws JSONException {
 //                crade_name.setText(changeBean.getInfo().getTitle());
 //                card_Introduce.setText(changeBean.getInfo().getContent());
+
                 card_money.setText(changeBean.getInfo().get_$0().getAmount()+"");
             }
 

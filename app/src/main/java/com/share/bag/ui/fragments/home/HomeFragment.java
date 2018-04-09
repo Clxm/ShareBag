@@ -26,6 +26,7 @@ import com.share.bag.ui.activitys.home.TradeActivity;
 import com.share.bag.ui.share.ShareActivity;
 import com.share.bag.utils.okhttp.OkHttpUtils;
 import com.share.bag.utils.okhttp.callback.MyNetWorkCallback;
+import com.share.bag.webview.PublicWebView;
 import com.zhouwei.mzbanner.MZBannerView;
 import com.zhouwei.mzbanner.holder.MZHolderCreator;
 import com.zhouwei.mzbanner.holder.MZViewHolder;
@@ -117,13 +118,13 @@ public class HomeFragment extends BaseFragment {
     TextView home_dynamic;
 
     @BindView(R.id.home_avatar)
-    ImageView  home_avatar;
+    ImageView home_avatar;
 
     @BindView(R.id.home_name)
-    TextView  home_name;
+    TextView home_name;
 
     @BindView(R.id.home_time)
-    TextView  home_time;
+    TextView home_time;
     //分享图片
     @BindView(R.id.home_share)
     ImageView homeShare;
@@ -163,54 +164,53 @@ public class HomeFragment extends BaseFragment {
     }
 
 
-
-        @Override
+    @Override
     protected void initData() {
 
-            home_dynamic.setEllipsize(TextUtils.TruncateAt.END);//收缩
-            home_dynamic.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
+        home_dynamic.setEllipsize(TextUtils.TruncateAt.END);//收缩
+        home_dynamic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
 //                    talent_dynamic.setEllipsize(null);//展开
 
-                }
-            });
+            }
+        });
 
 //            baobaoapi.ldlchat.com/Home/Cabinet/falsemasterlist.html
-        Map<String,String> stringMap=new HashMap<>();
-            String strurl="https://baobaoapi.ldlchat.com/Home/Cabinet/falsemasterlist.html";
-            OkHttpUtils.getInstance().post(strurl, stringMap, new MyNetWorkCallback<HomeTalentBean>() {
-                @Override
-                public void onSuccess(HomeTalentBean homeTalentBean) throws JSONException {
+        Map<String, String> stringMap = new HashMap<>();
+        String strurl = "https://baobaoapi.ldlchat.com/Home/Cabinet/falsemasterlist.html";
+        OkHttpUtils.getInstance().post(strurl, stringMap, new MyNetWorkCallback<HomeTalentBean>() {
+            @Override
+            public void onSuccess(HomeTalentBean homeTalentBean) throws JSONException {
 
-                    List<HomeTalentBean.InfoBean> info = homeTalentBean.getInfo();
+                List<HomeTalentBean.InfoBean> info = homeTalentBean.getInfo();
 
-                    for (int i = 0; i < info.size(); i++) {
+                for (int i = 0; i < info.size(); i++) {
 
-                        String iconurl = info.get(i).getUserinfo().getIconurl();
-                        Glide.with(context)
-                                .load(iconurl)
-                                //设置圆角图片
+                    String iconurl = info.get(i).getUserinfo().getIconurl();
+                    Glide.with(context)
+                            .load(iconurl)
+                            //设置圆角图片
 //                .transform(new GlideRoundTransform(MainActivity.this, 10))
-                                //设置圆形图片
-                                .transform(new GlideCircleTransform(context))
-                                .crossFade()
-                                .into(home_avatar);
+                            //设置圆形图片
+                            .transform(new GlideCircleTransform(context))
+                            .crossFade()
+                            .into(home_avatar);
 
-                        home_name.setText(info.get(i).getUserinfo().getName());
+                    home_name.setText(info.get(i).getUserinfo().getName());
 
-                        String strTime = DateUtils.getStrTime1(info.get(i).getTime());
-                        home_time.setText(strTime);
-                        home_dynamic.setText(info.get(i).getContent());
-                    }
+                    String strTime = DateUtils.getStrTime1(info.get(i).getTime());
+                    home_time.setText(strTime);
+                    home_dynamic.setText(info.get(i).getContent());
                 }
+            }
 
-                @Override
-                public void onError(int errorCode, String errorMsg) {
+            @Override
+            public void onError(int errorCode, String errorMsg) {
 
-                }
-            });
+            }
+        });
 
         headerimg = new ArrayList<>();
         final Map<String, String> map = new HashMap<>();
@@ -256,7 +256,6 @@ public class HomeFragment extends BaseFragment {
                     String imghuan = ad_oldnew.get(i).getImg();
                     Glide.with(context).load(imghuan).into(home_trade_in);
                 }
-
 
 
                 List<HomeFragmentBean.ListBean.ChildBean> child = homeFragmentBean.getList().get(1).get_child();
@@ -370,12 +369,14 @@ public class HomeFragment extends BaseFragment {
     @Override
     protected void initListener() {
         super.initListener();
-        //设置banner
+        //设置banner 轮播图 监听
         mzBannerView.setBannerPageClickListener(new MZBannerView.BannerPageClickListener() {
             @Override
             public void onPageClick(View view, int position) {
-//             轮播图 监听
-//                ToastUtils.show(APP.context, "wo是" + position);
+                String bannerUrl = headerimg.get(position).getUrl();
+                Intent intent = new Intent(getActivity(), PublicWebView.class);
+                intent.putExtra("publicUrl", bannerUrl);
+                startActivity(intent);
             }
         });
     }
@@ -383,13 +384,17 @@ public class HomeFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        mzBannerView.start();
+        if (mzBannerView != null) {
+            mzBannerView.start();
+        }
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        mzBannerView.pause();
+        if (mzBannerView != null) {
+            mzBannerView.pause();
+        }
     }
 
     @Override
@@ -407,19 +412,19 @@ public class HomeFragment extends BaseFragment {
     }
 
 
-    @OnClick({home_brandimg1, R.id.home_brandimg2, R.id.home_brandimg3,R.id.home_leisureimg1,R.id.home_leisureimg2,R.id.home_leisureimg3,
-            R.id.home_banquet_img0,R.id.home_banquet_img1,R.id.home_banquet_img2,R.id.home_banquet_img3,
-            R.id.home_business_img1,R.id.home_business_img2,R.id.home_business_img3,R.id.home_business_img4,
+    @OnClick({home_brandimg1, R.id.home_brandimg2, R.id.home_brandimg3, R.id.home_leisureimg1, R.id.home_leisureimg2, R.id.home_leisureimg3,
+            R.id.home_banquet_img0, R.id.home_banquet_img1, R.id.home_banquet_img2, R.id.home_banquet_img3,
+            R.id.home_business_img1, R.id.home_business_img2, R.id.home_business_img3, R.id.home_business_img4,
             R.id.home_trade_in
     })
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.home_brandimg1://品牌专区图片1
-                FileUtil.SelectedreadFromPre(getActivity(),shouye);
+                FileUtil.SelectedreadFromPre(getActivity(), shouye);
 
-                if (shouye.getText().equals("")){
+                if (shouye.getText().equals("")) {
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
-                }else {
+                } else {
                     Intent intent_brandid0 = new Intent(context, Details.class);
                     intent_brandid0.putExtra("details", brandid0);
                     startActivity(intent_brandid0);
@@ -428,11 +433,11 @@ public class HomeFragment extends BaseFragment {
                 break;
             case R.id.home_brandimg2://品牌专区图片2
 
-                FileUtil.SelectedreadFromPre(getActivity(),shouye);
+                FileUtil.SelectedreadFromPre(getActivity(), shouye);
 
-                if (shouye.getText().equals("")){
+                if (shouye.getText().equals("")) {
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
-                }else {
+                } else {
                     Intent intent_brandid1 = new Intent(context, Details.class);
                     intent_brandid1.putExtra("details", brandid1);
                     startActivity(intent_brandid1);
@@ -440,11 +445,11 @@ public class HomeFragment extends BaseFragment {
 
                 break;
             case R.id.home_brandimg3://品牌专区图片3
-                FileUtil.SelectedreadFromPre(getActivity(),shouye);
+                FileUtil.SelectedreadFromPre(getActivity(), shouye);
 
-                if (shouye.getText().equals("")){
+                if (shouye.getText().equals("")) {
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
-                }else {
+                } else {
                     Intent intent_brandid2 = new Intent(context, Details.class);
                     intent_brandid2.putExtra("details", brandid2);
                     startActivity(intent_brandid2);
@@ -455,11 +460,11 @@ public class HomeFragment extends BaseFragment {
 //           每日精选——休闲度假
             case R.id.home_leisureimg1://休闲度假1
 
-                FileUtil.SelectedreadFromPre(getActivity(),shouye);
+                FileUtil.SelectedreadFromPre(getActivity(), shouye);
 
-                if (shouye.getText().equals("")){
+                if (shouye.getText().equals("")) {
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
-                }else {
+                } else {
                     Intent intent_leisure0 = new Intent(context, Details.class);
                     intent_leisure0.putExtra("details", leisureid0);
                     startActivity(intent_leisure0);
@@ -469,11 +474,11 @@ public class HomeFragment extends BaseFragment {
 //           每日精选——休闲度假
             case R.id.home_leisureimg2://休闲度假2
 
-                FileUtil.SelectedreadFromPre(getActivity(),shouye);
+                FileUtil.SelectedreadFromPre(getActivity(), shouye);
 
-                if (shouye.getText().equals("")){
+                if (shouye.getText().equals("")) {
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
-                }else {
+                } else {
                     Intent intent_leisure1 = new Intent(context, Details.class);
                     intent_leisure1.putExtra("details", leisureid1);
                     startActivity(intent_leisure1);
@@ -483,11 +488,11 @@ public class HomeFragment extends BaseFragment {
 //           每日精选——休闲度假
             case R.id.home_leisureimg3://休闲度假3
 
-                FileUtil.SelectedreadFromPre(getActivity(),shouye);
+                FileUtil.SelectedreadFromPre(getActivity(), shouye);
 
-                if (shouye.getText().equals("")){
+                if (shouye.getText().equals("")) {
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
-                }else {
+                } else {
                     Intent intent_leisure2 = new Intent(context, Details.class);
                     intent_leisure2.putExtra("details", leisureid2);
                     startActivity(intent_leisure2);
@@ -497,11 +502,11 @@ public class HomeFragment extends BaseFragment {
 //           每日精选——宴会轻奢
             case R.id.home_banquet_img0://宴会轻奢1
 
-                FileUtil.SelectedreadFromPre(getActivity(),shouye);
+                FileUtil.SelectedreadFromPre(getActivity(), shouye);
 
-                if (shouye.getText().equals("")){
+                if (shouye.getText().equals("")) {
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
-                }else {
+                } else {
                     Intent intent_banquetid0 = new Intent(context, Details.class);
                     intent_banquetid0.putExtra("details", banquetid0);
                     startActivity(intent_banquetid0);
@@ -511,11 +516,11 @@ public class HomeFragment extends BaseFragment {
 //           每日精选——宴会轻奢
             case R.id.home_banquet_img1://宴会轻奢2
 
-                FileUtil.SelectedreadFromPre(getActivity(),shouye);
+                FileUtil.SelectedreadFromPre(getActivity(), shouye);
 
-                if (shouye.getText().equals("")){
+                if (shouye.getText().equals("")) {
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
-                }else {
+                } else {
                     Intent intent_banquetid1 = new Intent(context, Details.class);
                     intent_banquetid1.putExtra("details", banquetid1);
                     startActivity(intent_banquetid1);
@@ -525,11 +530,11 @@ public class HomeFragment extends BaseFragment {
 //           每日精选——宴会轻奢
             case R.id.home_banquet_img2://宴会轻奢3
 
-                FileUtil.SelectedreadFromPre(getActivity(),shouye);
+                FileUtil.SelectedreadFromPre(getActivity(), shouye);
 
-                if (shouye.getText().equals("")){
+                if (shouye.getText().equals("")) {
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
-                }else {
+                } else {
                     Intent intent_banquetid2 = new Intent(context, Details.class);
                     intent_banquetid2.putExtra("details", banquetid2);
                     startActivity(intent_banquetid2);
@@ -539,11 +544,11 @@ public class HomeFragment extends BaseFragment {
 //           每日精选——宴会轻奢
             case R.id.home_banquet_img3://宴会轻奢4
 
-                FileUtil.SelectedreadFromPre(getActivity(),shouye);
+                FileUtil.SelectedreadFromPre(getActivity(), shouye);
 
-                if (shouye.getText().equals("")){
+                if (shouye.getText().equals("")) {
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
-                }else {
+                } else {
                     Intent intent_banquetid3 = new Intent(context, Details.class);
                     intent_banquetid3.putExtra("details", banquetid3);
                     startActivity(intent_banquetid3);
@@ -553,11 +558,11 @@ public class HomeFragment extends BaseFragment {
 //            每日精选——商务办公
             case R.id.home_business_img1://商务办公1
 
-                FileUtil.SelectedreadFromPre(getActivity(),shouye);
+                FileUtil.SelectedreadFromPre(getActivity(), shouye);
 
-                if (shouye.getText().equals("")){
+                if (shouye.getText().equals("")) {
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
-                }else {
+                } else {
                     Intent intent_businessid1 = new Intent(context, Details.class);
                     intent_businessid1.putExtra("details", businessid0);
                     startActivity(intent_businessid1);
@@ -567,11 +572,11 @@ public class HomeFragment extends BaseFragment {
 //            每日精选——商务办公
             case R.id.home_business_img2://商务办公2
 
-                FileUtil.SelectedreadFromPre(getActivity(),shouye);
+                FileUtil.SelectedreadFromPre(getActivity(), shouye);
 
-                if (shouye.getText().equals("")){
+                if (shouye.getText().equals("")) {
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
-                }else {
+                } else {
                     Intent intent_businessid2 = new Intent(context, Details.class);
                     intent_businessid2.putExtra("details", businessid1);
                     startActivity(intent_businessid2);
@@ -581,11 +586,11 @@ public class HomeFragment extends BaseFragment {
 //            每日精选——商务办公
             case R.id.home_business_img3://商务办公3
 
-                FileUtil.SelectedreadFromPre(getActivity(),shouye);
+                FileUtil.SelectedreadFromPre(getActivity(), shouye);
 
-                if (shouye.getText().equals("")){
+                if (shouye.getText().equals("")) {
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
-                }else {
+                } else {
                     Intent intent_businessid3 = new Intent(context, Details.class);
                     intent_businessid3.putExtra("details", businessid2);
                     startActivity(intent_businessid3);
@@ -595,11 +600,11 @@ public class HomeFragment extends BaseFragment {
 //            每日精选——商务办公
             case R.id.home_business_img4://商务办公4
 
-                FileUtil.SelectedreadFromPre(getActivity(),shouye);
+                FileUtil.SelectedreadFromPre(getActivity(), shouye);
 
-                if (shouye.getText().equals("")){
+                if (shouye.getText().equals("")) {
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
-                }else {
+                } else {
                     Intent intent_businessid4 = new Intent(context, Details.class);
                     intent_businessid4.putExtra("details", businessid3);
                     startActivity(intent_businessid4);
@@ -608,7 +613,7 @@ public class HomeFragment extends BaseFragment {
                 break;
 
             case R.id.home_trade_in://以旧换新
-                Intent intent_home_trade_in = new Intent(context,TradeActivity.class);
+                Intent intent_home_trade_in = new Intent(context, TradeActivity.class);
                 startActivity(intent_home_trade_in);
                 break;
 
@@ -621,13 +626,10 @@ public class HomeFragment extends BaseFragment {
         startActivity(rentloginintent);
     }
 
-    @OnClick(R.id.mLinearBaoBao)
+    @OnClick(R.id.mLinearBaoBao)//点击包包达人
     public void onViewLinear() {
-
-//        Toast.makeText(context, "点击了包包达人", Toast.LENGTH_SHORT).show();
-        
         Intent intent = new Intent(context, TalentActivity.class);
-        startActivity(intent);//TalentActivity
+        startActivity(intent);
     }
 
 

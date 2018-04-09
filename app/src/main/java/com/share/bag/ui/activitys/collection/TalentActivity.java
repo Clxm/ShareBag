@@ -64,12 +64,6 @@ public class TalentActivity extends AppCompatActivity {
             }catch (Exception e){
 
             }
-
-
-
-
-
-
     }
 
     private void initView() {

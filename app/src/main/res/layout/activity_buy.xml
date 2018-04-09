@@ -385,49 +385,47 @@
         android:background="#F2F2F2" />
 
     <LinearLayout
-        android:gravity="center_vertical"
-        android:background="#FFF"
         android:layout_width="match_parent"
-        android:layout_height="146px">
+        android:layout_height="146px"
+        android:background="#FFF"
+        android:gravity="center_vertical">
 
 
         <TextView
-            android:layout_marginLeft="36px"
-            android:gravity="center_vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="36px"
+            android:gravity="center_vertical"
             android:text="总价：￥"/>
 
         <TextView
             android:id="@+id/rent_total_amount"
-            android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="11111"/>
 
 
         <LinearLayout
             android:id="@+id/rent_submit_order"
-            android:gravity="center"
-            android:background="#FC655E"
             android:layout_width="462px"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="#FC655E"
+            android:gravity="center">
 
             <TextView
+                android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="提交订单"
-                android:textSize="46px"
-                android:textStyle="bold"
-                android:textColor="#FFF"/>
+                android:textColor="#FFF"
+                android:textSize="46px" android:textStyle="bold"/>
 
 
         </LinearLayout>
 
 
-
     </LinearLayout>
-
 
 
 </LinearLayout>

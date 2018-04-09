@@ -32,8 +32,8 @@ public class SBUrls {
     public static final String CABINET = "https://baobaoapi.ldlchat.com/Home/Cabinet/cabinetlist.html";
     // 展示收藏
     public static final String COLLECTION = "https://baobaoapi.ldlchat.com/Home/Backcontent/collectionlist.html";
-    //                        Collection收藏
-//    public static final String COLLECTION="http://baobaoapi.ldlchat.com/Home/Backcontent/collection.html";
+    //收藏
+    public static final String LIKE_COLLECTION="https://baobaoapi.ldlchat.com/Home/Backcontent/collection.html";
     // 以旧换新界面                Cabinet
     public static final String CHANGE = "https://baobaoapi.ldlchat.com/Home/backlist/oldnewlist.html";
     // 正在共享

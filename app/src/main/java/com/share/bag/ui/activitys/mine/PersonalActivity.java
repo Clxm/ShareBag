@@ -141,9 +141,6 @@ public class PersonalActivity extends BaseActivity {
 
         personal_signature = (RelativeLayout) findViewById(R.id.personal_signature);
         EventBus.getDefault().register(this);
-
-//        Toast.makeText(this,personal_name1.getText().toString()+personal_number.getText().toString(), Toast.LENGTH_SHORT).show();
-
     }
 
     @Override
@@ -166,7 +163,7 @@ public class PersonalActivity extends BaseActivity {
                 if (TextUtils.isEmpty(iconurl)) {
 
                     Glide.with(PersonalActivity.this)
-                            .load("http://om6im9i3r.bkt.clouddn.com/2018-03-31_5abf5e2c3c574.png")
+                            .load("https://om6im9i3r.bkt.clouddn.com/2018-03-31_5abf5e2c3c574.png")
                             //设置圆角图片
 //                .transform(new GlideRoundTransform(MainActivity.this, 10))
                             //设置圆形图片
@@ -422,6 +419,7 @@ public class PersonalActivity extends BaseActivity {
             public void onSuccess(HeadImgBean headImgBean) {
 
                 com.share.bag.utils.ToastUtils.show(PersonalActivity.this, bytes.toString() + "" + headImgBean.getInfo() + "-----" + headImgBean.getStatus());
+
 
                 Log.e("TAG11111",  headImgBean.getInfo() + "-----" + headImgBean.getStatus());
 

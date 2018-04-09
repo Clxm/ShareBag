@@ -21,8 +21,8 @@
             android:layout_marginLeft="10dp"
             android:layout_width="20dp"
             android:layout_height="18dp"
-            android:src="@mipmap/xiaoyu3"
-            android:scaleType="fitXY"/>
+            android:scaleType="centerInside"
+            android:src="@mipmap/xiaoyu3"/>
 
         <TextView
             android:gravity="center_horizontal"
@@ -45,10 +45,11 @@
 
     <LinearLayout
         android:layout_marginTop="24px"
-      android:layout_marginLeft="24px"
+        android:layout_marginLeft="24px"
         android:layout_marginRight="24px"
         android:layout_width="match_parent"
         android:layout_height="362px"
+        android:descendantFocusability="beforeDescendants"
         android:background="@drawable/enter"
         android:orientation="vertical">
 

@@ -339,7 +339,7 @@ public class MineFragment extends BaseFragment {
                 break;
 
             case R.id.mine_contact://联系客服
-//                Toast.makeText(getActivity(), "点击了联系客服", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "点击了联系客服", Toast.LENGTH_SHORT).show();
 
                 break;
 
@@ -349,7 +349,7 @@ public class MineFragment extends BaseFragment {
 
                 break;
             case R.id.mine_Complaints://投诉建议
-//                Toast.makeText(getActivity(), "点击了投诉建议", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "点击了投诉建议", Toast.LENGTH_SHORT).show();
 
                 break;
             case R.id.mine_cooperation://商务合作

@@ -44,7 +44,12 @@ import org.json.JSONException;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -147,10 +152,12 @@ public class Release extends AppCompatActivity implements View.OnClickListener {
                 getsubmit();
                 break;
             case R.id.release2_add_photo1:
+                release2_add_photo1.setDrawingCacheEnabled(true);
                 mImageViews.add(release2_add_photo1);
                 getPopupWindow();
                 break;
             case R.id.release2_add_photo2:
+                release2_add_photo2.setDrawingCacheEnabled(true);
                 mImageViews.add(release2_add_photo2);
                 getPopupWindow();
                 break;
@@ -206,7 +213,6 @@ public class Release extends AppCompatActivity implements View.OnClickListener {
 
         for (int i = 0; i < mImageViews.size(); i++) {
             mImageViews.get(i).setImageBitmap(bitmap);
-            mImageViews.get(i).setDrawingCacheEnabled(true);
         }
     }
 
@@ -310,28 +316,25 @@ public class Release extends AppCompatActivity implements View.OnClickListener {
             Toast.makeText(this, "请输入内容", Toast.LENGTH_SHORT).show();
             return;
         }
-
-        String file1, file2;
-        if (release2_add_photo1.getDrawingCache() == null){
-            file1 = "";
-        } else {
-            Bitmap photo1Bm = Bitmap.createBitmap(release2_add_photo1.getDrawingCache());
-            file1 = convertIconToString(photo1Bm);
-            release2_add_photo1.setDrawingCacheEnabled(false);
-        }
-
-        if (release2_add_photo2.getDrawingCache() == null) {
-            file2 = "";
-        } else {
-            Bitmap photo2Bm = Bitmap.createBitmap(release2_add_photo2.getDrawingCache());
-            file2 = convertIconToString(photo2Bm);
-            release2_add_photo2.setDrawingCacheEnabled(false);
-        }
         Map<String, String> map = new HashMap<>();
         map.put("baglist_id", baglist_id);
         map.put("content", input);
-        map.put("file1", file1);
-        map.put("file2", file2);
+
+        String file1, file2;
+        if (release2_add_photo1.getDrawingCache() != null) {
+            Bitmap photo1Bm = Bitmap.createBitmap(release2_add_photo1.getDrawingCache());
+            file1 = convertIconToString(photo1Bm);
+            map.put("file1", file1);
+            release2_add_photo1.setDrawingCacheEnabled(false);
+        }
+
+        if (release2_add_photo2.getDrawingCache() != null) {
+            Bitmap photo2Bm = Bitmap.createBitmap(release2_add_photo2.getDrawingCache());
+            file2 = convertIconToString(photo2Bm);
+            map.put("file2", file2);
+            release2_add_photo2.setDrawingCacheEnabled(false);
+        }
+
         OkHttpUtils.getInstance().post(SBUrls.RELEASE_TEXT_BAG, map, new MyNetWorkCallback<ReleaseBagBean>() {
             @Override
             public void onSuccess(ReleaseBagBean releaseBagBean) throws JSONException {
@@ -357,6 +360,56 @@ public class Release extends AppCompatActivity implements View.OnClickListener {
         return Base64.encodeToString(icon, Base64.DEFAULT);
     }
 
+    /**
+     *
+     * bitmap转file
+     * @param bitmap
+     * @return
+     */
+    public static File convertIconToFile(Bitmap bitmap) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+//        byte[] icon = baos.toByteArray();
+        int options = 100;
+        while (baos.toString().length() / 1024 > 500) { //循环判断如果压缩后图片是否大于500kb,大于继续压缩
+            baos.reset(); //重置baos即清空baos
+            options -= 10; //每次都减少10
+            bitmap.compress(Bitmap.CompressFormat.JPEG, options, baos); //这里压缩options%，把压缩后的数据存放到baos中
+            long length = baos.toByteArray().length;
+        }
+        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
+        Date date = new Date(System.currentTimeMillis());
+        String fileName = format.format(date);
+        File file = new File(Environment.getExternalStorageDirectory(), fileName + ".png");
+        try {
+            FileOutputStream fos = new FileOutputStream(file);
+            fos.write(baos.toByteArray());
+            fos.flush();
+            fos.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return file;
+    }
+
+    /**
+     * 释放bitmap
+     * @param bitmaps
+     */
+    private static void recycleBitmap(Bitmap... bitmaps) {
+        if (bitmaps == null) {
+            return;
+        }
+        for (Bitmap bm : bitmaps) {
+            if (null != bm && !bm.isRecycled()) {
+                bm.recycle();
+            }
+        }
+    }
+
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (mWindow2 != null) {
@@ -379,5 +432,6 @@ public class Release extends AppCompatActivity implements View.OnClickListener {
         if (mWindow2 != null) {
             mWindow2.dismiss();
         }
+
     }
 }

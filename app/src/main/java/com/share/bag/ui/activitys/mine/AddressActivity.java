@@ -132,7 +132,7 @@ public class AddressActivity extends AppCompatActivity implements View.OnClickLi
             Toast.makeText(this, "信息不完整，请补充", Toast.LENGTH_SHORT).show();
 
         }else {
-            String addurl="http://baobaoapi.ldlchat.com/Home/Personalcenter/address.html";
+            String addurl="https://baobaoapi.ldlchat.com/Home/Personalcenter/address.html";
 
             Map<String,String> map=new HashMap<>();
 

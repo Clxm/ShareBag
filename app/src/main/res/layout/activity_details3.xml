@@ -419,7 +419,7 @@
             android:layout_weight="1"
             android:background="#FFF"
             android:text="马上租下"
-            android:textColor="#FD837D" />
+            android:textColor="#FD837D"/>
 
         <Button
             android:id="@+id/details_button_buy"

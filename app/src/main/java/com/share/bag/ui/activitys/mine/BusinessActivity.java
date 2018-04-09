@@ -16,7 +16,7 @@ import com.share.bag.R;
 
 public class BusinessActivity extends ActionBarActivity {
 
-    private static final String URL ="http://ywxz.ldlchat.com/fx/Business.html";
+    private static final String URL = "http://ywxz.ldlchat.com/fx/Business.html";
 
     private WebView webView;
 
@@ -59,33 +59,42 @@ public class BusinessActivity extends ActionBarActivity {
         });
     }
 
-    public class JSHook{
+    public class JSHook {
         @JavascriptInterface
-        public void javaMethod(String p){
+        public void javaMethod(String p) {
 //            Log.d(tag , "JSHook.JavaMethod() called! + "+p);
         }
+
         @JavascriptInterface
-        public void showAndroid(){
+        public void showAndroid() {
             final String info = "来自手机内的内容！！！";
-            BusinessActivity.this.runOnUiThread(new Runnable(){
+            BusinessActivity.this.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    webView.loadUrl("javascript:show('"+info+"')");
+                    webView.loadUrl("javascript:show('" + info + "')");
                 }
             });
         }
-        public String getInfo(){
+
+        public String getInfo() {
             return "获取手机内的信息！！";
         }
     }
+
     @Override
-    //设置回退
-    //覆盖Activity类的onKeyDown(int keyCoder,KeyEvent event)方法
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if ((keyCode == KeyEvent.KEYCODE_BACK) && webView.canGoBack()) {
-            webView.goBack(); //goBack()表示返回WebView的上一页面
-            this.finish();
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (webView.canGoBack()) {
+                if (webView.getUrl().equals(URL)) {
+                    finish();
+                }else {
+                    webView.goBack();
+                }
+            }else {
+                finish();
+            }
             return true;
         }
-        return false;  }
+        return super.onKeyDown(keyCode, event);
+    }
 }

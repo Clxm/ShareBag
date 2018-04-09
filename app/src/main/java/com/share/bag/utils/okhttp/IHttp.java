@@ -6,6 +6,8 @@ import android.widget.ImageView;
 import com.share.bag.utils.okhttp.callback.ByteCallBack;
 import com.share.bag.utils.okhttp.callback.MyNetWorkCallback;
 
+import java.io.File;
+import java.util.List;
 import java.util.Map;
 
 /**

@@ -13,5 +13,6 @@
     <color name="navigation_bar_text_color">#303030</color>
     <color name="navigation_bar_line_color">#E2E2E2</color>
     <color name="cutting_line">#F0F0F0</color>
+    <color name="normal_color">#292929</color>
 
 </resources>

@@ -49,21 +49,41 @@ class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHoudler> {
         String strTime = DateUtils.getStrTime(create_time);
 
         List<String> labels = list.get(position).getUser().getLabels();
-        String s0 = labels.get(0);
-
+        String s0, s1, s2;
         try {
-            String s1 = labels.get(1);
-        holder.details_comment_signature2.setText(s1);
-        }catch (Exception e){
+            if (labels.get(0) != null) {
+                s0 = labels.get(0);
+                holder.details_comment_signature1.setVisibility(View.VISIBLE);
+                holder.details_comment_signature1.setText(s0);
+            } else {
+                holder.details_comment_signature1.setVisibility(View.GONE);
+            }
+        } catch (Exception e) {
 
         }
         try {
-            String s2 = labels.get(2);
-            holder.details_comment_signature3.setText(s2);
-        }catch (Exception e){
+            if (labels.get(1) != null) {
+                s1 = labels.get(1);
+                holder.details_comment_signature2.setVisibility(View.VISIBLE);
+                holder.details_comment_signature2.setText(s1);
+            } else {
+                holder.details_comment_signature2.setVisibility(View.GONE);
+            }
+        } catch (Exception e) {
 
         }
-        holder.details_comment_signature1.setText(s0);
+        try {
+            if (labels.get(2) != null) {
+                s2 = labels.get(2);
+                holder.details_comment_signature3.setVisibility(View.VISIBLE);
+                holder.details_comment_signature3.setText(s2);
+            } else {
+                holder.details_comment_signature3.setVisibility(View.GONE);
+            }
+        } catch (Exception e) {
+
+        }
+
         Glide.with(context)
                 .load(iconurl)
                 //设置圆角图片
@@ -79,19 +99,19 @@ class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHoudler> {
         holder.details_comment_content.setText(content);
 
         holder.itemView.setTag(position);
-        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                listeners.click(v, position);
-                return false;
-            }
-        });
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                listener1.clicks(v, position);
-            }
-        });
+//        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+//            @Override
+//            public boolean onLongClick(View v) {
+//                listeners.click(v, position);
+//                return false;
+//            }
+//        });
+//        holder.itemView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                listener1.clicks(v, position);
+//            }
+//        });
 
     }
 
@@ -102,9 +122,9 @@ class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHoudler> {
 
     class ViewHoudler extends RecyclerView.ViewHolder {
         private final ImageView details_comment_avatar;
-                private TextView details_comment_name,details_comment_time,
-                        details_comment_signature1,details_comment_signature2,details_comment_signature3,
-                        details_comment_content;
+        private TextView details_comment_name, details_comment_time,
+                details_comment_signature1, details_comment_signature2, details_comment_signature3,
+                details_comment_content;
 
         public ViewHoudler(View itemView) {
             super(itemView);

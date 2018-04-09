@@ -34,7 +34,7 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         debug {
@@ -102,8 +102,7 @@ dependencies {
     compile files('libs/libammsdk.jar')
     //    compile 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.3'//这个的作用是当有特殊的上拉刷新布局时才用的到
 
-//    compile 'com.google.code.gson:gson:2.7'
-
+    //    compile 'com.google.code.gson:gson:2.7'
     compile 'org.greenrobot:eventbus:3.0.0'
     compile 'org.greenrobot:eventbus:3.0.0'
     compile 'com.android.support:multidex:1.0.1'
@@ -129,8 +128,5 @@ dependencies {
     compile 'com.contrarywind:Android-PickerView:3.2.5'
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
-
     compile 'com.android.support:design:26.0.0-alpha1'
-
-
 }
