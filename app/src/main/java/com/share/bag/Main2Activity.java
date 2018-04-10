@@ -22,6 +22,7 @@ public class Main2Activity extends AppCompatActivity {
                         handler.removeCallbacks(runnable);
                         Intent intent2 = new Intent(Main2Activity.this,MainActivity.class);
                         startActivity(intent2);
+                        finish();
                     }else{
                         //延时一秿
                         handler.postDelayed(runnable,1000);
