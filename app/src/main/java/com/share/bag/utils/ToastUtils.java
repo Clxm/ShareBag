@@ -1,6 +1,7 @@
 package com.share.bag.utils;
 
 import android.content.Context;
+import android.net.Uri;
 import android.view.Gravity;
 import android.widget.Toast;
 
@@ -16,6 +17,17 @@ public class ToastUtils {
 
     //自定义toast对象
     private static Toast toast;
+
+    /**
+     * 屏幕中上方显示
+     * @param context
+     * @param content
+     */
+    public static void showTop(Context context, String content) {
+        Toast toast = Toast.makeText(context, content, Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.CENTER, 0, -200);
+        toast.show();
+    }
 
  /*   *//**
      * 自定义短Toast调用
