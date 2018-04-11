@@ -2,13 +2,18 @@ apply plugin: 'com.android.application'
 
 android {
     signingConfigs {
-
         release {
             //.jks文件放在项目目录
             storeFile file("yiweixiaozhu.jks")
             storePassword "yiweixiaozhu"
             keyAlias "yiweixiaozhu"
             keyPassword "yiweixiaozhu"
+        }
+        debug {
+            keyAlias 'yiweixiaozhu'
+            keyPassword 'yiweixiaozhu'
+            storeFile file('yiweixiaozhu.jks')
+            storePassword 'yiweixiaozhu'
         }
     }
 //        debug {

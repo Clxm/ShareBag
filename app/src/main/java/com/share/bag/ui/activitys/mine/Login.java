@@ -65,7 +65,11 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.login_login:
-                goLogin();
+                Map<String, String> map = new HashMap<>();
+                map.put("username", login_phone.getText().toString().trim());
+                map.put("password", login_password.getText().toString().trim());
+                map.put("type", "3");
+                goLogin(map);
                 break;
             case R.id.login_registered://用户注册
                 Intent intent=new Intent(Login.this,Registered.class);
@@ -95,11 +99,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 /*
 *登录
 * */
-    private void goLogin() {
-        Map<String, String> map = new HashMap<>();
-        map.put("username", login_phone.getText().toString().trim());
-        map.put("password", login_password.getText().toString().trim());
-        map.put("type", "3");
+    private void goLogin(Map<String, String> map) {
         OkHttpUtils.getInstance().post(SBUrls.LOGINURL, map, new MyNetWorkCallback<LoginBean>() {
             @Override
             public void onSuccess(LoginBean loginBean) {
@@ -155,12 +155,15 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
          */
         @Override
         public void onComplete(SHARE_MEDIA platform, int action, Map<String, String> data) {
-
-            String s = data.get("uid");
-            Toast.makeText(Login.this, "========="+s, Toast.LENGTH_SHORT).show();
-
-            Toast.makeText(Login.this, "成功了", Toast.LENGTH_LONG).show();
-
+            Map<String, String> map = new HashMap<>();
+                if (platform == SHARE_MEDIA.QQ){
+                    map.put("name", data.get("screen_name"));
+                    map.put("uid", data.get("uid"));
+                    map.put("gender", data.get("gender"));
+                    map.put("HeadUrl", data.get("profile_image_url"));
+                    map.put("type", "1");
+                }
+            goLogin(map);
         }
 
         /**
@@ -186,6 +189,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
             Toast.makeText(Login.this, "取消了", Toast.LENGTH_LONG).show();
         }
     };
+
+
     UMAuthListener authListener=new UMAuthListener() {
         @Override
         public void onStart(SHARE_MEDIA share_media) {
@@ -226,5 +231,9 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
         }
     };
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        UMShareAPI.get(this).onActivityResult(requestCode,resultCode,data);//完成回调
+    }
 }
