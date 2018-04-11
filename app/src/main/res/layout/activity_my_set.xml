@@ -133,7 +133,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2.3M"
+                android:text="0.0M"
                 android:textSize="14sp"
                 android:textColor="@color/navigation_bar_text_color"
                 android:layout_alignParentEnd="true"

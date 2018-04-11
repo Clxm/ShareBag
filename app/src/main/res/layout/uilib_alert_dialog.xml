@@ -71,7 +71,7 @@
             android:paddingBottom="5dp"
             android:paddingTop="5dp"
             android:text="@string/confirm"
-            android:textColor="#007aff"
+            android:textColor="#f00"
             android:textSize="16dp" />
 
         <View
@@ -91,7 +91,7 @@
             android:paddingBottom="5dp"
             android:paddingTop="5dp"
             android:text="@string/confirm"
-            android:textColor="#007aff"
+            android:textColor="#000"
             android:textSize="16dp" />
     </LinearLayout>
 </LinearLayout>

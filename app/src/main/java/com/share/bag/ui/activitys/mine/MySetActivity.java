@@ -10,6 +10,8 @@ import android.widget.Toast;
 import com.share.bag.FileUtil;
 import com.share.bag.R;
 import com.share.bag.base.BaseActivity;
+import com.share.bag.utils.ToastUtils;
+import com.share.bag.view.YWXZAlertDialog;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -66,22 +68,42 @@ public class MySetActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.myset_safety:
-                Toast.makeText(MySetActivity.this, "帐号安全", Toast.LENGTH_SHORT).show();
+
                 break;
             case R.id.myset_updated:
-                Toast.makeText(MySetActivity.this, "当前是最新版本", Toast.LENGTH_SHORT).show();
+                ToastUtils.showTop(MySetActivity.this, "当前是最新版本");
                 break;
             case R.id.myset_clear:
-                Toast.makeText(MySetActivity.this, "清除缓存", Toast.LENGTH_SHORT).show();
+               ToastUtils.showTop(MySetActivity.this, "缓存已清除");
                 break;
             case R.id.myset_on:
-                Toast.makeText(MySetActivity.this, "关于共享", Toast.LENGTH_SHORT).show();
+                ToastUtils.showTop(MySetActivity.this, "关于共享");
                 break;
             case R.id.myset_dropout:
-                Toast.makeText(MySetActivity.this, "确认退出", Toast.LENGTH_SHORT).show();
-                FileUtil.shanchu(MySetActivity.this);//清空
 
-                finish();
+                final YWXZAlertDialog dialog = new YWXZAlertDialog(MySetActivity.this,"确定退出登录吗?");
+                dialog.setCancelBtnGone(true);
+                dialog.show();
+                dialog.setOnAlertDialogOnClick(new YWXZAlertDialog.AlertDialogOnClickListener() {
+                    @Override
+                    public void onYes() {
+                        FileUtil.shanchu(MySetActivity.this);//清空
+                        dialog.dismiss();
+                        finish();
+
+                    }
+
+                    @Override
+                    public void onNo() {
+                        dialog.dismiss();
+                    }
+
+                    @Override
+                    public void onCancel() {
+
+                    }
+                });
+
 
 
                 break;
