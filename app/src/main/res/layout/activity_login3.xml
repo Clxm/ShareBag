@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -15,10 +14,10 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:layout_width="200px"
-                android:layout_height="200px"
+                android:layout_width="67dp"
+                android:layout_height="67dp"
                 android:src="@drawable/touxiang22"
-                android:layout_marginTop="100px"
+                android:layout_marginTop="33dp"
                 android:id="@+id/imageView6"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true" />
@@ -27,71 +26,63 @@
 
 
             <LinearLayout
-                android:layout_marginLeft="150px"
-                android:layout_marginRight="150px"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_below="@+id/imageView6"
                 android:layout_alignParentStart="true"
-                android:layout_marginTop="100px"
+                android:layout_marginTop="33dp"
                 android:id="@+id/linearLayout3">
 
 
 
                 <EditText
                     android:id="@+id/login_phone"
-                    android:textSize="15sp"
+                    android:textSize="14dp"
                     style="?android:attr/textViewStyle"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@null"
                     android:hint="@string/login_phone"
-                    android:paddingBottom="5dip"
-                    android:paddingTop="5dip"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp"
                     android:digits="1234567890"
                     android:maxLength="11"
                     />
                 <!--xml：android:maxLength="10"-->
                 <View
-                    android:layout_marginTop="30px"
+                    android:layout_marginTop="10dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="2px"
+                    android:layout_height="1dp"
                     android:background="#DFDFDF"/>
-
-
-
-
-
-
-
-
             </LinearLayout>
 
 
             <LinearLayout
-                android:layout_marginLeft="150px"
-                android:layout_marginRight="150px"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_below="@+id/linearLayout3"
                 android:layout_alignParentStart="true"
-                android:layout_marginTop="50px"
+                android:layout_marginTop="15dp"
                 android:id="@+id/linearLayout4">
 
 
 
                 <EditText
                     android:id="@+id/login_password"
-                    android:textSize="15sp"
+                    android:textSize="14dp"
                     style="?android:attr/textViewStyle"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@null"
                     android:hint="@string/login_password"
-                    android:paddingBottom="5dip"
-                    android:paddingTop="5dip"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp"
                     android:maxLength="16"
                     />
 
@@ -102,9 +93,9 @@
 
                 <!--android:digits="@string/password_password"-->
                 <View
-                    android:layout_marginTop="30px"
+                    android:layout_marginTop="10dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="2px"
+                    android:layout_height="1dp"
                     android:background="#DFDFDF"/>
 
             </LinearLayout>
@@ -118,8 +109,8 @@
 
             <Button
                 android:id="@+id/login_login"
-                android:layout_marginLeft="150px"
-                android:layout_marginRight="150px"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/login_login"
@@ -127,19 +118,19 @@
                 android:textColor="#FFF"
                 android:layout_below="@+id/linearLayout4"
                 android:layout_alignParentStart="true"
-                android:layout_marginTop="100px" />
+                android:layout_marginTop="33dp" />
 
 
 
 
             <LinearLayout
-                android:layout_marginLeft="150px"
-                android:layout_marginRight="150px"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/login_login"
                 android:layout_alignParentStart="true"
-                android:layout_marginTop="50px">
+                android:layout_marginTop="15dp">
 
                 <TextView
                     android:id="@+id/login_registered"
@@ -170,42 +161,43 @@
 
 
             <LinearLayout
-                android:layout_marginLeft="150px"
-                android:layout_marginRight="150px"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:layout_below="@+id/login_login"
                 android:layout_alignParentStart="true"
-                android:layout_marginTop="300px"
+                android:layout_marginTop="100dp"
                 android:id="@+id/linearLayout5">
 
 
                 <View
                     android:layout_weight="1"
-                    android:layout_marginRight="50px"
+                    android:layout_marginRight="15dp"
                     android:layout_width="match_parent"
-                    android:layout_height="1px"
+                    android:layout_height="1dp"
                     android:background="#838383"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/login_third"
-                    android:textSize="12sp"/>
+                    android:textSize="12dp"/>
 
                 <View
                     android:layout_weight="1"
-                    android:layout_marginLeft="50px"
+                    android:layout_marginLeft="15dp"
                     android:layout_width="match_parent"
-                    android:layout_height="1px"
+                    android:layout_height="1dp"
                     android:background="#838383"/>
 
             </LinearLayout>
 
 
             <LinearLayout
+                android:layout_marginTop="40dp"
                 android:layout_width="match_parent"
-                android:layout_height="500px"
+                android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:layout_below="@+id/linearLayout5"
                 android:layout_alignParentStart="true"
@@ -228,8 +220,6 @@
 
 
             </LinearLayout>
-
-
         </RelativeLayout>
     </ScrollView>
 
