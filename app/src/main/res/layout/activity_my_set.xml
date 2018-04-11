@@ -11,7 +11,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/x144"
+        android:layout_height="50dp"
         android:id="@+id/relativeLayout2">
 
         <ImageView
@@ -30,7 +30,7 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:text="@string/set_set"
-            android:textSize="@dimen/x46"
+            android:textSize="18dp"
             android:textColor="@color/navigation_bar_text_color"/>
 
 
@@ -39,7 +39,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="@dimen/x4"
+        android:layout_height="1dp"
         android:background="@color/navigation_bar_line_color"/>
 
     <!--ScrollView-->
@@ -58,8 +58,8 @@
                 android:id="@+id/myset_text1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:textSize="16sp"
+                android:layout_marginLeft="20dp"
+                android:textSize="16dp"
                 android:textColor="@color/navigation_bar_text_color"
                 android:text="@string/set_safety" />
 
@@ -68,16 +68,16 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignTop="@+id/myset_text1"
-                android:layout_marginRight="10dp"
+                android:layout_marginRight="20dp"
                 android:src="@mipmap/wode_zhankaiyou3" />
 
         </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="5px"
-            android:layout_marginLeft="50px"
-            android:layout_marginRight="50px"
+            android:layout_height="1dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
             android:background="#F2F2F2"/>
 
 
@@ -93,9 +93,9 @@
                 android:id="@+id/myset_text2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
+                android:textSize="16dp"
                 android:textColor="@color/navigation_bar_text_color"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="20dp"
                 android:text="@string/set_updated" />
 
             <ImageView
@@ -103,16 +103,16 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignTop="@+id/myset_text2"
-                android:layout_marginRight="10dp"
+                android:layout_marginRight="20dp"
                 android:src="@mipmap/wode_zhankaiyou3" />
 
         </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="5px"
-            android:layout_marginLeft="50px"
-            android:layout_marginRight="50px"
+            android:layout_height="1.5dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
             android:background="#F2F2F2"/>
 
         <RelativeLayout
@@ -125,9 +125,9 @@
                 android:id="@+id/myset_text3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
+                android:textSize="16dp"
                 android:textColor="@color/navigation_bar_text_color"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="20dp"
                 android:text="@string/set_clear" />
 
             <TextView
@@ -138,15 +138,15 @@
                 android:textColor="@color/navigation_bar_text_color"
                 android:layout_alignParentEnd="true"
                 android:layout_alignTop="@+id/myset_text3"
-                android:layout_marginRight="10dp"/>
+                android:layout_marginRight="20dp"/>
 
         </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="5px"
-            android:layout_marginLeft="50px"
-            android:layout_marginRight="50px"
+            android:layout_height="1.5dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
             android:background="#F2F2F2"/>
 
 
@@ -163,59 +163,38 @@
                 android:id="@+id/myset_text4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:textSize="16sp"
+                android:layout_marginLeft="20dp"
+                android:textSize="16dp"
                 android:textColor="@color/navigation_bar_text_color"
                 android:text="@string/set_on" />
-
-            <TextView
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2.3M"
-                android:textSize="14sp"
-                android:textColor="@color/navigation_bar_text_color"
                 android:layout_alignParentEnd="true"
                 android:layout_alignTop="@+id/myset_text4"
-                android:layout_marginRight="10dp"/>
-
+                android:layout_marginRight="20dp"
+                android:src="@mipmap/wode_zhankaiyou3" />
         </RelativeLayout>
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="5px"
-            android:layout_marginLeft="50px"
-            android:layout_marginRight="50px"
+            android:layout_height="1.5dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
             android:background="#F2F2F2"/>
-
         <LinearLayout
-            android:layout_marginTop="100px"
+            android:layout_marginTop="33dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center">
-
-
             <Button
                 android:id="@+id/myset_dropout"
-                android:layout_width="864px"
-                android:layout_height="145px"
+                android:layout_width="285dp"
+                android:layout_height="45dp"
                 android:text="@string/button_dropout"
                 android:textColor="#FFF"
-                android:textSize="51px"
+                android:textSize="16dp"
                 android:background="@drawable/frame"
                 />
-
-
-
         </LinearLayout>
-
-
-
-
     </LinearLayout>
-
-
-
-
-
-
 </LinearLayout>
