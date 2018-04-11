@@ -7,6 +7,18 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class LoginBean {
+    @Override
+    public String toString() {
+        return "LoginBean{" +
+                "status='" + status + '\'' +
+                ", info='" + info + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", type='" + type + '\'' +
+                ", user=" + user.toString()+
+                '}';
+    }
+
     /**
      * status : 0
      * info : 用户名或密码错误
@@ -75,6 +87,21 @@ public class LoginBean {
     }
 
     public static class UserBean {
+        @Override
+        public String toString() {
+            return "UserBean{" +
+                    "id='" + id + '\'' +
+                    ", usernameX='" + usernameX + '\'' +
+                    ", passwordX='" + passwordX + '\'' +
+                    ", gender='" + gender + '\'' +
+                    ", iconurl='" + iconurl + '\'' +
+                    ", name='" + name + '\'' +
+                    ", balance='" + balance + '\'' +
+                    ", foregift='" + foregift + '\'' +
+                    ", create_time='" + create_time + '\'' +
+                    '}';
+        }
+
         /**
          * id : 3
          * username : 17801190741

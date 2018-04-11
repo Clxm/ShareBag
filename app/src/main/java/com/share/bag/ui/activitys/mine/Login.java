@@ -17,6 +17,7 @@ import com.share.bag.MainActivity;
 import com.share.bag.R;
 import com.share.bag.SBUrls;
 import com.share.bag.entity.LoginBean;
+import com.share.bag.utils.ToastUtils;
 import com.share.bag.utils.okhttp.OkHttpUtils;
 import com.share.bag.utils.okhttp.callback.MyNetWorkCallback;
 import com.umeng.socialize.UMAuthListener;
@@ -103,30 +104,31 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         OkHttpUtils.getInstance().post(SBUrls.LOGINURL, map, new MyNetWorkCallback<LoginBean>() {
             @Override
             public void onSuccess(LoginBean loginBean) {
-
-                String info = loginBean.getStatus();
-
-                if (info.equals("1")){
-                    String nickname = loginBean.getUser().getName();//昵称
-                    String username = loginBean.getUser().getUsernameX();//用户名
-                    String password =loginBean.getUser().getPasswordX();//密码
-                    String gender = loginBean.getUser().getGender();//性别
-                    String strtou=loginBean.getUser().getIconurl();//头像
-                    String id = loginBean.getUser().getId();//id
-                    FileUtil.saveToPre1(Login.this, username, password,id,gender,nickname,strtou);
+                if(null != loginBean) {
+                    String info = loginBean.getStatus();
+                    if (info.equals("1")) {
+                        String nickname = loginBean.getUser().getName();//昵称
+                        String username = loginBean.getUser().getUsernameX();//用户名
+                        String password = loginBean.getUser().getPasswordX();//密码
+                        String gender = loginBean.getUser().getGender();//性别
+                        String strtou = loginBean.getUser().getIconurl();//头像
+                        String id = loginBean.getUser().getId();//id
+                        FileUtil.saveToPre1(Login.this, username, password, id, gender, nickname, strtou);
 ////返回值是：39用户名17801190741密码25f9e794323b453885f5181f1b624d0b性别男图片/Uploads/20180115/5a5c759804236.png昵称5
-                    Intent intent=new Intent();
-                    intent.setClass(Login.this, MainActivity.class);
-                    String name=username;
-                    intent.putExtra("name",name);
-                    String img= strtou;
-                    intent.putExtra("img",img);
-                    setResult(0,intent);
-                    finish();
-                    Toast.makeText(Login.this, loginBean.getInfo(), Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    Toast.makeText(Login.this, loginBean.getInfo(), Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent();
+                        intent.setClass(Login.this, MainActivity.class);
+                        String name = username;
+                        intent.putExtra("name", name);
+                        String img = strtou;
+                        intent.putExtra("img", img);
+                        setResult(0, intent);
+                        finish();
+                      ToastUtils.showTop(Login.this,loginBean.getInfo());
+                    } else {
+                        ToastUtils.showTop(Login.this, loginBean.getInfo());
+                    }
+                }else {
+                    ToastUtils.showTop(Login.this,"登陆失败");
                 }
             }
 
@@ -157,7 +159,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         public void onComplete(SHARE_MEDIA platform, int action, Map<String, String> data) {
             Map<String, String> map = new HashMap<>();
                 if (platform == SHARE_MEDIA.QQ){
-                    map.put("name", data.get("screen_name"));
+                    map.put("nickname", data.get("screen_name"));
                     map.put("uid", data.get("uid"));
                     map.put("gender", data.get("gender"));
                     map.put("HeadUrl", data.get("profile_image_url"));
@@ -200,24 +202,15 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         @Override
         public void onComplete(SHARE_MEDIA share_media, int i, Map<String, String> map) {
 
-            String s = map.get("uid");
-            Toast.makeText(Login.this, "uid"+s, Toast.LENGTH_SHORT).show();
-            Log.e("TAG","--------"+s);
-
-
-          /*  Toast.makeText(Login.this, "成功", Toast.LENGTH_SHORT).show();
-            String s = map.get("name");
-            String s1 = map.get("uid");
-            String s2 = map.get("iconurl");
-            String s3 = map.get("gender");
-            Toast.makeText(Login.this, s+s2, Toast.LENGTH_SHORT).show();
-            Log.e("TAG",s1+"---------"+s2);
-            Intent intent=new Intent();
-            intent.setClass(Login.this, MainActivity.class);
-            intent.putExtra("name",s);
-            intent.putExtra("img",s2);
-            setResult(0,intent);
-            finish();*/
+            Map<String, String> params = new HashMap<>();
+            if (share_media == SHARE_MEDIA.WEIXIN){
+                params.put("nickname", map.get("name"));
+                params.put("uid", map.get("uid"));
+                params.put("gender", map.get("gender"));
+                params.put("HeadUrl", map.get("profile_image_url"));
+                params.put("type", "2");
+            }
+            goLogin(params);
 
         }
 
