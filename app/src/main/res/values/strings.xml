@@ -87,6 +87,9 @@
 
 
     <string name="details_pinglun_text">请将字数控制在140字以下哟～</string>
+    <string name="collection_cancel">取消收藏</string>
+    <string name="collection_ok">收藏成功</string>
+    <string name="collection_put">放入收藏</string>
 
 
 </resources>

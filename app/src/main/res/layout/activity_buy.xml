@@ -1,51 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.share.bag.ui.pay.BuyActivity">
-  
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              tools:context="com.share.bag.ui.pay.BuyActivity">
 
-    
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/x144">
+        android:layout_height="48dp">
 
         <ImageView
             android:id="@+id/buy_return"
             android:layout_width="20dp"
             android:layout_height="18dp"
-            android:src="@mipmap/xiaoyu3"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:layout_centerVertical="true" />
-
-
+            android:src="@mipmap/xiaoyu3"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/confirm_buy"
-            android:textSize="@dimen/x46"
-            android:textColor="@color/navigation_bar_text_color"
+            android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true" />
-
-
-
+            android:text="@string/confirm_buy"
+            android:textColor="@color/navigation_bar_text_color"
+            android:textSize="16dp"/>
 
     </RelativeLayout>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="@dimen/x4"
+        android:layout_height="1.4dp"
         android:background="@color/navigation_bar_line_color"/>
 
     <ScrollView
-        android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -56,7 +48,7 @@
             <RelativeLayout
                 android:id="@+id/buy_address"
                 android:layout_width="match_parent"
-                android:layout_height="208px"
+                android:layout_height="70dp"
                 android:background="#FFF">
 
                 <ImageView
@@ -65,22 +57,21 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="36px"
+                    android:layout_marginLeft="12dp"
                     android:layout_marginStart="12dp"
-                    android:src="@mipmap/dingwei3" />
-
+                    android:src="@mipmap/dingwei3"/>
 
                 <TextView
                     android:id="@+id/buy_rent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
-                    android:layout_marginStart="58px"
-                    android:layout_marginTop="42px"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="14dp"
                     android:layout_toEndOf="@+id/imageView3"
                     android:text="@string/nickname"
                     android:textColor="#FF303030"
-                    android:textSize="42px" />
+                    android:textSize="14dp"/>
 
                 <!--buy_return-->
                 <TextView
@@ -89,11 +80,11 @@
                     android:layout_height="wrap_content"
                     android:layout_alignBaseline="@+id/buy_rent"
                     android:layout_alignBottom="@+id/buy_rent"
-                    android:layout_marginStart="58px"
+                    android:layout_marginStart="20dp"
                     android:layout_toEndOf="@+id/buy_rent"
                     android:text="12345678901"
                     android:textColor="#FF303030"
-                    android:textSize="42px" />
+                    android:textSize="14dp"/>
 
                 <TextView
                     android:id="@+id/buy_address1"
@@ -101,161 +92,155 @@
                     android:layout_height="wrap_content"
                     android:layout_alignStart="@+id/buy_rent"
                     android:layout_below="@+id/buy_rent"
-                    android:layout_marginTop="30px"
+                    android:layout_marginTop="10dp"
                     android:text="北京市昌平南区回龙观镇珠江摩尔大厦"
                     android:textColor="#FF838383"
-                    android:textSize="34px" />
-
+                    android:textSize="12dp"/>
 
             </RelativeLayout>
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="20px"
-                android:background="#F2F2F2" />
+                android:layout_height="6dp"
+                android:background="#F2F2F2"/>
             <!--android:scaleType="fitXY"-->
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="430px"
+                android:layout_height="144dp"
                 android:background="#FFF">
 
                 <ImageView
                     android:id="@+id/buy_commodity_img"
-                    android:layout_width="464px"
-                    android:layout_height="360px"
-                    android:layout_marginLeft="38px"
-                    android:layout_marginTop="44px"
+                    android:layout_width="154dp"
+                    android:layout_height="120dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="14dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/mo2" />
+                    android:src="@drawable/mo2"/>
 
                 <LinearLayout
-                    android:paddingRight="36px"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="68px"
-                    android:orientation="vertical">
+                    android:layout_marginLeft="22dp"
+                    android:orientation="vertical"
+                    android:paddingRight="12dp">
 
 
                     <TextView
                         android:id="@+id/buy_commodity_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="52px"
+                        android:layout_marginTop="14dp"
                         android:text="爱马仕女士公文包上班首选2018新款白领必备"
                         android:textColor="#FF303030"
-                        android:textSize="30px" />
-
+                        android:textSize="10dp"/>
 
                     <TextView
                         android:id="@+id/buy_commodity_brand"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="32px"
+                        android:layout_marginTop="10dp"
                         android:text="品牌：爱马仕"
                         android:textColor="#FF838383"
-                        android:textSize="28px" />
+                        android:textSize="10dp"/>
 
                     <TextView
                         android:id="@+id/buy_commodity_numbering"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="14px"
+                        android:layout_marginTop="5dp"
                         android:text="商品编号：201801181256"
                         android:textColor="#FF838383"
-                        android:textSize="28px" />
+                        android:textSize="10dp"/>
 
                     <TextView
                         android:id="@+id/buy_commodity_color"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="14px"
+                        android:layout_marginTop="5dp"
                         android:text="颜色：粉色"
                         android:textColor="#FF838383"
-                        android:textSize="28px" />
+                        android:textSize="10dp"/>
 
                     <TextView
                         android:id="@+id/buy_commodity_material"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="14px"
+                        android:layout_marginTop="5dp"
                         android:text="材质：真牛品"
                         android:textColor="#FF838383"
-                        android:textSize="28px" />
+                        android:textSize="10dp"/>
 
                     <TextView
                         android:id="@+id/buy_commodity_size"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="14px"
+                        android:layout_marginTop="5dp"
                         android:text="尺寸：420*255*155mm"
                         android:textColor="#FF838383"
-                        android:textSize="28px" />
-
+                        android:textSize="10dp"/>
 
                 </LinearLayout>
 
-
             </LinearLayout>
-
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="20px"
+                android:layout_height="6dp"
                 android:background="#F2F2F2"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="760px"
+                android:layout_height="254dp"
                 android:background="#FFF"
                 android:orientation="vertical"
-                android:paddingLeft="36px"
-                android:paddingRight="36px">
-
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="42px"
+                    android:layout_marginTop="14dp"
                     android:text="价格详情"
                     android:textColor="#FF303030"
-                    android:textSize="54px" />
+                    android:textSize="18dp"/>
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="2px"
-                    android:layout_marginTop="42px"
-                    android:background="#D9D9D9" />
-
+                    android:layout_height="0.6dp"
+                    android:layout_marginTop="14dp"
+                    android:background="#D9D9D9"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="46px">
+                    android:layout_marginTop="16dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="商品价格"
                         android:textColor="#FF838383"
-                        android:textSize="38px" />
+                        android:textSize="13dp"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1" />
-
+                        android:layout_weight="1"/>
 
                     <TextView
                         android:id="@+id/buy_price"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="300" />
+                        android:text="300"
+                        android:textSize="13dp"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="元" />
+                        android:text="元"
+                        android:textSize="13dp"/>
 
 
                 </LinearLayout>
@@ -263,31 +248,33 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="46px">
+                    android:layout_marginTop="15dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="运费（包邮）"
                         android:textColor="#FF838383"
-                        android:textSize="38px" />
+                        android:textSize="13dp"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1" />
+                        android:layout_weight="1"/>
 
 
                     <TextView
                         android:id="@+id/buy_freight"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="20" />
+                        android:text="20"
+                        android:textSize="13dp"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="元" />
+                        android:text="元"
+                        android:textSize="13dp"/>
 
                 </LinearLayout>
 
@@ -295,120 +282,113 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="46px">
+                    android:layout_marginTop="15dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="以旧换新"
                         android:textColor="#FF838383"
-                        android:textSize="38px" />
+                        android:textSize="13dp"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1" />
+                        android:layout_weight="1"/>
 
 
                     <TextView
                         android:id="@+id/buy_exchange"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="-50" />
+                        android:text="-50"
+                        android:textSize="13dp"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="元" />
+                        android:text="元"
+                        android:textSize="13dp"/>
 
                 </LinearLayout>
 
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="2px"
-                    android:layout_marginTop="46px"
+                    android:layout_height="0.6dp"
+                    android:layout_marginTop="15dp"
                     android:background="#F2f2f2"/>
 
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="46px">
+                    android:layout_marginTop="15dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="应付价款"
                         android:textColor="#FD938E"
-                        android:textSize="38px" />
+                        android:textSize="13dp"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1" />
+                        android:layout_weight="1"/>
 
                     <TextView
                         android:id="@+id/buy_handle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="50"
                         android:textColor="#FD938E"
-                        android:text="50" />
+                        android:textSize="13dp"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="元"
                         android:textColor="#FD938E"
-                        android:text="元" />
+                        android:textSize="13dp"/>
 
                 </LinearLayout>
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="426px"
-                android:background="#FFF"
-                android:orientation="vertical"
-                android:paddingLeft="36px"
-                android:paddingRight="36px">
-
-            </LinearLayout>
-
-
         </LinearLayout>
 
     </ScrollView>
 
-
     <View
         android:layout_width="match_parent"
-        android:layout_height="4px"
-        android:background="#F2F2F2" />
+        android:layout_height="1.2dp"
+        android:background="#F2F2F2"/>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="146px"
+        android:layout_height="48dp"
         android:background="#FFF"
         android:gravity="center_vertical">
-
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="36px"
+            android:layout_marginLeft="12dp"
             android:gravity="center_vertical"
-            android:text="总价：￥"/>
+            android:text="总价：￥"
+            android:textSize="14dp"/>
 
         <TextView
             android:id="@+id/rent_total_amount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="11111"/>
+            android:text="11111"
+            android:textSize="14dp"/>
 
 
         <LinearLayout
             android:id="@+id/rent_submit_order"
-            android:layout_width="462px"
+            android:layout_width="154dp"
             android:layout_height="match_parent"
             android:background="#FC655E"
             android:gravity="center">
@@ -419,13 +399,11 @@
                 android:layout_height="wrap_content"
                 android:text="提交订单"
                 android:textColor="#FFF"
-                android:textSize="46px" android:textStyle="bold"/>
-
+                android:textSize="15dp"
+                android:textStyle="bold"/>
 
         </LinearLayout>
 
-
     </LinearLayout>
-
 
 </LinearLayout>

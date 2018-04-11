@@ -1,29 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
 
-<!--1、所有导航栏h：126px，白底；字：46px；#2b2b2b；中等（辅助文字40px，常规）导航栏下方线h:4px;#dedede
-2、返回键w：27px，h：42px
+    <!--1、所有导航栏h：126px，白底；字：46px；#2b2b2b；中等（辅助文字40px，常规）导航栏下方线h:4px;#dedede
+    2、返回键w：27px，h：42px
 
--->
+    -->
     <RelativeLayout
-        android:background="#FFF"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/x144">
+        android:layout_height="48dp"
+        android:background="#FFF">
 
         <ImageView
             android:id="@+id/talent_return"
-            android:layout_width="27px"
-            android:layout_height="42px"
-            android:scaleType="fitXY"
+            android:layout_width="9dp"
+            android:layout_height="14dp"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:src="@mipmap/xiaoyuhei" />
-
+            android:scaleType="fitXY"
+            android:src="@mipmap/xiaoyuhei"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -31,27 +28,19 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:text="包包达人"
-            android:textSize="@dimen/x46"
-            android:textColor="@color/navigation_bar_text_color"/>
-
+            android:textColor="@color/navigation_bar_text_color"
+            android:textSize="16dp"/>
 
     </RelativeLayout>
 
-
     <View
         android:layout_width="match_parent"
-        android:layout_height="@dimen/x4"
+        android:layout_height="1.4dp"
         android:background="@color/navigation_bar_line_color"/>
-
-
-
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/talent_recycler"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
-
-
-
+        android:layout_height="match_parent"/>
 
 </LinearLayout>

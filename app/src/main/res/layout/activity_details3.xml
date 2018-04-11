@@ -1,19 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#FFF"
-    tools:context="com.share.bag.ui.activitys.home.Details">
-
-
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#FFF"
+              android:orientation="vertical"
+              tools:context="com.share.bag.ui.activitys.home.Details">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/x144">
-
+        android:layout_height="48dp">
 
         <ImageView
             android:id="@+id/Details_return"
@@ -21,8 +17,7 @@
             android:layout_height="18dp"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:src="@mipmap/xiaoyu3" />
-
+            android:src="@mipmap/xiaoyu3"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -30,28 +25,26 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:text="详情"
-            android:textSize="@dimen/x46"
-            android:textColor="@color/navigation_bar_text_color"/>
-        <!--android:textStyle="bold"-->
-
+            android:textColor="@color/navigation_bar_text_color"
+            android:textSize="16dp"/>
 
         <ImageView
             android:id="@+id/Details_shared"
-            android:layout_width="50px"
-            android:layout_height="50px"
-            android:scaleType="fitXY"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="10dp"
-            android:src="@mipmap/fenxiang02" />
+            android:scaleType="fitXY"
+            android:src="@mipmap/fenxiang02"/>
 
 
     </RelativeLayout>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="@dimen/x4"
-        android:background="@color/navigation_bar_line_color" />
+        android:layout_height="1.4dp"
+        android:background="@color/navigation_bar_line_color"/>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -66,11 +59,11 @@
             <com.youth.banner.Banner
                 android:id="@+id/Details_banner"
                 android:layout_width="match_parent"
-                android:layout_height="952px" />
+                android:layout_height="316dp"/>
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="3px"
+                android:layout_height="1dp"
                 android:background="#F1F1F1"/>
 
             <LinearLayout
@@ -83,9 +76,9 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="130px"
-                android:gravity="center"
-                android:background="#FFF">
+                android:layout_height="42dp"
+                android:background="#FFF"
+                android:gravity="center">
 
                 <TextView
                     android:id="@+id/details_details"
@@ -119,104 +112,81 @@
 
                     <ImageView
                         android:id="@+id/details_comment_img"
-                        android:layout_marginLeft="30px"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
                         android:src="@drawable/bianji"
                         android:visibility="invisible"/>
 
-
-
                 </LinearLayout>
-
-
-
 
             </LinearLayout>
 
-
-
-
-
-
-           <LinearLayout
-               android:layout_width="match_parent"
-               android:layout_height="3px">
-
-
-
-               <View
-                   android:id="@+id/details_details1"
-                   android:layout_width="match_parent"
-                   android:layout_height="3px"
-                   android:layout_weight="1"
-                   android:background="#FF4081"/>
-               <View
-                   android:id="@+id/details_comment1"
-                   android:layout_width="match_parent"
-                   android:layout_height="3px"
-                   android:background="#FF4081"
-                   android:layout_weight="1"
-                   android:visibility="invisible"/>
-
-
-
-           </LinearLayout>
-
-
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp">
 
                 <View
+                    android:id="@+id/details_details1"
                     android:layout_width="match_parent"
-                    android:layout_height="3px"
-                    android:background="#F2F2F2"/>
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:background="#FF4081"/>
+                <View
+                    android:id="@+id/details_comment1"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:background="#FF4081"
+                    android:visibility="invisible"/>
 
+            </LinearLayout>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#F2F2F2"/>
             <!--详情-->
-
             <LinearLayout
                 android:id="@+id/details_details_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="#FFF">
-
+                android:background="#FFF"
+                android:orientation="vertical">
 
 
                 <TextView
                     android:id="@+id/detalis_Introduction"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="54px"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginTop="18dp"
                     android:text="爱马仕女士公文包上班首选2018新款白领必备"
                     android:textColor="#FF303030"
-                    android:textSize="42px"
-                    android:layout_marginLeft="74px"/>
-
-
+                    android:textSize="14dp"/>
 
 
                 <!--品牌-->
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="34px"
-                    android:layout_marginLeft="74px">
-
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginTop="10dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="品牌："
                         android:textColor="#838383"
-                        android:textSize="36px"/>
+                        android:textSize="12dp"/>
+
                     <TextView
                         android:id="@+id/detalis_brand"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="爱马仕"
                         android:textColor="#838383"
-                        android:textSize="36px" />
-
+                        android:textSize="12dp"/>
 
 
                 </LinearLayout>
@@ -225,16 +195,15 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16px"
-                    android:layout_marginLeft="74px"
-                    >
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginTop="6dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="商品编号"
                         android:textColor="#838383"
-                        android:textSize="36px"  />
+                        android:textSize="12dp"/>
 
                     <TextView
                         android:id="@+id/detalis_numbering"
@@ -242,7 +211,7 @@
                         android:layout_height="wrap_content"
                         android:text="201801181256"
                         android:textColor="#838383"
-                        android:textSize="36px"  />
+                        android:textSize="12dp"/>
                 </LinearLayout>
 
 
@@ -250,22 +219,21 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16px"
-                    android:layout_marginLeft="74px">
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginTop="6dp">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="颜色："
                         android:textColor="#838383"
-                        android:textSize="36px"  />
+                        android:textSize="12dp"/>
                     <TextView
                         android:id="@+id/detalis_colour"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="粉色"
                         android:textColor="#838383"
-                        android:textSize="36px"  />
-
+                        android:textSize="12dp"/>
 
                 </LinearLayout>
 
@@ -273,16 +241,15 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16px"
-                    android:layout_marginLeft="74px">
-
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginTop="6dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="材质"
                         android:textColor="#838383"
-                        android:textSize="36px" />
+                        android:textSize="12dp"/>
 
                     <TextView
                         android:id="@+id/detalis_material"
@@ -290,26 +257,22 @@
                         android:layout_height="wrap_content"
                         android:text="真牛品"
                         android:textColor="#838383"
-                        android:textSize="36px" />
-
-
+                        android:textSize="12dp"/>
 
                 </LinearLayout>
-
 
                 <!--尺寸-->
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16px"
-                    android:layout_marginLeft="74px">
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginTop="6dp">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="尺寸："
                         android:textColor="#838383"
-                        android:textSize="36px"  />
-
+                        android:textSize="12dp"/>
 
                     <TextView
                         android:id="@+id/detalis_size"
@@ -317,39 +280,30 @@
                         android:layout_height="wrap_content"
                         android:text="420*255*155mm"
                         android:textColor="#838383"
-                        android:textSize="36px"  />
+                        android:textSize="12dp"/>
                 </LinearLayout>
 
-
-
-
                 <View
-                    android:layout_marginTop="48px"
                     android:layout_width="match_parent"
-                    android:layout_height="2px"
+                    android:layout_height="0.6dp"
+                    android:layout_marginTop="20dp"
                     android:background="#F1F1F1"/>
-
 
                 <ImageView
                     android:id="@+id/detalis_description_img1"
-                    android:layout_gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:scaleType="fitXY" />
-
+                    android:layout_gravity="center"
+                    android:scaleType="fitXY"/>
 
                 <ImageView
                     android:id="@+id/detalis_description_img2"
-                    android:layout_gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:scaleType="fitXY" />
-
-
-
+                    android:layout_gravity="center"
+                    android:scaleType="fitXY"/>
 
             </LinearLayout>
-
 
             <!--评论-->
             <LinearLayout
@@ -359,45 +313,39 @@
                 android:orientation="vertical"
                 android:visibility="gone">
 
-
                 <TextView
                     android:id="@+id/details_comment_layout_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="暂无评价"
                     android:gravity="center"
+                    android:text="暂无评价"
                     android:visibility="gone"/>
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/details_comment_layout_recy"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    ></android.support.v7.widget.RecyclerView>
-                <!--setNestedScrollingEnbaled-->
+                ></android.support.v7.widget.RecyclerView>
             </LinearLayout>
-
-
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="猜你喜欢"
                 android:gravity="center"
+                android:text="猜你喜欢"
                 android:textColor="#FC655E"
-                android:textSize="50px"/>
-
+                android:textSize="16dp"/>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/details_like_recycler"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                ></android.support.v7.widget.RecyclerView>
-
+                android:layout_marginLeft="6dp"
+                android:layout_marginTop="6dp"/>
 
         </LinearLayout>
 
     </ScrollView>
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -409,8 +357,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="#FC655E"
-            android:text="放入收藏"
-            android:textColor="#FFF" />
+            android:text="@string/collection_put"
+            android:textColor="#FFF"/>
 
         <Button
             android:id="@+id/details_button_rent"
@@ -428,7 +376,7 @@
             android:layout_weight="1"
             android:background="#FFF"
             android:text="立刻买断"
-            android:textColor="#FD837D" />
+            android:textColor="#FD837D"/>
     </LinearLayout>
 
     <TextView

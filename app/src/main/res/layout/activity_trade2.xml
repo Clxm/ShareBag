@@ -1,25 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.share.bag.ui.activitys.home.TradeActivity">
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              tools:context="com.share.bag.ui.activitys.home.TradeActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/x144">
-
+        android:layout_height="48dp">
 
         <ImageView
             android:id="@+id/Trade_return"
-            android:layout_width="27px"
-            android:layout_height="42px"
+            android:layout_width="9dp"
+            android:layout_height="14dp"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:src="@mipmap/xiaoyu3" />
-
+            android:src="@mipmap/xiaoyu3"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -27,25 +24,24 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:text="以旧换新"
-            android:textSize="@dimen/x46"
-            android:textColor="@color/navigation_bar_text_color"/>
+            android:textColor="@color/navigation_bar_text_color"
+            android:textSize="15dp"/>
 
     </RelativeLayout>
 
 
+    <ImageView
+        android:id="@+id/Trade_replace"
+        android:layout_width="match_parent"
+        android:layout_height="116dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/mo1"/>
 
-
-        <ImageView
-            android:id="@+id/Trade_replace"
-            android:layout_width="match_parent"
-            android:layout_height="350px"
-            android:scaleType="fitXY"
-            android:layout_marginBottom="23px"
-            android:src="@drawable/mo1"/>
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/Trade_recycler"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/Trade_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="6dp"
+        android:layout_marginTop="6dp"/>
 
 </LinearLayout>

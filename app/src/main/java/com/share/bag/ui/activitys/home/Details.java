@@ -26,16 +26,15 @@ import com.share.bag.FileUtil;
 import com.share.bag.LikeAdapter;
 import com.share.bag.R;
 import com.share.bag.SBUrls;
-import com.share.bag.adapter.PopularAdapter;
 import com.share.bag.entity.AddCommentBean;
 import com.share.bag.entity.CollectionBean;
 import com.share.bag.entity.CommentBean;
 import com.share.bag.entity.DeailsBean;
 import com.share.bag.entity.LikeBean;
-import com.share.bag.entity.selected.SelectedBean;
 import com.share.bag.ui.activitys.mine.Login;
 import com.share.bag.ui.pay.BuyActivity;
 import com.share.bag.ui.pay.RentActivity;
+import com.share.bag.utils.ToastUtils;
 import com.share.bag.utils.okhttp.OkHttpUtils;
 import com.share.bag.utils.okhttp.callback.MyNetWorkCallback;
 import com.umeng.socialize.ShareAction;
@@ -75,14 +74,6 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
     private ImageView detalis_description_img1;
     private ImageView detalis_description_img2;
     private LinearLayout details_details_layout;
-    //    private ImageView details_comment_avatar;
-//    private TextView details_comment_name;
-//    private TextView details_comment_time;
-//    private TextView details_comment_signature1;
-//    private TextView details_comment_signature2;
-//    private TextView details_comment_signature3;
-//    private LinearLayout details_comment_signature;
-//    private TextView details_comment_content;
     private LinearLayout details_comment_layout;
     private Button details_button_collection;
     private Button details_button_rent;
@@ -92,25 +83,17 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
     List<String> img1;
     private List<String> img2;
     private String tmp;
-    //    private String description_1;
     private List<String> heardimg = new ArrayList<>();
     private Banner details_banner;
     private TextView details_comment_number;
     private RecyclerView details_comment_layout_recy;
-    //    List<CommentBean.DataBean> list = new ArrayList<>();
     private CommentAdapter commentAdapter;
     private TextView details_comment_layout_text;
     private String comment_count1;
     private ImageView details_comment_img;
     private RecyclerView details_like_recycler;
-    private PopupWindow window2;
     private PopupWindow pw;
     private EditText et_input_content;
-
-
-    private List<SelectedBean> mList = new ArrayList();
-    private List<SelectedBean> mLists = new ArrayList();
-    private PopularAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -166,6 +149,7 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
                 }
             }
         });
+        //评论
         details_comment_img.setOnClickListener(new View.OnClickListener() {
 
             private EditText details_pinglun;
@@ -212,8 +196,6 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
             @Override
             public void onClick(View view) {
                 getpinglun();
-//                Toast.makeText(Details.this, "点击了发送按钮", Toast.LENGTH_SHORT).show();
-
             }
         });
 
@@ -281,15 +263,7 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
                     Intent intent = new Intent(this, Login.class);
                     startActivity(intent);
                 } else {
-
-
-                    try {
-                        getselect();
-                    } catch (Exception e) {
-//异常处理
-                    }
-
-
+                    getselect();
                 }
                 break;
             case R.id.details_button_rent:
@@ -325,22 +299,19 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
 
     //点击收藏
     public void getselect() {
-
-        Map<String, String> collection = new HashMap();
-        collection.put("baglist_id", "1");
-        OkHttpUtils.getInstance().post(SBUrls.COLLECTION, collection, new MyNetWorkCallback<CollectionBean>() {
+        final Map<String, String> collection = new HashMap();
+        collection.put("baglist_id", tmp);
+        OkHttpUtils.getInstance().post(SBUrls.LIKE_COLLECTION, collection, new MyNetWorkCallback<CollectionBean>() {
             @Override
             public void onSuccess(CollectionBean collectionBean) {
-                Toast.makeText(Details.this, "点击收藏", Toast.LENGTH_SHORT).show();
-//                String status = collectionBean.getInfo();
-//                if (status.toString().equals("收藏成功")) {
-//
-//                    Toast.makeText(Details.this, "" + status, Toast.LENGTH_SHORT).show();
-//
-//                } else {
-//                    Toast.makeText(Details.this, "" + status, Toast.LENGTH_SHORT).show();
-//                }
-
+                String type = collectionBean.getType();
+                if (type.equals("1")) {
+                    details_button_collection.setText(R.string.collection_cancel);
+                    ToastUtils.showTop(Details.this, "收藏成功");
+                } else if (type.equals("2")) {
+                    details_button_collection.setText(R.string.collection_put);
+                    ToastUtils.showTop(Details.this, "取消收藏");
+                }
 
             }
 
@@ -506,6 +477,22 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
                 .share();
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (pw != null) {
+            pw.dismiss();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (pw != null) {
+            pw.dismiss();
+        }
+    }
+
     private UMShareListener shareListener = new UMShareListener() {
         /**
          * @descrption 分享开始的回调
@@ -642,7 +629,7 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
     //评论
     public void getinitdatacomment() {
         Map<String, String> map = new HashMap<>();
-        map.put("baglist_id", tmp + "");
+        map.put("baglist_id", tmp);
         try {
             //请求网络
             OkHttpUtils.getInstance().post(SBUrls.COMMENT, map, new MyNetWorkCallback<CommentBean>() {
@@ -666,6 +653,7 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
+    //发送评论接口
     public void getpinglun() {
         String butttString = et_input_content.getText().toString().trim();
         if (TextUtils.isEmpty(butttString)) {
@@ -674,8 +662,7 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
         }
         String str = "https://baobaoapi.ldlchat.com/index.php?s=/Home/comment/publish.html";
         Map<String, String> map = new HashMap<>();
-//        map.put("photo",null);
-        map.put("baglist_id", tmp + "");
+        map.put("baglist_id", tmp);
         map.put("content", butttString);
 //        try {
         //请求网络
@@ -683,7 +670,6 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
             @Override
             public void onSuccess(AddCommentBean addComment) throws JSONException {
                 pw.dismiss();
-
                 getinitdatacomment();
 
             }

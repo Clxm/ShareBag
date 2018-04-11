@@ -14,6 +14,7 @@ public class CollectionBean {
 
     private String status;
     private String info;
+    private String type;//1 收藏， 2 取消收藏
 
     public String getType() {
         return type;
@@ -23,7 +24,6 @@ public class CollectionBean {
         this.type = type;
     }
 
-    private String type;
 
     public String getStatus() {
         return status;

@@ -11,12 +11,12 @@
 
     <com.share.bag.view.NavigationBarLine android:layout_width="match_parent"
                                           android:layout_alignParentBottom="true"
-                                          android:layout_marginBottom="@dimen/x160"
+                                          android:layout_marginBottom="54dp"
                                           android:layout_height="wrap_content"/>
     <RadioGroup
         android:id="@+id/rg_root"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/x160"
+        android:layout_height="54dp"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal"
         android:weightSum="5"
@@ -28,11 +28,11 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:button="@null"
-            android:drawablePadding="6px"
+            android:drawablePadding="2dp"
             android:drawableTop="@drawable/china_nav_bt"
             android:gravity="center"
             android:text="首页"
-            android:textSize="24px" />
+            android:textSize="8dp" />
 
         <RadioButton
             android:id="@+id/live_radiobt"
@@ -40,11 +40,11 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:button="@null"
-            android:drawablePadding="6px"
+            android:drawablePadding="2dp"
             android:drawableTop="@drawable/china_nav_xuan"
             android:gravity="center"
             android:text="选包"
-            android:textSize="24px" />
+            android:textSize="8dp" />
 
         <RadioButton
             android:id="@+id/video_radiobt"
@@ -52,11 +52,11 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:button="@null"
-            android:drawablePadding="6px"
+            android:drawablePadding="2dp"
             android:drawableTop="@drawable/china_nav_bt3"
             android:gravity="center"
             android:text="上传"
-            android:textSize="24px" />
+            android:textSize="8dp" />
 
         <RadioButton
             android:id="@+id/eye_radiobt"
@@ -64,11 +64,11 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:button="@null"
-            android:drawablePadding="6px"
+            android:drawablePadding="2dp"
             android:drawableTop="@drawable/china_nav_bt4"
             android:gravity="center"
             android:text="收藏"
-            android:textSize="24px" />
+            android:textSize="8dp" />
 
         <RadioButton
             android:id="@+id/china_radiobt"
@@ -76,11 +76,11 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:button="@null"
-            android:drawablePadding="6px"
+            android:drawablePadding="2dp"
             android:drawableTop="@drawable/china_nav_bt5"
             android:gravity="center"
             android:text="我的"
-            android:textSize="24px" />
+            android:textSize="8dp" />
 
     </RadioGroup>
 

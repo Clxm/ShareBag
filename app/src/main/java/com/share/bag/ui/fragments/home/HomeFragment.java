@@ -198,7 +198,8 @@ public class HomeFragment extends BaseFragment {
                             .crossFade()
                             .into(home_avatar);
 
-                    home_name.setText(info.get(i).getUserinfo().getName());
+                    String name = info.get(i).getUserinfo().getName();
+                    home_name.setText(name);
 
                     String strTime = DateUtils.getStrTime1(info.get(i).getTime());
                     home_time.setText(strTime);

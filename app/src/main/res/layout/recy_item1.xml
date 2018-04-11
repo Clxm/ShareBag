@@ -1,44 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-              android:padding="6dp"
-    android:background="#F2F2F2"
-    android:orientation="vertical">
-
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="#F2F2F2"
+              android:orientation="vertical">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="188dp"
-        android:orientation="vertical"
-        android:background="#FFF">
-
+        android:layout_marginBottom="6dp"
+        android:layout_marginRight="6dp"
+        android:background="#FFF"
+        android:orientation="vertical">
 
         <ImageView
             android:id="@+id/recyler_commodity"
-            android:layout_width="165dp"
+            android:layout_width="match_parent"
             android:layout_height="128dp"
             android:scaleType="fitXY"
             android:src="@drawable/mo1"/>
 
-
         <LinearLayout
-            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
             android:gravity="center_vertical">
-
 
             <TextView
                 android:id="@+id/recyler_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:text="品牌品牌品牌品牌"
-                android:textSize="14dp"
-                android:textColor="@color/selectf_bag_name"
                 android:maxEms="5"
-                android:singleLine="true"/>
+                android:singleLine="true"
+                android:text="品牌品牌品牌品牌"
+                android:textColor="@color/selectf_bag_name"
+                android:textSize="12dp"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -50,19 +47,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
-                android:src="@mipmap/shoucang1"
-                />
-
+                android:src="@mipmap/shoucang1"/>
 
         </LinearLayout>
 
-
         <LinearLayout
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="4dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="12dp">
 
             <TextView
                 android:id="@+id/recyler_text1"
@@ -73,7 +66,7 @@
                 android:layout_marginLeft="10dp"
                 android:text="￥"
                 android:textColor="#FD7872"
-                android:textSize="12sp" />
+                android:textSize="12sp"/>
 
             <TextView
                 android:id="@+id/recyler_price"
@@ -84,12 +77,12 @@
                 android:layout_toEndOf="@+id/recyler_text1"
                 android:text="200/3天"
                 android:textColor="#FD7872"
-                android:textSize="12dp" />
+                android:textSize="10dp"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"></LinearLayout>
+                android:layout_weight="1"/>
 
             <TextView
                 android:id="@+id/recyler_text2"
@@ -98,8 +91,8 @@
                 android:layout_alignBottom="@+id/recyler_text1"
                 android:layout_toStartOf="@+id/recyler_Collection"
                 android:text="原价："
-                android:textSize="12dp"
-                android:textColor="@color/selectf_original_price" />
+                android:textColor="@color/selectf_original_price"
+                android:textSize="10dp"/>
 
             <TextView
                 android:id="@+id/recyler_money"
@@ -109,14 +102,11 @@
                 android:layout_alignEnd="@+id/recyler_Collection"
                 android:layout_marginRight="10dp"
                 android:text="5000"
-                android:textSize="12dp"
-                android:textColor="@color/selectf_original_price" />
-
+                android:textColor="@color/selectf_original_price"
+                android:textSize="10dp"/>
 
         </LinearLayout>
 
-
     </LinearLayout>
-
 
 </LinearLayout>

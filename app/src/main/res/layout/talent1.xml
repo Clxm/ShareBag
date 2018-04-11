@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#FFF"
-    >
-
-
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#FFF"
+              android:orientation="vertical">
 
     <LinearLayout
-        android:layout_marginTop="36px"
-        android:layout_marginLeft="36px"
-        android:layout_marginRight="36px"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginTop="12dp"
         android:orientation="vertical">
 
         <LinearLayout
@@ -21,188 +19,163 @@
 
             <ImageView
                 android:id="@+id/talent_avatar"
-                android:layout_width="173px"
-                android:layout_height="173px"
+                android:layout_width="58dp"
+                android:layout_height="58dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/touxiang22"
+                android:src="@drawable/touxiang22"/>
 
-                />
-            <!--android:layout_marginTop="34px"-->
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-
 
                 <TextView
                     android:id="@+id/talent_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="俏佳人"
-                    android:textSize="36px"
-                    android:textColor="#303030"
-                    android:layout_alignParentTop="true"
                     android:layout_alignParentStart="true"
-                    android:layout_marginStart="12px"
-                    android:layout_marginTop="68px"/>
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="22dp"
+                    android:text="俏佳人"
+                    android:textColor="#303030"
+                    android:textSize="13dp"/>
 
                 <TextView
                     android:id="@+id/talent_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="13dp"
+                    android:layout_marginTop="22dp"
                     android:text="2017-11-22"
-                    android:textSize="40px"
-                    android:layout_marginTop="74px"
-                    android:layout_marginEnd="36px"/>
-
+                    android:textSize="13dp"/>
 
                 <LinearLayout
-                    android:layout_marginTop="20px"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
-                    android:layout_alignStart="@+id/talent_name">
-
+                    android:layout_alignStart="@+id/talent_name"
+                    android:layout_marginTop="6dp">
 
                     <TextView
-                        android:background="@drawable/textview6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/textview6"
+                        android:padding="2dp"
                         android:text="白领"
-                        android:padding="8px"
-                        android:textSize="30px"
                         android:textColor="#838383"
-                        />
-
-
+                        android:textSize="10dp"/>
 
                     <TextView
-                        android:background="@drawable/textview6"
-                        android:layout_marginLeft="18px"
-                        android:layout_marginRight="18px"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="6dp"
+                        android:layout_marginRight="6dp"
+                        android:background="@drawable/textview6"
+                        android:padding="2dp"
                         android:text="白领"
-                        android:padding="8px"
-                        android:textSize="30px"
-                        android:textColor="#838383"/>
-
+                        android:textColor="#838383"
+                        android:textSize="10dp"/>
 
                     <TextView
-                        android:background="@drawable/textview6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/textview6"
+                        android:padding="2dp"
                         android:text="白领"
-                        android:padding="8px"
-                        android:textSize="30px"
-                        android:textColor="#838383"/>
+                        android:textColor="#838383"
+                        android:textSize="10dp"/>
 
                 </LinearLayout>
-
 
             </RelativeLayout>
 
         </LinearLayout>
 
-
         <TextView
-            android:layout_marginTop="44px"
             android:id="@+id/talent_dynamic"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="这个包包看起来真的很好看，我非常喜欢" />
-
+            android:layout_marginTop="14dp"
+            android:text="这个包包看起来真的很好看，我非常喜欢"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="34px">
+            android:layout_marginBottom="12dp">
 
             <ImageView
                 android:id="@+id/talent_img1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="34px"
-                android:layout_marginRight="16px"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="6dp"
                 android:layout_weight="1"
-                android:scaleType="fitXY"
-                />
+                android:scaleType="fitXY"/>
 
             <ImageView
                 android:id="@+id/talent_img2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="16px"
-                android:layout_marginRight="34px"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="12dp"
                 android:layout_weight="1"
-                android:scaleType="fitXY"
-                />
+                android:scaleType="fitXY"/>
 
         </LinearLayout>
 
-
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="225px"
-            android:layout_marginTop="34px"
+            android:layout_height="75dp"
+            android:layout_marginTop="14dp"
             android:background="@drawable/baobaodaren">
-
 
             <ImageView
                 android:id="@+id/talent_commodity_img"
-                android:layout_width="184px"
-                android:layout_height="178px"
+                android:layout_width="62dp"
+                android:layout_height="60dp"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
-                android:layout_marginStart="20px"
+                android:layout_marginStart="6dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/mo1" />
-
+                android:src="@drawable/mo1"/>
 
             <TextView
                 android:id="@+id/talent_commodity_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="60px"
-                android:text="名称"
-                android:textSize="26px"
                 android:layout_alignTop="@+id/talent_commodity_img"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_toEndOf="@+id/talent_commodity_img"
-                android:layout_marginTop="29px" />
-
-
+                android:text="名称"
+                android:textSize="10dp"/>
 
             <TextView
                 android:id="@+id/talent_commodity_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="价格"
-                android:textSize="26px"
-                android:layout_below="@+id/talent_commodity_name"
                 android:layout_alignStart="@+id/talent_commodity_name"
-                android:layout_marginTop="64px" />
-
+                android:layout_below="@+id/talent_commodity_name"
+                android:layout_marginTop="20dp"
+                android:text="价格"
+                android:textSize="10dp"/>
 
             <ImageView
                 android:id="@+id/talent_commodity_shoucang_img"
-                android:layout_width="50px"
-                android:layout_height="42px"
-                android:scaleType="fitXY"
-                android:src="@mipmap/shoucang1"
-                android:layout_marginEnd="54px"
+                android:layout_width="16dp"
+                android:layout_height="14dp"
+                android:layout_alignParentEnd="true"
                 android:layout_alignTop="@+id/talent_commodity_price"
-                android:layout_alignParentEnd="true" />
-
-
-
+                android:layout_marginEnd="18dp"
+                android:scaleType="fitXY"
+                android:src="@mipmap/shoucang1"/>
 
         </RelativeLayout>
 
-
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="124px">
-
+            android:layout_height="42dp">
 
             <LinearLayout
                 android:id="@+id/daren_linear1"
@@ -215,10 +188,9 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/fenxiangwei" />
+                    android:src="@drawable/fenxiangwei"/>
 
             </LinearLayout>
-
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -231,26 +203,24 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/dianzan2" />
+                    android:src="@drawable/dianzan2"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10px"
+                    android:layout_marginLeft="4dp"
                     android:text="20"
-                    android:textSize="30px" />
+                    android:textSize="10dp"/>
 
             </LinearLayout>
 
-
         </RelativeLayout>
 
-
     </LinearLayout>
+
     <View
         android:layout_width="match_parent"
-        android:layout_height="20px"
-        android:background="#F0F0F0"
-        />
+        android:layout_height="6dp"
+        android:background="#F0F0F0"/>
 
 </LinearLayout>
