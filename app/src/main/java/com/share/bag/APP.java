@@ -18,8 +18,8 @@ public class APP extends Application{
     public static AppCompatActivity context;
 
     {//wx38f75c7fdb68b2bf
-        //应用签名      b8c48274438d1b31bae8462ba8a5bdaf
-        PlatformConfig.setWeixin("wx38f75c7fdb68b2bf", "584e36f6b03ede387ae9a29805bfab9d");
+        //应用签名 8dcedec6e7e935e0ca0e18d4811b1d7f
+        PlatformConfig.setWeixin("wx38f75c7fdb68b2bf", "f0e2269b7387a00fa1148a4ee448cff7");
         PlatformConfig.setQQZone("1106593131", "aTkZwsKLliMcSv7v");
 //        String key, String secret, String redirectUrl) {
         PlatformConfig.setSinaWeibo("590644690", "94ad600e3963153d4d4a0970cc9727df", "https://www.pgyer.com/R6iM");
