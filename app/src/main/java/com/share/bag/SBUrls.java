@@ -72,6 +72,8 @@ public class SBUrls {
 
     //      选包（热门）界面
     public static final String POPULAR ="https://baobaoapi.ldlchat.com/Home/Backlist/bagtolist.html";
+    public static final String FILTERBAG ="https://baobaoapi.ldlchat.com/Home/Backcontent/screen.html";
+    public static final String HOTWORD ="https://baobaoapi.ldlchat.com/Home/Backcontent/gethotword.html";
     public static final String LOGURL="https://baobaoapi.ldlchat.com";
     public static final String CHECK_RECEIVING = "https://baobaoapi.ldlchat.com/Home/Personalcenter/getUserContent.html";
 /*

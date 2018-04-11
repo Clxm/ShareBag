@@ -5,14 +5,21 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.text.TextUtils;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.animation.Animation;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -30,12 +37,18 @@ import com.share.bag.adapter.PopularAdapter;
 import com.share.bag.base.BaseFragment;
 import com.share.bag.entity.CollectionBean;
 import com.share.bag.entity.selected.SelectedBean;
+import com.share.bag.ui.activitys.SearchBagDetail;
+import com.share.bag.ui.activitys.SearchHotWord;
 import com.share.bag.ui.activitys.home.Details;
 import com.share.bag.ui.activitys.home.DetailsBean;
+import com.share.bag.utils.ToastUtils;
 import com.share.bag.utils.okhttp.OkHttpUtils;
 import com.share.bag.utils.okhttp.callback.ByteCallBack;
 import com.share.bag.utils.okhttp.callback.MyNetWorkCallback;
+import com.share.bag.view.FlowViewGroup;
+import com.share.bag.view.TagFlowAdapter;
 
+import org.greenrobot.eventbus.EventBus;
 import org.json.JSONException;
 
 import java.util.ArrayList;
@@ -87,17 +100,30 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
     private int height;
     private PopularAdapter adapter;
     private Button Digeo, GaoDi, ZuGaoDi, ZuDigao;
-    private Button DanJianOne, DanJiantwo, DanJiantherr, DanJinFuor;
-    private Button DaL, ZhongM, XiaoS;
-    private Button Coach, Hermes;
-    private Button XuiXian, YanHui;
-    private Button Wubai, Yiqian, Reqian, Reqingyishang;
+    private Button DanJianOne, DanJiantwo, DanJiantherr;
+    private Button mPrice_v1, mPrice_v2, mPrice_v3, mPrice_v4;
     private Button ChongZhi, QueDing;
     private List<DetailsBean.InfoBean> mList = new ArrayList();
     private List<SelectedBean> mLists = new ArrayList();
     private PopupWindow window1;
     private View convertView;
     private boolean isGetData = false;
+    //当前界面的价格排序方式 默认由低到高 4  高到低 3 租金低到高 2 租金高到低 1
+    private int mPriceSelected = 4;
+    //顶部页签的位置 0 热门 1 价格  2筛选
+    private int tabPosistion = 0;
+    //第一次点击价格页签将数据切换至由低到高
+    private boolean tab2First = true;
+
+    //筛选中用于网络请求的参数
+    private HashMap<String,String> filterParam = new HashMap();
+
+    private ArrayList<Button> mPriceButtons;
+    private Button mSize_xxl,mSize_m,mSize_l,mSize_xl;
+    private Button mBrandNike,mBrandLv,mBrandCoco,mBrandDiro;
+    private Button mHotAoco,mHotDiro,mHotKate,mHotWomenBag;
+    private View mSearchPopGroup;
+    private FlowViewGroup mFlowViewGroupa;
 
     @Override
     public int initLayout() {
@@ -106,35 +132,150 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
 
     @Override
     public void initView(View view) {
+        mSearchPopGroup = view.findViewById(R.id.search_popgroup);
+        mFlowViewGroupa = view.findViewById(R.id.flowViewGroup);
+        searchEtInput.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                if(b){
+                    getHotWord();
+                }else {
+                    InputMethodManager imm = ( InputMethodManager ) searchEtInput.getContext( ).getSystemService( Context.INPUT_METHOD_SERVICE );
+                    if ( imm.isActive( ) ) {
+                        imm.hideSoftInputFromWindow( searchEtInput.getApplicationWindowToken( ) , 0 );
+                    }
+                    mSearchPopGroup.setVisibility(View.GONE);
+                }
+            }
+        });
+        view.findViewById(R.id.search_out).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                searchEtInput.clearFocus();
+            }
+        });
+        searchEtInput.setOnEditorActionListener(new TextView.OnEditorActionListener() {
 
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                /*判断是否是“GO”键*/
+                if(actionId == EditorInfo.IME_ACTION_SEARCH){
+                    searchEtInput.clearFocus();
+                    getSearchDetail(searchEtInput.getText().toString());
+                    return true;
+                }
+                return false;
+            }
+        });
     }
+    private static Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            EventBus.getDefault().postSticky(msg.obj);
+        }
+    };
+    private void getSearchDetail(String name) {
+        HashMap<String,String> map = new HashMap<>();
+        map.put("name",name);
+        OkHttpUtils.getInstance().post(SBUrls.POPULAR, map, new MyNetWorkCallback<DetailsBean>() {
+            @Override
+            public void onSuccess(DetailsBean detailsBean) throws JSONException {
+                List<DetailsBean.InfoBean> info = detailsBean.getInfo();
+                if(null != info && info.size()>0){
+                    Intent intent = new Intent(getActivity(), SearchBagDetail.class);
+                    startActivity(intent);
+                    Message message = new Message();
+                    message.obj = detailsBean;
+                    handler.sendMessageDelayed(message,500);
+                }else {
+                    ToastUtils.showTop(getContext(),"暂无你查找的包包");
+                }
+            }
+
+            @Override
+            public void onError(int errorCode, String errorMsg) {
+
+            }
+
+        });
+    }
+
+    private void getHotWord() {
+        HashMap<String,String> map = new HashMap<>();
+        OkHttpUtils.getInstance().post(SBUrls.HOTWORD, map, new MyNetWorkCallback<SearchHotWord>() {
+            @Override
+            public void onSuccess(SearchHotWord searchHotWord) throws JSONException {
+                if(null != searchHotWord.getInfo() && searchHotWord.getInfo().size()>0)
+                mFlowViewGroupa.setAdapter(new MyTagFlowAdapter(searchHotWord.getInfo()));
+                mSearchPopGroup.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onError(int errorCode, String errorMsg) {
+
+            }
+        });
+    }
+
+    private class MyTagFlowAdapter extends TagFlowAdapter{
+        List<SearchHotWord.InfoBean> mList = new ArrayList<>();
+        public MyTagFlowAdapter(List<SearchHotWord.InfoBean> info){
+            mList = info;
+            notifyDataSetChanged();
+        }
+        @Override
+        public int getCount() {
+            return mList.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return null;
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return 0;
+        }
+
+        @Override
+        public View getView(final int position) {
+            View view = View.inflate(getContext(), R.layout.flowadapter_item, null);
+            TextView tv = view.findViewById(R.id.flowitem_tv);
+            tv.setText(mList.get(position).getName());
+            tv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    searchEtInput.clearFocus();
+                    mSearchPopGroup.setVisibility(View.GONE);
+                    getSearchDetail(mList.get(position).getName());
+                }
+            });
+            return view;
+        }
+    }
+
 
     @Override
     protected void initData() {
+        selectedRecyclerview.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        adapter = new PopularAdapter(getContext(), mList);
+        selectedRecyclerview.setAdapter(adapter);
         FileUtil.SelectedreadFromPre(getActivity(), select_user);
         if (select_user.getText().equals("")) {
-            Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
+            ToastUtils.showTop(getContext(), "请先登录");
         } else {
 //           登录成功后网络请求
-            getpopular();
+            getHttpData();
         }
 
-//        gridlayoutmanager
-        selectedRecyclerview.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-//        初始化 界面
-
-        adapter = new PopularAdapter(getContext(), mList);
-
-        selectedRecyclerview.setAdapter(adapter);
         adapter.setOnitemClickedListener(new PopularAdapter.OnitemClickedListener() {
             @Override
             public void Back(View v, int position) {//详情页
-                adapter.notifyDataSetChanged();
                 Intent intent1 = new Intent(getActivity(), Details.class);
                 intent1.putExtra("details", position + "");
-
                 intent1.putExtra("details", mList.get(position).getId());
-
                 startActivity(intent1);
             }
         });
@@ -187,28 +328,35 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
         unbinder.unbind();
     }
 
-    @OnClick(R.id.search_et_input)
-    public void onViewClicked() {
-        //监听
 
 
-    }
-
-    public void getpopular() {
-
-
+    public void getHttpData() {
         Map<String, String> map = new HashMap<>();
+        switch (tabPosistion){
+            case 0://热门
+                map.put("is_hot","1");
+                break;
+            case 1://价格
+                map.put("is_hot","2");
+                map.put("type","1");
+                map.put("priceType",mPriceSelected+"");
+                break;
+            case 2://筛选
+                map.put("is_hot","2");
+                break;
+        }
+
         OkHttpUtils.getInstance().post(SBUrls.POPULAR, map, new MyNetWorkCallback<DetailsBean>() {
             @Override
             public void onSuccess(DetailsBean detailsBean) throws JSONException {
                 List<DetailsBean.InfoBean> info = detailsBean.getInfo();
-                selectedRecyclerview.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
-                adapter = new PopularAdapter(getContext(), info);
-
-                selectedRecyclerview.setAdapter(adapter);
-
-
-                adapter.notifyDataSetChanged();
+                if(null != info && info.size()>0){
+                    mList.clear();
+                    mList.addAll(info);
+                    adapter.notifyDataSetChanged();
+                }else {
+                    ToastUtils.showTop(getContext(),"未加载到数据");
+                }
             }
 
             @Override
@@ -216,55 +364,31 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
 
             }
         });
-
-
-//        Map<String,String >stringMap= new HashMap<>();
-//        OkHttpUtils.getInstance().postByte(SBUrls.POPULAR, stringMap, new ByteCallBack() {
-//            @Override
-//            public void onSuccess(String json) {
-//                Gson gson = new Gson();
-//
-//                List<SelectedBean> selectedBeens = gson.fromJson(json, new TypeToken<List<SelectedBean>>() {
-//                }.getType());
-//
-//                mList.addAll(selectedBeens);
-//                mLists.addAll(selectedBeens);
-//
-//                adapter.notifyDataSetChanged();
-//            }
-//            @Override
-//            public void onError(int errorCode, String errorMsg) {
-//
-//            }
-//        });
-//
-
-
     }
 
     @OnClick({R.id.search_popular, R.id.search_price, R.id.search_filter})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.search_popular:
+                if(tabPosistion == 0)
+                    return;
+                tabPosistion = 0;
                 changeHotState();
-//                mList.clear();
-//                mList.addAll(mLists);
-                adapter.notifyDataSetChanged();
-//               Toast.makeText(getContext(), "点击了热门", Toast.LENGTH_SHORT).show();
-                // getPopupWindow();
+                getHttpData();
                 break;
             case R.id.search_price:
+                tabPosistion = 1;
+                if(tab2First){
+                    tab2First = false;
+//                    getHttpData();
+                }
                 changePriceState();
-//                Toast.makeText(getContext(), "点击了价格", Toast.LENGTH_SHORT).show();
                 getPopupWindow();
-
                 break;
             case R.id.search_filter:
+                tabPosistion = 2;
                 changeFilterState();
-//                Toast.makeText(getContext(), "点击了筛选", Toast.LENGTH_SHORT).show();
-
                 getPopupWindowTwo();
-
                 break;
         }
     }
@@ -307,6 +431,12 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
         window1.setBackgroundDrawable(new ColorDrawable(1));
         window1.setOutsideTouchable(true);
         window1.showAsDropDown(searchPopular);
+        inflate.findViewById(R.id.pop_priceGroup).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                window1.dismiss();
+            }
+        });
 
     }
 
@@ -320,57 +450,102 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
         ZuDigao.setOnClickListener(this);
         ZuGaoDi = inflate.findViewById(R.id.ZuGaoDi);
         ZuGaoDi.setOnClickListener(this);
+        mPriceButtons = new ArrayList<>();
+        mPriceButtons.add(Digeo);
+        mPriceButtons.add(GaoDi);
+        mPriceButtons.add(ZuDigao);
+        mPriceButtons.add(ZuGaoDi);
+        setPriceButton();
+    }
+
+    private void setPriceButton() {
+        Button selectButton = null;
+         switch (mPriceSelected){
+             case 4:
+                 selectButton = mPriceButtons.get(0);
+                 break;
+             case 3:
+                 selectButton = mPriceButtons.get(1);
+                 break;
+             case 2:
+                 selectButton = mPriceButtons.get(2);
+                 break;
+             case 1:
+                 selectButton = mPriceButtons.get(3);
+                 break;
+         }
+        selectButton.setBackgroundResource(R.drawable.textview3);
+        selectButton.setTextColor(Color.parseColor("#FFFFFF"));
     }
 
     //筛选
     public void getPopupWindowTwo() {
         View inflate = View.inflate(getContext(), R.layout.popupwindowtwo, null);
         ShaixuanKongjain(inflate);//控件
-        PopupWindow window = new PopupWindow(inflate, width, height);
+        final PopupWindow window = new PopupWindow(inflate, width, height);
         window.setFocusable(true);
         window.setBackgroundDrawable(new ColorDrawable(1));
         window.setOutsideTouchable(true);
         window.showAsDropDown(searchPopular);
+        inflate.findViewById(R.id.filter_group).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                window.dismiss();
+            }
+        });
     }
 
     //获取筛选控件
     private void ShaixuanKongjain(View inflate) {
+        //初始化筛选的请求参数
+        filterParam.clear();
+        //包包类型
         DanJianOne = inflate.findViewById(R.id.DanJianOne);
         DanJianOne.setOnClickListener(this);
         DanJiantwo = inflate.findViewById(DanJianTwo);
         DanJiantwo.setOnClickListener(this);
         DanJiantherr = inflate.findViewById(DanJianTherr);
         DanJiantherr.setOnClickListener(this);
-        DanJinFuor = inflate.findViewById(R.id.DanJianFour);
-        DanJinFuor.setOnClickListener(this);
-        DaL = inflate.findViewById(R.id.DaL);
-        DaL.setOnClickListener(this);
-        ZhongM = inflate.findViewById(R.id.ZhongM);
-        ZhongM.setOnClickListener(this);
-        XiaoS = inflate.findViewById(R.id.XiaoS);
-        XiaoS.setOnClickListener(this);
-        Coach = inflate.findViewById(R.id.Coach);
-        Coach.setOnClickListener(this);
-        Hermes = inflate.findViewById(R.id.Hermes);
-        Hermes.setOnClickListener(this);
-        XuiXian = inflate.findViewById(R.id.XuiXian);
-        XuiXian.setOnClickListener(this);
-        YanHui = inflate.findViewById(R.id.YanHui);
-        YanHui.setOnClickListener(this);
-        Wubai = inflate.findViewById(R.id.Wubai);
-        Wubai.setOnClickListener(this);
-        Yiqian = inflate.findViewById(R.id.Yiqian);
-        Yiqian.setOnClickListener(this);
-        Reqian = inflate.findViewById(R.id.Reqian);
-        Reqian.setOnClickListener(this);
-        Reqingyishang = inflate.findViewById(R.id.Reqianyishang);
-        Reqingyishang.setOnClickListener(this);
+        //包包的大小
+        mSize_xxl = inflate.findViewById(R.id.size_xxl);
+        mSize_m = inflate.findViewById(R.id.size_m);
+        mSize_l = inflate.findViewById(R.id.size_l);
+        mSize_xl = inflate.findViewById(R.id.size_xl);
+        mSize_xxl.setOnClickListener(this);
+        mSize_m.setOnClickListener(this);
+        mSize_l.setOnClickListener(this);
+        mSize_xl.setOnClickListener(this);
+        //包包牌子
+        mBrandNike = inflate.findViewById(R.id.brand_nike);
+        mBrandLv = inflate.findViewById(R.id.brand_lv);
+        mBrandCoco = inflate.findViewById(R.id.brand_coco);
+        mBrandDiro = inflate.findViewById(R.id.brand_diro);
+        mBrandNike.setOnClickListener(this);
+        mBrandLv.setOnClickListener(this);
+        mBrandCoco.setOnClickListener(this);
+        mBrandDiro.setOnClickListener(this);
+        //包包关键字
+        mHotAoco = inflate.findViewById(R.id.hot_aoco);
+        mHotKate = inflate.findViewById(R.id.hot_kate);
+        mHotDiro = inflate.findViewById(R.id.hot_diro);
+        mHotWomenBag = inflate.findViewById(R.id.hot_womenbag);
+        mHotAoco.setOnClickListener(this);
+        mHotKate.setOnClickListener(this);
+        mHotDiro.setOnClickListener(this);
+        mHotWomenBag.setOnClickListener(this);
+        //包包价钱
+        mPrice_v1 = inflate.findViewById(R.id.price_v1);
+        mPrice_v1.setOnClickListener(this);
+        mPrice_v2 = inflate.findViewById(R.id.price_v2);
+        mPrice_v2.setOnClickListener(this);
+        mPrice_v3 = inflate.findViewById(R.id.price_v3);
+        mPrice_v3.setOnClickListener(this);
+        mPrice_v4 = inflate.findViewById(R.id.price_v4);
+        mPrice_v4.setOnClickListener(this);
         ChongZhi = inflate.findViewById(Chongzhi);
         ChongZhi.setOnClickListener(this);
         QueDing = inflate.findViewById(R.id.QueDing);
         QueDing.setOnClickListener(this);
-
-
     }
 
     @Override
@@ -378,409 +553,352 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
         switch (v.getId()) {
             //价格从高到低
             case R.id.DiGao:
-
-//                if (Digeo.isSelected()) {
-//                    Digeo.setSelected(false);
-//                    Digeo.setBackground(getResources().getDrawable(R.drawable.textview));
-//                } else {
-//                    ZuDigao.setSelected(false);
-//                    ZuDigao.setBackground(getResources().getDrawable(R.drawable.textview));
-//                    Digeo.setSelected(true);
-//                    Digeo.setBackground(getResources().getDrawable(R.drawable.red));
-//                    ZuGaoDi.setSelected(false);
-//                    ZuGaoDi.setBackground(getResources().getDrawable(R.drawable.textview));
-//                    GaoDi.setSelected(false);
-//                    GaoDi.setBackground(getResources().getDrawable(R.drawable.textview));
-//                }
-                mList.clear();
-                Map<String, String> map4 = new HashMap<>();
-                map4.put("type", 2 + "");
-                map4.put("priceType", 4 + "");
-                OkHttpUtils.getInstance().postByte(SBUrls.JIAZHEN, map4, new ByteCallBack() {
-                    @Override
-                    public void onSuccess(String json) {
-//                        Gson gson = new Gson();
-//                        List<SelectedBean> selectBeen = gson.fromJson(json,
-//                                new TypeToken<List<SelectedBean>>() {}.getType());
-//                        mList.addAll(selectBeen);
-//                        adapter.notifyDataSetChanged();
-                    }
-
-                    @Override
-                    public void onError(int errorCode, String errorMsg) {
-
-                    }
-                });
+                mPriceSelected = 4;
+                getHttpData();
                 window1.dismiss();
                 break;
-            //价格从低到高
+            //价格从高到低
             case R.id.GaoDi:
-//                if (GaoDi.isSelected()) {
-//                    GaoDi.setSelected(false);
-//                    GaoDi.setBackground(getResources().getDrawable(R.drawable.textview));
-//                } else {
-//                    ZuDigao.setSelected(false);
-//                    ZuDigao.setBackground(getResources().getDrawable(R.drawable.textview));
-//                    GaoDi.setSelected(true);
-//                    GaoDi.setBackground(getResources().getDrawable(R.drawable.red));
-//                    Digeo.setSelected(false);
-//                    Digeo.setBackground(getResources().getDrawable(R.drawable.textview));
-//                    ZuGaoDi.setSelected(false);
-//                    ZuGaoDi.setBackground(getResources().getDrawable(R.drawable.textview));
-//                }
-                mList.clear();
-                Map<String, String> map3 = new HashMap<>();
-                map3.put("type ", 2 + "");
-                map3.put("priceType", 3 + "");
-                OkHttpUtils.getInstance().postByte(SBUrls.JIAZHEN, map3, new ByteCallBack() {
-                    @Override
-                    public void onSuccess(String json) {
-//                        Gson gson = new Gson();
-//                        List<SelectedBean> selectBeen = gson.fromJson(json, new TypeToken<List<SelectedBean>>() {}.getType());
-//                        mList.addAll(selectBeen);
-//                        adapter.notifyDataSetChanged();
-                    }
-
-                    @Override
-                    public void onError(int errorCode, String errorMsg) {
-
-                    }
-                });
+                mPriceSelected = 3;
+                getHttpData();
                 window1.dismiss();
                 break;
             //租金从低到高
             case R.id.ZuDiGao:
-//                if (ZuDigao.isSelected()) {
-//                    ZuDigao.setSelected(false);
-//                    ZuDigao.setBackground(getResources().getDrawable(R.drawable.textview));
-//                } else {
-//                    ZuDigao.setSelected(true);
-//                    ZuDigao.setBackground(getResources().getDrawable(R.drawable.red));
-//                    Digeo.setSelected(false);
-//                    Digeo.setBackground(getResources().getDrawable(R.drawable.textview));
-//                    ZuGaoDi.setSelected(false);
-//                    ZuGaoDi.setBackground(getResources().getDrawable(R.drawable.textview));
-//                    GaoDi.setSelected(false);
-//                    GaoDi.setBackground(getResources().getDrawable(R.drawable.textview));
-//                }
-                mList.clear();
-                Map<String, String> map2 = new HashMap<>();
-                map2.put("type ", 2 + "");
-                map2.put("priceType", 2 + " ");
-                OkHttpUtils.getInstance().postByte(SBUrls.JIAZHEN, map2, new ByteCallBack() {
-                    @Override
-                    public void onSuccess(String json) {
-                        Gson gson = new Gson();
-//                        List<SelectedBean> selectBeen = gson.fromJson(json, new TypeToken<List<SelectedBean>>() {
-//                        }.getType());
-//                        mList.addAll(selectBeen);
-//                        adapter.notifyDataSetChanged();
-                    }
-
-                    @Override
-                    public void onError(int errorCode, String errorMsg) {
-
-                    }
-                });
+                mPriceSelected = 2;
+                getHttpData();
                 window1.dismiss();
                 break;
             //租金从高到低
             case R.id.ZuGaoDi:
-//                if (ZuGaoDi.isSelected()) {
-//                    ZuGaoDi.setSelected(false);
-//                    ZuGaoDi.setBackground(getResources().getDrawable(R.drawable.textview));
-//                } else {
-//                    ZuDigao.setSelected(false);
-//                    ZuDigao.setBackground(getResources().getDrawable(R.drawable.textview));
-//                    ZuGaoDi.setSelected(true);
-//                    ZuGaoDi.setBackground(getResources().getDrawable(R.drawable.red));
-//                    Digeo.setSelected(false);
-//                    Digeo.setBackground(getResources().getDrawable(R.drawable.textview));
-//                    GaoDi.setSelected(false);
-//                    GaoDi.setBackground(getResources().getDrawable(R.drawable.textview));
-//                }
-                mList.clear();
-                Map<String, String> map1 = new HashMap<>();
-                map1.put("type ", 2 + "");
-                map1.put("priceType", 1 + "");
-                OkHttpUtils.getInstance().postByte(SBUrls.JIAZHEN, map1, new ByteCallBack() {
-                    @Override
-                    public void onSuccess(String json) {
-                        Gson gson = new Gson();
-//                        List<SelectedBean> selectBeen = gson.fromJson(json, new TypeToken<List<SelectedBean>>() {
-//                        }.getType());
-//                        mList.addAll(selectBeen);
-//                        adapter.notifyDataSetChanged();
-                    }
-
-                    @Override
-                    public void onError(int errorCode, String errorMsg) {
-
-                    }
-                });
+                mPriceSelected = 1;
+                getHttpData();
                 window1.dismiss();
                 break;
             //单肩One
             case R.id.DanJianOne:
-                if (DanJianOne.isSelected()) {
-                    DanJianOne.setSelected(false);
-                    DanJianOne.setBackground(getResources().getDrawable(R.drawable.textview));
-                } else {
+               String type =  filterParam.get("bagtype_id");
+                resetType();
+                if (!TextUtils.isEmpty(type) && type.equals("1")) {
+                    filterParam.remove("bagtype_id");
+                }else {
+                    filterParam.put("bagtype_id","1");
                     DanJianOne.setSelected(true);
                     DanJianOne.setBackground(getResources().getDrawable(R.drawable.red));
-                    DanJinFuor.setSelected(false);
-                    DanJinFuor.setBackground(getResources().getDrawable(R.drawable.textview));
-                    DanJiantherr.setSelected(false);
-                    DanJiantherr.setBackground(getResources().getDrawable(R.drawable.textview));
-                    DanJiantwo.setSelected(false);
-                    DanJiantwo.setBackground(getResources().getDrawable(R.drawable.textview));
                 }
                 break;
             //单肩Two
-            case DanJianTwo:
-                if (DanJiantwo.isSelected()) {
-                    DanJiantwo.setSelected(false);
-                    DanJiantwo.setBackground(getResources().getDrawable(R.drawable.textview));
-                } else {
+            case  R.id.DanJianTwo:
+                String type2 =  filterParam.get("bagtype_id");
+                resetType();
+                if (!TextUtils.isEmpty(type2) && type2.equals("2")) {
+                    filterParam.remove("bagtype_id");
+                }else {
+                    filterParam.put("bagtype_id","2");
                     DanJiantwo.setSelected(true);
                     DanJiantwo.setBackground(getResources().getDrawable(R.drawable.red));
-                    DanJianOne.setSelected(false);
-                    DanJianOne.setBackground(getResources().getDrawable(R.drawable.textview));
-                    DanJinFuor.setSelected(false);
-                    DanJinFuor.setBackground(getResources().getDrawable(R.drawable.textview));
-                    DanJiantherr.setSelected(false);
-                    DanJiantherr.setBackground(getResources().getDrawable(R.drawable.textview));
                 }
                 break;
             //单肩Therr
-            case DanJianTherr:
-                if (DanJiantherr.isSelected()) {
-                    DanJiantherr.setSelected(false);
-                    DanJiantherr.setBackground(getResources().getDrawable(R.drawable.textview));
-                } else {
+            case  R.id.DanJianTherr:
+                String type3 =  filterParam.get("bagtype_id");
+                resetType();
+                if (!TextUtils.isEmpty(type3) && type3.equals("3")) {
+                    filterParam.remove("bagtype_id");
+                }else {
+                    filterParam.put("bagtype_id","3");
                     DanJiantherr.setSelected(true);
                     DanJiantherr.setBackground(getResources().getDrawable(R.drawable.red));
-                    DanJianOne.setSelected(false);
-                    DanJinFuor.setSelected(false);
-                    DanJinFuor.setBackground(getResources().getDrawable(R.drawable.textview));
-                    DanJiantwo.setSelected(false);
-                    DanJiantwo.setBackground(getResources().getDrawable(R.drawable.textview));
                 }
                 break;
-            //单肩Four
-            case R.id.DanJianFour:
-                if (DanJinFuor.isSelected()) {
-                    DanJinFuor.setSelected(false);
-                    DanJinFuor.setBackground(getResources().getDrawable(R.drawable.textview));
-                } else {
-                    DanJinFuor.setSelected(true);
-                    DanJinFuor.setBackground(getResources().getDrawable(R.drawable.red));
-                    DanJianOne.setSelected(false);
-                    DanJianOne.setBackground(getResources().getDrawable(R.drawable.textview));
-                    DanJiantherr.setSelected(false);
-                    DanJiantherr.setBackground(getResources().getDrawable(R.drawable.textview));
-                    DanJiantwo.setSelected(false);
-                    DanJiantwo.setBackground(getResources().getDrawable(R.drawable.textview));
-
-                }
-                break;
-            //大L
-            case R.id.DaL:
-                if (DaL.isSelected()) {
-                    DaL.setSelected(false);
-                    DaL.setBackground(getResources().getDrawable(R.drawable.textview));
-                } else {
-                    DaL.setSelected(true);
-                    DaL.setBackground(getResources().getDrawable(R.drawable.red));
-                    ZhongM.setSelected(false);
-                    ZhongM.setBackground(getResources().getDrawable(R.drawable.textview));
-                    XiaoS.setSelected(false);
-                    XiaoS.setBackground(getResources().getDrawable(R.drawable.textview));
+            case R.id.size_xxl:
+                String size_s =  filterParam.get("bagsize_id");
+                resetSize();
+                if (!TextUtils.isEmpty(size_s) && size_s.equals("4")) {
+                    filterParam.remove("bagsize_id");
+                }else {
+                    filterParam.put("bagsize_id","4");
+                    mSize_xxl.setSelected(true);
+                    mSize_xxl.setBackground(getResources().getDrawable(R.drawable.red));
                 }
                 break;
             //中M
-            case R.id.ZhongM:
-                if (DaL.isSelected()) {
-                    ZhongM.setSelected(false);
-                    ZhongM.setBackground(getResources().getDrawable(R.drawable.textview));
-                } else {
-                    ZhongM.setSelected(true);
-                    ZhongM.setBackground(getResources().getDrawable(R.drawable.red));
-                    DaL.setSelected(false);
-                    DaL.setBackground(getResources().getDrawable(R.drawable.textview));
-                    XiaoS.setSelected(false);
-                    XiaoS.setBackground(getResources().getDrawable(R.drawable.textview));
+            case R.id.size_m:
+                String size_m =  filterParam.get("bagsize_id");
+                resetSize();
+                if (!TextUtils.isEmpty(size_m) && size_m.equals("1")) {
+                    filterParam.remove("bagsize_id");
+                }else {
+                    filterParam.put("bagsize_id","1");
+                    mSize_m.setSelected(true);
+                    mSize_m.setBackground(getResources().getDrawable(R.drawable.red));
                 }
-
                 break;
             //小S
-            case R.id.XiaoS:
-                if (XiaoS.isSelected()) {
-                    XiaoS.setSelected(false);
-                    XiaoS.setBackground(getResources().getDrawable(R.drawable.textview));
-                } else {
-                    XiaoS.setSelected(true);
-                    XiaoS.setBackground(getResources().getDrawable(R.drawable.red));
-                    DaL.setSelected(false);
-                    DaL.setBackground(getResources().getDrawable(R.drawable.textview));
-                    ZhongM.setSelected(false);
-                    ZhongM.setBackground(getResources().getDrawable(R.drawable.textview));
-
+            case R.id.size_l:
+                String size_l =  filterParam.get("bagsize_id");
+                resetSize();
+                if (!TextUtils.isEmpty(size_l) && size_l.equals("2")) {
+                    filterParam.remove("bagsize_id");
+                }else {
+                    filterParam.put("bagsize_id","2");
+                    mSize_l.setSelected(true);
+                    mSize_l.setBackground(getResources().getDrawable(R.drawable.red));
                 }
                 break;
-            //Coach
-            case R.id.Coach:
-                if (Coach.isSelected()) {
-                    Coach.setSelected(false);
-                    Coach.setBackground(getResources().getDrawable(R.drawable.textview));
-                } else {
-                    Coach.setSelected(true);
-                    Coach.setBackground(getResources().getDrawable(R.drawable.red));
-                    Hermes.setSelected(false);
-                    Hermes.setBackground(getResources().getDrawable(R.drawable.textview));
+            //小S
+            case R.id.size_xl:
+                String size_xl =  filterParam.get("bagsize_id");
+                resetSize();
+                if (!TextUtils.isEmpty(size_xl) && size_xl.equals("3")) {
+                    filterParam.remove("bagsize_id");
+                }else {
+                    filterParam.put("bagsize_id","3");
+                    mSize_xl.setSelected(true);
+                    mSize_xl.setBackground(getResources().getDrawable(R.drawable.red));
                 }
                 break;
-            //Hermes
-            case R.id.Hermes:
-                if (Hermes.isSelected()) {
-                    Hermes.setSelected(false);
-                    Hermes.setBackground(getResources().getDrawable(R.drawable.textview));
-                } else {
-                    Hermes.setSelected(true);
-                    Hermes.setBackground(getResources().getDrawable(R.drawable.red));
-                    Coach.setSelected(false);
-                    Coach.setBackground(getResources().getDrawable(R.drawable.textview));
-
+            case R.id.brand_nike:
+               resetBrand();
+                String brand_nike =  filterParam.get("bagbrand_id");
+                if (!TextUtils.isEmpty(brand_nike) && brand_nike.equals("2")) {
+                    filterParam.remove("bagbrand_id");
+                }else {
+                    filterParam.put("bagbrand_id","2");
+                    mBrandNike.setSelected(true);
+                    mBrandNike.setBackground(getResources().getDrawable(R.drawable.red));
                 }
                 break;
-            //休闲度假
-            case R.id.XuiXian:
-                if (XuiXian.isSelected()) {
-                    XuiXian.setSelected(false);
-                    XuiXian.setBackground(getResources().getDrawable(R.drawable.textview));
-                } else {
-                    XuiXian.setSelected(true);
-                    XuiXian.setBackground(getResources().getDrawable(R.drawable.red));
-                    YanHui.setSelected(false);
-                    YanHui.setBackground(getResources().getDrawable(R.drawable.textview));
+            case R.id.brand_lv:
+                resetBrand();
+                String brand_lv =  filterParam.get("bagbrand_id");
+                if (!TextUtils.isEmpty(brand_lv) && brand_lv.equals("3")) {
+                    filterParam.remove("bagbrand_id");
+                }else {
+                    filterParam.put("bagbrand_id","3");
+                    mBrandLv.setSelected(true);
+                    mBrandLv.setBackground(getResources().getDrawable(R.drawable.red));
                 }
                 break;
-            //宴会轻奢
-            case R.id.YanHui:
-                if (YanHui.isSelected()) {
-                    YanHui.setSelected(false);
-                    YanHui.setBackground(getResources().getDrawable(R.drawable.textview));
-                } else {
-                    YanHui.setSelected(true);
-                    YanHui.setBackground(getResources().getDrawable(R.drawable.red));
-                    XuiXian.setSelected(false);
-                    XuiXian.setBackground(getResources().getDrawable(R.drawable.textview));
-
+            case R.id.brand_coco:
+                resetBrand();
+                String brand_coco =  filterParam.get("bagbrand_id");
+                if (!TextUtils.isEmpty(brand_coco) && brand_coco.equals("5")) {
+                    filterParam.remove("bagbrand_id");
+                }else {
+                    filterParam.put("bagbrand_id","5");
+                    mBrandCoco.setSelected(true);
+                    mBrandCoco.setBackground(getResources().getDrawable(R.drawable.red));
+                }
+                break;
+            case R.id.brand_diro:
+                resetBrand();
+                String brand_diro =  filterParam.get("bagbrand_id");
+                if (!TextUtils.isEmpty(brand_diro) && brand_diro.equals("4")) {
+                    filterParam.remove("bagbrand_id");
+                }else {
+                    filterParam.put("bagbrand_id","4");
+                    mBrandDiro.setSelected(true);
+                    mBrandDiro.setBackground(getResources().getDrawable(R.drawable.red));
+                }
+                break;
+            case R.id.hot_aoco:
+                resetHot();
+                String hot_aoco =  filterParam.get("hotwordid");
+                if (!TextUtils.isEmpty(hot_aoco) && hot_aoco.equals("1")) {
+                    filterParam.remove("hotwordid");
+                }else {
+                    filterParam.put("hotwordid","1");
+                    mHotAoco.setSelected(true);
+                    mHotAoco.setBackground(getResources().getDrawable(R.drawable.red));
+                }
+                break;
+            case R.id.hot_kate:
+                resetHot();
+                String hot_kate =  filterParam.get("hotwordid");
+                if (!TextUtils.isEmpty(hot_kate) && hot_kate.equals("3")) {
+                    filterParam.remove("hotwordid");
+                }else {
+                    filterParam.put("hotwordid","3");
+                    mHotKate.setSelected(true);
+                    mHotKate.setBackground(getResources().getDrawable(R.drawable.red));
+                }
+                break;
+            case R.id.hot_womenbag:
+                resetHot();
+                String hot_womenbag =  filterParam.get("hotwordid");
+                if (!TextUtils.isEmpty(hot_womenbag) && hot_womenbag.equals("6")) {
+                    filterParam.remove("hotwordid");
+                }else {
+                    filterParam.put("hotwordid","6");
+                    mHotWomenBag.setSelected(true);
+                    mHotWomenBag.setBackground(getResources().getDrawable(R.drawable.red));
+                }
+                break;
+            case R.id.hot_diro:
+                resetHot();
+                String hot_diro =  filterParam.get("hotwordid");
+                if (!TextUtils.isEmpty(hot_diro) && hot_diro.equals("4")) {
+                    filterParam.remove("hotwordid");
+                }else {
+                    filterParam.put("hotwordid","4");
+                    mHotDiro.setSelected(true);
+                    mHotDiro.setBackground(getResources().getDrawable(R.drawable.red));
                 }
                 break;
             //500以下
-            case R.id.Wubai:
-                if (Wubai.isSelected()) {
-                    Wubai.setSelected(false);
-                    Wubai.setBackground(getResources().getDrawable(R.drawable.textview));
-                } else {
-                    Wubai.setSelected(true);
-                    Wubai.setBackground(getResources().getDrawable(R.drawable.red));
-                    Reqingyishang.setSelected(false);
-                    Reqingyishang.setBackground(getResources().getDrawable(R.drawable.textview));
-                    Reqian.setSelected(false);
-                    Reqian.setBackground(getResources().getDrawable(R.drawable.textview));
-                    Yiqian.setSelected(false);
-                    Yiqian.setBackground(getResources().getDrawable(R.drawable.textview));
+            case R.id.price_v1:
+                resetPrice();
+                String price_v1 =  filterParam.get("nowprice");
+                if (!TextUtils.isEmpty(price_v1) && price_v1.equals("1")) {
+                    filterParam.remove("nowprice");
+                }else {
+                    filterParam.put("nowprice","1");
+                    mPrice_v1.setSelected(true);
+                    mPrice_v1.setBackground(getResources().getDrawable(R.drawable.red));
                 }
                 break;
             //500-1000
-            case R.id.Yiqian:
-                if (Yiqian.isSelected()) {
-                    Yiqian.setSelected(false);
-                    Yiqian.setBackground(getResources().getDrawable(R.drawable.textview));
-
-                } else {
-                    Yiqian.setSelected(true);
-                    Yiqian.setBackground(getResources().getDrawable(R.drawable.red));
-                    Reqingyishang.setSelected(false);
-                    Reqingyishang.setBackground(getResources().getDrawable(R.drawable.textview));
-                    Reqian.setSelected(false);
-                    Reqian.setBackground(getResources().getDrawable(R.drawable.textview));
-                    Wubai.setSelected(false);
-                    Wubai.setBackground(getResources().getDrawable(R.drawable.textview));
+            case R.id.price_v2:
+                resetPrice();
+                String price_v2 =  filterParam.get("nowprice");
+                if (!TextUtils.isEmpty(price_v2) && price_v2.equals("2")) {
+                    filterParam.remove("nowprice");
+                }else {
+                    filterParam.put("nowprice","2");
+                    mPrice_v2.setSelected(true);
+                    mPrice_v2.setBackground(getResources().getDrawable(R.drawable.red));
                 }
                 break;
             //1000-2000
-            case R.id.Reqian:
-                if (Reqian.isSelected()) {
-                    Reqian.setSelected(false);
-                    Reqian.setBackground(getResources().getDrawable(R.drawable.textview));
-                } else {
-                    Reqian.setSelected(true);
-                    Reqian.setBackground(getResources().getDrawable(R.drawable.red));
-                    Wubai.setSelected(false);
-                    Wubai.setBackground(getResources().getDrawable(R.drawable.textview));
-                    Reqingyishang.setSelected(false);
-                    Reqingyishang.setBackground(getResources().getDrawable(R.drawable.textview));
-                    Yiqian.setSelected(false);
-                    Yiqian.setBackground(getResources().getDrawable(R.drawable.textview));
+            case R.id.price_v3:
+                resetPrice();
+                String price_v3 =  filterParam.get("nowprice");
+                if (!TextUtils.isEmpty(price_v3) && price_v3.equals("3")) {
+                    filterParam.remove("nowprice");
+                }else {
+                    filterParam.put("nowprice","3");
+                    mPrice_v3.setSelected(true);
+                    mPrice_v3.setBackground(getResources().getDrawable(R.drawable.red));
                 }
                 break;
             //2000以上
-            case R.id.Reqianyishang:
-                if (Reqingyishang.isSelected()) {
-                    Reqingyishang.setSelected(false);
-                    Reqingyishang.setBackground(getResources().getDrawable(R.drawable.textview));
-                } else {
-                    Reqingyishang.setSelected(true);
-                    Reqingyishang.setBackground(getResources().getDrawable(R.drawable.red));
-                    Wubai.setSelected(false);
-                    Wubai.setBackground(getResources().getDrawable(R.drawable.textview));
-                    Reqian.setSelected(false);
-                    Reqian.setBackground(getResources().getDrawable(R.drawable.textview));
-                    Yiqian.setSelected(false);
-                    Yiqian.setBackground(getResources().getDrawable(R.drawable.textview));
+            case R.id.price_v4:
+                resetPrice();
+                String price_v4 =  filterParam.get("nowprice");
+                if (!TextUtils.isEmpty(price_v4) && price_v4.equals("4")) {
+                    filterParam.remove("nowprice");
+                }else {
+                    filterParam.put("nowprice","4");
+                    mPrice_v4.setSelected(true);
+                    mPrice_v4.setBackground(getResources().getDrawable(R.drawable.red));
                 }
                 break;
             //重置
-            case Chongzhi:
-//                    ChongZhi.setSelected(true);
-//                    ChongZhi.setBackground(getResources().getDrawable(R.drawable.red));
-                Reqingyishang.setSelected(true);
-                Reqingyishang.setBackground(getResources().getDrawable(R.drawable.red));
-                Wubai.setSelected(false);
-                Wubai.setBackground(getResources().getDrawable(R.drawable.textview));
-                Reqian.setSelected(false);
-                Reqian.setBackground(getResources().getDrawable(R.drawable.textview));
-                Yiqian.setSelected(false);
-                Yiqian.setBackground(getResources().getDrawable(R.drawable.textview));
-                Reqingyishang.setSelected(false);
-                Reqingyishang.setBackground(getResources().getDrawable(R.drawable.textview));
-                XuiXian.setSelected(false);
-                XuiXian.setBackground(getResources().getDrawable(R.drawable.textview));
-                YanHui.setSelected(false);
-                YanHui.setBackground(getResources().getDrawable(R.drawable.textview));
-                DaL.setSelected(false);
-                DaL.setBackground(getResources().getDrawable(R.drawable.textview));
-                ZhongM.setSelected(false);
-                ZhongM.setBackground(getResources().getDrawable(R.drawable.textview));
-                XiaoS.setSelected(false);
-                XiaoS.setBackground(getResources().getDrawable(R.drawable.textview));
-                Coach.setSelected(false);
-                Coach.setBackground(getResources().getDrawable(R.drawable.textview));
-                Hermes.setSelected(false);
-                Hermes.setBackground(getResources().getDrawable(R.drawable.textview));
-                DanJianOne.setSelected(false);
-                DanJianOne.setBackground(getResources().getDrawable(R.drawable.textview));
-                DanJiantherr.setSelected(false);
-                DanJiantherr.setBackground(getResources().getDrawable(R.drawable.textview));
-                DanJiantwo.setSelected(false);
-                DanJiantwo.setBackground(getResources().getDrawable(R.drawable.textview));
-                DanJinFuor.setSelected(false);
-                DanJinFuor.setBackground(getResources().getDrawable(R.drawable.textview));
+            case  R.id.Chongzhi:
+                resetType();
+                resetBrand();
+                resetHot();
+                resetPrice();
+                resetSize();
+                break;
+            case   R.id.QueDing:
+                filterData();
                 break;
         }
+    }
+
+    /**
+     * 筛选数据
+     */
+    private void filterData() {
+        Log.d("tianfb",filterParam.toString());
+        OkHttpUtils.getInstance().post(SBUrls.FILTERBAG, filterParam, new MyNetWorkCallback<DetailsBean>() {
+            @Override
+            public void onSuccess(DetailsBean detailsBean) throws JSONException {
+                List<DetailsBean.InfoBean> info = detailsBean.getInfo();
+                if(null != info && info.size()>0){
+                    mList.clear();
+                    mList.addAll(info);
+                    adapter.notifyDataSetChanged();
+                }else {
+                    ToastUtils.showTop(getContext(),"未加载到数据");
+                }
+            }
+
+            @Override
+            public void onError(int errorCode, String errorMsg) {
+
+            }
+        });
+    }
+
+    /**
+     * 重置价钱空间样式
+     */
+    private void resetPrice() {
+        mPrice_v1.setSelected(false);
+        mPrice_v1.setBackground(getResources().getDrawable(R.drawable.textview));
+        mPrice_v2.setSelected(false);
+        mPrice_v2.setBackground(getResources().getDrawable(R.drawable.textview));
+        mPrice_v3.setSelected(false);
+        mPrice_v3.setBackground(getResources().getDrawable(R.drawable.textview));
+        mPrice_v4.setSelected(false);
+        mPrice_v4.setBackground(getResources().getDrawable(R.drawable.textview));
+    }
+
+    /**
+     * 重置关键字控件样式
+     */
+    private void resetHot() {
+        mHotAoco.setSelected(false);
+        mHotAoco.setBackground(getResources().getDrawable(R.drawable.textview));
+        mHotDiro.setSelected(false);
+        mHotDiro.setBackground(getResources().getDrawable(R.drawable.textview));
+        mHotKate.setSelected(false);
+        mHotKate.setBackground(getResources().getDrawable(R.drawable.textview));
+        mHotWomenBag.setSelected(false);
+        mHotWomenBag.setBackground(getResources().getDrawable(R.drawable.textview));
+    }
+
+    /**
+     * 重置所有的热门品牌
+     */
+    private void resetBrand() {
+        mBrandNike.setSelected(false);
+        mBrandNike.setBackground(getResources().getDrawable(R.drawable.textview));
+        mBrandLv.setSelected(false);
+        mBrandLv.setBackground(getResources().getDrawable(R.drawable.textview));
+        mBrandCoco.setSelected(false);
+        mBrandCoco.setBackground(getResources().getDrawable(R.drawable.textview));
+        mBrandDiro.setSelected(false);
+        mBrandDiro.setBackground(getResources().getDrawable(R.drawable.textview));
+    }
+
+    /**
+     * 重置所有的大小控件样式
+     */
+    private void resetSize() {
+        mSize_xxl.setSelected(false);
+        mSize_xxl.setBackground(getResources().getDrawable(R.drawable.textview));
+        mSize_m.setSelected(false);
+        mSize_m.setBackground(getResources().getDrawable(R.drawable.textview));
+        mSize_l.setSelected(false);
+        mSize_l.setBackground(getResources().getDrawable(R.drawable.textview));
+        mSize_xl.setSelected(false);
+        mSize_xl.setBackground(getResources().getDrawable(R.drawable.textview));
+    }
+
+    /**
+     * 重置所以的类型控件样式
+     */
+    private void resetType() {
+        DanJianOne.setSelected(false);
+        DanJianOne.setBackground(getResources().getDrawable(R.drawable.textview));
+        DanJiantherr.setSelected(false);
+        DanJiantherr.setBackground(getResources().getDrawable(R.drawable.textview));
+        DanJiantwo.setSelected(false);
+        DanJiantwo.setBackground(getResources().getDrawable(R.drawable.textview));
     }
 
 
@@ -790,7 +908,7 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
         if (enter && !isGetData) {
             isGetData = true;
             //   这里可以做网络请求或者需要的数据刷新操作
-            getpopular();
+            getHttpData();
             adapter.notifyDataSetChanged();
 
         } else {
@@ -802,13 +920,12 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
     @Override
     public void onResume() {
         super.onResume();
-        if (!isGetData) {
-            //   这里可以做网络请求或者需要的数据刷新操作
-            getpopular();
-            adapter.notifyDataSetChanged();
-
-            isGetData = true;
-        }
+//        if (!isGetData) {
+//            //   这里可以做网络请求或者需要的数据刷新操作
+//            getpopular();
+//            adapter.notifyDataSetChanged();
+//            isGetData = true;
+//        }
     }
 
     @Override

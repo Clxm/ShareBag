@@ -3,6 +3,7 @@ package com.share.bag.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -70,7 +71,7 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.ViewHold
         holder.recyler_Collection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-String url="http://baobaoapi.ldlchat.com/Home/Backcontent/content.html";
+                String url="http://baobaoapi.ldlchat.com/Home/Backcontent/content.html";
                 Map<String ,String> collection=new HashMap();
                 collection.put("baglist_id",position+"");
                 Map<String ,String> collection1=new HashMap();

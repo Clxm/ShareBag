@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+   android:clickable="true"
+    android:visibility="gone"
+    android:layout_height="match_parent">
+    <TextView
+        android:background="#fff"
+        android:textColor="#f00"
+        android:paddingTop="20dp"
+        android:paddingLeft="20dp"
+        android:textSize="14dp"
+        android:text="热门搜索"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <com.share.bag.view.FlowViewGroup
+        android:background="#fff"
+        android:paddingLeft="20dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="20dp"
+        android:id="@+id/flowViewGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <View
+        android:id="@+id/search_out"
+        android:background="#36000000"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"/>
+</LinearLayout>

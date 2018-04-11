@@ -181,6 +181,7 @@
         <activity android:name=".ui.activitys.mine.shared.SharedActivity" />
         <activity android:name=".ui.ship.ShipActivity"></activity>
         <activity android:name=".webview.PublicWebView" android:screenOrientation="portrait"/>
+        <activity android:name=".ui.activitys.SearchBagDetail" />
     </application>
 
 </manifest>

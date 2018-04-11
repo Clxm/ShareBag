@@ -1,12 +1,13 @@
 package com.share.bag.ui.activitys.home;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Administrator on 2018/3/27.
  */
 
-public class DetailsBean {
+public class DetailsBean{
 
 
     /**
