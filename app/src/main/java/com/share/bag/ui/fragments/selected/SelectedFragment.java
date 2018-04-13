@@ -7,11 +7,10 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,8 +27,6 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.share.bag.FileUtil;
 import com.share.bag.R;
 import com.share.bag.SBUrls;
@@ -43,7 +40,6 @@ import com.share.bag.ui.activitys.home.Details;
 import com.share.bag.ui.activitys.home.DetailsBean;
 import com.share.bag.utils.ToastUtils;
 import com.share.bag.utils.okhttp.OkHttpUtils;
-import com.share.bag.utils.okhttp.callback.ByteCallBack;
 import com.share.bag.utils.okhttp.callback.MyNetWorkCallback;
 import com.share.bag.view.FlowViewGroup;
 import com.share.bag.view.TagFlowAdapter;
@@ -77,8 +73,7 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
     EditText searchEtInput;
     @BindView(R.id.selected_recyclerview)
     RecyclerView selectedRecyclerview;
-    @BindView(R.id.Selected_smartrefreshlayout)
-    SmartRefreshLayout SelectedSmartrefreshlayout;
+
     Unbinder unbinder;
     @BindView(R.id.search_popular)
     LinearLayout searchPopular;
@@ -96,6 +91,10 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
     TextView mTvFilter;
     @BindView(R.id.iv_filter)
     ImageView mIvFilter;
+    @BindView(R.id.search_clear)
+    ImageView searchClear;
+    @BindView(R.id.Selected_smartrefreshlayout)
+    SwipeRefreshLayout SelectedSmartrefreshlayout;
     private int width;
     private int height;
     private PopularAdapter adapter;
@@ -112,18 +111,17 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
     private int mPriceSelected = 4;
     //顶部页签的位置 0 热门 1 价格  2筛选
     private int tabPosistion = 0;
-    //第一次点击价格页签将数据切换至由低到高
-    private boolean tab2First = true;
 
     //筛选中用于网络请求的参数
-    private HashMap<String,String> filterParam = new HashMap();
+    private HashMap<String, String> filterParam = new HashMap();
 
     private ArrayList<Button> mPriceButtons;
-    private Button mSize_xxl,mSize_m,mSize_l,mSize_xl;
-    private Button mBrandNike,mBrandLv,mBrandCoco,mBrandDiro;
-    private Button mHotAoco,mHotDiro,mHotKate,mHotWomenBag;
+    private Button mSize_xxl, mSize_m, mSize_l, mSize_xl;
+    private Button mBrandNike, mBrandLv, mBrandCoco, mBrandDiro;
+    private Button mHotAoco, mHotDiro, mHotKate, mHotWomenBag;
     private View mSearchPopGroup;
     private FlowViewGroup mFlowViewGroupa;
+    private PopupWindow window;
 
     @Override
     public int initLayout() {
@@ -134,15 +132,22 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
     public void initView(View view) {
         mSearchPopGroup = view.findViewById(R.id.search_popgroup);
         mFlowViewGroupa = view.findViewById(R.id.flowViewGroup);
+        searchClear.setOnClickListener(this);
+        SelectedSmartrefreshlayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getHttpData();
+            }
+        });
         searchEtInput.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean b) {
-                if(b){
+                if (b) {
                     getHotWord();
-                }else {
-                    InputMethodManager imm = ( InputMethodManager ) searchEtInput.getContext( ).getSystemService( Context.INPUT_METHOD_SERVICE );
-                    if ( imm.isActive( ) ) {
-                        imm.hideSoftInputFromWindow( searchEtInput.getApplicationWindowToken( ) , 0 );
+                } else {
+                    InputMethodManager imm = (InputMethodManager) searchEtInput.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    if (imm.isActive()) {
+                        imm.hideSoftInputFromWindow(searchEtInput.getApplicationWindowToken(), 0);
                     }
                     mSearchPopGroup.setVisibility(View.GONE);
                 }
@@ -159,7 +164,7 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 /*判断是否是“GO”键*/
-                if(actionId == EditorInfo.IME_ACTION_SEARCH){
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                     searchEtInput.clearFocus();
                     getSearchDetail(searchEtInput.getText().toString());
                     return true;
@@ -168,28 +173,30 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
             }
         });
     }
-    private static Handler handler = new Handler(){
+
+    private static Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             EventBus.getDefault().postSticky(msg.obj);
         }
     };
+
     private void getSearchDetail(String name) {
-        HashMap<String,String> map = new HashMap<>();
-        map.put("name",name);
+        HashMap<String, String> map = new HashMap<>();
+        map.put("name", name);
         OkHttpUtils.getInstance().post(SBUrls.POPULAR, map, new MyNetWorkCallback<DetailsBean>() {
             @Override
             public void onSuccess(DetailsBean detailsBean) throws JSONException {
                 List<DetailsBean.InfoBean> info = detailsBean.getInfo();
-                if(null != info && info.size()>0){
+                if (null != info && info.size() > 0) {
                     Intent intent = new Intent(getActivity(), SearchBagDetail.class);
                     startActivity(intent);
                     Message message = new Message();
                     message.obj = detailsBean;
-                    handler.sendMessageDelayed(message,500);
-                }else {
-                    ToastUtils.showTop(getContext(),"暂无你查找的包包");
+                    handler.sendMessageDelayed(message, 500);
+                } else {
+                    ToastUtils.showTop(getContext(), "暂无你查找的包包");
                 }
             }
 
@@ -202,12 +209,12 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
     }
 
     private void getHotWord() {
-        HashMap<String,String> map = new HashMap<>();
+        HashMap<String, String> map = new HashMap<>();
         OkHttpUtils.getInstance().post(SBUrls.HOTWORD, map, new MyNetWorkCallback<SearchHotWord>() {
             @Override
             public void onSuccess(SearchHotWord searchHotWord) throws JSONException {
-                if(null != searchHotWord.getInfo() && searchHotWord.getInfo().size()>0)
-                mFlowViewGroupa.setAdapter(new MyTagFlowAdapter(searchHotWord.getInfo()));
+                if (null != searchHotWord.getInfo() && searchHotWord.getInfo().size() > 0)
+                    mFlowViewGroupa.setAdapter(new MyTagFlowAdapter(searchHotWord.getInfo()));
                 mSearchPopGroup.setVisibility(View.VISIBLE);
             }
 
@@ -218,12 +225,14 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
         });
     }
 
-    private class MyTagFlowAdapter extends TagFlowAdapter{
+    private class MyTagFlowAdapter extends TagFlowAdapter {
         List<SearchHotWord.InfoBean> mList = new ArrayList<>();
-        public MyTagFlowAdapter(List<SearchHotWord.InfoBean> info){
+
+        public MyTagFlowAdapter(List<SearchHotWord.InfoBean> info) {
             mList = info;
             notifyDataSetChanged();
         }
+
         @Override
         public int getCount() {
             return mList.size();
@@ -329,34 +338,33 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
     }
 
 
-
     public void getHttpData() {
         Map<String, String> map = new HashMap<>();
-        switch (tabPosistion){
+        switch (tabPosistion) {
             case 0://热门
-                map.put("is_hot","1");
+                map.put("is_hot", "1");
                 break;
             case 1://价格
-                map.put("is_hot","2");
-                map.put("type","1");
-                map.put("priceType",mPriceSelected+"");
+                map.put("is_hot", "2");
+                map.put("type", "1");
+                map.put("priceType", mPriceSelected + "");
                 break;
             case 2://筛选
-                map.put("is_hot","2");
+                map.put("is_hot", "2");
                 break;
         }
-
         OkHttpUtils.getInstance().post(SBUrls.POPULAR, map, new MyNetWorkCallback<DetailsBean>() {
             @Override
             public void onSuccess(DetailsBean detailsBean) throws JSONException {
                 List<DetailsBean.InfoBean> info = detailsBean.getInfo();
-                if(null != info && info.size()>0){
+                if (null != info && info.size() > 0) {
                     mList.clear();
                     mList.addAll(info);
                     adapter.notifyDataSetChanged();
-                }else {
-                    ToastUtils.showTop(getContext(),"未加载到数据");
+                } else {
+                    ToastUtils.showTop(getContext(), "未加载到数据");
                 }
+                SelectedSmartrefreshlayout.setRefreshing(false);
             }
 
             @Override
@@ -370,17 +378,16 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.search_popular:
-                if(tabPosistion == 0)
+                if (tabPosistion == 0)
                     return;
                 tabPosistion = 0;
                 changeHotState();
                 getHttpData();
                 break;
             case R.id.search_price:
-                tabPosistion = 1;
-                if(tab2First){
-                    tab2First = false;
-//                    getHttpData();
+                if (tabPosistion != 1) {
+                    tabPosistion = 1;
+                    getHttpData();
                 }
                 changePriceState();
                 getPopupWindow();
@@ -460,20 +467,20 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
 
     private void setPriceButton() {
         Button selectButton = null;
-         switch (mPriceSelected){
-             case 4:
-                 selectButton = mPriceButtons.get(0);
-                 break;
-             case 3:
-                 selectButton = mPriceButtons.get(1);
-                 break;
-             case 2:
-                 selectButton = mPriceButtons.get(2);
-                 break;
-             case 1:
-                 selectButton = mPriceButtons.get(3);
-                 break;
-         }
+        switch (mPriceSelected) {
+            case 4:
+                selectButton = mPriceButtons.get(0);
+                break;
+            case 3:
+                selectButton = mPriceButtons.get(1);
+                break;
+            case 2:
+                selectButton = mPriceButtons.get(2);
+                break;
+            case 1:
+                selectButton = mPriceButtons.get(3);
+                break;
+        }
         selectButton.setBackgroundResource(R.drawable.textview3);
         selectButton.setTextColor(Color.parseColor("#FFFFFF"));
     }
@@ -482,7 +489,7 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
     public void getPopupWindowTwo() {
         View inflate = View.inflate(getContext(), R.layout.popupwindowtwo, null);
         ShaixuanKongjain(inflate);//控件
-        final PopupWindow window = new PopupWindow(inflate, width, height);
+        window = new PopupWindow(inflate, width, height);
         window.setFocusable(true);
         window.setBackgroundDrawable(new ColorDrawable(1));
         window.setOutsideTouchable(true);
@@ -551,6 +558,9 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.search_clear:
+                searchEtInput.setText("");
+                break;
             //价格从高到低
             case R.id.DiGao:
                 mPriceSelected = 4;
@@ -577,171 +587,171 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
                 break;
             //单肩One
             case R.id.DanJianOne:
-               String type =  filterParam.get("bagtype_id");
+                String type = filterParam.get("bagtype_id");
                 resetType();
                 if (!TextUtils.isEmpty(type) && type.equals("1")) {
                     filterParam.remove("bagtype_id");
-                }else {
-                    filterParam.put("bagtype_id","1");
+                } else {
+                    filterParam.put("bagtype_id", "1");
                     DanJianOne.setSelected(true);
                     DanJianOne.setBackground(getResources().getDrawable(R.drawable.red));
                 }
                 break;
             //单肩Two
-            case  R.id.DanJianTwo:
-                String type2 =  filterParam.get("bagtype_id");
+            case R.id.DanJianTwo:
+                String type2 = filterParam.get("bagtype_id");
                 resetType();
                 if (!TextUtils.isEmpty(type2) && type2.equals("2")) {
                     filterParam.remove("bagtype_id");
-                }else {
-                    filterParam.put("bagtype_id","2");
+                } else {
+                    filterParam.put("bagtype_id", "2");
                     DanJiantwo.setSelected(true);
                     DanJiantwo.setBackground(getResources().getDrawable(R.drawable.red));
                 }
                 break;
             //单肩Therr
-            case  R.id.DanJianTherr:
-                String type3 =  filterParam.get("bagtype_id");
+            case R.id.DanJianTherr:
+                String type3 = filterParam.get("bagtype_id");
                 resetType();
                 if (!TextUtils.isEmpty(type3) && type3.equals("3")) {
                     filterParam.remove("bagtype_id");
-                }else {
-                    filterParam.put("bagtype_id","3");
+                } else {
+                    filterParam.put("bagtype_id", "3");
                     DanJiantherr.setSelected(true);
                     DanJiantherr.setBackground(getResources().getDrawable(R.drawable.red));
                 }
                 break;
             case R.id.size_xxl:
-                String size_s =  filterParam.get("bagsize_id");
+                String size_s = filterParam.get("bagsize_id");
                 resetSize();
                 if (!TextUtils.isEmpty(size_s) && size_s.equals("4")) {
                     filterParam.remove("bagsize_id");
-                }else {
-                    filterParam.put("bagsize_id","4");
+                } else {
+                    filterParam.put("bagsize_id", "4");
                     mSize_xxl.setSelected(true);
                     mSize_xxl.setBackground(getResources().getDrawable(R.drawable.red));
                 }
                 break;
             //中M
             case R.id.size_m:
-                String size_m =  filterParam.get("bagsize_id");
+                String size_m = filterParam.get("bagsize_id");
                 resetSize();
                 if (!TextUtils.isEmpty(size_m) && size_m.equals("1")) {
                     filterParam.remove("bagsize_id");
-                }else {
-                    filterParam.put("bagsize_id","1");
+                } else {
+                    filterParam.put("bagsize_id", "1");
                     mSize_m.setSelected(true);
                     mSize_m.setBackground(getResources().getDrawable(R.drawable.red));
                 }
                 break;
             //小S
             case R.id.size_l:
-                String size_l =  filterParam.get("bagsize_id");
+                String size_l = filterParam.get("bagsize_id");
                 resetSize();
                 if (!TextUtils.isEmpty(size_l) && size_l.equals("2")) {
                     filterParam.remove("bagsize_id");
-                }else {
-                    filterParam.put("bagsize_id","2");
+                } else {
+                    filterParam.put("bagsize_id", "2");
                     mSize_l.setSelected(true);
                     mSize_l.setBackground(getResources().getDrawable(R.drawable.red));
                 }
                 break;
             //小S
             case R.id.size_xl:
-                String size_xl =  filterParam.get("bagsize_id");
+                String size_xl = filterParam.get("bagsize_id");
                 resetSize();
                 if (!TextUtils.isEmpty(size_xl) && size_xl.equals("3")) {
                     filterParam.remove("bagsize_id");
-                }else {
-                    filterParam.put("bagsize_id","3");
+                } else {
+                    filterParam.put("bagsize_id", "3");
                     mSize_xl.setSelected(true);
                     mSize_xl.setBackground(getResources().getDrawable(R.drawable.red));
                 }
                 break;
             case R.id.brand_nike:
-               resetBrand();
-                String brand_nike =  filterParam.get("bagbrand_id");
+                resetBrand();
+                String brand_nike = filterParam.get("bagbrand_id");
                 if (!TextUtils.isEmpty(brand_nike) && brand_nike.equals("2")) {
                     filterParam.remove("bagbrand_id");
-                }else {
-                    filterParam.put("bagbrand_id","2");
+                } else {
+                    filterParam.put("bagbrand_id", "2");
                     mBrandNike.setSelected(true);
                     mBrandNike.setBackground(getResources().getDrawable(R.drawable.red));
                 }
                 break;
             case R.id.brand_lv:
                 resetBrand();
-                String brand_lv =  filterParam.get("bagbrand_id");
+                String brand_lv = filterParam.get("bagbrand_id");
                 if (!TextUtils.isEmpty(brand_lv) && brand_lv.equals("3")) {
                     filterParam.remove("bagbrand_id");
-                }else {
-                    filterParam.put("bagbrand_id","3");
+                } else {
+                    filterParam.put("bagbrand_id", "3");
                     mBrandLv.setSelected(true);
                     mBrandLv.setBackground(getResources().getDrawable(R.drawable.red));
                 }
                 break;
             case R.id.brand_coco:
                 resetBrand();
-                String brand_coco =  filterParam.get("bagbrand_id");
+                String brand_coco = filterParam.get("bagbrand_id");
                 if (!TextUtils.isEmpty(brand_coco) && brand_coco.equals("5")) {
                     filterParam.remove("bagbrand_id");
-                }else {
-                    filterParam.put("bagbrand_id","5");
+                } else {
+                    filterParam.put("bagbrand_id", "5");
                     mBrandCoco.setSelected(true);
                     mBrandCoco.setBackground(getResources().getDrawable(R.drawable.red));
                 }
                 break;
             case R.id.brand_diro:
                 resetBrand();
-                String brand_diro =  filterParam.get("bagbrand_id");
+                String brand_diro = filterParam.get("bagbrand_id");
                 if (!TextUtils.isEmpty(brand_diro) && brand_diro.equals("4")) {
                     filterParam.remove("bagbrand_id");
-                }else {
-                    filterParam.put("bagbrand_id","4");
+                } else {
+                    filterParam.put("bagbrand_id", "4");
                     mBrandDiro.setSelected(true);
                     mBrandDiro.setBackground(getResources().getDrawable(R.drawable.red));
                 }
                 break;
             case R.id.hot_aoco:
                 resetHot();
-                String hot_aoco =  filterParam.get("hotwordid");
+                String hot_aoco = filterParam.get("hotwordid");
                 if (!TextUtils.isEmpty(hot_aoco) && hot_aoco.equals("1")) {
                     filterParam.remove("hotwordid");
-                }else {
-                    filterParam.put("hotwordid","1");
+                } else {
+                    filterParam.put("hotwordid", "1");
                     mHotAoco.setSelected(true);
                     mHotAoco.setBackground(getResources().getDrawable(R.drawable.red));
                 }
                 break;
             case R.id.hot_kate:
                 resetHot();
-                String hot_kate =  filterParam.get("hotwordid");
+                String hot_kate = filterParam.get("hotwordid");
                 if (!TextUtils.isEmpty(hot_kate) && hot_kate.equals("3")) {
                     filterParam.remove("hotwordid");
-                }else {
-                    filterParam.put("hotwordid","3");
+                } else {
+                    filterParam.put("hotwordid", "3");
                     mHotKate.setSelected(true);
                     mHotKate.setBackground(getResources().getDrawable(R.drawable.red));
                 }
                 break;
             case R.id.hot_womenbag:
                 resetHot();
-                String hot_womenbag =  filterParam.get("hotwordid");
+                String hot_womenbag = filterParam.get("hotwordid");
                 if (!TextUtils.isEmpty(hot_womenbag) && hot_womenbag.equals("6")) {
                     filterParam.remove("hotwordid");
-                }else {
-                    filterParam.put("hotwordid","6");
+                } else {
+                    filterParam.put("hotwordid", "6");
                     mHotWomenBag.setSelected(true);
                     mHotWomenBag.setBackground(getResources().getDrawable(R.drawable.red));
                 }
                 break;
             case R.id.hot_diro:
                 resetHot();
-                String hot_diro =  filterParam.get("hotwordid");
+                String hot_diro = filterParam.get("hotwordid");
                 if (!TextUtils.isEmpty(hot_diro) && hot_diro.equals("4")) {
                     filterParam.remove("hotwordid");
-                }else {
-                    filterParam.put("hotwordid","4");
+                } else {
+                    filterParam.put("hotwordid", "4");
                     mHotDiro.setSelected(true);
                     mHotDiro.setBackground(getResources().getDrawable(R.drawable.red));
                 }
@@ -749,11 +759,11 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
             //500以下
             case R.id.price_v1:
                 resetPrice();
-                String price_v1 =  filterParam.get("nowprice");
+                String price_v1 = filterParam.get("nowprice");
                 if (!TextUtils.isEmpty(price_v1) && price_v1.equals("1")) {
                     filterParam.remove("nowprice");
-                }else {
-                    filterParam.put("nowprice","1");
+                } else {
+                    filterParam.put("nowprice", "1");
                     mPrice_v1.setSelected(true);
                     mPrice_v1.setBackground(getResources().getDrawable(R.drawable.red));
                 }
@@ -761,11 +771,11 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
             //500-1000
             case R.id.price_v2:
                 resetPrice();
-                String price_v2 =  filterParam.get("nowprice");
+                String price_v2 = filterParam.get("nowprice");
                 if (!TextUtils.isEmpty(price_v2) && price_v2.equals("2")) {
                     filterParam.remove("nowprice");
-                }else {
-                    filterParam.put("nowprice","2");
+                } else {
+                    filterParam.put("nowprice", "2");
                     mPrice_v2.setSelected(true);
                     mPrice_v2.setBackground(getResources().getDrawable(R.drawable.red));
                 }
@@ -773,11 +783,11 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
             //1000-2000
             case R.id.price_v3:
                 resetPrice();
-                String price_v3 =  filterParam.get("nowprice");
+                String price_v3 = filterParam.get("nowprice");
                 if (!TextUtils.isEmpty(price_v3) && price_v3.equals("3")) {
                     filterParam.remove("nowprice");
-                }else {
-                    filterParam.put("nowprice","3");
+                } else {
+                    filterParam.put("nowprice", "3");
                     mPrice_v3.setSelected(true);
                     mPrice_v3.setBackground(getResources().getDrawable(R.drawable.red));
                 }
@@ -785,25 +795,26 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
             //2000以上
             case R.id.price_v4:
                 resetPrice();
-                String price_v4 =  filterParam.get("nowprice");
+                String price_v4 = filterParam.get("nowprice");
                 if (!TextUtils.isEmpty(price_v4) && price_v4.equals("4")) {
                     filterParam.remove("nowprice");
-                }else {
-                    filterParam.put("nowprice","4");
+                } else {
+                    filterParam.put("nowprice", "4");
                     mPrice_v4.setSelected(true);
                     mPrice_v4.setBackground(getResources().getDrawable(R.drawable.red));
                 }
                 break;
             //重置
-            case  R.id.Chongzhi:
+            case R.id.Chongzhi:
                 resetType();
                 resetBrand();
                 resetHot();
                 resetPrice();
                 resetSize();
                 break;
-            case   R.id.QueDing:
+            case R.id.QueDing:
                 filterData();
+                window.dismiss();
                 break;
         }
     }
@@ -812,17 +823,16 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
      * 筛选数据
      */
     private void filterData() {
-        Log.d("tianfb",filterParam.toString());
         OkHttpUtils.getInstance().post(SBUrls.FILTERBAG, filterParam, new MyNetWorkCallback<DetailsBean>() {
             @Override
             public void onSuccess(DetailsBean detailsBean) throws JSONException {
                 List<DetailsBean.InfoBean> info = detailsBean.getInfo();
-                if(null != info && info.size()>0){
+                if (null != info && info.size() > 0) {
                     mList.clear();
                     mList.addAll(info);
                     adapter.notifyDataSetChanged();
-                }else {
-                    ToastUtils.showTop(getContext(),"未加载到数据");
+                } else {
+                    ToastUtils.showTop(getContext(), "没有搜寻到相关包包");
                 }
             }
 

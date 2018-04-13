@@ -98,7 +98,15 @@ public  class FileUtil {
         name1.setText(name);
     }
 
-
+    /**
+     * 获取用户的id
+     * @param context
+     * @return
+     */
+    public static String getUserId(Context context){
+        SharedPreferences sharedPreferences = context.getSharedPreferences("userinfo",context.MODE_PRIVATE);
+       return sharedPreferences.getString("id","");
+    }
 
     /*
     *           选包收藏

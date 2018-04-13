@@ -33,6 +33,7 @@
             android:textColor="#A9A9A9" />
 
         <ImageView
+            android:id="@+id/search_clear"
             android:layout_width="17dp"
             android:layout_height="17dp"
             android:src="@drawable/close"/>
@@ -58,12 +59,13 @@
             android:gravity="center">
 
             <TextView
+
                 android:id="@+id/tv_hot"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:text="热门" android:textColor="@color/normal_color"/>
+                android:text="热门" android:textColor="#FC655E"/>
 
 
         </LinearLayout>
@@ -121,7 +123,7 @@
     </LinearLayout>
 
 
-    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+    <android.support.v4.widget.SwipeRefreshLayout
         android:layout_below="@id/tag"
         android:id="@+id/Selected_smartrefreshlayout"
         android:layout_width="match_parent"
@@ -143,14 +145,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="8dp"
-                    android:layout_marginRight="8dp"></android.support.v7.widget.RecyclerView>
+                    android:layout_marginRight="8dp"/>
 
 
             </LinearLayout>
 
 
         </ScrollView>
-    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 
     <TextView

@@ -76,6 +76,13 @@ public class SBUrls {
     public static final String HOTWORD ="https://baobaoapi.ldlchat.com/Home/Backcontent/gethotword.html";
     public static final String LOGURL="https://baobaoapi.ldlchat.com";
     public static final String CHECK_RECEIVING = "https://baobaoapi.ldlchat.com/Home/Personalcenter/getUserContent.html";
+
+    //收货地址
+    public static final String ADDRESS_LIST = "https://baobaoapi.ldlchat.com/Home/Address/list.html";
+
+
+    //  订单状态
+    public static final String ORDERTSTATUS = "https://baobaoapi.ldlchat.com/Home/Order/wait.html";
 /*
 * check
 Receiving
