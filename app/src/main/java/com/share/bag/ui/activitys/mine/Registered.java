@@ -24,6 +24,14 @@ import org.json.JSONException;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
+
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Function;
+import io.reactivex.schedulers.Schedulers;
 
 /*
 用户注册
@@ -41,6 +49,7 @@ public class Registered extends AppCompatActivity implements View.OnClickListene
     private EditText registered_password,registered_password1,registered_invite;
     private LinearLayout linearLayout8;
     private Button registered_login;
+    private Disposable mDisposable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,17 +110,40 @@ public class Registered extends AppCompatActivity implements View.OnClickListene
         Map<String, String> map = new HashMap<>();
         String phoneNumber = registered_phone.getText().toString().trim();
         if (phoneNumber!=null&&phoneNumber.length()>0&&phoneNumber.length()<=11){
+            registered_obtain.setText("60");
+            Observable
+                    .interval(1, TimeUnit.SECONDS)
+                    .take(60)
+                    .subscribeOn(Schedulers.newThread())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Observer<Long>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                        mDisposable = d;
+                    }
+
+                    @Override
+                    public void onNext(Long aLong) {
+                            registered_obtain.setText(60 - 1-aLong + "");
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        registered_obtain.setText("获取验证码");
+                    }
+            });
             map.put("username", registered_phone.getText().toString().trim());
-
             try {
-
                 OkHttpUtils.getInstance().post(SBUrls.SMSURL, map, new MyNetWorkCallback<SMSBean>() {
                     @Override
                     public void onSuccess(SMSBean loginBean) {
-//                TODO ---------- Message
                         Toast.makeText(Registered.this, loginBean.getInfo(), Toast.LENGTH_SHORT).show();
                     }
-
                     @Override
                     public void onError(int errorCode, String errorMsg) {
                         Toast.makeText(Registered.this, "失败"+errorMsg.toString()+errorCode, Toast.LENGTH_SHORT).show();
@@ -122,9 +154,6 @@ public class Registered extends AppCompatActivity implements View.OnClickListene
                 Toast.makeText(this, "请稍后再试", Toast.LENGTH_SHORT).show();
 
             }
-
-
-
         }else {
             Toast.makeText(Registered.this,"请输入正确的手机号",Toast.LENGTH_SHORT).show();
         }
@@ -188,5 +217,11 @@ public class Registered extends AppCompatActivity implements View.OnClickListene
             Toast.makeText(this, "两次输入的密码不一致", Toast.LENGTH_SHORT).show();
         }
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mDisposable.dispose();
     }
 }

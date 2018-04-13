@@ -40,7 +40,7 @@
     <string name="password">找回密码</string>
     <string name="verification">请输入验证码</string>
     <string name="verification2">验证码</string>
-    <string name="verification1">请获取验证码</string>
+    <string name="verification1">获取验证码</string>
     <string name="confirm">确认</string>
     <string name="button_dropout">退出登录</string>
     <string name="submit_text">提交包包详情</string>

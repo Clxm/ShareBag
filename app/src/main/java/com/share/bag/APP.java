@@ -3,6 +3,7 @@ package com.share.bag;
 import android.app.Application;
 import android.content.Context;
 import android.support.multidex.MultiDex;
+import android.support.multidex.MultiDexApplication;
 import android.support.v7.app.AppCompatActivity;
 
 import com.umeng.socialize.Config;
@@ -13,7 +14,7 @@ import com.umeng.socialize.UMShareAPI;
  * Created by Administrator on 2017/12/23.
  */
 
-public class APP extends Application{
+public class APP extends MultiDexApplication{
     //提交测试1
     public static AppCompatActivity context;
 
