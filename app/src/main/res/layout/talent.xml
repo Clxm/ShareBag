@@ -37,7 +37,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_marginLeft="4dp"
                     android:layout_marginTop="22dp"
-                    android:text="俏佳人"
+                    android:text=""
                     android:textColor="#303030"
                     android:textSize="13dp"/>
 
@@ -48,7 +48,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_marginRight="12dp"
                     android:layout_marginTop="22dp"
-                    android:text="2017-11-22"
+                    android:text=""
                     android:textSize="13dp"/>
 
                 <LinearLayout
@@ -58,33 +58,39 @@
                     android:layout_marginTop="48dp">
 
                     <TextView
+                        android:id="@+id/tv_label1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/textview6"
                         android:padding="3dp"
-                        android:text="白领"
+                        android:text=""
                         android:textColor="#838383"
-                        android:textSize="10dp"/>
+                        android:textSize="10dp"
+                        android:visibility="gone"/>
 
                     <TextView
+                        android:id="@+id/tv_label2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="18px"
                         android:layout_marginRight="18px"
                         android:background="@drawable/textview6"
                         android:padding="3dp"
-                        android:text="白领"
+                        android:text=""
                         android:textColor="#838383"
-                        android:textSize="10dp"/>
+                        android:textSize="10dp"
+                        android:visibility="gone"/>
 
                     <TextView
+                        android:id="@+id/tv_label3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/textview6"
                         android:padding="3dp"
-                        android:text="白领"
+                        android:text=""
                         android:textColor="#838383"
-                        android:textSize="10dp"/>
+                        android:textSize="10dp"
+                        android:visibility="gone"/>
 
                 </LinearLayout>
 
@@ -97,7 +103,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:text="这个包包看起来真的很好看，我非常喜欢。这个包包看起来真的很好看，我非常喜欢"/>
+            android:text=""/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -110,8 +116,7 @@
                 android:layout_height="114dp"
                 android:layout_marginRight="5dp"
                 android:layout_weight="1"
-                android:scaleType="fitXY"
-                android:src="@drawable/mo1"/>
+                android:scaleType="fitXY"/>
 
             <ImageView
                 android:id="@+id/talent_img2"
@@ -119,8 +124,7 @@
                 android:layout_height="114dp"
                 android:layout_marginLeft="5dp"
                 android:layout_weight="1"
-                android:scaleType="fitXY"
-                android:src="@drawable/mo1"/>
+                android:scaleType="fitXY"/>
 
         </LinearLayout>
 
@@ -157,10 +161,11 @@
                     android:src="@drawable/dianzan2"/>
 
                 <TextView
+                    android:id="@+id/tv_comment_num"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="3dp"
-                    android:text="20"
+                    android:text=""
                     android:textSize="10dp"/>
 
             </LinearLayout>

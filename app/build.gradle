@@ -10,21 +10,19 @@ android {
             keyPassword "yiweixiaozhu"
         }
         debug {
-            keyAlias 'yiweixiaozhu'
-            keyPassword 'yiweixiaozhu'
-            storeFile file('yiweixiaozhu.jks')
-            storePassword 'yiweixiaozhu'
+            //.jks文件放在项目目录
+            storeFile file("yiweixiaozhu.jks")
+            storePassword "yiweixiaozhu"
+            keyAlias "yiweixiaozhu"
+            keyPassword "yiweixiaozhu"
         }
-    }
 //        debug {
-//            //.jks文件放在项目目录
-//            storeFile file("xxx.jks")
-//            storePassword "xxx"
-//            keyAlias "xxx.release"
-//            keyPassword "xxx"
+//            storeFile file('debug.keystore')
+//            storePassword "android"
+//            keyAlias "androiddebugkey"
+//            keyPassword "android"
 //        }
-//    }
-
+    }
 
     compileSdkVersion 26
     buildToolsVersion "26.0.2"
@@ -48,14 +46,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-//    signingConfigs {
-//        debug {
-//            storeFile file('debug.keystore')
-//            storePassword "android"
-//            keyAlias "androiddebugkey"
-//            keyPassword "android"
-//        }
-//    }
 }
 
 

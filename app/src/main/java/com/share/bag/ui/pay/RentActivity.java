@@ -25,6 +25,7 @@ import com.share.bag.alipay.AuthResult;
 import com.share.bag.alipay.PayResult;
 import com.share.bag.entity.MayBean;
 import com.share.bag.entity.MayBean1;
+import com.share.bag.response.DetailUserInfo;
 import com.share.bag.utils.okhttp.OkHttpUtils;
 import com.share.bag.utils.okhttp.callback.MyNetWorkCallback;
 import com.tencent.mm.opensdk.modelpay.PayReq;
@@ -32,17 +33,17 @@ import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.umeng.socialize.utils.Log;
 
+import org.json.JSONException;
+
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-/*
-* 确认租
-* */
 public class RentActivity extends AppCompatActivity {
     private static final int SDK_PAY_FLAG = 1;
     private static final int SDK_AUTH_FLAG = 2;
     //支付
-    public static final String PAY ="https://baobaoapi.ldlchat.com/index.php?s=/Home/Pay/alipaystodo.html";
+    public static final String PAY = "https://baobaoapi.ldlchat.com/index.php?s=/Home/Pay/alipaystodo.html";
     //APP_ID
     public static final String APPID = "2018010201523821";
     //PID
@@ -51,19 +52,9 @@ public class RentActivity extends AppCompatActivity {
     public static final String RSA2_PRIVATE = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAlkR+whMRcYIybSBl5b1O4Gyv2Y00th/fxn+4tpCRkU1OmGo6l3UESg319yJCXWfIFIHRVCe+11JKiV7OyTYBVX4wC83ekqDVrVwGNBziU0ZrE2gerDRihX66xGGCs0w1TIhQsoawCH1hd61VOz6ABWp3l7yN8WM2KrXkl0OyGC2PVOO01eF9Y8cojPAm3nvOts/056C6X+o5Le9UTZ5m/AGAWOf9u3BBigG8lDrrG1P83+QON6irZcjgI55TJl9QtiNsb9W22xfbJzWVTS1xR4R1EfrkUyE4Cbw2peJSkUqIedZn2vndIN1aQ1G0uXp237rJEQiwRX6vKtm7/RpaeQIDAQAB";
     public static final String RSA_PRIVATE = "";
     public static final String TARGET_ID = "";
-//////////////
-private IWXAPI api;
-
-    ///////////
+    private IWXAPI api;
     private LinearLayout pay_wx;
     private String content;
-
-
-
-
-
-
-
     private ImageView rent_return;
     private ImageView imageView3;
     private TextView rent;
@@ -88,9 +79,6 @@ private IWXAPI api;
     private PopupWindow window1;
 
 
-
-
-
     @SuppressLint("HandlerLeak")
     private Handler mHandler = new Handler() {
         @SuppressWarnings("unused")
@@ -104,7 +92,7 @@ private IWXAPI api;
                      */
                     String resultInfo = payResult.getResult();// 同步返回需要验证的信息
                     String resultStatus = payResult.getResultStatus();
-                    android.util.Log.e("TAG",resultStatus);
+                    android.util.Log.e("TAG", resultStatus);
                     // 判断resultStatus 为9000则代表支付成功
                     if (TextUtils.equals(resultStatus, "9000")) {
                         // 该笔订单是否真实支付成功，需要依赖服务端的异步通知。
@@ -139,7 +127,9 @@ private IWXAPI api;
                 default:
                     break;
             }
-        };
+        }
+
+        ;
     };
 
 
@@ -148,6 +138,7 @@ private IWXAPI api;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rent);
         initView();//wx38f75c7fdb68b2bf
+        getUserInfo();
         api = WXAPIFactory.createWXAPI(this, "wx38f75c7fdb68b2bf");
 
         String s = rent_time.getText().toString();
@@ -189,6 +180,31 @@ private IWXAPI api;
 
         rent_total_amount.setText("");//总价
 
+    }
+
+    //获取用户昵称 地址
+    private void getUserInfo() {
+        HashMap<String, String> mapParams = new HashMap<>();
+        String  userId = "52";
+        mapParams.put("userid", userId);
+        OkHttpUtils.getInstance().post(SBUrls.DETAIL_GET_USER_INFO, mapParams, new MyNetWorkCallback<DetailUserInfo>() {
+            @Override
+            public void onSuccess(DetailUserInfo detailUserInfo) throws JSONException {
+                if (detailUserInfo.getStatus().equals("1")){
+                    List<DetailUserInfo.InfoBean> response = detailUserInfo.getInfo();
+                    for (int i = 0; i < response.size(); i++) {
+                        rent.setText(response.get(i).getUsername());
+                        rent_22.setText(response.get(i).getPhone());
+                        rent_11.setText(response.get(i).getAddress());
+                    }
+                }
+            }
+
+            @Override
+            public void onError(int errorCode, String errorMsg) {
+
+            }
+        });
     }
 
 
@@ -250,13 +266,13 @@ private IWXAPI api;
             public void onClick(View view) {
 //微信支付点击事件
 
-                Map<String,String> maymap=new HashMap<String, String>();
+                Map<String, String> maymap = new HashMap<String, String>();
 
-                maymap.put("old_price","1");//原定总价  （old_price）（租金总额：没有优惠过的总计）
-                maymap.put("new_price","1");//优惠后的价格  （new_price）（租金总额：有优惠过的总计）
-                maymap.put("pay_status","2");//支付类型   （pay_status   1-微信   2-钱包   3-支付宝）
-                maymap.put("is_order","2");//订单类型    （is_order    1-充值   2-买   3-租）
-                maymap.put("deposit_num","1");//押金总和    （deposit_num）（押金）
+                maymap.put("old_price", "1");//原定总价  （old_price）（租金总额：没有优惠过的总计）
+                maymap.put("new_price", "1");//优惠后的价格  （new_price）（租金总额：有优惠过的总计）
+                maymap.put("pay_status", "2");//支付类型   （pay_status   1-微信   2-钱包   3-支付宝）
+                maymap.put("is_order", "2");//订单类型    （is_order    1-充值   2-买   3-租）
+                maymap.put("deposit_num", "1");//押金总和    （deposit_num）（押金）
                 //订单详情表
 //                maymap.put("baglist_id","1");//包id
 //                maymap.put("old_price","10");//一个包的租金
@@ -267,29 +283,29 @@ private IWXAPI api;
 
                 OkHttpUtils.getInstance().post(SBUrls.ZHFPAY, maymap, new MyNetWorkCallback<MayBean1>() {
                             @Override
-                            public void onSuccess(MayBean1 mayBean1)  {
+                            public void onSuccess(MayBean1 mayBean1) {
 
-                                     String appid = mayBean1.getInfo().getAppid();
-                                        String noncestr = mayBean1.getInfo().getNoncestr();
-                                        String packageX = mayBean1.getInfo().getPackageX();
-                                        String partnerid = mayBean1.getInfo().getPartnerid();
-                                        String prepayid = mayBean1.getInfo().getPrepayid();
-                                        String sign = mayBean1.getInfo().getSign();
-                                        String timestamp = mayBean1.getInfo().getTimestamp();
-                                    Toast.makeText(RentActivity.this, appid+""+noncestr, Toast.LENGTH_SHORT).show();
-Log.e("",noncestr+""+packageX+""+partnerid+""+prepayid+""+sign+""+timestamp);
-                                PayReq pay=new PayReq();
-                                pay.appId=appid;
-                                pay.partnerId= partnerid;
-                                    pay.prepayId=prepayid;
-                                    pay.nonceStr= noncestr;
-                                    pay.timeStamp= timestamp;
-                                    pay.packageValue= packageX;
-                                    pay.sign= sign;
-                                    api.sendReq(pay);
+                                String appid = mayBean1.getInfo().getAppid();
+                                String noncestr = mayBean1.getInfo().getNoncestr();
+                                String packageX = mayBean1.getInfo().getPackageX();
+                                String partnerid = mayBean1.getInfo().getPartnerid();
+                                String prepayid = mayBean1.getInfo().getPrepayid();
+                                String sign = mayBean1.getInfo().getSign();
+                                String timestamp = mayBean1.getInfo().getTimestamp();
+                                Toast.makeText(RentActivity.this, appid + "" + noncestr, Toast.LENGTH_SHORT).show();
+                                Log.e("", noncestr + "" + packageX + "" + partnerid + "" + prepayid + "" + sign + "" + timestamp);
+                                PayReq pay = new PayReq();
+                                pay.appId = appid;
+                                pay.partnerId = partnerid;
+                                pay.prepayId = prepayid;
+                                pay.nonceStr = noncestr;
+                                pay.timeStamp = timestamp;
+                                pay.packageValue = packageX;
+                                pay.sign = sign;
+                                api.sendReq(pay);
 
 //                                req.extData			= "app data"; // optional
-                                    Toast.makeText(RentActivity.this, "正常调起支付", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(RentActivity.this, "正常调起支付", Toast.LENGTH_SHORT).show();
                             }
 
                             @Override
@@ -297,11 +313,10 @@ Log.e("",noncestr+""+packageX+""+partnerid+""+prepayid+""+sign+""+timestamp);
 
                             }
                         }
-                   );
+                );
 
 
-                    //微信支付点击事件
-
+                //微信支付点击事件
 
 
                 window1.dismiss();
@@ -312,28 +327,28 @@ Log.e("",noncestr+""+packageX+""+partnerid+""+prepayid+""+sign+""+timestamp);
             public void onClick(View view) {
 //                Toast.makeText(MyRentActivity.this, "支付宝", Toast.LENGTH_SHORT).show();
 
-                Map<String,String> maymap=new HashMap<String, String>();
-                
-                maymap.put("old_price","0.01");//原定总价  （old_price）（租金总额：没有优惠过的总计）
-                maymap.put("new_price","0.01");//优惠后的价格  （new_price）（租金总额：有优惠过的总计）
-                maymap.put("pay_status","3");//支付类型   （pay_status   1-微信   2-钱包   3-支付宝）
-                maymap.put("is_order","3");//订单类型    （is_order    1-充值   2-买   3-租）
-                maymap.put("deposit_num","0.01");//押金总和    （deposit_num）（押金）
+                Map<String, String> maymap = new HashMap<String, String>();
+
+                maymap.put("old_price", "0.01");//原定总价  （old_price）（租金总额：没有优惠过的总计）
+                maymap.put("new_price", "0.01");//优惠后的价格  （new_price）（租金总额：有优惠过的总计）
+                maymap.put("pay_status", "3");//支付类型   （pay_status   1-微信   2-钱包   3-支付宝）
+                maymap.put("is_order", "3");//订单类型    （is_order    1-充值   2-买   3-租）
+                maymap.put("deposit_num", "0.01");//押金总和    （deposit_num）（押金）
                 OkHttpUtils.getInstance().post(SBUrls.ZHFPAY, maymap, new MyNetWorkCallback<MayBean>() {
                     @Override
                     public void onSuccess(MayBean mayBean) {
-                      String  info = mayBean.getInfo();
-                        Log.e("TAG",info);
-                        Toast.makeText(RentActivity.this,info, Toast.LENGTH_SHORT).show();
+                        String info = mayBean.getInfo();
+                        Log.e("TAG", info);
+                        Toast.makeText(RentActivity.this, info, Toast.LENGTH_SHORT).show();
                         String status = mayBean.getStatus();
                         String s = info.replaceAll("&amp;", "&");
-                          payV2(s);
+                        payV2(s);
 
                     }
 
                     @Override
                     public void onError(int errorCode, String errorMsg) {
-                        Toast.makeText(RentActivity.this, "+++++++"+errorMsg, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RentActivity.this, "+++++++" + errorMsg, Toast.LENGTH_SHORT).show();
                     }
                 });
                 window1.dismiss();

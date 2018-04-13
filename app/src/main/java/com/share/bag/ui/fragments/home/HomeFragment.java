@@ -128,6 +128,18 @@ public class HomeFragment extends BaseFragment {
     //分享图片
     @BindView(R.id.home_share)
     ImageView homeShare;
+    @BindView(R.id.tv_label1)
+    TextView mTvLabel1;
+    @BindView(R.id.tv_label2)
+    TextView mTvLabel2;
+    @BindView(R.id.tv_label3)
+    TextView mTvLabel3;
+    @BindView(R.id.talent_img1)
+    ImageView mTalentImg1;
+    @BindView(R.id.talent_img2)
+    ImageView mTalentImg2;
+    @BindView(R.id.tv_comment_num)
+    TextView mTvCommentNum;
 
     private Context context;
 
@@ -158,9 +170,7 @@ public class HomeFragment extends BaseFragment {
     @Override
     public void initView(View view) {
         context = getActivity().getApplicationContext();
-
         mzBannerView = view.findViewById(R.id.first_vp);
-
     }
 
 
@@ -189,8 +199,7 @@ public class HomeFragment extends BaseFragment {
                 for (int i = 0; i < info.size(); i++) {
 
                     String iconurl = info.get(i).getUserinfo().getIconurl();
-                    Glide.with(context)
-                            .load(iconurl)
+                    Glide.with(context).load(iconurl)
                             //设置圆角图片
 //                .transform(new GlideRoundTransform(MainActivity.this, 10))
                             //设置圆形图片
@@ -198,9 +207,24 @@ public class HomeFragment extends BaseFragment {
                             .crossFade()
                             .into(home_avatar);
 
+                    String contentImg = info.get(i).getBack().getContentimg();
+                    String[] imgs = contentImg.split(",");
+                    if (imgs != null && imgs.length >= 1) {
+                        String img1 = SBUrls.LOGURL + imgs[0];
+                        String img2 = SBUrls.LOGURL + imgs[1];
+                        Glide.with(context).load(img1).into(mTalentImg1);
+                        Glide.with(context).load(img2).into(mTalentImg2);
+                    }
+//                    mTvLabel1.setVisibility(View.VISIBLE);
+//                    mTvLabel1.setText();
+//                    mTvLabel2.setVisibility(View.VISIBLE);
+//                    mTvLabel2.setText();
+//                    mTvLabel3.setVisibility(View.VISIBLE);
+//                    mTvLabel3.setText();
+//                    mTvCommentNum.setText(info.get(i).getBack().getCollection() + "");
+
                     String name = info.get(i).getUserinfo().getName();
                     home_name.setText(name);
-
                     String strTime = DateUtils.getStrTime1(info.get(i).getTime());
                     home_time.setText(strTime);
                     home_dynamic.setText(info.get(i).getContent());

@@ -95,7 +95,6 @@ class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHoudler> {
 //        Glide.with(context).load(iconurl).into(holder.details_comment_avatar);
         holder.details_comment_name.setText(name);
         holder.details_comment_time.setText(strTime);
-
         holder.details_comment_content.setText(content);
 
         holder.itemView.setTag(position);

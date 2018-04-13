@@ -94,4 +94,12 @@ Receiving
     public static final String JIAZHEN="https://baobaoapi.ldlchat.com/Home/Backlist/bagtolist.html";
     //上传文字和包包图片
     public static final String RELEASE_TEXT_BAG = "https://baobaoapi.ldlchat.com/Home/Userupload/publishbag.html";
+    //发表评论
+    public static final String PUBLISH_COMMENT = "https://baobaoapi.ldlchat.com/index.php?s=/Home/comment/publish.html";
+    //分享URL
+    public static final String SHARE_URL = "http://ywxz.ldlchat.com/fx/shop.html";
+    //详情页买和租获取用户信息
+    public static final String DETAIL_GET_USER_INFO ="https://baobaoapi.ldlchat.com/Home/Address/listchat.html";
+    //URL拼接头
+    public static final String URL_HEAD = "https://";
 }

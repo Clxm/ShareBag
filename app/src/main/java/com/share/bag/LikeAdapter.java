@@ -47,6 +47,7 @@ public class LikeAdapter extends RecyclerView.Adapter<LikeAdapter.ViewHolder> {
 
         holder.recyler_name.setText(list.get(position).getTitle());
         holder.recyler_price.setText(list.get(position).getDays_money());
+        holder.recyler_money.setText(list.get(position).getOriginalprice());
         holder.recyler_Collection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

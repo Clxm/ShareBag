@@ -1,13 +1,15 @@
 package com.share.bag.ui.activitys.home;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -80,8 +82,6 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
     private Button details_button_buy;
     private TextView details__user;
     private PopupWindow window1;
-    List<String> img1;
-    private List<String> img2;
     private String tmp;
     private List<String> heardimg = new ArrayList<>();
     private Banner details_banner;
@@ -99,6 +99,12 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details3);
+        //分享6.0权限适配
+        if (Build.VERSION.SDK_INT >= 23) {
+            String[] mPermissionList = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.CALL_PHONE, Manifest.permission.READ_LOGS, Manifest.permission.READ_PHONE_STATE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.SET_DEBUG_APP, Manifest.permission.SYSTEM_ALERT_WINDOW, Manifest.permission.GET_ACCOUNTS, Manifest.permission.WRITE_APN_SETTINGS};
+            ActivityCompat.requestPermissions(this, mPermissionList, 123);//123是requestcode，可以根据这个code判断，用户是否同意了授权
+        }
+
         if (getIntent() != null) {
             Intent intent = getIntent();
             tmp = intent.getStringExtra("details");
@@ -151,9 +157,6 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
         });
         //评论
         details_comment_img.setOnClickListener(new View.OnClickListener() {
-
-            private EditText details_pinglun;
-
             @Override
             public void onClick(View view) {
                 setPopupWindows();
@@ -324,7 +327,6 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
     }
 
     //分享
-
     public void getPopupWindow() {
         WindowManager wm = (WindowManager) getApplication()
                 .getSystemService(Context.WINDOW_SERVICE);
@@ -338,12 +340,12 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
                 width, height);
         window1.setContentView(contentView);
         //设置各个控件的点击响应
-        LinearLayout details_share_wxfriends = (LinearLayout) contentView.findViewById(R.id.details_share_wxfriends);
-        LinearLayout details_share_wxcircle = (LinearLayout) contentView.findViewById(R.id.details_share_wxcircle);
-        LinearLayout details_share_qqfriends = (LinearLayout) contentView.findViewById(R.id.details_share_qqfriends);
-        LinearLayout details_share_wocircle = (LinearLayout) contentView.findViewById(R.id.details_share_wocircle);
-        LinearLayout details_share_qqcircle = (LinearLayout) contentView.findViewById(R.id.details_share_qqcircle);
-        TextView details_share_cancel = (TextView) contentView.findViewById(R.id.details_share_cancel);
+        LinearLayout details_share_wxfriends = contentView.findViewById(R.id.details_share_wxfriends);
+        LinearLayout details_share_wxcircle = contentView.findViewById(R.id.details_share_wxcircle);
+        LinearLayout details_share_qqfriends = contentView.findViewById(R.id.details_share_qqfriends);
+        LinearLayout details_share_wocircle = contentView.findViewById(R.id.details_share_wocircle);
+        LinearLayout details_share_qqcircle = contentView.findViewById(R.id.details_share_qqcircle);
+        TextView details_share_cancel = contentView.findViewById(R.id.details_share_cancel);
 
         //显示PopupWindow
         View rootview = LayoutInflater.from(this).inflate(R.layout.activity_personal2, null);
@@ -357,22 +359,10 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
             }
         });
 
-
         details_share_wxfriends.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {//微信好友
-
-                for (int i = 0; i < img2.size(); i++) {
-
-                    String s = img2.get(i);
-
-
-                }
-
-
-                Toast.makeText(Details.this, "" + img2.get(0), Toast.LENGTH_SHORT).show();
-                Log.e("TAGBV", "" + img2.get(0));
-                WXShareWeb("" + img2.get(0));
+                WXShareWeb(R.drawable.fenxiang1);
                 window1.dismiss();
 
             }
@@ -381,7 +371,6 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
             @Override
             public void onClick(View view) {
                 WXpengyouShareWeb(R.drawable.fenxiang1);
-//                Toast.makeText(DetailsActivity.this, "微信朋友圈", Toast.LENGTH_SHORT).show();
                 window1.dismiss();
 
             }
@@ -391,10 +380,7 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
         details_share_qqfriends.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
                 QQShareWeb(R.drawable.fenxiang1);
-//                Toast.makeText(DetailsActivity.this, "QQ好友", Toast.LENGTH_SHORT).show();
                 window1.dismiss();
 
             }
@@ -413,62 +399,57 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
         details_share_qqcircle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Toast.makeText(DetailsActivity.this, "QQ空间", Toast.LENGTH_SHORT).show();
-
                 QzogShareWeb(R.drawable.fenxiang1);
-
                 window1.dismiss();
             }
         });
     }
 
-    private void QQShareWeb(int thumb_img) {
+    private void QQShareWeb(int thumb_img) {    //qq分享
         UMImage thumb = new UMImage(Details.this, thumb_img);
-        UMWeb web = new UMWeb("http://ywxz.ldlchat.com/fx/shop.html");
+        UMWeb web = new UMWeb(SBUrls.SHARE_URL);
         web.setThumb(thumb);
-        web.setDescription("这是一款应用共享的APP");
+        web.setDescription("这是一款包包共享的APP");
         web.setTitle("一位小主");
         new ShareAction(Details.this).withMedia(web).setPlatform(SHARE_MEDIA.QQ).setCallback(shareListener).share();
     }
 
-    private void SinaShareWeb(int thumb_img) {
+    private void SinaShareWeb(int thumb_img) {  //新浪微博
         UMImage thumb = new UMImage(Details.this, thumb_img);
-        UMWeb web = new UMWeb("http://ywxz.ldlchat.com/fx/shop.html");
+        UMWeb web = new UMWeb(SBUrls.SHARE_URL);
         web.setThumb(thumb);
-        web.setDescription("这是一款应用共享的APP");
+        web.setDescription("这是一款包包共享的APP");
         web.setTitle("一位小主");
         new ShareAction(Details.this).withMedia(web).setPlatform(SHARE_MEDIA.SINA).setCallback(shareListener).share();
     }
 
-    private void WXShareWeb(String thumb_img) {//微信好友
+    private void WXShareWeb(int thumb_img) {    //微信好友
         UMImage thumb = new UMImage(Details.this, thumb_img);
-        UMWeb web = new UMWeb("http://ywxz.ldlchat.com/fx/shop.html");
+        UMWeb web = new UMWeb(SBUrls.SHARE_URL);
         web.setThumb(thumb);
-        web.setDescription("");
+        web.setDescription("这是一款包包共享的APP");
         web.setTitle("一位小主");
         new ShareAction(Details.this).withMedia(web).setPlatform(SHARE_MEDIA.WEIXIN).setCallback(shareListener).share();
     }
 
-    private void WXpengyouShareWeb(int thumb_img) {
+    private void WXpengyouShareWeb(int thumb_img) { //微信朋友圈
         UMImage thumb = new UMImage(Details.this, thumb_img);
-        UMWeb web = new UMWeb("http://ywxz.ldlchat.com/fx/shop.html");
+        UMWeb web = new UMWeb(SBUrls.SHARE_URL);
         web.setThumb(thumb);
-        web.setDescription("这是一款应用共享的APP");
+        web.setDescription("这是一款包包共享的APP");
         web.setTitle("一位小主");
         new ShareAction(Details.this)
                 .withMedia(web)
                 .setPlatform(SHARE_MEDIA.WEIXIN_CIRCLE)
                 .setCallback(shareListener)
                 .share();
-
-
     }
 
-    private void QzogShareWeb(int thumb_img) {
+    private void QzogShareWeb(int thumb_img) {  //qq空间
         UMImage thumb = new UMImage(Details.this, thumb_img);
-        UMWeb web = new UMWeb("http://ywxz.ldlchat.com/fx/shop.html");
+        UMWeb web = new UMWeb(SBUrls.SHARE_URL);
         web.setThumb(thumb);
-        web.setDescription("这是一款应用共享的APP");
+        web.setDescription("这是一款包包共享的APP");
         web.setTitle("一位小主");
         new ShareAction(Details.this)
                 .withMedia(web)
@@ -483,6 +464,9 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
         if (pw != null) {
             pw.dismiss();
         }
+        if (window1 != null) {
+            window1.dismiss();
+        }
     }
 
     @Override
@@ -490,6 +474,9 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
         super.onDestroy();
         if (pw != null) {
             pw.dismiss();
+        }
+        if (window1 != null) {
+            window1.dismiss();
         }
     }
 
@@ -509,7 +496,7 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
          */
         @Override
         public void onResult(SHARE_MEDIA platform) {
-            Toast.makeText(Details.this, "成功了", Toast.LENGTH_LONG).show();
+            ToastUtils.showTop(Details.this, "分享成功");
         }
 
         /**
@@ -519,7 +506,7 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
          */
         @Override
         public void onError(SHARE_MEDIA platform, Throwable t) {
-            Toast.makeText(Details.this, "失败" + t.getMessage(), Toast.LENGTH_LONG).show();
+            ToastUtils.showTop(Details.this, "分享失败");
         }
 
         /**
@@ -528,7 +515,7 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
          */
         @Override
         public void onCancel(SHARE_MEDIA platform) {
-            Toast.makeText(Details.this, "取消了", Toast.LENGTH_LONG).show();
+            ToastUtils.showTop(Details.this, "分享取消");
 
         }
     };
@@ -536,81 +523,66 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
     // 详情
     public void getinitData() {
 
-
         Map<String, String> map = new HashMap<>();
         map.put("id", tmp);
 
         OkHttpUtils.getInstance().post(SBUrls.DETAILSURL, map, new MyNetWorkCallback<DeailsBean>() {
             @Override
             public void onSuccess(DeailsBean deailsBean) {
-                img2 = deailsBean.getImg();
-
-                List<String> img = deailsBean.getCarousel();//carousel
-
-                for (int i = 0; i < img.size(); i++) {
-                    String s = "https://" + img.get(i);//轮播图的网址
-
-                    heardimg.add(s);
-                }
-
-                //         BannerHeader Show
-                bannerHeaderShow();
-                TabPageShow();
-
-                img1 = deailsBean.getImg();
-
-
-                String title = deailsBean.getTitle();//简介
-//                String deposit = deailsBean.getDeposit();//原价
-//                String nowprice = deailsBean.getNowprice();//租金
+                String id = deailsBean.getId();
+                String title = deailsBean.getTitle();
+                String originalprice = deailsBean.getOriginalprice();
+                String days = deailsBean.getDays();
+                String days_money = deailsBean.getDays_money();
+                String bagtype_id = deailsBean.getBagtype_id();
+                String bagsize_id = deailsBean.getBagsize_id();
+                String bagbrand_id = deailsBean.getBagbrand_id();
                 String create_time = deailsBean.getCreate_time();
-                String color = deailsBean.getColor();//颜色
-                String material = deailsBean.getMaterial();//材质
-                String title2 = deailsBean.getBagSize().getTitle();//尺寸
+                String create_user = deailsBean.getCreate_user();
+                String update_time = deailsBean.getUpdate_time();
+                String update_user = deailsBean.getUpdate_user();
+                String status = deailsBean.getStatus();
+                String is_buy = deailsBean.getIs_buy();
+                String material = deailsBean.getMaterial();
+                String bag_toprice = deailsBean.getBag_toprice();
+                String nowprice = deailsBean.getNowprice();
+                String deposit = deailsBean.getDeposit();
+                String color = deailsBean.getColor();
+                String bagpay = deailsBean.getBagpay();
+                String number = deailsBean.getNumber();
+                Object foruser = deailsBean.getForuser();
+                DeailsBean.BagTypeBean bagTypeBean = deailsBean.getBagType();
+                DeailsBean.BagSizeBean bagSizeBean = deailsBean.getBagSize();
+                DeailsBean.BagBrandBean bagBrandBean = deailsBean.getBagBrand();
+                String bagBrand = bagBrandBean.getTitle();
                 comment_count1 = deailsBean.getComment_count();
+                List<String> img = deailsBean.getImg();
                 List<String> contentimg = deailsBean.getContentimg();
-                String description_1 = "https://" + contentimg.get(0);
-                String description_2 = "https://" + contentimg.get(1);
+                List<String> carousel = deailsBean.getCarousel();
+                String bagSize = bagSizeBean.getTitle();
 
-
-                details_comment_number.setText("(" + comment_count1 + ")");
-                detalis_colour.setText(color);
-                detalis_brand.setText(title);
-                detalis_numbering.setText(create_time);
-                detalis_material.setText(material);
-                detalis_size.setText(title2);
-
-                Glide.with(Details.this).load(description_1).into(detalis_description_img1);
-                Glide.with(Details.this).load(description_2).into(detalis_description_img2);
-
-
+                for (int i = 0; i < carousel.size(); i++) {
+                    String bannerUrl = SBUrls.URL_HEAD + carousel.get(i);
+                    heardimg.add(bannerUrl);
+                }
+                bannerHeaderShow();     //banner
+                detalis_Introduction.setText(title);    //标题
+                detalis_brand.setText(bagBrand);    //品牌
+                detalis_numbering.setText(number);  //商品编号
+                detalis_colour.setText(color);  //颜色
+                detalis_material.setText(material); //材质
+                detalis_size.setText(bagSize);  //尺寸
+                String description_1 = SBUrls.URL_HEAD + contentimg.get(0);
+                String description_2 = SBUrls.URL_HEAD + contentimg.get(1);
+                com.share.bag.utils.ImageLoader.LoadLocalImg(detalis_description_img1, getApplicationContext(), description_1);
+                com.share.bag.utils.ImageLoader.LoadLocalImg(detalis_description_img2, getApplicationContext(), description_2);
+//                Glide.with(getApplicationContext()).load(description_1).into(detalis_description_img1);//大图1
+//                Glide.with(getApplicationContext()).load(description_2).into(detalis_description_img2);//大图2
+                details_comment_number.setText("(" + comment_count1 + ")"); //评论数
             }
 
-            private void TabPageShow() {
-
-                //           Voluation  Tab
-//                    tab.addTab(tab.newTab().setText(DETAILS));
-//                    tab.addTab(tab.newTab().setText(COMMENTS + "(+" + NUM + "+)"));
-
-//                    stringList.add(DETAILS);
-//                    stringList.add(COMMENTS);
-
-                //界面
-//                    fragmentList.add(new DetalisFragment());//详情
-//                    fragmentList.add(new CommentsFragment());//评论
-
-//                    tab.setupWithViewPager(pager);
-
-                //        Show  Adapter
-//                    mCosTomPageAdapter = new CosTomPageAdapter(fragmentManager, stringList, fragmentList);
-//                    pager.setAdapter(mCosTomPageAdapter);
-//                    pager.setCurrentItem(0);
-//                    pager.setCurrentItem(1);
-
-            }
 
             private void bannerHeaderShow() {
-
                 details_banner.setImages(heardimg)//添加图片集合或图片url集合
                         .setDelayTime(2000)//设置轮播时间
                         .setBannerStyle(BannerConfig.CIRCLE_INDICATOR)
@@ -626,7 +598,7 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
         });
     }
 
-    //评论
+    //展示评论
     public void getinitdatacomment() {
         Map<String, String> map = new HashMap<>();
         map.put("baglist_id", tmp);
@@ -660,18 +632,14 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
             Toast.makeText(this, "butttString不能为空", Toast.LENGTH_SHORT).show();
             return;
         }
-        String str = "https://baobaoapi.ldlchat.com/index.php?s=/Home/comment/publish.html";
         Map<String, String> map = new HashMap<>();
         map.put("baglist_id", tmp);
         map.put("content", butttString);
-//        try {
-        //请求网络
-        OkHttpUtils.getInstance().post(str, map, new MyNetWorkCallback<AddCommentBean>() {
+        OkHttpUtils.getInstance().post(SBUrls.PUBLISH_COMMENT, map, new MyNetWorkCallback<AddCommentBean>() {
             @Override
             public void onSuccess(AddCommentBean addComment) throws JSONException {
                 pw.dismiss();
                 getinitdatacomment();
-
             }
 
             @Override
@@ -722,7 +690,12 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
         super.onActivityResult(requestCode, resultCode, data);
         UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
 
+    }
 
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        //123是requestcode，可以根据这个code判断，用户是否同意了授权
     }
 
 }

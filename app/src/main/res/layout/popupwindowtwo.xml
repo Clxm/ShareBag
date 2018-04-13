@@ -203,8 +203,6 @@
             android:src="@drawable/xioatu"
             android:id="@+id/imageView7"
             android:layout_alignTop="@+id/textView26"
-            android:layout_alignRight="@+id/diro2"
-            android:layout_alignEnd="@+id/diro2"
             android:layout_toRightOf="@+id/brand_lv"
             android:layout_toEndOf="@+id/brand_lv" />
 

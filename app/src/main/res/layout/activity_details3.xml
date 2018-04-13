@@ -161,7 +161,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="24dp"
                     android:layout_marginTop="18dp"
-                    android:text="爱马仕女士公文包上班首选2018新款白领必备"
+                    android:text=""
                     android:textColor="#FF303030"
                     android:textSize="14dp"/>
 
@@ -176,7 +176,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="品牌："
+                        android:text="品牌: "
                         android:textColor="#838383"
                         android:textSize="12dp"/>
 
@@ -184,7 +184,7 @@
                         android:id="@+id/detalis_brand"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="爱马仕"
+                        android:text=""
                         android:textColor="#838383"
                         android:textSize="12dp"/>
 
@@ -201,7 +201,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="商品编号"
+                        android:text="商品编号: "
                         android:textColor="#838383"
                         android:textSize="12dp"/>
 
@@ -209,7 +209,7 @@
                         android:id="@+id/detalis_numbering"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="201801181256"
+                        android:text=""
                         android:textColor="#838383"
                         android:textSize="12dp"/>
                 </LinearLayout>
@@ -224,14 +224,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="颜色："
+                        android:text="颜色: "
                         android:textColor="#838383"
                         android:textSize="12dp"/>
                     <TextView
                         android:id="@+id/detalis_colour"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="粉色"
+                        android:text=""
                         android:textColor="#838383"
                         android:textSize="12dp"/>
 
@@ -247,7 +247,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="材质"
+                        android:text="材质: "
                         android:textColor="#838383"
                         android:textSize="12dp"/>
 
@@ -255,7 +255,7 @@
                         android:id="@+id/detalis_material"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="真牛品"
+                        android:text=""
                         android:textColor="#838383"
                         android:textSize="12dp"/>
 
@@ -270,7 +270,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="尺寸："
+                        android:text="尺寸: "
                         android:textColor="#838383"
                         android:textSize="12dp"/>
 
@@ -278,7 +278,7 @@
                         android:id="@+id/detalis_size"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="420*255*155mm"
+                        android:text=""
                         android:textColor="#838383"
                         android:textSize="12dp"/>
                 </LinearLayout>

@@ -20,7 +20,7 @@
             android:scaleType="fitXY"
             android:src="@drawable/mo1"/>
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
@@ -28,28 +28,25 @@
 
             <TextView
                 android:id="@+id/recyler_name"
+                android:layout_alignParentLeft="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:maxEms="5"
                 android:singleLine="true"
-                android:text="品牌品牌品牌品牌"
+                android:text=""
+                android:layout_toLeftOf="@+id/recyler_Collection"
                 android:textColor="@color/selectf_bag_name"
                 android:textSize="12dp"/>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"></LinearLayout>
-
             <ImageView
+                android:layout_alignParentRight="true"
                 android:id="@+id/recyler_Collection"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
                 android:src="@mipmap/shoucang1"/>
 
-        </LinearLayout>
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -75,7 +72,7 @@
                 android:layout_alignBaseline="@+id/recyler_text2"
                 android:layout_alignBottom="@+id/recyler_text2"
                 android:layout_toEndOf="@+id/recyler_text1"
-                android:text="200/3天"
+                android:text=""
                 android:textColor="#FD7872"
                 android:textSize="10dp"/>
 
@@ -90,7 +87,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/recyler_text1"
                 android:layout_toStartOf="@+id/recyler_Collection"
-                android:text="原价："
+                android:text="原价: "
                 android:textColor="@color/selectf_original_price"
                 android:textSize="10dp"/>
 
@@ -101,7 +98,7 @@
                 android:layout_alignBottom="@+id/recyler_price"
                 android:layout_alignEnd="@+id/recyler_Collection"
                 android:layout_marginRight="10dp"
-                android:text="5000"
+                android:text=""
                 android:textColor="@color/selectf_original_price"
                 android:textSize="10dp"/>
 

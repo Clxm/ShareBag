@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:text="详情"
+            android:text=""
             android:textColor="@color/navigation_bar_text_color"
             android:textSize="@dimen/x46"/>
 
