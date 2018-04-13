@@ -340,6 +340,7 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
 
     public void getHttpData() {
         Map<String, String> map = new HashMap<>();
+        map.put("userid",FileUtil.getUserId(getActivity()));
         switch (tabPosistion) {
             case 0://热门
                 map.put("is_hot", "1");
@@ -823,6 +824,7 @@ public class SelectedFragment extends BaseFragment implements View.OnClickListen
      * 筛选数据
      */
     private void filterData() {
+        filterParam.put("userid",FileUtil.getUserId(getActivity()));
         OkHttpUtils.getInstance().post(SBUrls.FILTERBAG, filterParam, new MyNetWorkCallback<DetailsBean>() {
             @Override
             public void onSuccess(DetailsBean detailsBean) throws JSONException {
