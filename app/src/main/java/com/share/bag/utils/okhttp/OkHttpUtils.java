@@ -7,20 +7,16 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.share.bag.APP;
 import com.share.bag.Constant;
-import com.share.bag.utils.JsonTool;
 import com.share.bag.utils.SharePreUtils;
 import com.share.bag.utils.okhttp.callback.ByteCallBack;
 import com.share.bag.utils.okhttp.callback.MyNetWorkCallback;
 
 import org.json.JSONException;
 
-import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
-import java.net.URLDecoder;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;

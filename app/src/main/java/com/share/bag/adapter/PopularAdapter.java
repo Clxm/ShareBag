@@ -3,6 +3,7 @@ package com.share.bag.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import com.share.bag.ui.activitys.home.Details;
 import com.share.bag.ui.activitys.home.DetailsBean;
 import com.share.bag.ui.fragments.collection.CollectionLookBean;
 import com.share.bag.ui.fragments.selected.CollectType;
+import com.share.bag.utils.ToastUtils;
 import com.share.bag.utils.okhttp.OkHttpUtils;
 import com.share.bag.utils.okhttp.callback.MyNetWorkCallback;
 
@@ -70,24 +72,29 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.ViewHold
         holder.recyler_Collection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Map<String ,String> collection=new HashMap();
-                collection.put("baglist_id",list.get(position).getId());
-                collection.put("userid", FileUtil.getUserId(context));
-                OkHttpUtils.getInstance().post(SBUrls.LIKE_COLLECTION, collection, new MyNetWorkCallback<CollectType>() {
-                    @Override
-                    public void onSuccess(CollectType collectionBean) {
-                        if (list.get(position).getIslive().equals("false")) {
-                            list.get(position).setIslive("true");
-                        } else {
-                            list.get(position).setIslive("false");
+                String userId = FileUtil.getUserId(context);
+                if(TextUtils.isEmpty(userId)){
+                    ToastUtils.showTop(context,"请先登录");
+                }else {
+                    Map<String ,String> collection=new HashMap();
+                    collection.put("baglist_id",list.get(position).getId());
+                    collection.put("userid",userId );
+                    OkHttpUtils.getInstance().post(SBUrls.LIKE_COLLECTION, collection, new MyNetWorkCallback<CollectType>() {
+                        @Override
+                        public void onSuccess(CollectType collectionBean) {
+                            if (list.get(position).getIslive().equals("false")) {
+                                list.get(position).setIslive("true");
+                            } else {
+                                list.get(position).setIslive("false");
+                            }
+                            notifyDataSetChanged();
                         }
-                        notifyDataSetChanged();
-                    }
 
-                    @Override
-                    public void onError(int errorCode, String errorMsg) {
-                    }
-                });
+                        @Override
+                        public void onError(int errorCode, String errorMsg) {
+                        }
+                    });
+                }
 
 
 

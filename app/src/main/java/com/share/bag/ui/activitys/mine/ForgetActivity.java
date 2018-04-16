@@ -2,6 +2,7 @@ package com.share.bag.ui.activitys.mine;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -22,6 +23,14 @@ import org.json.JSONException;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
+
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
+
 /*
 * 找回密码
 * */
@@ -41,6 +50,9 @@ public class ForgetActivity extends AppCompatActivity implements View.OnClickLis
     private String verification;
     private String password;
     private String password1;
+    private Disposable mDisposable;
+
+    private boolean isClick = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,26 +91,26 @@ public class ForgetActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.forget_login:
 
 //                                       baobaoapi.ldlchat.com/Home/user/getnewpwd.html
-                String strurl="http://baobaoapi.ldlchat.com/Home/user/getnewpwd.html";
+                String strurl = "http://baobaoapi.ldlchat.com/Home/user/getnewpwd.html";
 
-                Map<String,String> stringStringMap=new HashMap<>();
-                stringStringMap.put("username",forget_phone.getText().toString().trim());
-                stringStringMap.put("newpwd",forget_password.getText().toString().trim());
-                stringStringMap.put("confirmpwd",forget_password1.getText().toString().trim());
-                stringStringMap.put("code",forget_verification.getText().toString().trim());
+                Map<String, String> stringStringMap = new HashMap<>();
+                stringStringMap.put("username", forget_phone.getText().toString().trim());
+                stringStringMap.put("newpwd", forget_password.getText().toString().trim());
+                stringStringMap.put("confirmpwd", forget_password1.getText().toString().trim());
+                stringStringMap.put("code", forget_verification.getText().toString().trim());
 
                 OkHttpUtils.getInstance().post(SBUrls.FORGET, stringStringMap, new MyNetWorkCallback<ForgetBean>() {
                     @Override
                     public void onSuccess(ForgetBean forgetBean) throws JSONException {
 
-                        Toast.makeText(ForgetActivity.this, "返回正常"+forgetBean.getInfo(), Toast.LENGTH_SHORT).show();
-                        Log.e("TTAAG",forgetBean.getStatus()+"======="+forgetBean.getInfo());
+                        Toast.makeText(ForgetActivity.this, "返回正常" + forgetBean.getInfo(), Toast.LENGTH_SHORT).show();
+                        Log.e("TTAAG", forgetBean.getStatus() + "=======" + forgetBean.getInfo());
 
                         String info = forgetBean.getInfo();
 
-                        if (info.equals("修改成功")){
+                        if (info.equals("修改成功")) {
                             finish();
-                        }else {
+                        } else {
                             Toast.makeText(ForgetActivity.this, "请重新输入", Toast.LENGTH_SHORT).show();
                             forget_phone.setText(null);
                             forget_password.setText(null);
@@ -106,8 +118,6 @@ public class ForgetActivity extends AppCompatActivity implements View.OnClickLis
                             forget_verification.setText(null);
 
                         }
-
-
 
 
                     }
@@ -119,86 +129,126 @@ public class ForgetActivity extends AppCompatActivity implements View.OnClickLis
                 });
                 break;
             case R.id.forget_return:
-                    finish();
+                finish();
                 break;
             case R.id.forget_obtain:
-                Map<String,String> map=new HashMap<>();
-                map.put("username",forget_phone.getText().toString().trim());
-                OkHttpUtils.getInstance().post(SBUrls.SMSURL, map, new MyNetWorkCallback<SMSBean>() {
-                    @Override
-                    public void onSuccess(SMSBean loginBean) {
-//                TODO ---------- Message
-                        Toast.makeText(ForgetActivity.this, loginBean.getInfo(), Toast.LENGTH_SHORT).show();
-                    }
+                if (isClick) {
+                    isClick = false;
+                    String num = forget_phone.getText().toString().trim();
+                    if (!TextUtils.isEmpty(num) && num.length() == 11) {
+                        Map<String, String> map = new HashMap<>();
+                        map.put("username", num);
+                        forget_obtain.setText("60");
+                        Observable
+                                .interval(1, TimeUnit.SECONDS)
+                                .take(60)
+                                .subscribeOn(Schedulers.newThread())
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe(new Observer<Long>() {
+                                    @Override
+                                    public void onSubscribe(Disposable d) {
+                                        mDisposable = d;
+                                    }
 
-                    @Override
-                    public void onError(int errorCode, String errorMsg) {
-                        Toast.makeText(ForgetActivity.this, "失败"+errorMsg.toString()+errorCode, Toast.LENGTH_SHORT).show();
+                                    @Override
+                                    public void onNext(Long aLong) {
+                                        forget_obtain.setText(60 - 1 - aLong + "");
+                                    }
+
+                                    @Override
+                                    public void onError(Throwable e) {
+
+                                    }
+
+                                    @Override
+                                    public void onComplete() {
+                                        isClick  = true;
+                                        forget_obtain.setText("获取验证码");
+                                    }
+                                });
+                        OkHttpUtils.getInstance().post(SBUrls.SMSURL, map, new MyNetWorkCallback<SMSBean>() {
+                            @Override
+                            public void onSuccess(SMSBean loginBean) {
+//                TODO ---------- Message
+                                Toast.makeText(ForgetActivity.this, loginBean.getInfo(), Toast.LENGTH_SHORT).show();
+                            }
+
+                            @Override
+                            public void onError(int errorCode, String errorMsg) {
+                                Toast.makeText(ForgetActivity.this, "失败" + errorMsg.toString() + errorCode, Toast.LENGTH_SHORT).show();
+                            }
+                        });
                     }
-                });
+                }
                 break;
         }
     }
 
-/*    private void submit() {
+    /*    private void submit() {
 
-        String phone = forget_phone.getText().toString().trim();
-        if (TextUtils.isEmpty(phone)) {
-            Toast.makeText(this, "phone不能为空", Toast.LENGTH_SHORT).show();
-            return;
-        }
+            String phone = forget_phone.getText().toString().trim();
+            if (TextUtils.isEmpty(phone)) {
+                Toast.makeText(this, "phone不能为空", Toast.LENGTH_SHORT).show();
+                return;
+            }
 
-        String verification = forget_verification.getText().toString().trim();
-        if (TextUtils.isEmpty(verification)) {
-            Toast.makeText(this, "verification不能为空", Toast.LENGTH_SHORT).show();
-            return;
-        }
+            String verification = forget_verification.getText().toString().trim();
+            if (TextUtils.isEmpty(verification)) {
+                Toast.makeText(this, "verification不能为空", Toast.LENGTH_SHORT).show();
+                return;
+            }
 
-        String password = forget_password.getText().toString().trim();
-        if (TextUtils.isEmpty(password)) {
-            Toast.makeText(this, "password不能为空", Toast.LENGTH_SHORT).show();
-            return;
-        }
+            String password = forget_password.getText().toString().trim();
+            if (TextUtils.isEmpty(password)) {
+                Toast.makeText(this, "password不能为空", Toast.LENGTH_SHORT).show();
+                return;
+            }
 
-        String password1 = forget_password1.getText().toString().trim();
-        if (TextUtils.isEmpty(password1)) {
-            Toast.makeText(this, "password1不能为空", Toast.LENGTH_SHORT).show();
-            return;
-        }
+            String password1 = forget_password1.getText().toString().trim();
+            if (TextUtils.isEmpty(password1)) {
+                Toast.makeText(this, "password1不能为空", Toast.LENGTH_SHORT).show();
+                return;
+            }
 
-        if (password.equals(password1)){
-//                                    baobaoapi.ldlchat.com/Home/user/getnewpwd.html
-            String strurl="http://baobaoapi.ldlchat.com/Home/user/getnewpwd.html";
-            Map<String,String> stringStringMap=new HashMap<>();
-            stringStringMap.put("username",phone);
-            stringStringMap.put("newpwd",password);
-            stringStringMap.put("confirmpwd",password1);
-            stringStringMap.put("code",verification);
+            if (password.equals(password1)){
+    //                                    baobaoapi.ldlchat.com/Home/user/getnewpwd.html
+                String strurl="http://baobaoapi.ldlchat.com/Home/user/getnewpwd.html";
+                Map<String,String> stringStringMap=new HashMap<>();
+                stringStringMap.put("username",phone);
+                stringStringMap.put("newpwd",password);
+                stringStringMap.put("confirmpwd",password1);
+                stringStringMap.put("code",verification);
 
-            OkHttpUtils.getInstance().post(strurl, stringStringMap, new MyNetWorkCallback<ForgetBean>() {
-                @Override
-                public void onSuccess(ForgetBean forgetBean) throws JSONException {
-//                    String username = forgetBean.getUsername();
+                OkHttpUtils.getInstance().post(strurl, stringStringMap, new MyNetWorkCallback<ForgetBean>() {
+                    @Override
+                    public void onSuccess(ForgetBean forgetBean) throws JSONException {
+    //                    String username = forgetBean.getUsername();
 
-//                    if (username.equals("")){
-                        Toast.makeText(ForgetActivity.this, forgetBean.getInfo(), Toast.LENGTH_SHORT).show();
+    //                    if (username.equals("")){
+                            Toast.makeText(ForgetActivity.this, forgetBean.getInfo(), Toast.LENGTH_SHORT).show();
 
-                        finish();
+                            finish();
 
-//                    }else {
-//                        Toast.makeText(ForgetActivity.this, forgetBean.getInfo(), Toast.LENGTH_SHORT).show();
-//                    }
+    //                    }else {
+    //                        Toast.makeText(ForgetActivity.this, forgetBean.getInfo(), Toast.LENGTH_SHORT).show();
+    //                    }
 
-                }
+                    }
 
-                @Override
-                public void onError(int errorCode, String errorMsg) {
+                    @Override
+                    public void onError(int errorCode, String errorMsg) {
 
-                }
-            });
-        }else {
-            Toast.makeText(this, "输入的密码不一致", Toast.LENGTH_SHORT).show();
-        }
+                    }
+                });
+            }else {
+                Toast.makeText(this, "输入的密码不一致", Toast.LENGTH_SHORT).show();
+            }
 
-    }*/
+        }*/
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (null != mDisposable)
+            mDisposable.dispose();
+    }
 }
