@@ -14,6 +14,8 @@ import com.share.bag.utils.okhttp.callback.MyNetWorkCallback;
 
 import org.json.JSONException;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -40,16 +42,14 @@ public class TradeActivity extends AppCompatActivity {
 
     }
 
-
     public void getdata() {
         Map<String,String> map=new HashMap<>();
         OkHttpUtils.getInstance().post(SBUrls.CHANGE, map, new MyNetWorkCallback<TradeBean>() {
             @Override
             public void onSuccess(TradeBean tradeBean) throws JSONException {
-                List<TradeBean.InfoBean> info = tradeBean.getInfo();
-
+                List<TradeBean> tradeList = tradeBean.getTradeBeanList();
                 Trade_recycler.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
-                Trade1Adapter adapter = new Trade1Adapter(TradeActivity.this, info);
+                Trade1Adapter adapter = new Trade1Adapter(TradeActivity.this, tradeList);
                 Trade_recycler.setAdapter(adapter);
 
             }

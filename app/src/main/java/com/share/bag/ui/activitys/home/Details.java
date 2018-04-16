@@ -94,6 +94,15 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
     private RecyclerView details_like_recycler;
     private PopupWindow pw;
     private EditText et_input_content;
+    private String mImgUrl;
+    private String mTitle;
+    private String mBagBrand;
+    private String mNumber;
+    private String mColor;
+    private String mMaterial;
+    private String mBagSize;
+    private String mDays_money;
+    private String mDays;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -251,7 +260,6 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
         details_button_buy = (Button) findViewById(R.id.details_button_buy);
         details__user = (TextView) findViewById(R.id.details__user);
         details_like_recycler = (RecyclerView) findViewById(R.id.details_like_recycler);
-
         details_button_collection.setOnClickListener(this);
         details_button_rent.setOnClickListener(this);
         details_button_buy.setOnClickListener(this);
@@ -274,17 +282,20 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
                     Intent intent = new Intent(Details.this, Login.class);
                     startActivity(intent);
                 } else {
-                    Intent rentloginintent = new Intent(Details.this, RentActivity.class);
-                    rentloginintent.putExtra("", "");
-                    rentloginintent.putExtra("", "");
-                    rentloginintent.putExtra("", "");
-                    rentloginintent.putExtra("", "");
-                    rentloginintent.putExtra("", "");
-                    rentloginintent.putExtra("", "");
-                    rentloginintent.putExtra("", "");
+                    Intent intent = new Intent(Details.this, RentActivity.class);
+                    intent.putExtra("imgUrl", mImgUrl);
+                    intent.putExtra("title", mTitle);
+                    intent.putExtra("bagBrand", mBagBrand);
+                    intent.putExtra("number", mNumber);
+                    intent.putExtra("color", mColor);
+                    intent.putExtra("material", mMaterial);
+                    intent.putExtra("bagSize", mBagSize);
+                    intent.putExtra("dayMoney", mDays_money);
+                    intent.putExtra("days", mDays);
 
 
-                    startActivity(rentloginintent);
+
+                    startActivity(intent);
                 }
 
                 break;
@@ -293,8 +304,17 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
                     Intent intent = new Intent(Details.this, Login.class);
                     startActivity(intent);
                 } else {
-                    Intent rentloginintent = new Intent(Details.this, BuyActivity.class);
-                    startActivity(rentloginintent);
+                    Intent intent = new Intent(Details.this, BuyActivity.class);
+                    intent.putExtra("imgUrl", mImgUrl);
+                    intent.putExtra("title", mTitle);
+                    intent.putExtra("bagBrand", mBagBrand);
+                    intent.putExtra("number", mNumber);
+                    intent.putExtra("color", mColor);
+                    intent.putExtra("material", mMaterial);
+                    intent.putExtra("bagSize", mBagSize);
+
+
+                    startActivity(intent);
                 }
                 break;
         }
@@ -530,10 +550,10 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
             @Override
             public void onSuccess(DeailsBean deailsBean) {
                 String id = deailsBean.getId();
-                String title = deailsBean.getTitle();
+                mTitle = deailsBean.getTitle();
                 String originalprice = deailsBean.getOriginalprice();
-                String days = deailsBean.getDays();
-                String days_money = deailsBean.getDays_money();
+                mDays = deailsBean.getDays();
+                mDays_money = deailsBean.getDays_money();
                 String bagtype_id = deailsBean.getBagtype_id();
                 String bagsize_id = deailsBean.getBagsize_id();
                 String bagbrand_id = deailsBean.getBagbrand_id();
@@ -543,41 +563,42 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
                 String update_user = deailsBean.getUpdate_user();
                 String status = deailsBean.getStatus();
                 String is_buy = deailsBean.getIs_buy();
-                String material = deailsBean.getMaterial();
+                mMaterial = deailsBean.getMaterial();
                 String bag_toprice = deailsBean.getBag_toprice();
                 String nowprice = deailsBean.getNowprice();
                 String deposit = deailsBean.getDeposit();
-                String color = deailsBean.getColor();
+                mColor = deailsBean.getColor();
                 String bagpay = deailsBean.getBagpay();
-                String number = deailsBean.getNumber();
+                mNumber = deailsBean.getNumber();
                 Object foruser = deailsBean.getForuser();
                 DeailsBean.BagTypeBean bagTypeBean = deailsBean.getBagType();
                 DeailsBean.BagSizeBean bagSizeBean = deailsBean.getBagSize();
                 DeailsBean.BagBrandBean bagBrandBean = deailsBean.getBagBrand();
-                String bagBrand = bagBrandBean.getTitle();
+                mBagBrand = bagBrandBean.getTitle();
                 comment_count1 = deailsBean.getComment_count();
                 List<String> img = deailsBean.getImg();
                 List<String> contentimg = deailsBean.getContentimg();
                 List<String> carousel = deailsBean.getCarousel();
-                String bagSize = bagSizeBean.getTitle();
+                mBagSize = bagSizeBean.getTitle();
 
                 for (int i = 0; i < carousel.size(); i++) {
                     String bannerUrl = SBUrls.URL_HEAD + carousel.get(i);
                     heardimg.add(bannerUrl);
                 }
                 bannerHeaderShow();     //banner
-                detalis_Introduction.setText(title);    //标题
-                detalis_brand.setText(bagBrand);    //品牌
-                detalis_numbering.setText(number);  //商品编号
-                detalis_colour.setText(color);  //颜色
-                detalis_material.setText(material); //材质
-                detalis_size.setText(bagSize);  //尺寸
+                for (int i = 0; i < img.size(); i++) {
+                    mImgUrl = img.get(i);
+                }
+                detalis_Introduction.setText(mTitle);    //标题
+                detalis_brand.setText(mBagBrand);    //品牌
+                detalis_numbering.setText(mNumber);  //商品编号
+                detalis_colour.setText(mColor);  //颜色
+                detalis_material.setText(mMaterial); //材质
+                detalis_size.setText(mBagSize);  //尺寸
                 String description_1 = SBUrls.URL_HEAD + contentimg.get(0);
                 String description_2 = SBUrls.URL_HEAD + contentimg.get(1);
                 com.share.bag.utils.ImageLoader.LoadLocalImg(detalis_description_img1, getApplicationContext(), description_1);
                 com.share.bag.utils.ImageLoader.LoadLocalImg(detalis_description_img2, getApplicationContext(), description_2);
-//                Glide.with(getApplicationContext()).load(description_1).into(detalis_description_img1);//大图1
-//                Glide.with(getApplicationContext()).load(description_2).into(detalis_description_img2);//大图2
                 details_comment_number.setText("(" + comment_count1 + ")"); //评论数
             }
 
@@ -651,11 +672,7 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
     }
 
     public void getinitData1() {
-
-        String likeurl = "http://baobaoapi.ldlchat.com/Home/Backcontent/ifyoulike.html";
-//                          baobaoapi.ldlchat.com/Home/Backcontent/ifyoulike.html
         Map<String, String> stringMap = new HashMap<>();
-
         OkHttpUtils.getInstance().post(SBUrls.LIKE, stringMap, new MyNetWorkCallback<LikeBean>() {
             @Override
             public void onSuccess(LikeBean likeBean) throws JSONException {

@@ -3,10 +3,10 @@ package com.share.bag.response;
 import java.util.List;
 
 /**
- * Created by lxm on 2018/4/12.
+ * Created by lxm on 2018/4/14.
  */
 
-public class DetailUserInfo {
+public class DetailBuyUserInfo {
 
     private String status;
 

@@ -70,11 +70,12 @@
                         android:background="#E8E8E8"/>
 
                     <TextView
+                        android:id="@+id/tv_brand"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:text="品牌专区"
+                        android:text=""
                         android:textColor="@android:color/black"
                         android:textSize="18sp"/>
                     <!--画右边的那条线-->
@@ -111,11 +112,12 @@
                         android:background="#E8E8E8"/>
 
                     <TextView
+                        android:id="@+id/tv_handPick"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:text="每日精选"
+                        android:text=""
                         android:textColor="@android:color/black"
                         android:textSize="18sp"/>
                     <!--画右边的那条线-->
@@ -163,11 +165,12 @@
 
 
                     <TextView
+                        android:id="@+id/tv_expert"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
-                        android:text="包包达人"
+                        android:text=""
                         android:textColor="@android:color/black"
                         android:textSize="18sp"/>
                     <View

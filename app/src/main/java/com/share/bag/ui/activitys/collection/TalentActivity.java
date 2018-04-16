@@ -2,9 +2,8 @@ package com.share.bag.ui.activitys.collection;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -39,37 +38,33 @@ public class TalentActivity extends AppCompatActivity {
 
     private void initdata() {
 
-            String  str="https://baobaoapi.ldlchat.com/Home/Cabinet/masterlist.html";
-            Map<String, String> map = new HashMap<>();
-            try {
-                //请求网络
-                OkHttpUtils.getInstance().post(str, map, new MyNetWorkCallback<TalentBean>() {
-                    @Override
-                    public void onSuccess(TalentBean talentBean) throws JSONException {
-                        List<TalentBean.InfoBean> info = talentBean.getInfo();
-                        
-                        talent_listview.setLayoutManager(new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL));
+        String str = "https://baobaoapi.ldlchat.com/Home/Cabinet/masterlist.html";
+        Map<String, String> map = new HashMap<>();
+        try {
+            //请求网络
+            OkHttpUtils.getInstance().post(str, map, new MyNetWorkCallback<TalentBean>() {
+                @Override
+                public void onSuccess(TalentBean talentBean) throws JSONException {
+                    List<TalentBean.InfoBean> info = talentBean.getInfo();
+                    TalentAdapter adapter = new TalentAdapter(TalentActivity.this, info);
+                    talent_listview.setAdapter(adapter);
+                }
 
-                        TalentAdapter adapter = new TalentAdapter(TalentActivity.this,info);
+                @Override
+                public void onError(int errorCode, String errorMsg) {
 
-                        talent_listview.setAdapter(adapter);
+                }
+            });
+        } catch (Exception e) {
 
-                    }
-
-                    @Override
-                    public void onError(int errorCode, String errorMsg) {
-
-                    }
-                });
-            }catch (Exception e){
-
-            }
+        }
     }
 
     private void initView() {
         talent_return = (ImageView) findViewById(R.id.talent_return);
         talent_listview = (RecyclerView) findViewById(R.id.talent_recycler);
-
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        talent_listview.setLayoutManager(linearLayoutManager);
         talent_return.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

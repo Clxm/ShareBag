@@ -3,7 +3,6 @@ package com.share.bag.ui.fragments.home;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +23,7 @@ import com.share.bag.ui.activitys.collection.TalentActivity;
 import com.share.bag.ui.activitys.home.Details;
 import com.share.bag.ui.activitys.home.TradeActivity;
 import com.share.bag.ui.share.ShareActivity;
+import com.share.bag.utils.ImageLoader;
 import com.share.bag.utils.okhttp.OkHttpUtils;
 import com.share.bag.utils.okhttp.callback.MyNetWorkCallback;
 import com.share.bag.webview.PublicWebView;
@@ -44,8 +44,6 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 
 import static com.share.bag.R.id.home_brandimg1;
-
-//import static com.share.bag.R.id.brand_img1;
 
 /**
  * Created by Administrator on 2017/11/14.
@@ -140,27 +138,30 @@ public class HomeFragment extends BaseFragment {
     ImageView mTalentImg2;
     @BindView(R.id.tv_comment_num)
     TextView mTvCommentNum;
+    @BindView(R.id.tv_brand)
+    TextView mTvBrand;
+    @BindView(R.id.tv_handPick)
+    TextView mTvHandPick;
+    @BindView(R.id.tv_expert)
+    TextView mTvExpert;
 
     private Context context;
-
     private MZBannerView mzBannerView;
-
     private List<HomeFragmentBean.HeaderimgBean> headerimg;
-
-    private String brandid0;
-    private String brandid1;
-    private String brandid2;
-    private String leisureid0;
-    private String leisureid1;
-    private String leisureid2;
-    private String banquetid0;
-    private String banquetid1;
-    private String banquetid2;
-    private String banquetid3;
-    private String businessid0;
-    private String businessid1;
-    private String businessid2;
-    private String businessid3;
+    private String mBrandBagId1;
+    private String mBrandBagId2;
+    private String mBrandBagId3;
+    private String mLifeBagId1;
+    private String mLifeBagId2;
+    private String mLifeBagId3;
+    private String mFeastBagId1;
+    private String mFeastBagId2;
+    private String mFeastBagId3;
+    private String mFeastBagId4;
+    private String mBusinessBagId1;
+    private String mBusinessBagId2;
+    private String mBusinessBagId3;
+    private String mBusinessBagId4;
 
     @Override
     public int initLayout() {
@@ -177,59 +178,88 @@ public class HomeFragment extends BaseFragment {
     @Override
     protected void initData() {
 
-        home_dynamic.setEllipsize(TextUtils.TruncateAt.END);//收缩
-        home_dynamic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-//                    talent_dynamic.setEllipsize(null);//展开
-
-            }
-        });
-
-//            baobaoapi.ldlchat.com/Home/Cabinet/falsemasterlist.html
-        Map<String, String> stringMap = new HashMap<>();
+//        home_dynamic.setEllipsize(TextUtils.TruncateAt.END);//收缩
+//        home_dynamic.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+////                    talent_dynamic.setEllipsize(null);//展开
+//
+//            }
+//        });
+        final Map<String, String> stringMap = new HashMap<>();
         String strurl = "https://baobaoapi.ldlchat.com/Home/Cabinet/falsemasterlist.html";
         OkHttpUtils.getInstance().post(strurl, stringMap, new MyNetWorkCallback<HomeTalentBean>() {
             @Override
             public void onSuccess(HomeTalentBean homeTalentBean) throws JSONException {
 
-                List<HomeTalentBean.InfoBean> info = homeTalentBean.getInfo();
+                HomeTalentBean.InfoBean info = homeTalentBean.getInfo();
 
-                for (int i = 0; i < info.size(); i++) {
+//                for (int i = 0; i < info.size(); i++) {
 
-                    String iconurl = info.get(i).getUserinfo().getIconurl();
-                    Glide.with(context).load(iconurl)
-                            //设置圆角图片
+                String iconurl = info.getUserinfo().getIconurl();
+                Glide.with(context).load(iconurl)
+                        //设置圆角图片
 //                .transform(new GlideRoundTransform(MainActivity.this, 10))
-                            //设置圆形图片
-                            .transform(new GlideCircleTransform(context))
-                            .crossFade()
-                            .into(home_avatar);
+                        //设置圆形图片
+                        .transform(new GlideCircleTransform(context))
+                        .crossFade()
+                        .into(home_avatar);
 
-                    String contentImg = info.get(i).getBack().getContentimg();
+                String contentImg = info.getBack().getContentimg();
+                if (!contentImg.equals("")) {
                     String[] imgs = contentImg.split(",");
-                    if (imgs != null && imgs.length >= 1) {
-                        String img1 = SBUrls.LOGURL + imgs[0];
-                        String img2 = SBUrls.LOGURL + imgs[1];
-                        Glide.with(context).load(img1).into(mTalentImg1);
-                        Glide.with(context).load(img2).into(mTalentImg2);
+                    if (imgs.length >= 1) {
+                        if (!imgs[0].equals("")) {
+                            mTalentImg1.setVisibility(View.VISIBLE);
+                            String img1 = SBUrls.LOGURL + imgs[0];
+                            Glide.with(context).load(img1).into(mTalentImg1);
+                        } else {
+                            mTalentImg1.setVisibility(View.GONE);
+                        }
+                        if (!imgs[1].equals("")) {
+                            mTalentImg2.setVisibility(View.VISIBLE);
+                            String img2 = SBUrls.LOGURL + imgs[1];
+                            Glide.with(context).load(img2).into(mTalentImg2);
+                        } else {
+                            mTalentImg2.setVisibility(View.GONE);
+                        }
                     }
-//                    mTvLabel1.setVisibility(View.VISIBLE);
-//                    mTvLabel1.setText();
-//                    mTvLabel2.setVisibility(View.VISIBLE);
-//                    mTvLabel2.setText();
-//                    mTvLabel3.setVisibility(View.VISIBLE);
-//                    mTvLabel3.setText();
-//                    mTvCommentNum.setText(info.get(i).getBack().getCollection() + "");
-
-                    String name = info.get(i).getUserinfo().getName();
-                    home_name.setText(name);
-                    String strTime = DateUtils.getStrTime1(info.get(i).getTime());
-                    home_time.setText(strTime);
-                    home_dynamic.setText(info.get(i).getContent());
                 }
+
+                String contentLabel = info.getUserinfo().getLabel();
+                if (!contentLabel.equals("")) {
+                    String[] labels = contentLabel.split(",");
+                    if (labels.length >= 1) {
+                        if (!labels[0].equals("")) {
+                            mTvLabel1.setVisibility(View.VISIBLE);
+                            mTvLabel1.setText(labels[0]);
+                        } else {
+                            mTvLabel1.setVisibility(View.GONE);
+                        }
+                        if (!labels[1].equals("")) {
+                            mTvLabel2.setVisibility(View.VISIBLE);
+                            mTvLabel2.setText(labels[1]);
+                        } else {
+                            mTvLabel2.setVisibility(View.GONE);
+                        }
+                        if (!labels[2].equals("")) {
+                            mTvLabel3.setVisibility(View.VISIBLE);
+                            mTvLabel3.setText(labels[2]);
+                        } else {
+                            mTvLabel3.setVisibility(View.GONE);
+                        }
+                    }
+                }
+                mTvCommentNum.setText(info.getBack().getCollection() + "");
+                String name = info.getUserinfo().getName();
+                home_name.setText(name);
+                String time = info.getTime();
+                String strTime = DateUtils.getStrTime1(time);
+                home_time.setText(strTime);
+                home_dynamic.setText(info.getContent());
             }
+//            }
 
             @Override
             public void onError(int errorCode, String errorMsg) {
@@ -240,128 +270,163 @@ public class HomeFragment extends BaseFragment {
         headerimg = new ArrayList<>();
         final Map<String, String> map = new HashMap<>();
         OkHttpUtils.getInstance().post(SBUrls.HOMEURL, map, new MyNetWorkCallback<HomeFragmentBean>() {
+
             @Override
             public void onSuccess(HomeFragmentBean homeFragmentBean) {
-
                 headerimg.addAll(homeFragmentBean.getHeaderimg());
-
-                for (int i = 0; i < homeFragmentBean.getList().size(); i++) {
-
-                    HomeFragmentBean.ListBean listBean = homeFragmentBean.getList().get(i);
-
-                    if (listBean != null) {
-                        forEashs(homeFragmentBean, i, listBean);
-                    }
-
-                }
-
-                //                  轮播图赋值
+                //轮播图赋值
                 mzBannerView.setPages(headerimg, new MZHolderCreator<BannerViewHolder>() {
                     @Override
                     public BannerViewHolder createViewHolder() {
                         return new BannerViewHolder();
                     }
                 });
+                List<HomeFragmentBean.ListBean> imgList = homeFragmentBean.getList();
+                for (int i = 0; i < imgList.size(); i++) {
+                    String id = imgList.get(i).getId();
+                    switch (id) {
+                        case "1":   //品牌专区
+                            String brandTitle = imgList.get(i).getTitle();
+                            mTvBrand.setText(brandTitle);
+                            List<HomeFragmentBean.ListBean.BagthinksBean> brandList = imgList.get(i).getBagthinks();
+                            for (int i1 = 0; i1 < brandList.size(); i1++) {
+                                String brandId = brandList.get(i1).getId();
+                                switch (brandId) {
+                                    case "1":
+                                        mBrandBagId1 = brandList.get(i1).getBaglist_id();
+                                        String brandImg1 = brandList.get(i1).getImg();
+                                        ImageLoader.LoadLocalImg(homeBrandimg1, context, brandImg1);
+                                        break;
+                                    case "2":
+                                        mBrandBagId2 = brandList.get(i1).getBaglist_id();
+                                        String brandImg2 = brandList.get(i1).getImg();
+                                        ImageLoader.LoadLocalImg(homeBrandimg2, context, brandImg2);
+                                        break;
+                                    case "3":
+                                        mBrandBagId3 = brandList.get(i1).getBaglist_id();
+                                        String brandImg3 = brandList.get(i1).getImg();
+                                        ImageLoader.LoadLocalImg(homeBrandimg3, context, brandImg3);
+                                        break;
+                                }
+                            }
+                            break;
+                        case "2":   //每日精选
+                            String handPickTitle = imgList.get(i).getTitle();
+                            mTvHandPick.setText(handPickTitle);
+                            List<HomeFragmentBean.ListBean.ChildBean> childBeanList = imgList.get(i).get_child();
+                            for (int childI = 0; childI < childBeanList.size(); childI++) {
+                                String childId = childBeanList.get(childI).getId();
+                                switch (childId) {
+                                    case "4":   //休闲度假
+                                        String lifeTitle = childBeanList.get(childI).getTitle();
+                                        Relaxation1.setText(lifeTitle);
+                                        List<HomeFragmentBean.ListBean.ChildBean.BagthinksBeanX> lifeList = childBeanList.get(childI).getBagthinks();
+                                        for (int i2 = 0; i2 < lifeList.size(); i2++) {
+                                            String lifeId = lifeList.get(i2).getId();
+                                            switch (lifeId) {
+                                                case "1":
+                                                    mLifeBagId1 = lifeList.get(i2).getBaglist_id();
+                                                    String lifeImg1 = lifeList.get(i2).getImg();
+                                                    ImageLoader.LoadLocalImg(homeLeisureimg2, context, lifeImg1);
+                                                    break;
+                                                case "2":
+                                                    mLifeBagId2 = lifeList.get(i2).getBaglist_id();
+                                                    String lifeImg2 = lifeList.get(i2).getImg();
+                                                    ImageLoader.LoadLocalImg(homeLeisureimg3, context, lifeImg2);
+                                                    break;
+                                                case "3":   //大图home_leisureimg1
+                                                    mLifeBagId3 = lifeList.get(i2).getBaglist_id();
+                                                    String lifeImg3 = lifeList.get(i2).getImg();
+                                                    ImageLoader.LoadLocalImg(homeLeisureimg1, context, lifeImg3);
+                                                    break;
+                                            }
+                                        }
+                                        break;
+                                    case "5":   //宴会轻奢
+                                        String feastTitle = childBeanList.get(childI).getTitle();
+                                        mFestname.setText(feastTitle);
+                                        List<HomeFragmentBean.ListBean.ChildBean.BagthinksBeanX> feastList = childBeanList.get(childI).getBagthinks();
+                                        for (int i2 = 0; i2 < feastList.size(); i2++) {
+                                            String feastId = feastList.get(i2).getId();
+                                            switch (feastId) {
+                                                case "8":   //横图
+                                                    mFeastBagId1 = feastList.get(i2).getBaglist_id();
+                                                    String feastImg1 = feastList.get(i2).getImg();
+                                                    ImageLoader.LoadLocalImg(home_banquet_img3, context, feastImg1);
+                                                    break;
+                                                case "9":   //竖图
+                                                    mFeastBagId2 = feastList.get(i2).getBaglist_id();
+                                                    String feastImg2 = feastList.get(i2).getImg();
+                                                    ImageLoader.LoadLocalImg(home_banquet_img0, context, feastImg2);
+                                                    break;
+                                                case "10":
+                                                    mFeastBagId3 = feastList.get(i2).getBaglist_id();
+                                                    String feastImg3 = feastList.get(i2).getImg();
+                                                    ImageLoader.LoadLocalImg(home_banquet_img1, context, feastImg3);
+                                                    break;
+                                                case "11":
+                                                    mFeastBagId4 = feastList.get(i2).getBaglist_id();
+                                                    String feastImg4 = feastList.get(i2).getImg();
+                                                    ImageLoader.LoadLocalImg(home_banquet_img2, context, feastImg4);
+                                                    break;
+                                            }
+                                        }
+                                        break;
+                                    case "6":   //商务办公
+                                        String businessTitle = childBeanList.get(childI).getTitle();
+                                        mBusinessname.setText(businessTitle);
+                                        List<HomeFragmentBean.ListBean.ChildBean.BagthinksBeanX> businessList = childBeanList.get(childI).getBagthinks();
+                                        for (int i1 = 0; i1 < businessList.size(); i1++) {
+                                            String businessId = businessList.get(i1).getId();
+                                            switch (businessId) {
+                                                case "4":   //竖图
+                                                    mBusinessBagId1 = businessList.get(i1).getBaglist_id();
+                                                    String businessImg1 = businessList.get(i1).getImg();
+                                                    ImageLoader.LoadLocalImg(home_business_img4, context, businessImg1);
+                                                    break;
+                                                case "5":   //横图
+                                                    mBusinessBagId2 = businessList.get(i1).getBaglist_id();
+                                                    String businessImg2 = businessList.get(i1).getImg();
+                                                    ImageLoader.LoadLocalImg(home_business_img3, context, businessImg2);
+                                                    break;
+                                                case "6":
+                                                    mBusinessBagId3 = businessList.get(i1).getBaglist_id();
+                                                    String businessImg3 = businessList.get(i1).getImg();
+                                                    ImageLoader.LoadLocalImg(home_business_img1, context, businessImg3);
+                                                    break;
+                                                case "7":
+                                                    mBusinessBagId4 = businessList.get(i1).getBaglist_id();
+                                                    String businessImg4 = businessList.get(i1).getImg();
+                                                    ImageLoader.LoadLocalImg(home_business_img2, context, businessImg4);
+                                                    break;
+                                            }
+                                        }
+                                        break;
+                                }
+                            }
 
+                            break;
+                        case "3":   //包包达人
+                            String expertTitle = imgList.get(i).getTitle();
+                            mTvExpert.setText(expertTitle);
+//                            List<HomeFragmentBean.ListBean.BagthinksBean> expertList = imgList.get(i).getBagthinks();
+
+                            break;
+                    }
+                }
+                //以旧换新
+                List<HomeFragmentBean.AdOldnewBean> oldNewList = homeFragmentBean.getAd_oldnew();
+                for (int i = 0; i < oldNewList.size(); i++) {
+                    String oldNewImg = oldNewList.get(i).getImg();
+                    ImageLoader.LoadLocalImg(home_trade_in, context, oldNewImg);
+
+                }
                 //邀请好友
-                List<HomeFragmentBean.AdButtomBean> ad_buttom = homeFragmentBean.getAd_buttom();
-
-                for (int i = 0; i < ad_buttom.size(); i++) {
-
-                    String imgyao = ad_buttom.get(i).getImg();
-
-                    Glide.with(context).load(imgyao).into(homeShare);
-
+                List<HomeFragmentBean.AdButtomBean> inviteFriendList = homeFragmentBean.getAd_buttom();
+                for (int i = 0; i < inviteFriendList.size(); i++) {
+                    String inviteImg = inviteFriendList.get(i).getImg();
+                    ImageLoader.LoadLocalImg(homeShare, context, inviteImg);
                 }
-
-                //                以旧换新
-                List<HomeFragmentBean.AdOldnewBean> ad_oldnew = homeFragmentBean.getAd_oldnew();
-
-                for (int i = 0; i < ad_oldnew.size(); i++) {
-                    String imghuan = ad_oldnew.get(i).getImg();
-                    Glide.with(context).load(imghuan).into(home_trade_in);
-                }
-
-
-                List<HomeFragmentBean.ListBean.ChildBean> child = homeFragmentBean.getList().get(1).get_child();
-
-                for (int i = 0; i < child.size(); i++) {
-//                      休闲假日
-//                     休闲假日文字
-                    String title = child.get(0).getTitle();
-//                     宴会轻奢文字
-                    String title2 = child.get(1).getTitle();
-
-                    Relaxation1.setText(title);
-                    mFestname.setText(title2);
-                    //每日精选-休闲度假
-                    List<HomeFragmentBean.ListBean.ChildBean.BagthinksBeanX> bagthinks = child.get(0).getBagthinks();
-                    for (int j = 0; j < bagthinks.size(); j++) {
-                        String img1 = bagthinks.get(0).getImg();
-                        String img2 = bagthinks.get(1).getImg();
-                        String img3 = bagthinks.get(2).getImg();
-
-                        leisureid0 = bagthinks.get(0).getId();
-                        leisureid1 = bagthinks.get(1).getId();
-                        leisureid2 = bagthinks.get(2).getId();
-
-                        Glide.with(context).load(img1).into(homeLeisureimg1);
-                        Glide.with(context).load(img2).into(homeLeisureimg2);
-                        Glide.with(context).load(img3).into(homeLeisureimg3);
-
-                    }
-
-
-                    //每日精选-宴会轻奢
-                    List<HomeFragmentBean.ListBean.ChildBean.BagthinksBeanX> bagthinks1 = child.get(1).getBagthinks();
-                    for (int j = 0; j < bagthinks1.size(); j++) {
-
-                        String img = bagthinks1.get(0).getImg();
-                        String img1 = bagthinks1.get(1).getImg();
-                        String img2 = bagthinks1.get(2).getImg();
-                        String img3 = bagthinks1.get(3).getImg();
-
-                        banquetid0 = bagthinks1.get(0).getId();
-                        banquetid1 = bagthinks1.get(1).getId();
-                        banquetid2 = bagthinks1.get(2).getId();
-                        banquetid3 = bagthinks1.get(3).getId();
-
-                        Glide.with(context).load(img).into(home_banquet_img0);
-                        Glide.with(context).load(img1).into(home_banquet_img1);
-                        Glide.with(context).load(img2).into(home_banquet_img2);
-                        Glide.with(context).load(img3).into(home_banquet_img3);
-
-                    }
-                    //每日精选-商务办公
-                    String title1 = child.get(2).getTitle();
-                    mBusinessname.setText(title1);
-                    List<HomeFragmentBean.ListBean.ChildBean.BagthinksBeanX> bagthinks2 = child.get(2).getBagthinks();
-                    for (int j = 0; j < bagthinks2.size(); j++) {
-
-                        String img = bagthinks2.get(0).getImg();
-                        String img1 = bagthinks2.get(1).getImg();
-                        String img2 = bagthinks2.get(2).getImg();
-                        String img3 = bagthinks2.get(3).getImg();
-
-                        businessid0 = bagthinks2.get(0).getId();
-                        businessid1 = bagthinks2.get(1).getId();
-                        businessid2 = bagthinks2.get(2).getId();
-                        businessid3 = bagthinks2.get(3).getId();
-
-                        Glide.with(context).load(img).into(home_business_img1);
-                        Glide.with(context).load(img1).into(home_business_img2);
-                        Glide.with(context).load(img2).into(home_business_img3);
-                        Glide.with(context).load(img3).into(home_business_img4);
-
-                    }
-                }
-//
-//                homeBrandimg1id1 = homeFragmentBean.getList().get(0).getBagthinks().get(0).getId();
-//
-//                homeBrandimg1id2 = homeFragmentBean.getList().get(0).getBagthinks().get(1).getId();
-//
-//                homeBrandimg1id3 = homeFragmentBean.getList().get(0).getBagthinks().get(2).getId();
-
             }
 
             @Override
@@ -369,26 +434,6 @@ public class HomeFragment extends BaseFragment {
                 Toast.makeText(context, "请求失败", Toast.LENGTH_SHORT).show();
             }
         });
-    }
-
-    private void forEashs(HomeFragmentBean homeFragmentBean, int i, HomeFragmentBean.ListBean listBean) {
-
-        for (int j = 0; j < listBean.getBagthinks().size(); j++) {
-            List<HomeFragmentBean.ListBean.BagthinksBean> bagthinks = listBean.getBagthinks();
-
-            String img1 = bagthinks.get(0).getImg();
-            String img2 = bagthinks.get(1).getImg();
-            String img3 = bagthinks.get(2).getImg();
-
-            brandid0 = bagthinks.get(0).getId();
-            brandid1 = bagthinks.get(1).getId();
-            brandid2 = bagthinks.get(2).getId();
-
-            Glide.with(HomeFragment.this).load(img1).into(homeBrandimg1);//品牌专区1
-            Glide.with(HomeFragment.this).load(img2).into(homeBrandimg2);//品牌专区2
-            Glide.with(HomeFragment.this).load(img3).into(homeBrandimg3);//品牌专区3
-
-        }
     }
 
     @Override
@@ -446,202 +491,159 @@ public class HomeFragment extends BaseFragment {
         switch (view.getId()) {
             case R.id.home_brandimg1://品牌专区图片1
                 FileUtil.SelectedreadFromPre(getActivity(), shouye);
-
                 if (shouye.getText().equals("")) {
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
                 } else {
                     Intent intent_brandid0 = new Intent(context, Details.class);
-                    intent_brandid0.putExtra("details", brandid0);
+                    intent_brandid0.putExtra("details", mBrandBagId1);
                     startActivity(intent_brandid0);
                 }
-
                 break;
             case R.id.home_brandimg2://品牌专区图片2
-
                 FileUtil.SelectedreadFromPre(getActivity(), shouye);
-
                 if (shouye.getText().equals("")) {
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
                 } else {
                     Intent intent_brandid1 = new Intent(context, Details.class);
-                    intent_brandid1.putExtra("details", brandid1);
+                    intent_brandid1.putExtra("details", mBrandBagId2);
                     startActivity(intent_brandid1);
                 }
-
                 break;
             case R.id.home_brandimg3://品牌专区图片3
                 FileUtil.SelectedreadFromPre(getActivity(), shouye);
-
                 if (shouye.getText().equals("")) {
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
                 } else {
                     Intent intent_brandid2 = new Intent(context, Details.class);
-                    intent_brandid2.putExtra("details", brandid2);
+                    intent_brandid2.putExtra("details", mBrandBagId3);
                     startActivity(intent_brandid2);
                 }
-
                 break;
-
 //           每日精选——休闲度假
             case R.id.home_leisureimg1://休闲度假1
-
                 FileUtil.SelectedreadFromPre(getActivity(), shouye);
-
                 if (shouye.getText().equals("")) {
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
                 } else {
                     Intent intent_leisure0 = new Intent(context, Details.class);
-                    intent_leisure0.putExtra("details", leisureid0);
+                    intent_leisure0.putExtra("details", mLifeBagId3);
                     startActivity(intent_leisure0);
                 }
-
                 break;
 //           每日精选——休闲度假
             case R.id.home_leisureimg2://休闲度假2
-
                 FileUtil.SelectedreadFromPre(getActivity(), shouye);
-
                 if (shouye.getText().equals("")) {
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
                 } else {
                     Intent intent_leisure1 = new Intent(context, Details.class);
-                    intent_leisure1.putExtra("details", leisureid1);
+                    intent_leisure1.putExtra("details", mLifeBagId1);
                     startActivity(intent_leisure1);
                 }
-
                 break;
 //           每日精选——休闲度假
             case R.id.home_leisureimg3://休闲度假3
-
                 FileUtil.SelectedreadFromPre(getActivity(), shouye);
-
                 if (shouye.getText().equals("")) {
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
                 } else {
                     Intent intent_leisure2 = new Intent(context, Details.class);
-                    intent_leisure2.putExtra("details", leisureid2);
+                    intent_leisure2.putExtra("details", mLifeBagId2);
                     startActivity(intent_leisure2);
                 }
-
                 break;
 //           每日精选——宴会轻奢
             case R.id.home_banquet_img0://宴会轻奢1
-
                 FileUtil.SelectedreadFromPre(getActivity(), shouye);
-
                 if (shouye.getText().equals("")) {
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
                 } else {
                     Intent intent_banquetid0 = new Intent(context, Details.class);
-                    intent_banquetid0.putExtra("details", banquetid0);
+                    intent_banquetid0.putExtra("details", mFeastBagId2);
                     startActivity(intent_banquetid0);
                 }
-
                 break;
 //           每日精选——宴会轻奢
             case R.id.home_banquet_img1://宴会轻奢2
-
                 FileUtil.SelectedreadFromPre(getActivity(), shouye);
-
                 if (shouye.getText().equals("")) {
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
                 } else {
                     Intent intent_banquetid1 = new Intent(context, Details.class);
-                    intent_banquetid1.putExtra("details", banquetid1);
+                    intent_banquetid1.putExtra("details", mFeastBagId3);
                     startActivity(intent_banquetid1);
                 }
-
                 break;
 //           每日精选——宴会轻奢
             case R.id.home_banquet_img2://宴会轻奢3
-
                 FileUtil.SelectedreadFromPre(getActivity(), shouye);
-
                 if (shouye.getText().equals("")) {
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
                 } else {
                     Intent intent_banquetid2 = new Intent(context, Details.class);
-                    intent_banquetid2.putExtra("details", banquetid2);
+                    intent_banquetid2.putExtra("details", mFeastBagId4);
                     startActivity(intent_banquetid2);
                 }
-
                 break;
 //           每日精选——宴会轻奢
             case R.id.home_banquet_img3://宴会轻奢4
-
                 FileUtil.SelectedreadFromPre(getActivity(), shouye);
-
                 if (shouye.getText().equals("")) {
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
                 } else {
                     Intent intent_banquetid3 = new Intent(context, Details.class);
-                    intent_banquetid3.putExtra("details", banquetid3);
+                    intent_banquetid3.putExtra("details", mFeastBagId1);
                     startActivity(intent_banquetid3);
                 }
-
                 break;
 //            每日精选——商务办公
             case R.id.home_business_img1://商务办公1
-
                 FileUtil.SelectedreadFromPre(getActivity(), shouye);
-
                 if (shouye.getText().equals("")) {
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
                 } else {
                     Intent intent_businessid1 = new Intent(context, Details.class);
-                    intent_businessid1.putExtra("details", businessid0);
+                    intent_businessid1.putExtra("details", mBusinessBagId3);
                     startActivity(intent_businessid1);
                 }
-
                 break;
 //            每日精选——商务办公
             case R.id.home_business_img2://商务办公2
-
                 FileUtil.SelectedreadFromPre(getActivity(), shouye);
-
                 if (shouye.getText().equals("")) {
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
                 } else {
                     Intent intent_businessid2 = new Intent(context, Details.class);
-                    intent_businessid2.putExtra("details", businessid1);
+                    intent_businessid2.putExtra("details", mBusinessBagId4);
                     startActivity(intent_businessid2);
                 }
-
                 break;
 //            每日精选——商务办公
             case R.id.home_business_img3://商务办公3
-
                 FileUtil.SelectedreadFromPre(getActivity(), shouye);
-
                 if (shouye.getText().equals("")) {
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
                 } else {
                     Intent intent_businessid3 = new Intent(context, Details.class);
-                    intent_businessid3.putExtra("details", businessid2);
+                    intent_businessid3.putExtra("details", mBusinessBagId2);
                     startActivity(intent_businessid3);
                 }
-
                 break;
 //            每日精选——商务办公
             case R.id.home_business_img4://商务办公4
-
                 FileUtil.SelectedreadFromPre(getActivity(), shouye);
-
                 if (shouye.getText().equals("")) {
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
                 } else {
                     Intent intent_businessid4 = new Intent(context, Details.class);
-                    intent_businessid4.putExtra("details", businessid3);
+                    intent_businessid4.putExtra("details", mBusinessBagId1);
                     startActivity(intent_businessid4);
                 }
-
                 break;
-
             case R.id.home_trade_in://以旧换新
                 Intent intent_home_trade_in = new Intent(context, TradeActivity.class);
                 startActivity(intent_home_trade_in);
                 break;
-
         }
     }
 

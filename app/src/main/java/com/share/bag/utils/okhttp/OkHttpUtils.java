@@ -9,6 +9,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.share.bag.APP;
 import com.share.bag.Constant;
+import com.share.bag.utils.JsonTool;
 import com.share.bag.utils.SharePreUtils;
 import com.share.bag.utils.okhttp.callback.ByteCallBack;
 import com.share.bag.utils.okhttp.callback.MyNetWorkCallback;
@@ -19,6 +20,7 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.net.URLDecoder;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -209,8 +211,10 @@ public class OkHttpUtils implements IHttp {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                final String jsonData = response.body().string();
-//                Log.d("jsonData_base",jsonData);
+                final String responseData = response.body().string();
+                // 声明中间变量进行处理
+                final String jsonData = responseData.replace("\\", "");
+//                Log.d("jsonData", jsonData);
                 Headers headers = response.headers();
                 List<String> cookies = headers.values("Set-Cookie");
 //                Log.e("OKhttpUtils","这是我的:"+call);

@@ -116,7 +116,8 @@
                 android:layout_height="114dp"
                 android:layout_marginRight="5dp"
                 android:layout_weight="1"
-                android:scaleType="fitXY"/>
+                android:scaleType="fitXY"
+                android:visibility="gone"/>
 
             <ImageView
                 android:id="@+id/talent_img2"
@@ -124,7 +125,8 @@
                 android:layout_height="114dp"
                 android:layout_marginLeft="5dp"
                 android:layout_weight="1"
-                android:scaleType="fitXY"/>
+                android:scaleType="fitXY"
+                android:visibility="gone"/>
 
         </LinearLayout>
 

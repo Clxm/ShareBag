@@ -28,6 +28,9 @@ import java.util.Map;
 public class TalentAdapter extends RecyclerView.Adapter<TalentAdapter.ViewHolder> {
     private Context context;
     private List<TalentBean.InfoBean> list;
+    public TalentAdapter(Context context) {
+        this.context = context;
+    }
 
     public TalentAdapter(Context context, List<TalentBean.InfoBean> list) {
         this.context = context;
@@ -57,16 +60,40 @@ public class TalentAdapter extends RecyclerView.Adapter<TalentAdapter.ViewHolder
         String iconurl = list.get(position).getUserinfo().getIconurl();
 
         //头像
-        Glide.with(context).load(strurl+iconurl).transform(new GlideCircleTransform(context)).crossFade().into(holder.talent_avatar);
+        Glide.with(context.getApplicationContext()).load(strurl+iconurl).transform(new GlideCircleTransform(context)).crossFade().into(holder.talent_avatar);
         //发布图片
 
 
         String img = list.get(position).getBack().getImg();
-        Glide.with(context).load(strurl+img).into(holder.talent_commodity_img);//商品图片
+        Glide.with(context.getApplicationContext()).load(strurl+img).into(holder.talent_commodity_img);//商品图片
         holder.talent_commodity_name.setText(list.get(position).getBack().getTitle());//商品名称
         holder.talent_commodity_price.setText(list.get(position).getBack().getDays_money());//商品价格
         int collection = list.get(position).getBack().getCollection();
-
+        holder.mTvCollectionNum.setText(collection + "");
+        String contentLabel = list.get(position).getUserinfo().getLabel();
+        if (!contentLabel.equals("")) {
+            String[] labels = contentLabel.split(",");
+            if (labels.length >= 1) {
+                if (!labels[0].equals("")) {
+                    holder.mTvLabel1.setVisibility(View.VISIBLE);
+                    holder.mTvLabel1.setText(labels[0]);
+                } else {
+                    holder.mTvLabel1.setVisibility(View.GONE);
+                }
+                if (!labels[1].equals("")) {
+                    holder.mTvLabel2.setVisibility(View.VISIBLE);
+                    holder.mTvLabel2.setText(labels[1]);
+                } else {
+                    holder.mTvLabel2.setVisibility(View.GONE);
+                }
+                if (!labels[2].equals("")) {
+                    holder.mTvLabel3.setVisibility(View.VISIBLE);
+                    holder.mTvLabel3.setText(labels[2]);
+                } else {
+                    holder.mTvLabel3.setVisibility(View.GONE);
+                }
+            }
+        }
 
 
 
@@ -142,6 +169,10 @@ public class TalentAdapter extends RecyclerView.Adapter<TalentAdapter.ViewHolder
         private final TextView talent_name,talent_commodity_name,talent_commodity_price;
         private final TextView talent_time;
         private final TextView talent_dynamic;
+        private final TextView mTvCollectionNum;
+        private final TextView mTvLabel1;
+        private final TextView mTvLabel2;
+        private final TextView mTvLabel3;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -159,8 +190,13 @@ public class TalentAdapter extends RecyclerView.Adapter<TalentAdapter.ViewHolder
             talent_commodity_price = (TextView) itemView.findViewById(R.id.talent_commodity_price);
             //收藏
             talent_commodity_shoucang_img = (ImageView) itemView.findViewById(R.id.talent_commodity_shoucang_img);
+            mTvCollectionNum = itemView.findViewById(R.id.tv_collection_num);
+            mTvLabel1 = itemView.findViewById(R.id.tv_label1);
+            mTvLabel2 = itemView.findViewById(R.id.tv_label2);
+            mTvLabel3 = itemView.findViewById(R.id.tv_label3);
 
         }
+
     }
 
 }

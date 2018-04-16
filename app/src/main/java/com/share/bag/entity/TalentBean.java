@@ -1,5 +1,7 @@
 package com.share.bag.entity;
 
+import android.content.pm.LabeledIntent;
+
 import java.util.List;
 
 /**
@@ -138,6 +140,7 @@ public class TalentBean {
             private String balance;
             private String foregift;
             private String create_time;
+            private String label;
 
             public String getId() {
                 return id;
@@ -209,6 +212,10 @@ public class TalentBean {
 
             public void setCreate_time(String create_time) {
                 this.create_time = create_time;
+            }
+
+            public String getLabel() {
+                return label;
             }
         }
 

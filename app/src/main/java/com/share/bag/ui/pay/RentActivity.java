@@ -2,6 +2,7 @@ package com.share.bag.ui.pay;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -19,13 +20,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alipay.sdk.app.PayTask;
+import com.share.bag.FileUtil;
 import com.share.bag.R;
 import com.share.bag.SBUrls;
 import com.share.bag.alipay.AuthResult;
 import com.share.bag.alipay.PayResult;
 import com.share.bag.entity.MayBean;
 import com.share.bag.entity.MayBean1;
-import com.share.bag.response.DetailUserInfo;
+import com.share.bag.response.DetailRentUserInfo;
+import com.share.bag.utils.ImageLoader;
 import com.share.bag.utils.okhttp.OkHttpUtils;
 import com.share.bag.utils.okhttp.callback.MyNetWorkCallback;
 import com.tencent.mm.opensdk.modelpay.PayReq;
@@ -38,6 +41,9 @@ import org.json.JSONException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class RentActivity extends AppCompatActivity {
     private static final int SDK_PAY_FLAG = 1;
@@ -52,6 +58,20 @@ public class RentActivity extends AppCompatActivity {
     public static final String RSA2_PRIVATE = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAlkR+whMRcYIybSBl5b1O4Gyv2Y00th/fxn+4tpCRkU1OmGo6l3UESg319yJCXWfIFIHRVCe+11JKiV7OyTYBVX4wC83ekqDVrVwGNBziU0ZrE2gerDRihX66xGGCs0w1TIhQsoawCH1hd61VOz6ABWp3l7yN8WM2KrXkl0OyGC2PVOO01eF9Y8cojPAm3nvOts/056C6X+o5Le9UTZ5m/AGAWOf9u3BBigG8lDrrG1P83+QON6irZcjgI55TJl9QtiNsb9W22xfbJzWVTS1xR4R1EfrkUyE4Cbw2peJSkUqIedZn2vndIN1aQ1G0uXp237rJEQiwRX6vKtm7/RpaeQIDAQAB";
     public static final String RSA_PRIVATE = "";
     public static final String TARGET_ID = "";
+    @BindView(R.id.iv_rent_img)
+    ImageView mIvRentImg;
+    @BindView(R.id.tv_rent_title)
+    TextView mTvRentTitle;
+    @BindView(R.id.tv_rant_brand)
+    TextView mTvRantBrand;
+    @BindView(R.id.tv_rant_num)
+    TextView mTvRantNum;
+    @BindView(R.id.tv_rant_color)
+    TextView mTvRantColor;
+    @BindView(R.id.tv_rant_texture)
+    TextView mTvRantTexture;
+    @BindView(R.id.tv_rant_size)
+    TextView mTvRantSize;
     private IWXAPI api;
     private LinearLayout pay_wx;
     private String content;
@@ -131,12 +151,22 @@ public class RentActivity extends AppCompatActivity {
 
         ;
     };
+    private String mImgUrl;
+    private String mTitle;
+    private String mBagBrand;
+    private String mNumber;
+    private String mColor;
+    private String mMaterial;
+    private String mBagSize;
+    private String mDayMoney;
+    private String mDays;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rent);
+        ButterKnife.bind(this);
         initView();//wx38f75c7fdb68b2bf
         getUserInfo();
         api = WXAPIFactory.createWXAPI(this, "wx38f75c7fdb68b2bf");
@@ -185,13 +215,13 @@ public class RentActivity extends AppCompatActivity {
     //获取用户昵称 地址
     private void getUserInfo() {
         HashMap<String, String> mapParams = new HashMap<>();
-        String  userId = "52";
+        String userId = FileUtil.getUserId(RentActivity.this);
         mapParams.put("userid", userId);
-        OkHttpUtils.getInstance().post(SBUrls.DETAIL_GET_USER_INFO, mapParams, new MyNetWorkCallback<DetailUserInfo>() {
+        OkHttpUtils.getInstance().post(SBUrls.DETAIL_GET_USER_INFO, mapParams, new MyNetWorkCallback<DetailRentUserInfo>() {
             @Override
-            public void onSuccess(DetailUserInfo detailUserInfo) throws JSONException {
-                if (detailUserInfo.getStatus().equals("1")){
-                    List<DetailUserInfo.InfoBean> response = detailUserInfo.getInfo();
+            public void onSuccess(DetailRentUserInfo detailUserInfo) throws JSONException {
+                if (detailUserInfo.getStatus().equals("1")) {
+                    List<DetailRentUserInfo.InfoBean> response = detailUserInfo.getInfo();
                     for (int i = 0; i < response.size(); i++) {
                         rent.setText(response.get(i).getUsername());
                         rent_22.setText(response.get(i).getPhone());
@@ -209,6 +239,20 @@ public class RentActivity extends AppCompatActivity {
 
 
     private void initView() {
+        if (getIntent() != null) {
+            Intent intent = getIntent();
+            mImgUrl = intent.getStringExtra("imgUrl");
+            mTitle = intent.getStringExtra("title");
+            mBagBrand = intent.getStringExtra("bagBrand");
+            mNumber = intent.getStringExtra("number");
+            mColor = intent.getStringExtra("color");
+            mMaterial = intent.getStringExtra("material");
+            mBagSize = intent.getStringExtra("bagSize");
+            mDayMoney = intent.getStringExtra("dayMoney");
+            mDays = intent.getStringExtra("days");
+
+
+        }
         rent_return = (ImageView) findViewById(R.id.rent_return);
         imageView3 = (ImageView) findViewById(R.id.imageView3);
         rent = (TextView) findViewById(R.id.buy_rent);
@@ -219,8 +263,8 @@ public class RentActivity extends AppCompatActivity {
         rent_time_less = (TextView) findViewById(R.id.rent_time_less);
         rent_time = (TextView) findViewById(R.id.rent_time);
         rent_time_plus = (TextView) findViewById(R.id.rent_time_plus);
-        rent_member = (TextView) findViewById(R.id.rent_member);
-        rent_postage = (TextView) findViewById(R.id.rent_postage);
+//        rent_member = (TextView) findViewById(R.id.rent_member);
+//        rent_postage = (TextView) findViewById(R.id.rent_postage);
         rent_red_package = (TextView) findViewById(R.id.rent_red_package);
         rent_handle_deposit = (TextView) findViewById(R.id.rent_handle_deposit);
         rent_paid_deposit = (TextView) findViewById(R.id.rent_paid_deposit);
@@ -228,6 +272,23 @@ public class RentActivity extends AppCompatActivity {
         rent_supplement_rent = (TextView) findViewById(R.id.rent_supplement_rent);
         rent_total_amount = (TextView) findViewById(R.id.rent_total_amount);
         rent_submit_order = (LinearLayout) findViewById(R.id.rent_submit_order);
+
+        setViewData();
+    }
+
+    private void setViewData() {
+        String imgUrl = SBUrls.URL_HEAD +mImgUrl;
+        ImageLoader.LoadLocalImg(mIvRentImg, this, imgUrl);
+        mTvRentTitle.setText(mTitle);
+        mTvRantBrand.setText(mBagBrand);
+        mTvRantNum.setText(mNumber);
+        mTvRantColor.setText(mColor);
+        mTvRantTexture.setText(mMaterial);
+        mTvRantSize.setText(mBagSize);
+        rent_rent.setText(mDayMoney);
+        rent_time.setText(mDays);
+
+
     }
 
     public void getPay() {

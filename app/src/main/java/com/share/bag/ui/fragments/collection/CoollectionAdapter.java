@@ -37,13 +37,12 @@ public class CoollectionAdapter extends RecyclerView.Adapter<CoollectionAdapter.
 
     @Override
     public void onBindViewHolder(CoollectionAdapter.ViewHolder holder, final int position) {
-
-        String s = SBUrls.LOGURL + list.get(position).getImg();
-
-
-        Glide.with(context).load(SBUrls.LOGURL + list.get(position).getImg()).into(holder.collection_adapter_image);
+        String imgUrl = SBUrls.LOGURL + list.get(position).getImg();
+        Glide.with(context.getApplicationContext()).load(imgUrl).into(holder.collection_adapter_image);
         holder.collection_name.setText(list.get(position).getTitle());
+        holder.collection_rent.setText(list.get(position).getDays_money());
         holder.collection_original.setText(list.get(position).getOriginalprice());
+        holder.collection_sale.setText(list.get(position).getNowprice());
 
 
         holder.collection_salebutton.setOnClickListener(new View.OnClickListener() {

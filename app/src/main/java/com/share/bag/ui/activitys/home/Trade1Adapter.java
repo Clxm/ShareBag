@@ -25,9 +25,9 @@ import java.util.Map;
 
 public class Trade1Adapter extends RecyclerView.Adapter<Trade1Adapter.ViewHolder> {
     private Context context;
-    private List<TradeBean.InfoBean> list;
+    private List<TradeBean> list;
 
-    public Trade1Adapter(Context context, List<TradeBean.InfoBean> list) {
+    public Trade1Adapter(Context context, List<TradeBean> list) {
         this.context = context;
         this.list = list;
     }

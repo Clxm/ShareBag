@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide;
 import com.share.bag.entity.CollectionBean;
 import com.share.bag.entity.LikeBean;
 import com.share.bag.ui.activitys.home.Details;
+import com.share.bag.utils.ImageLoader;
 import com.share.bag.utils.okhttp.OkHttpUtils;
 import com.share.bag.utils.okhttp.callback.MyNetWorkCallback;
 
@@ -43,7 +44,7 @@ public class LikeAdapter extends RecyclerView.Adapter<LikeAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(final LikeAdapter.ViewHolder holder, final int position) {
         String imageUrl = SBUrls.LOGURL + list.get(position).getImg();
-        Glide.with(context).load(imageUrl).into(holder.recyler_commodity);
+        ImageLoader.LoadLocalImg(holder.recyler_commodity, context.getApplicationContext(), imageUrl);
 
         holder.recyler_name.setText(list.get(position).getTitle());
         holder.recyler_price.setText(list.get(position).getDays_money());
