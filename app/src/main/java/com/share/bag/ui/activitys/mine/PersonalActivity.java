@@ -212,7 +212,7 @@ public class PersonalActivity extends BaseActivity {
 
 
 
-        Toast.makeText(this, "重新显示", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "重新显示", Toast.LENGTH_SHORT).show();
         
 //        FileUtil.Homepage(this, personal_name1, imgview, personal_number);
     }

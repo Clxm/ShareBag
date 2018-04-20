@@ -190,6 +190,7 @@
         android:layout_marginRight="40px"/>
 <!--个性签名-->
     <RelativeLayout
+        android:visibility="gone"
         android:id="@+id/personal_signature"
         android:layout_width="match_parent"
         android:layout_height="50dp">
