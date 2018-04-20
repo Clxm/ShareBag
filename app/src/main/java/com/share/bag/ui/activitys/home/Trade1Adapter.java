@@ -25,9 +25,9 @@ import java.util.Map;
 
 public class Trade1Adapter extends RecyclerView.Adapter<Trade1Adapter.ViewHolder> {
     private Context context;
-    private List<TradeBean> list;
+    private List<TradeBean.InfoBean> list;
 
-    public Trade1Adapter(Context context, List<TradeBean> list) {
+    public Trade1Adapter(Context context, List<TradeBean.InfoBean> list) {
         this.context = context;
         this.list = list;
     }
@@ -73,7 +73,6 @@ public class Trade1Adapter extends RecyclerView.Adapter<Trade1Adapter.ViewHolder
                 collection.put("baglist_id",position+"");
                 Map<String ,String> collection1=new HashMap();
                 collection1.put("id",position+"");
-//                OkHttpUtils.getInstance().post(SBUrls.COLLECTION, collection, new MyNetWorkCallback<CollectionLookBean>() {
                 OkHttpUtils.getInstance().post(url, collection1, new MyNetWorkCallback<CollectionBean>() {
 
                     @Override

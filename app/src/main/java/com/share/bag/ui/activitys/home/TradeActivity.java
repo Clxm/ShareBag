@@ -47,9 +47,9 @@ public class TradeActivity extends AppCompatActivity {
         OkHttpUtils.getInstance().post(SBUrls.CHANGE, map, new MyNetWorkCallback<TradeBean>() {
             @Override
             public void onSuccess(TradeBean tradeBean) throws JSONException {
-                List<TradeBean> tradeList = tradeBean.getTradeBeanList();
+                List<TradeBean.InfoBean> info = tradeBean.getInfo();
                 Trade_recycler.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
-                Trade1Adapter adapter = new Trade1Adapter(TradeActivity.this, tradeList);
+                Trade1Adapter adapter = new Trade1Adapter(TradeActivity.this, info);
                 Trade_recycler.setAdapter(adapter);
 
             }

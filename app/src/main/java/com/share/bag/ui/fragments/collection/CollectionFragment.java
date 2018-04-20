@@ -24,8 +24,8 @@ import java.util.Map;
 * */
 public class CollectionFragment extends BaseFragment {
 
-    private TextView collection_management;
-    private RecyclerView collection_recycler,collection_recycler2;
+    private RecyclerView collection_recycler;
+    private RecyclerView collection_recycler2;
     private CoollectionAdapter likeAdapter;
 
     @Override
@@ -36,9 +36,9 @@ public class CollectionFragment extends BaseFragment {
     @Override
     public void initView(View view) {
 
-        collection_management = view.findViewById(R.id.collection_management);
         collection_recycler = view.findViewById(R.id.collection_recycler);
         collection_recycler2 = view.findViewById(R.id.collection_recycler2);
+
     }
 
     @Override
@@ -46,16 +46,16 @@ public class CollectionFragment extends BaseFragment {
         getinitData();
         getinitData1();
 
-
     }
+
     public void getinitData() {
-        Map<String,String > stringMap= new HashMap<>();
+        Map<String, String> stringMap = new HashMap<>();
         OkHttpUtils.getInstance().post(SBUrls.COLLECTION, stringMap, new MyNetWorkCallback<CollectionLookBean>() {
             @Override
             public void onSuccess(CollectionLookBean collectionLookBean) throws JSONException {
                 List<CollectionLookBean.InfoBean> info = collectionLookBean.getInfo();
-                collection_recycler.setLayoutManager(new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL));
-                likeAdapter = new CoollectionAdapter(getContext(),info);
+                collection_recycler.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL));
+                likeAdapter = new CoollectionAdapter(getContext(), info);
                 collection_recycler.setAdapter(likeAdapter);
             }
 
@@ -67,21 +67,21 @@ public class CollectionFragment extends BaseFragment {
     }
 
 
-/*
-*   猜你喜欢
-*
- *  */
+    /*
+    *   猜你喜欢
+    *
+     *  */
     public void getinitData1() {
-        Map<String,String > stringMap= new HashMap<>();
+        Map<String, String> stringMap = new HashMap<>();
 
         OkHttpUtils.getInstance().post(SBUrls.LIKE, stringMap, new MyNetWorkCallback<LikeBean>() {
             @Override
             public void onSuccess(LikeBean likeBean) throws JSONException {
 
                 List<LikeBean.InfoBean> info = likeBean.getInfo();
-                collection_recycler2.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
+                collection_recycler2.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
 
-                LikeAdapter likeAdapter=new LikeAdapter(getContext(),info);
+                LikeAdapter likeAdapter = new LikeAdapter(getContext(), info);
                 collection_recycler2.setAdapter(likeAdapter);
 
             }

@@ -210,7 +210,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
             public void onClick(DialogInterface dialog, int which) {
 
-
             }
 
         });
