@@ -5,6 +5,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,7 +14,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.share.bag.FileUtil;
 import com.share.bag.R;
+import com.share.bag.SBUrls;
 import com.share.bag.utils.okhttp.OkHttpUtils;
 import com.share.bag.utils.okhttp.callback.MyNetWorkCallback;
 
@@ -30,7 +33,7 @@ import java.util.Map;
 * 代签收
 * 待归还
 * */
-public class ShipActivity extends AppCompatActivity {
+public class ShipActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ImageView ship_return;
     private TextView ship_name;
@@ -43,26 +46,37 @@ public class ShipActivity extends AppCompatActivity {
     private View view1, view2, view3, view4;
     private List<View> mViewList = new ArrayList<>();//页卡视图集合
     private RecyclerView ship_recycler2;
+    private RecyclerView ship_recycler1;
+    private RecyclerView ship_recycler3;
+    private RecyclerView ship_recycler4;
+    private LinearLayoutManager mlinearLayoutManager1;
+    private LinearLayoutManager mlinearLayoutManager2;
+    private LinearLayoutManager mlinearLayoutManager3;
+    private LinearLayoutManager mlinearLayoutManager4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ship);
         initView();
-
-//        Intent intent = getIntent();
-//        intent.get
         String ship = getIntent().getStringExtra("ship");
-        ship_name.setText(ship);
-
-
         mInflater = LayoutInflater.from(this);
         view1 = mInflater.inflate(R.layout.activity_ship1, null);
         view2 = mInflater.inflate(R.layout.activity_ship2, null);
         view3 = mInflater.inflate(R.layout.activity_ship3, null);
         view4 = mInflater.inflate(R.layout.activity_ship4, null);
-//        view5 = mInflater.inflate(R.layout.activity_main5, null);
-
+        ship_recycler1 =  view1.findViewById(R.id.recycler);
+        ship_recycler2 =  view2.findViewById(R.id.recycler);
+        ship_recycler3 =  view3.findViewById(R.id.recycler);
+        ship_recycler4 =  view4.findViewById(R.id.recycler);
+        mlinearLayoutManager1 = new LinearLayoutManager(this);
+        mlinearLayoutManager2 = new LinearLayoutManager(this);
+        mlinearLayoutManager3 = new LinearLayoutManager(this);
+        mlinearLayoutManager4 = new LinearLayoutManager(this);
+        ship_recycler1.setLayoutManager(mlinearLayoutManager1);
+        ship_recycler2.setLayoutManager(mlinearLayoutManager2);
+        ship_recycler3.setLayoutManager(mlinearLayoutManager3);
+        ship_recycler4.setLayoutManager(mlinearLayoutManager4);
         //添加页卡视图
         mViewList.add(view1);
         mViewList.add(view2);
@@ -70,8 +84,8 @@ public class ShipActivity extends AppCompatActivity {
         mViewList.add(view4);
 
         //添加页卡标题
-        mTitleList.add("代付款");
-        mTitleList.add("代发货");
+        mTitleList.add("待付款");
+        mTitleList.add("待发货");
         mTitleList.add("待验收");
         mTitleList.add("待归还");
 
@@ -89,38 +103,29 @@ public class ShipActivity extends AppCompatActivity {
         ship_tabs.setTabsFromPagerAdapter(mAdapter);
 
         gettitle();
+        //待付款
         getdata1();
+        //待发货
         getdata2();
+        //待验收
         getdata3();
+      //  待归还
         getdata4();
+        ship_vp_view.setCurrentItem(Integer.parseInt(ship), false);
     }
 
+    //待付款 1
     public void getdata1() {
-
-
-    }
-
-    public void getdata2() {
-
-
-        String url2="http://baobaoapi.ldlchat.com/Home/Order/wait.html";
-
-        Map<String,String> map=new HashMap<>();
-        map.put("type",""+1);
-/*
-        for(String in:map.keySet()){
-
-            String str = map.get(in);//得到每个key多对用value的值
-            Toast.makeText(this, "======="+ str, Toast.LENGTH_SHORT).show();
-            Log.e("TTT","------"+str);
-        }*/
-
-        OkHttpUtils.getInstance().get(url2, map, new MyNetWorkCallback<Object>() {
+        Map<String, String> map = new HashMap<>();
+        map.put("type", "1");
+//        map.put("userid", FileUtil.getUserId(ShipActivity.this));
+        map.put("userid", "51");
+        OkHttpUtils.getInstance().post(SBUrls.ORDERTSTATUS, map, new MyNetWorkCallback<ShipHttpBean1>() {
             @Override
-            public void onSuccess(Object o) throws JSONException {
-
-                Log.e("TTT","------"+o);
-
+            public void onSuccess(ShipHttpBean1 bean) throws JSONException {
+                if(null != bean.getInfo() && bean.getInfo().size() > 0){
+                    ship_recycler1.setAdapter(new ShipAdapter1(ShipActivity.this,bean.getInfo()));
+                }
             }
 
             @Override
@@ -128,35 +133,70 @@ public class ShipActivity extends AppCompatActivity {
 
             }
         });
-//        OkHttpUtils.getInstance().get(url2, map, new MyNetWorkCallback<ShipBean2>() {
-//
-//
-//            @Override
-//            public void onSuccess(ShipBean2 shipBean2) throws JSONException {
-////                List<ShipBean2.InfoBean> info = shipBean2.getInfo();
-////
-////                String id = info.get(0).getId();
-//                Toast.makeText(ShipActivity.this, "-------", Toast.LENGTH_SHORT).show();
-//
-//
-//            }
-//
-//            @Override
-//            public void onError(int errorCode, String errorMsg) {
-//
-//            }
-//        });
-
-
 
     }
 
+    //待发货 2
+    public void getdata2() {
+        Map<String, String> map = new HashMap<>();
+        map.put("type", "2");
+//        map.put("userid", FileUtil.getUserId(ShipActivity.this));
+        map.put("userid", "51");
+        OkHttpUtils.getInstance().post(SBUrls.ORDERTSTATUS, map, new MyNetWorkCallback<ShipHttpBean2>() {
+            @Override
+            public void onSuccess(ShipHttpBean2 bean) throws JSONException {
+                if(null != bean.getInfo() && bean.getInfo().size() > 0){
+                    ship_recycler2.setAdapter(new ShipAdapter2(ShipActivity.this,bean.getInfo()));
+                }
+            }
+
+            @Override
+            public void onError(int errorCode, String errorMsg) {
+
+            }
+        });
+    }
+
+    //待验收 4
     public void getdata3() {
+        Map<String, String> map = new HashMap<>();
+        map.put("type", "4");
+//        map.put("userid", FileUtil.getUserId(ShipActivity.this));
+        map.put("userid", "51");
+        OkHttpUtils.getInstance().post(SBUrls.ORDERTSTATUS, map, new MyNetWorkCallback<ShipHttpBean3>() {
+            @Override
+            public void onSuccess(ShipHttpBean3 bean) throws JSONException {
+                if(null != bean.getInfo() && bean.getInfo().size() > 0){
+                    ship_recycler3.setAdapter(new ShipAdapter3(ShipActivity.this,bean.getInfo()));
+                }
+            }
 
+            @Override
+            public void onError(int errorCode, String errorMsg) {
+
+            }
+        });
     }
 
+    //待归还 7
     public void getdata4() {
+        Map<String, String> map = new HashMap<>();
+        map.put("type", "7");
+//        map.put("userid", FileUtil.getUserId(ShipActivity.this));
+        map.put("userid", "51");
+        OkHttpUtils.getInstance().post(SBUrls.ORDERTSTATUS, map, new MyNetWorkCallback<ShipHttpBean4>() {
+            @Override
+            public void onSuccess(ShipHttpBean4 bean) throws JSONException {
+                if(null != bean.getInfo() && bean.getInfo().size() > 0){
+                    ship_recycler4.setAdapter(new ShipAdapter4(ShipActivity.this,bean.getInfo()));
+                }
+            }
 
+            @Override
+            public void onError(int errorCode, String errorMsg) {
+
+            }
+        });
     }
 
     private void initView() {
@@ -164,10 +204,32 @@ public class ShipActivity extends AppCompatActivity {
         ship_name = (TextView) findViewById(R.id.ship_name);
         ship_tabs = (TabLayout) findViewById(R.id.ship_tabs);
         ship_vp_view = (ViewPager) findViewById(R.id.ship_vp_view);
-//        ship_recycler1 = (RecyclerView) findViewById(R.id.ship_recycler1);
-        ship_recycler2 = (RecyclerView) findViewById(R.id.ship_recycler2);
-//        ship_recycler3 = (RecyclerView) findViewById(R.id.ship_recycler3);
-//        ship_recycler4 = (RecyclerView) findViewById(R.id.ship_recycler4);
+
+        ship_return.setOnClickListener(this);
+        ship_vp_view.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if (0 == position) {
+                    ship_name.setText("待付款");
+                } else if (1 == position) {
+                    ship_name.setText("待发货");
+                } else if (2 == position) {
+                    ship_name.setText("待验收");
+                } else if (3 == position) {
+                    ship_name.setText("待归还");
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 
 
@@ -180,7 +242,14 @@ public class ShipActivity extends AppCompatActivity {
         });
     }
 
-
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.ship_return:
+                finish();
+                break;
+        }
+    }
 
 
     //ViewPager适配器

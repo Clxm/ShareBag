@@ -11,7 +11,7 @@
     <RelativeLayout
         android:background="#FFF"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/x144">
+        android:layout_height="50dp">
 
         <ImageView
             android:id="@+id/match_return"
@@ -28,7 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="收货地址"
-            android:textSize="@dimen/x46"
+            android:textSize="18dp"
             android:textColor="@color/navigation_bar_text_color"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true" />
@@ -38,43 +38,29 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="@dimen/x4"
+        android:layout_height="1.5dp"
         android:background="@color/navigation_bar_line_color"/>
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-
-
 
     <android.support.v7.widget.RecyclerView
     android:id="@+id/harvest_recycler"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
-
-
+    android:layout_weight="1"
+    android:layout_height="0dp"/>
 
     <Button
         android:id="@+id/harvest_add"
-        android:layout_marginTop="144px"
-        android:layout_marginLeft="34px"
-        android:layout_marginRight="34px"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="20dp"
         android:layout_width="match_parent"
-        android:layout_height="142px"
+        android:layout_height="45dp"
         android:text="+新增收货地址"
-        android:textSize="46px"
+        android:textSize="18dp"
         android:textColor="#FFF"
         android:background="#FD6961"/>
 
-        </LinearLayout>
 
-
-    </ScrollView>
 <TextView
     android:id="@+id/yincangpanduan"
     android:visibility="gone"

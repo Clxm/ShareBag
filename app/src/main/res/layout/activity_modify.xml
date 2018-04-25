@@ -11,7 +11,7 @@
     <RelativeLayout
         android:background="#FFF"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/x144">
+        android:layout_height="50dp">
 
         <ImageView
             android:id="@+id/modify_return"
@@ -29,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="修改收货地址"
-            android:textSize="@dimen/x46"
+            android:textSize="18dp"
             android:textColor="@color/navigation_bar_text_color"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true" />
@@ -38,10 +38,10 @@
         <TextView
             android:id="@+id/modify_save"
             android:gravity="center"
-            android:layout_width="100px"
-            android:layout_height="100px"
+            android:layout_width="33dp"
+            android:layout_height="33dp"
             android:text="@string/save"
-            android:textSize="@dimen/x40"
+            android:textSize="12dp"
             android:textColor="@color/navigation_bar_text_color"
             android:layout_centerVertical="true"
             android:layout_alignParentEnd="true"
@@ -57,18 +57,18 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="@dimen/x4"
+        android:layout_height="1dp"
         android:background="@color/navigation_bar_line_color"/>
 
     <LinearLayout
         android:gravity="center_vertical"
         android:layout_width="match_parent"
-        android:layout_height="140px">
+        android:layout_height="46dp">
 
 
 
         <TextView
-            android:layout_marginLeft="96px"
+            android:layout_marginLeft="32dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="联系人"/>
@@ -77,31 +77,32 @@
 
 
         <EditText
+            android:textSize="12dp"
             android:id="@+id/modify_name"
             android:background="@null"
-            android:layout_marginLeft="110px"
-            android:layout_width="wrap_content"
+            android:layout_marginLeft="35dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="姓名"/>
 
 
     </LinearLayout>
     <View
-        android:layout_marginLeft="32px"
-        android:layout_marginRight="32px"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:layout_width="match_parent"
-        android:layout_height="2px"
+        android:layout_height="1dp"
         android:background="#D7D7D7"/>
 
     <LinearLayout
         android:gravity="center_vertical"
         android:layout_width="match_parent"
-        android:layout_height="140px">
+        android:layout_height="46dp">
 
 
 
         <TextView
-            android:layout_marginLeft="96px"
+            android:layout_marginLeft="32dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="电话"/>
@@ -110,10 +111,12 @@
 
 
         <EditText
+            android:inputType="phone"
+            android:textSize="12dp"
             android:id="@+id/modify_phone"
             android:background="@null"
-            android:layout_marginLeft="110px"
-            android:layout_width="wrap_content"
+            android:layout_marginLeft="35dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="收货人电话"/>
 
@@ -121,22 +124,22 @@
     </LinearLayout>
 
     <View
-        android:layout_marginLeft="32px"
-        android:layout_marginRight="32px"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:layout_width="match_parent"
-        android:layout_height="2px"
+        android:layout_height="1dp"
         android:background="#D7D7D7"/>
 
     <LinearLayout
         android:id="@+id/modify_layout_city"
         android:gravity="center_vertical"
         android:layout_width="match_parent"
-        android:layout_height="140px">
+        android:layout_height="46dp">
 
 
 
         <TextView
-            android:layout_marginLeft="96px"
+            android:layout_marginLeft="32dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="城市"/>
@@ -145,8 +148,9 @@
 
 
         <TextView
+            android:textSize="12dp"
             android:id="@+id/modify_city"
-            android:layout_marginLeft="110px"
+            android:layout_marginLeft="35dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="选择收获地址"/>
@@ -156,21 +160,21 @@
 
 
     <View
-        android:layout_marginLeft="32px"
-        android:layout_marginRight="32px"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:layout_width="match_parent"
-        android:layout_height="2px"
+        android:layout_height="1dp"
         android:background="#D7D7D7"/>
 
     <LinearLayout
         android:gravity="center_vertical"
         android:layout_width="match_parent"
-        android:layout_height="140px">
+        android:layout_height="46dp">
 
 
 
         <TextView
-            android:layout_marginLeft="96px"
+            android:layout_marginLeft="32dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="地址"/>
@@ -179,10 +183,11 @@
         <!--address_address-->
 
         <EditText
+            android:textSize="12dp"
             android:id="@+id/modify_address"
             android:background="@null"
-            android:layout_marginLeft="110px"
-            android:layout_width="wrap_content"
+            android:layout_marginLeft="35dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="详细地址"/>
 

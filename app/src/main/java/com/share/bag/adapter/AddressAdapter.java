@@ -53,10 +53,12 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
         holder.add_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Toast.makeText(context, "点击了修改", Toast.LENGTH_SHORT).show();
+                AddBean1 addBean1 = list.get(position);
                 Intent intent = new Intent(context,ModifyActivity.class);
-                intent.putExtra("id",list.get(position).getId()+"");
-//                跳转这样写
+                intent.putExtra("id",addBean1.getId()+"");
+                intent.putExtra("name",addBean1.getUsername());
+                intent.putExtra("phone",addBean1.getPhone());
+                intent.putExtra("address",addBean1.getAddress());
                 context.startActivity(intent);
 
             }
@@ -65,21 +67,14 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
         holder.add_shanchu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String shanchuurl="http://baobaoapi.ldlchat.com/Home/Personalcenter/del.html";
+                String shanchuurl="https://baobaoapi.ldlchat.com/Home/Address/del.html";
                    Map<String ,String > stringString=new HashMap<String, String>();
                    stringString.put("id",""+list.get(position).getId());
                    OkHttpUtils.getInstance().post(shanchuurl, stringString, new MyNetWorkCallback<AddressAdapterBean>() {
                        @Override
                        public void onSuccess(AddressAdapterBean addressAdapterBean) throws JSONException {
-                           String info = addressAdapterBean.getInfo();
-                           try {
                                list.remove(position);
                                notifyDataSetChanged();
-                               Toast.makeText(context, "删除返回值+"+info, Toast.LENGTH_SHORT).show();
-
-                           }catch(Exception e){
-                           }
-
                        }
                        @Override
                        public void onError(int errorCode, String errorMsg) {
@@ -97,18 +92,16 @@ checkbox.setChecked(false)未选中。
 * */
         if (list.get(position).getIs_type().equals("0")) {
             holder.add_checkbox1.setChecked(false);
-
         } else {
-
             holder.add_checkbox1.setChecked(true);
         }
 
        holder.add_checkbox1.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
-                   String shoucangurl="http://baobaoapi.ldlchat.com/Home/Personalcenter/fortype.html";
+                   String shoucangurl="https://baobaoapi.ldlchat.com/Home/Address/settype.html";
                    Map<String ,String > stringStringMap=new HashMap<String, String>();
-                   stringStringMap.put("id",""+position);
+                   stringStringMap.put("id",list.get(position).getId());
                    OkHttpUtils.getInstance().post(shoucangurl, stringStringMap, new MyNetWorkCallback<AddressAdapterBean>() {
                        @Override
                        public void onSuccess(AddressAdapterBean addressAdapterBean) throws JSONException {

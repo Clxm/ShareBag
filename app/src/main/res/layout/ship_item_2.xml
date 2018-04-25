@@ -1,77 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-
+    android:layout_height="wrap_content"
+    android:background="#fff"
     android:orientation="vertical">
-
-
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="5dp"
+        android:paddingLeft="13dp"
+        android:paddingTop="5dp">
+        <TextView
+            android:id="@+id/orderid"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:text="订单详情" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
         android:layout_marginLeft="12dp"
         android:layout_marginRight="12dp"
-        android:layout_width="match_parent"
-        android:layout_height="118dp"
         android:layout_marginTop="12dp">
-
-
         <ImageView
             android:id="@+id/shared_adapter_img"
             android:layout_width="118dp"
             android:layout_height="94dp"
             android:scaleType="fitXY"
-            android:src="@drawable/mo1" />
-
-
+           />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="3dp"
             android:orientation="vertical">
-
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
-
                 <TextView
                     android:id="@+id/shared_adapter_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:lines="1"
                     android:singleLine="true"
-                    android:text="心平时尚简约纽扣下皮包"
                     android:textColor="#3D3E43"
                     android:textSize="10dp" />
-
                 <View
                     android:layout_width="wrap_content"
                     android:layout_height="1dp"
                     android:layout_weight="1" />
-
-
-                <TextView
-                    android:id="@+id/shared_adapter_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="2017-11-11"
-                    android:textColor="#3D3E43"
-                    android:textSize="10dp" />
             </LinearLayout>
-
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp">
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="品牌："
                     android:textColor="#5D5E66"
                     android:textSize="8dp" />
-
                 <TextView
                     android:id="@+id/shared_adapter_brands"
                     android:layout_width="wrap_content"
@@ -79,11 +72,7 @@
                     android:text=""
                     android:textColor="#5D5E66"
                     android:textSize="8dp" />
-
-
             </LinearLayout>
-
-
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -92,7 +81,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="商品标号："
+                    android:text="商品编号："
                     android:textColor="#5D5E66"
                     android:textSize="8dp" />
 
@@ -152,61 +141,84 @@
                     android:textSize="8dp" />
 
             </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp">
-
-                <TextView
-                    android:id="@+id/shared_adapter_buyout1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="已买断"
-                    android:textColor="#3D3E43"
-                    android:textSize="12dp" />
-
-
-                <TextView
-                    android:id="@+id/shared_adapter_buyout2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="13dp"
-                    android:text="已买断"
-                    android:textColor="#3D3E43"
-                    android:textSize="12dp" />
-
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
-
-
-                <TextView
-                    android:id="@+id/shared_adapter_rent"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="租金"
-                    android:textColor="#FC655E"
-                    android:textSize="12dp" />
-
-
-            </LinearLayout>
-
-
         </LinearLayout>
-
-
     </LinearLayout>
 
-
     <View
-        android:layout_marginLeft="12dp"
-        android:layout_marginRight="12dp"
         android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
         android:background="#DDDDDD" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="8dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="8dp">
 
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="共一件" />
+
+        <TextView
+            android:id="@+id/money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="(免运费)" />
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:background="#DDDDDD" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="8dp"
+        android:paddingRight="20dp"
+        android:paddingTop="8dp">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+
+        <TextView
+            android:id="@+id/pay_order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:background="#f00"
+            android:paddingBottom="5dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingTop="5dp"
+            android:text="提醒发货"
+            android:textColor="#fff"
+            android:textSize="14dp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:background="#DDDDDD" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:background="#DDDDDD" />
 </LinearLayout>

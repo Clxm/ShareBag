@@ -12,7 +12,6 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.share.bag.R;
 import com.share.bag.SBUrls;
-import com.share.bag.view.ItemRemoveRecyclerView;
 
 import java.util.List;
 

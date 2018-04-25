@@ -1,11 +1,13 @@
 package com.share.bag.ui.activitys.mine.address;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -21,6 +23,7 @@ import com.share.bag.ui.activitys.mine.AddBean;
 import com.share.bag.utils.okhttp.OkHttpUtils;
 import com.share.bag.utils.okhttp.callback.MyNetWorkCallback;
 
+import org.greenrobot.eventbus.EventBus;
 import org.json.JSONArray;
 import org.json.JSONException;
 
@@ -45,6 +48,9 @@ public class ModifyActivity extends AppCompatActivity implements View.OnClickLis
     private String address2;
     private String address3;
     private String tmp;
+    private String userName;
+    private String mPhone;
+    private String mAddress;
 
     //    public static Intent getIntent(Context context) {
 //        Intent intent = new Intent(context, ModifyActivity.class);
@@ -56,9 +62,10 @@ public class ModifyActivity extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.activity_modify);
 
          Intent intent=getIntent();
-
         tmp = intent.getStringExtra("id");
-
+        userName = intent.getStringExtra("name");
+        mPhone = intent.getStringExtra("phone");
+        mAddress = intent.getStringExtra("address");
 
 
         initView();
@@ -74,7 +81,9 @@ public class ModifyActivity extends AppCompatActivity implements View.OnClickLis
         modify_city = (TextView) findViewById(R.id.modify_city);
         modify_layout_city = (LinearLayout) findViewById(R.id.modify_layout_city);
         modify_address = (EditText) findViewById(R.id.modify_address);
-
+        modify_phone.setText(mPhone);
+        modify_name.setText(userName);
+        modify_address.setText(mAddress);
 
         modify_return.setOnClickListener(this);
         modify_save.setOnClickListener(this);
@@ -91,12 +100,15 @@ public class ModifyActivity extends AppCompatActivity implements View.OnClickLis
             Toast.makeText(this, "信息不完整，请补充", Toast.LENGTH_SHORT).show();
 
         }else {//修改
-            String addurl="http://baobaoapi.ldlchat.com/Home/Personalcenter/updateaddress.html";
+            String addurl="https://baobaoapi.ldlchat.com/Home/Address/update.html";
 
             Map<String,String> map=new HashMap<>();
             map.put("id",tmp);//ID
-            map.put("province",address1);//省
+            if(!TextUtils.isEmpty(address1))
+                 map.put("province",address1);//省
+            if(!TextUtils.isEmpty(address2))
             map.put("city",address2);//市
+            if(!TextUtils.isEmpty(address3))
             map.put("area",address3);//区
             map.put("content",address);//详细地址
             map.put("username",name);//姓名
@@ -104,8 +116,7 @@ public class ModifyActivity extends AppCompatActivity implements View.OnClickLis
             OkHttpUtils.getInstance().post(addurl,map, new MyNetWorkCallback<AddBean>() {
                 @Override
                 public void onSuccess(AddBean addBean) throws JSONException {
-
-//                    Toast.makeText(ModifyActivity.this, "===="+addBean.getInfo(), Toast.LENGTH_SHORT).show();
+                    EventBus.getDefault().post(addBean);
                     finish();
                 }
 
@@ -131,9 +142,8 @@ public class ModifyActivity extends AppCompatActivity implements View.OnClickLis
                 break;
 
             case R.id.modify_layout_city:
-                showPickerView();
-                Toast.makeText(this, "点击那里领", Toast.LENGTH_SHORT).show();
 
+                showPickerView();
                 break;
         }
     }

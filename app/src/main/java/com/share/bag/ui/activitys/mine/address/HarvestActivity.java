@@ -15,11 +15,15 @@ import com.share.bag.R;
 import com.share.bag.SBUrls;
 import com.share.bag.adapter.AddressAdapter;
 import com.share.bag.entity.AddressBean;
+import com.share.bag.ui.activitys.mine.AddBean;
 import com.share.bag.ui.activitys.mine.AddressActivity;
 import com.share.bag.ui.activitys.mine.Login;
 import com.share.bag.utils.okhttp.OkHttpUtils;
 import com.share.bag.utils.okhttp.callback.MyNetWorkCallback;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.json.JSONException;
 
 import java.util.ArrayList;
@@ -35,42 +39,53 @@ public class HarvestActivity extends AppCompatActivity implements View.OnClickLi
     private ImageView match_return;
     private RecyclerView harvest_recycler;
     private Button harvest_add;
-    private List<AddressBean.InfoBean>  info=new ArrayList<>();
     private List<AddBean1>list=new ArrayList();
     private TextView yincangpanduan;
+    private AddressAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
         setContentView(R.layout.activity_harvest);
         initView();
-//        initdata();
         harvest_recycler.setLayoutManager(new LinearLayoutManager(this));
-        AddressAdapter adapter = new AddressAdapter(HarvestActivity.this,list );//适配器
-        harvest_recycler.setAdapter(adapter);
-
+        //适配器
+        mAdapter = new AddressAdapter(HarvestActivity.this,list );
+        harvest_recycler.setAdapter(mAdapter);
+        initdata();
+    }
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(AddBean bean){
+        initdata();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
     private void initdata() {
 
-//        String addurl="http://baobaoapi.ldlchat.com/Home/Personalcenter/getUserContent.html";
+//        String addurl="htmltp://baobaoapi.ldlchat.com/Home/Personalcenter/getUserContent.html";
 
         Map<String,String> addmap=new HashMap<>();
 
         OkHttpUtils.getInstance().post(SBUrls.CHECK_RECEIVING, addmap, new MyNetWorkCallback<AddressBean>() {
             @Override
             public void onSuccess(AddressBean addressBean) throws JSONException {
-
-           info = addressBean.getInfo();
-                for (int i = 0; i < info.size(); i++) {
-                    String id = info.get(i).getId();
-                    String address = info.get(i).getAddress();
-                    String username = info.get(i).getUsername();
-                    String phone = info.get(i).getPhone();
-                    String is_type = info.get(i).getIs_type();
-                    AddBean1 addBean1=new AddBean1(id,address,username,phone,is_type);
-                    list.add(addBean1);
+                list.clear();
+                List<AddressBean.InfoBean>  info = addressBean.getInfo();
+                    for (int i = 0; i < info.size(); i++) {
+                        String id = info.get(i).getId();
+                        String address = info.get(i).getAddress();
+                        String username = info.get(i).getUsername();
+                        String phone = info.get(i).getPhone();
+                        String is_type = info.get(i).getIs_type();
+                        AddBean1 addBean1 = new AddBean1(id, address, username, phone, is_type);
+                        list.add(addBean1);
                 }
+                mAdapter.notifyDataSetChanged();
 
             }
 
@@ -101,11 +116,7 @@ public class HarvestActivity extends AppCompatActivity implements View.OnClickLi
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.harvest_add:
-
-
-//                Toast.makeText(this, "新增地址", Toast.LENGTH_SHORT).show();
                 startActivityForResult(AddressActivity.getIntent(this),1);
-
                 break;
         }
     }
@@ -113,59 +124,11 @@ public class HarvestActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         if(requestCode==1&&resultCode==1){
-//            ed.setText(data.getStringExtra("text"));
-
             initdata();
         }
-
-//        initdata();
-
-
     }
 
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        FileUtil.SelectedreadFromPre(this,yincangpanduan);
-        if (yincangpanduan.getText().equals("")) {//登录
-            Intent intent = new Intent(this, Login.class);
-            startActivity(intent);
-        } else {
-
-            initdata();
-        }
 
 
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        initdata();
-
-
-    }
-
-//    @Override
-//    public void onActivityReenter(int resultCode, Intent data) {
-//        super.onActivityReenter(resultCode, data);
-//
-//
-//
-//
-//
-//
-//    }
-
-    //    @Override
-//    protected void onResume() {
-//        super.onResume();
-//
-//        initdata();
-//
-//
-//    }
 }

@@ -119,6 +119,7 @@
 
 
         <EditText
+            android:inputType="phone"
             android:id="@+id/address_phone"
             android:background="@null"
             android:layout_marginLeft="20dp"

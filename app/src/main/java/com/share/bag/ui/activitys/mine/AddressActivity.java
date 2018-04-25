@@ -21,6 +21,9 @@ import com.share.bag.ui.activitys.area.JsonFileReader;
 import com.share.bag.utils.okhttp.OkHttpUtils;
 import com.share.bag.utils.okhttp.callback.MyNetWorkCallback;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.json.JSONArray;
 import org.json.JSONException;
 
@@ -60,6 +63,7 @@ public class AddressActivity extends AppCompatActivity implements View.OnClickLi
         initJsonData();
 
     }
+
 
     private void initView() {
         address_return = (ImageView) findViewById(R.id.address_return);
@@ -122,9 +126,6 @@ public class AddressActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private void submit() {
-
-
-
         String name = address_name.getText().toString().trim();
         String phone = address_phone.getText().toString().trim();
         String address = address_address.getText().toString().trim();
@@ -132,7 +133,8 @@ public class AddressActivity extends AppCompatActivity implements View.OnClickLi
             Toast.makeText(this, "信息不完整，请补充", Toast.LENGTH_SHORT).show();
 
         }else {
-            String addurl="https://baobaoapi.ldlchat.com/Home/Personalcenter/address.html";
+//            String addurl="https://baobaoapi.ldlchat.com/Home/Personalcenter/address.html";
+            String addurl="https://baobaoapi.ldlchat.com/Home/Address/add.html";
 
             Map<String,String> map=new HashMap<>();
 
@@ -146,6 +148,7 @@ public class AddressActivity extends AppCompatActivity implements View.OnClickLi
             OkHttpUtils.getInstance().post(addurl,map, new MyNetWorkCallback<AddBean>() {
                 @Override
                 public void onSuccess(AddBean addBean) throws JSONException {
+                    EventBus.getDefault().post(addBean);
                     finish();
                 }
 

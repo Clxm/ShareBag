@@ -253,62 +253,47 @@ public class MineFragment extends BaseFragment {
 
                 break;
             case R.id.mine_Pay://代付款
-//                Toast.makeText(getActivity(), "点击了代付款", Toast.LENGTH_SHORT).show();
                   if(SharePreUtils.getString(Constant.COOKIE , "").isEmpty()){
                     //登录
                     loginintent1 = new Intent(getActivity(), Login.class);
                 }else{
                     //点击了代付款
                     loginintent1=new Intent(getActivity(),ShipActivity.class);
-                      loginintent1.putExtra("ship","代付款");
+                      loginintent1.putExtra("ship","0");
                 }
                 startActivity(loginintent1);
-
-
-
                 break;
             case R.id.mine_Sign://待签收
-                Toast.makeText(getActivity(), "点击了待签收", Toast.LENGTH_SHORT).show();
-
                 if(SharePreUtils.getString(Constant.COOKIE , "").isEmpty()){
                     //登录
                     loginintent1 = new Intent(getActivity(), Login.class);
                 }else{
                     //点击了待签收
                     loginintent1=new Intent(getActivity(),ShipActivity.class);
-
-                    loginintent1.putExtra("ship","待签收");
+                    loginintent1.putExtra("ship","2");
                 }
                 startActivity(loginintent1);
-
-
-
                 break;
             case R.id.mine_ship://代发货
-                Toast.makeText(getActivity(), "点击了代发货", Toast.LENGTH_SHORT).show();
                 if(SharePreUtils.getString(Constant.COOKIE , "").isEmpty()){
                     //登录
                     loginintent1 = new Intent(getActivity(), Login.class);
                 }else{
                     //点击了代发货
                     loginintent1=new Intent(getActivity(),ShipActivity.class);
-
-                    loginintent1.putExtra("ship","代发货");
+                    loginintent1.putExtra("ship","1");
                 }
                 startActivity(loginintent1);
 
                 break;
             case R.id.mine_return://代归还
-
-                Toast.makeText(getActivity(), "点击了代归还", Toast.LENGTH_SHORT).show();
                 if(SharePreUtils.getString(Constant.COOKIE , "").isEmpty()){
                     //登录
                     loginintent1 = new Intent(getActivity(), Login.class);
                 }else{
                     //点击了代归还
                     loginintent1=new Intent(getActivity(),ShipActivity.class);
-
-                    loginintent1.putExtra("ship","代归还");
+                    loginintent1.putExtra("ship","3");
                 }
                 startActivity(loginintent1);
 
@@ -326,8 +311,6 @@ public class MineFragment extends BaseFragment {
                 }
                 break;
             case R.id.mine_address://我的地址
-
-
                 if (mine_name.getText().equals("请登录")) {//登录
                     Intent intent = new Intent(getActivity(), Login.class);
                     startActivity(intent);
@@ -335,11 +318,9 @@ public class MineFragment extends BaseFragment {
                     Intent intent1=new Intent(getActivity(), HarvestActivity.class);
                     startActivity(intent1);
                 }
-
                 break;
 
             case R.id.mine_contact://联系客服
-                Toast.makeText(getActivity(), "点击了联系客服", Toast.LENGTH_SHORT).show();
 
                 break;
 
@@ -349,7 +330,6 @@ public class MineFragment extends BaseFragment {
 
                 break;
             case R.id.mine_Complaints://投诉建议
-                Toast.makeText(getActivity(), "点击了投诉建议", Toast.LENGTH_SHORT).show();
 
                 break;
             case R.id.mine_cooperation://商务合作

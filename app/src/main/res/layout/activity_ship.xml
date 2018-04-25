@@ -9,12 +9,12 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/x144">
+        android:layout_height="50dp">
 
         <ImageView
             android:id="@+id/ship_return"
-            android:layout_width="27px"
-            android:layout_height="42px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:src="@mipmap/xiaoyu3"
             android:layout_marginStart="27dp"
             android:layout_centerVertical="true"
@@ -24,8 +24,8 @@
             android:id="@+id/ship_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=""
-            android:textSize="@dimen/x46"
+            android:text="待付款"
+            android:textSize="18dp"
             android:textColor="@color/navigation_bar_text_color"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true" />
@@ -36,16 +36,16 @@
     <android.support.design.widget.TabLayout
         android:id="@+id/ship_tabs"
         android:layout_width="match_parent"
-        android:layout_height="105px"
+        android:layout_height="35dp"
         app:tabIndicatorColor="#FC655E"
         app:tabSelectedTextColor="#FC655E"
-        app:tabTextColor="#303030"></android.support.design.widget.TabLayout>
+        app:tabTextColor="#303030"/>
 
     <!--可滑动的布局内容-->
 
     <android.support.v4.view.ViewPager
         android:id="@+id/ship_vp_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></android.support.v4.view.ViewPager>
+        android:layout_height="match_parent"/>
 
 </LinearLayout>
