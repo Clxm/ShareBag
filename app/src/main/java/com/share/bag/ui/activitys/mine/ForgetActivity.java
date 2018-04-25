@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.share.bag.R;
 import com.share.bag.SBUrls;
 import com.share.bag.entity.SMSBean;
+import com.share.bag.utils.ToastUtils;
 import com.share.bag.utils.okhttp.OkHttpUtils;
 import com.share.bag.utils.okhttp.callback.MyNetWorkCallback;
 
@@ -58,6 +59,10 @@ public class ForgetActivity extends AppCompatActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forget);
+        String titleStr = getIntent().getStringExtra("title");
+        TextView title = (TextView) findViewById(R.id.action_title);
+        if (!TextUtils.isEmpty(titleStr))
+                title.setText(titleStr);
         initView();
         phone = forget_phone.getText().toString().trim();
 
@@ -103,15 +108,12 @@ public class ForgetActivity extends AppCompatActivity implements View.OnClickLis
                     @Override
                     public void onSuccess(ForgetBean forgetBean) throws JSONException {
 
-                        Toast.makeText(ForgetActivity.this, "返回正常" + forgetBean.getInfo(), Toast.LENGTH_SHORT).show();
-                        Log.e("TTAAG", forgetBean.getStatus() + "=======" + forgetBean.getInfo());
-
                         String info = forgetBean.getInfo();
-
                         if (info.equals("修改成功")) {
+                            ToastUtils.showTop( ForgetActivity.this,"修改成功");
                             finish();
                         } else {
-                            Toast.makeText(ForgetActivity.this, "请重新输入", Toast.LENGTH_SHORT).show();
+                            ToastUtils.showTop( ForgetActivity.this,"请重新输入");
                             forget_phone.setText(null);
                             forget_password.setText(null);
                             forget_password1.setText(null);

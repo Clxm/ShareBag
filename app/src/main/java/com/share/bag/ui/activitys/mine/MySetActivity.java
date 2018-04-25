@@ -1,11 +1,11 @@
 package com.share.bag.ui.activitys.mine;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import com.share.bag.FileUtil;
 import com.share.bag.R;
@@ -68,7 +68,7 @@ public class MySetActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.myset_safety:
-
+                startActivity(new Intent(MySetActivity.this,PassWordORPhoneActivity.class));
                 break;
             case R.id.myset_updated:
                 ToastUtils.showTop(MySetActivity.this, "当前是最新版本");

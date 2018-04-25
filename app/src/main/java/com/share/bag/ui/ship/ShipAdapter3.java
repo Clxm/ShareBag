@@ -1,6 +1,7 @@
 package com.share.bag.ui.ship;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,9 +13,14 @@ import com.bumptech.glide.Glide;
 import com.share.bag.R;
 import com.share.bag.SBUrls;
 import com.share.bag.utils.ToastUtils;
+import com.share.bag.utils.okhttp.OkHttpUtils;
+import com.share.bag.utils.okhttp.callback.MyNetWorkCallback;
 import com.share.bag.view.YWXZAlertDialog;
 
+import org.json.JSONException;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -42,7 +48,7 @@ public class ShipAdapter3 extends RecyclerView.Adapter{
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         ShipHttpBean3.InfoBean bean = mList.get(position);
         MyHolder myHolder = (MyHolder) holder;
-        myHolder.orderid.setText("返回数据中有出仓状态吗？");
+        myHolder.orderid.setText("订单编号: " +bean.getOrdernumber());
         Glide.with(mContext).load(SBUrls.LOGURL + bean.getImg()).into(myHolder.img);
         myHolder.title.setText(bean.getTitle());
         myHolder.nums.setText(bean.getBiglist_num());
@@ -58,8 +64,21 @@ public class ShipAdapter3 extends RecyclerView.Adapter{
                 dialog.setOnAlertDialogOnClick(new YWXZAlertDialog.AlertDialogOnClickListener() {
                     @Override
                     public void onYes() {
-                        mList.remove(position);
-                        notifyDataSetChanged();
+                        String url = "https://baobaoapi.ldlchat.com/Home/order/buttonsign.html";
+                        HashMap<String,String> map = new HashMap<String, String>();
+                        map.put("orderid",mList.get(position).getId());
+                        OkHttpUtils.getInstance().post(url, map, new MyNetWorkCallback<Object>() {
+                            @Override
+                            public void onSuccess(Object o) throws JSONException {
+                                mList.remove(position);
+                                notifyDataSetChanged();
+                            }
+
+                            @Override
+                            public void onError(int errorCode, String errorMsg) {
+
+                            }
+                        });
                         dialog.dismiss();
                     }
 
@@ -74,6 +93,14 @@ public class ShipAdapter3 extends RecyclerView.Adapter{
                     }
                 });
                 dialog.show();
+            }
+        });
+        myHolder.cancle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mContext, TransportLog.class);
+                intent.putExtra("order_id",mList.get(position).getId());
+                mContext.startActivity(intent);
             }
         });
     }
@@ -93,6 +120,7 @@ public class ShipAdapter3 extends RecyclerView.Adapter{
         ImageView img;
         TextView size;
         TextView money;
+        TextView cancle;
         TextView pay_order;
         public MyHolder(View itemView) {
             super(itemView);
@@ -104,6 +132,7 @@ public class ShipAdapter3 extends RecyclerView.Adapter{
             color = itemView.findViewById(R.id.shared_adapter_colour);
             size = itemView.findViewById(R.id.shared_adapter_size);
             money = itemView.findViewById(R.id.money);
+            cancle = itemView.findViewById(R.id.cancle);
             pay_order = itemView.findViewById(R.id.pay_order);
         }
     }

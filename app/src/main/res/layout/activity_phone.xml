@@ -12,11 +12,11 @@
     <RelativeLayout
         android:background="#FFF"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/x144">
+        android:layout_height="48dp">
 
         <ImageView
             android:id="@+id/phone_return"
-            android:layout_width="50px"
+            android:layout_width="17dp"
             android:layout_height="wrap_content"
             android:src="@mipmap/xiaoyu3"
             android:layout_marginLeft="10dp"
@@ -29,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/modify_number"
-            android:textSize="@dimen/x46"
+            android:textSize="16dp"
             android:textColor="@color/navigation_bar_text_color"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true" />
@@ -45,7 +45,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/x110"
+        android:layout_height="33dp"
         android:gravity="center_vertical">
 
    <TextView
@@ -53,7 +53,7 @@
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
        android:text="请输入你需要绑定的新手机号"
-       android:textSize="12sp"
+       android:textSize="12dp"
        android:textColor="#808080" />
 
     </LinearLayout>
@@ -71,7 +71,7 @@
            android:layout_height="wrap_content"
            android:layout_marginLeft="10dp"
            android:textColor="@color/navigation_bar_text_color"
-           android:textSize="16sp"
+           android:textSize="16dp"
            android:text="@string/personal_phone"/>
 
 
@@ -83,7 +83,7 @@
             android:layout_height="wrap_content"
             android:background="@null"
             android:hint="@string/phone_new"
-            android:textSize="31px"
+            android:textSize="14dp"
             android:textColor="#808080"/>
 
 
@@ -91,41 +91,49 @@
 
 
     <LinearLayout
+       android:padding="10dp"
         android:layout_marginTop="1dp"
-        android:background="#FFF"
+        android:background="#fff"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:gravity="center_vertical">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="75dp"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:layout_marginLeft="10dp"
-            android:textColor="@color/navigation_bar_text_color"
-            android:text="@string/verificationcode"/>
+            android:text="验证码"
+            android:textColor="#333333"
+            android:textSize="16dp" />
+
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="26dp"
+            android:background="#666666" />
 
 
         <EditText
-            android:id="@+id/phonre_verification"
-            android:layout_weight="1"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:textSize="31px"
-            android:textColor="#808080"/>
-
-
-
-        <Button
-            android:background="@drawable/frame"
+            android:id="@+id/forget_verification"
+            style="?android:attr/textViewStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:layout_marginRight="20dp"
-            android:text="@string/verification2"/>
+            android:layout_marginLeft="13dp"
+            android:background="@null"
+            android:hint="@string/verification"
+            android:textSize="14dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_weight="1" />
+        <!--registered_obtain-->
+        <TextView
+            android:id="@+id/forget_obtain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/verification1"
+            android:textColor="#FC655E"
+            android:textSize="14dp" />
 
 
     </LinearLayout>
@@ -138,11 +146,11 @@
 
     <Button
         android:id="@+id/phone_confirm"
-        android:layout_width="@dimen/x864"
-        android:layout_height="@dimen/x145"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
         android:text="@string/confirm"
         android:textColor="#FFF"
-        android:textSize="51px"
+        android:textSize="16dp"
         android:background="@drawable/frame"
         />
 
