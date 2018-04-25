@@ -1,5 +1,8 @@
 package com.share.bag.ui.fragments.collection;
 
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
@@ -24,8 +27,7 @@ import java.util.Map;
 * */
 public class CollectionFragment extends BaseFragment {
 
-    private RecyclerView collection_recycler;
-    private RecyclerView collection_recycler2;
+    private RecyclerView collection_recycler, collection_recycler2;
     private CoollectionAdapter likeAdapter;
 
     @Override
@@ -38,13 +40,13 @@ public class CollectionFragment extends BaseFragment {
 
         collection_recycler = view.findViewById(R.id.collection_recycler);
         collection_recycler2 = view.findViewById(R.id.collection_recycler2);
-
     }
 
     @Override
     protected void initData() {
         getinitData();
         getinitData1();
+
 
     }
 
@@ -54,9 +56,13 @@ public class CollectionFragment extends BaseFragment {
             @Override
             public void onSuccess(CollectionLookBean collectionLookBean) throws JSONException {
                 List<CollectionLookBean.InfoBean> info = collectionLookBean.getInfo();
-                collection_recycler.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL));
-                likeAdapter = new CoollectionAdapter(getContext(), info);
-                collection_recycler.setAdapter(likeAdapter);
+                if (info!= null && info.size() != 0) {
+                    collection_recycler.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+                    collection_recycler.setNestedScrollingEnabled(false);
+                    collection_recycler.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
+                    likeAdapter = new CoollectionAdapter(getContext(), info);
+                    collection_recycler.setAdapter(likeAdapter);
+                }
             }
 
             @Override
@@ -67,10 +73,7 @@ public class CollectionFragment extends BaseFragment {
     }
 
 
-    /*
-    *   猜你喜欢
-    *
-     *  */
+    //猜你喜欢
     public void getinitData1() {
         Map<String, String> stringMap = new HashMap<>();
 
@@ -79,10 +82,12 @@ public class CollectionFragment extends BaseFragment {
             public void onSuccess(LikeBean likeBean) throws JSONException {
 
                 List<LikeBean.InfoBean> info = likeBean.getInfo();
-                collection_recycler2.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
-
-                LikeAdapter likeAdapter = new LikeAdapter(getContext(), info);
-                collection_recycler2.setAdapter(likeAdapter);
+                if (info != null && info.size() != 0) {
+                    collection_recycler2.setLayoutManager(new GridLayoutManager(getContext(), 2, GridLayoutManager.VERTICAL, false));
+                    collection_recycler2.setNestedScrollingEnabled(false);
+                    LikeAdapter likeAdapter = new LikeAdapter(getContext(), info);
+                    collection_recycler2.setAdapter(likeAdapter);
+                }
 
             }
 

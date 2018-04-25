@@ -22,11 +22,11 @@ import java.util.List;
 
 class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHoudler> {
     private Context context;
-    List<CommentBean.DataBean> list = new ArrayList<>();
+    List<CommentBean.InfoBean> list = new ArrayList<>();
     private ViewHoudler houdler;
     private View view;
 
-    public CommentAdapter(Context context, List<CommentBean.DataBean> list) {
+    public CommentAdapter(Context context, List<CommentBean.InfoBean> list) {
         this.context = context;
         this.list = list;
     }

@@ -44,6 +44,7 @@ import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class RentActivity extends AppCompatActivity {
     private static final int SDK_PAY_FLAG = 1;
@@ -72,10 +73,11 @@ public class RentActivity extends AppCompatActivity {
     TextView mTvRantTexture;
     @BindView(R.id.tv_rant_size)
     TextView mTvRantSize;
+    @BindView(R.id.rent_return)
+    ImageView mRentReturn;
     private IWXAPI api;
     private LinearLayout pay_wx;
     private String content;
-    private ImageView rent_return;
     private ImageView imageView3;
     private TextView rent;
     private TextView rent_22;
@@ -253,7 +255,6 @@ public class RentActivity extends AppCompatActivity {
 
 
         }
-        rent_return = (ImageView) findViewById(R.id.rent_return);
         imageView3 = (ImageView) findViewById(R.id.imageView3);
         rent = (TextView) findViewById(R.id.buy_rent);
         rent_22 = (TextView) findViewById(R.id.rent_22);
@@ -277,7 +278,7 @@ public class RentActivity extends AppCompatActivity {
     }
 
     private void setViewData() {
-        String imgUrl = SBUrls.URL_HEAD +mImgUrl;
+        String imgUrl = SBUrls.URL_HEAD + mImgUrl;
         ImageLoader.LoadLocalImg(mIvRentImg, this, imgUrl);
         mTvRentTitle.setText(mTitle);
         mTvRantBrand.setText(mBagBrand);
@@ -471,5 +472,8 @@ public class RentActivity extends AppCompatActivity {
         payThread.start();
     }
 
-
+    @OnClick(R.id.rent_return)
+    public void onClick() {
+        finish();
+    }
 }

@@ -109,4 +109,7 @@ Receiving
     public static final String DETAIL_GET_USER_INFO ="https://baobaoapi.ldlchat.com/Home/Address/listchat.html";
     //URL拼接头
     public static final String URL_HEAD = "https://";
+    //获取七牛服务器token
+    public static final String GET_QINIU_TOKEN = "https://baobaoapi.ldlchat.com/Home/common/token.html";
+
 }

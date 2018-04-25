@@ -12,7 +12,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/x144"
+        android:layout_height="48dp"
         android:gravity="center_vertical"
         android:background="#FFF">
 
@@ -30,29 +30,23 @@
             android:layout_height="wrap_content"
             android:text="@string/shared_release"
             android:layout_marginRight="57px"
-            android:textSize="@dimen/x46"
+            android:textSize="15dp"
             android:textColor="@color/navigation_bar_text_color"/>
 
     </LinearLayout>
 
-
     <View
         android:layout_width="match_parent"
-        android:layout_height="@dimen/x4"
-        android:background="@color/navigation_bar_line_color"
-        />
-
+        android:layout_height="1dp"
+        android:background="@color/navigation_bar_line_color"/>
 
     <LinearLayout
-        android:layout_marginTop="24px"
-        android:layout_marginLeft="24px"
-        android:layout_marginRight="24px"
+        android:layout_margin="10dp"
         android:layout_width="match_parent"
-        android:layout_height="362px"
+        android:layout_height="120dp"
         android:descendantFocusability="beforeDescendants"
         android:background="@drawable/enter"
         android:orientation="vertical">
-
 
         <EditText
             android:id="@+id/release_et_input"
@@ -64,30 +58,25 @@
             android:hint="最多可输入140字"
             android:imeOptions="actionSearch"
             android:inputType="text"
-            android:textSize="43px"
-            android:textColor="#999999"
-            />
-        <!--android:drawableLeft="@drawable/fangdaxiao"-->
-
+            android:textSize="14dp"
+            android:textColor="#999999"/>
 
     </LinearLayout>
 
-
-
     <TextView
-        android:layout_marginLeft="92px"
-        android:layout_marginTop="48px"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="16dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="请上传高清图片，通过效率更高～"
         android:textColor="#838383"
-        android:textSize="40px"/>
+        android:textSize="14dp"/>
 
 
 
 
 <LinearLayout
-    android:layout_marginTop="72px"
+    android:layout_marginTop="24dp"
     android:layout_width="match_parent"
     android:layout_height="0dp"
     android:layout_weight="1">
@@ -98,8 +87,8 @@
                     android:layout_height="wrap_content">
         <ImageView
             android:id="@+id/release2_add_photo1"
-            android:layout_width="@dimen/x290"
-            android:layout_height="@dimen/x290"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
             android:src="@drawable/add_photo"/>
     </RelativeLayout>
     <RelativeLayout android:layout_width="0dp"
@@ -108,8 +97,8 @@
                     android:layout_height="wrap_content">
         <ImageView
             android:id="@+id/release2_add_photo2"
-            android:layout_width="@dimen/x290"
-            android:layout_height="@dimen/x290"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
             android:src="@drawable/add_photo"/>
     </RelativeLayout>
 
@@ -121,12 +110,11 @@
     android:id="@+id/release2_button"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:textSize="16sp"
+    android:textSize="15dp"
     android:text="我要发布"
     android:textColor="@color/selectf_original_price"
     android:gravity="center"
     android:background="#E2E2E2"/>
 
-    <!--android:background="#F2F2F2"-->
 
 </LinearLayout>

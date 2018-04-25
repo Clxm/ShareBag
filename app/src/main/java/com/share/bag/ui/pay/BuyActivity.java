@@ -24,6 +24,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /*
 * 确认买
@@ -40,7 +41,8 @@ public class BuyActivity extends AppCompatActivity {
     TextView mTvBuyMaterial;
     @BindView(R.id.tv_buy_size)
     TextView mTvBuySize;
-    private ImageView buy_return;
+    @BindView(R.id.buy_return)
+    ImageView mBuyReturn;
     private ImageView imageView3;
     private TextView buy_rent;
     private TextView buy_phone;
@@ -125,7 +127,6 @@ public class BuyActivity extends AppCompatActivity {
 
         }
 
-        buy_return = (ImageView) findViewById(R.id.buy_return);
 //        imageView3 = (ImageView) findViewById(R.id.imageView3);
         buy_rent = (TextView) findViewById(R.id.buy_rent);
         buy_phone = (TextView) findViewById(R.id.buy_phone);
@@ -158,5 +159,10 @@ public class BuyActivity extends AppCompatActivity {
         mTvBuyColor.setText(mColor);
         mTvBuyMaterial.setText(mMaterial);
         mTvBuySize.setText(mBagSize);
+    }
+
+    @OnClick(R.id.buy_return)
+    public void onClick() {
+        finish();
     }
 }

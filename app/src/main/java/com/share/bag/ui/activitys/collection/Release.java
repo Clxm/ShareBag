@@ -4,7 +4,6 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
@@ -19,7 +18,6 @@ import android.text.Editable;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Base64;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -32,17 +30,21 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
-import android.widget.Toast;
 
+import com.qiniu.android.http.ResponseInfo;
+import com.qiniu.android.storage.UpCompletionHandler;
+import com.qiniu.android.storage.UploadManager;
 import com.share.bag.R;
 import com.share.bag.SBUrls;
 import com.share.bag.entity.ReleaseBagBean;
+import com.share.bag.response.QiNiuToken;
 import com.share.bag.ui.activitys.mine.avatar.PhotoUtils;
-import com.share.bag.ui.activitys.mine.avatar.ToastUtils;
+import com.share.bag.utils.ToastUtils;
 import com.share.bag.utils.okhttp.OkHttpUtils;
 import com.share.bag.utils.okhttp.callback.MyNetWorkCallback;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -55,8 +57,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import okio.Utf8;
 
 import static com.share.bag.ui.activitys.mine.PersonalActivity.hasSdcard;
 
@@ -82,14 +82,14 @@ public class Release extends AppCompatActivity implements View.OnClickListener {
     private Uri mNewUri;
     private PopupWindow mWindow2;
     private String baglist_id;
+    private String mQiNiuToken;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_release2);
         initView();
-
-
+        getQiNiuToken();
 //        EditText editText = new EditText(this);
 //设置EditText的显示方式为多行文本输入
         release_et_input.setInputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE);
@@ -110,7 +110,7 @@ public class Release extends AppCompatActivity implements View.OnClickListener {
                 if (s.length() > 140) { //判断EditText中输入的字符数是不是已经大于6
                     release_et_input.setText(s.toString().substring(0, 140)); //设置EditText只显示前面6位字符
                     release_et_input.setSelection(140);//让光标移至末端
-                    Toast.makeText(Release.this, "输入字数已达上限", Toast.LENGTH_SHORT).show();
+                    ToastUtils.showTop(Release.this, "输入字数已达上限");
                     return;
                 }
 
@@ -130,6 +130,22 @@ public class Release extends AppCompatActivity implements View.OnClickListener {
             }
         });
 
+    }
+
+    private void getQiNiuToken() {
+        Map<String, String> map = new HashMap<>();
+        OkHttpUtils.getInstance().post(SBUrls.GET_QINIU_TOKEN, map, new MyNetWorkCallback<QiNiuToken>() {
+
+            @Override
+            public void onSuccess(QiNiuToken qiNiuToken) throws JSONException {
+                mQiNiuToken = qiNiuToken.getInfo();
+            }
+
+            @Override
+            public void onError(int errorCode, String errorMsg) {
+
+            }
+        });
     }
 
     private void initView() {
@@ -153,7 +169,7 @@ public class Release extends AppCompatActivity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.release2_button:
-                getsubmit();
+                getSubmit();
                 break;
             case R.id.release2_add_photo1:
                 release2_add_photo1.setDrawingCacheEnabled(true);
@@ -194,7 +210,7 @@ public class Release extends AppCompatActivity implements View.OnClickListener {
                         }
                         PhotoUtils.cropImageUri(Release.this, mNewUri, cropImageUri, 1, 1, OUTPUT_X, OUTPUT_Y, CODE_RESULT_REQUEST);
                     } else {
-                        ToastUtils.showShort(this, "设备没有SD卡！");
+                        ToastUtils.showTop(this, "设备没有SD卡！");
                     }
                     break;
                 case CODE_RESULT_REQUEST:
@@ -211,9 +227,9 @@ public class Release extends AppCompatActivity implements View.OnClickListener {
 
     private void showImages(Bitmap bitmap) {
 //      压缩图片
-        ByteArrayOutputStream mOnputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, mOnputStream);
-        final byte[] bytes = mOnputStream.toByteArray();
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
+//        final byte[] bytes = outputStream.toByteArray();
 
         for (int i = 0; i < mImageViews.size(); i++) {
             mImageViews.get(i).setImageBitmap(bitmap);
@@ -234,7 +250,7 @@ public class Release extends AppCompatActivity implements View.OnClickListener {
                 || ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
 
             if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA)) {
-                ToastUtils.showShort(this, "您已经拒绝过一次");
+                ToastUtils.showTop(this, "您已经拒绝过一次");
             }
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE}, CAMERA_PERMISSIONS_REQUEST_CODE);
         } else {//有权限直接调用系统相机拍照
@@ -249,7 +265,7 @@ public class Release extends AppCompatActivity implements View.OnClickListener {
                 PhotoUtils.takePicture(this, imageUri, CODE_CAMERA_REQUEST);
 
             } else {
-                ToastUtils.showShort(this, "设备没有SD卡！");
+                ToastUtils.showTop(this, "设备没有SD卡！");
             }
         }
 
@@ -260,7 +276,6 @@ public class Release extends AppCompatActivity implements View.OnClickListener {
      * 获取图片弹框
      */
     public void getPopupWindow() {
-
         //设置contentView
         View contentView = LayoutInflater.from(this).inflate(R.layout.popupwindow_avatar1, null);
         mWindow2 = new PopupWindow(contentView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
@@ -312,39 +327,26 @@ public class Release extends AppCompatActivity implements View.OnClickListener {
     }
 
     /**
-     * 上传文字和包包图片
+     * 上传文本和包包图片
      */
-    public void getsubmit() {
+    public void getSubmit() {
         String input = release_et_input.getText().toString().trim();
         if (TextUtils.isEmpty(input)) {
-            Toast.makeText(this, "请输入内容", Toast.LENGTH_SHORT).show();
+            ToastUtils.showTop(this, "请输入内容");
             return;
         }
         Map<String, String> map = new HashMap<>();
         map.put("baglist_id", baglist_id);
         map.put("content", input);
-
-        String file1, file2;
-        if (release2_add_photo1.getDrawingCache() != null) {
-            Bitmap photo1Bm = Bitmap.createBitmap(release2_add_photo1.getDrawingCache());
-            file1 = convertIconToString(photo1Bm);
-            map.put("file1", file1);
-            release2_add_photo1.setDrawingCacheEnabled(false);
-        }
-
-        if (release2_add_photo2.getDrawingCache() != null) {
-            Bitmap photo2Bm = Bitmap.createBitmap(release2_add_photo2.getDrawingCache());
-            file2 = convertIconToString(photo2Bm);
-            map.put("file2", file2);
-            release2_add_photo2.setDrawingCacheEnabled(false);
-        }
-
+        //上传文本
         OkHttpUtils.getInstance().post(SBUrls.RELEASE_TEXT_BAG, map, new MyNetWorkCallback<ReleaseBagBean>() {
             @Override
             public void onSuccess(ReleaseBagBean releaseBagBean) throws JSONException {
-                Toast.makeText(Release.this, "发布成功", Toast.LENGTH_SHORT).show();
                 release_et_input.setText("");
-                Release.this.finish();
+                if (release2_add_photo1.getDrawingCache() == null && release2_add_photo2.getDrawingCache() == null) {
+                    ToastUtils.showTop(Release.this, "发布成功1");
+                    Release.this.finish();
+                }
             }
 
             @Override
@@ -352,21 +354,72 @@ public class Release extends AppCompatActivity implements View.OnClickListener {
 
             }
         });
+
+        String upkey = "uploadqiniu.txt";
+        UploadManager uploadManager = new UploadManager();
+        if (release2_add_photo1.getDrawingCache() != null) {
+            Bitmap photo1Bm = Bitmap.createBitmap(release2_add_photo1.getDrawingCache());
+            byte[] imgByte1 = convertIconToByte(photo1Bm);
+            uploadManager.put(imgByte1, upkey, mQiNiuToken,
+                    new UpCompletionHandler() {
+                        @Override
+                        public void complete(String key, ResponseInfo info, JSONObject response) {
+                            Log.d("ResponseInfo2", info + "");
+                            Log.d("JSONObject2", response + "");
+                            String error = info.error;
+                            int statusCode = info.statusCode;
+                            Log.d("qiniu_error", error);
+                            Log.d("statusCode", statusCode + "");
+
+                            if (info.isOK()) {
+                                if (release2_add_photo2.getDrawingCache() == null) {
+                                    release2_add_photo1.setDrawingCacheEnabled(false);
+                                    ToastUtils.showTop(Release.this, "发布成功2");
+                                    Release.this.finish();
+                                }
+
+                            }
+                        }
+                    }, null);
+        }
+
+        /*
+         *  参数	说明
+            key	uploadManager.put(file, key, ...) 方法指定的 key
+            info	http 请求的状态信息等，可记入日志，isOK() 返回 true 表示上传成功
+            response	七牛反馈的信息。可从中解析保存在七牛服务的 key 等信息，具体字段取决上传策略的设置
+         * */
+        if (release2_add_photo2.getDrawingCache() != null) {
+            Bitmap photo2Bm = Bitmap.createBitmap(release2_add_photo2.getDrawingCache());
+            byte[] imgByte2 = convertIconToByte(photo2Bm);
+            uploadManager.put(imgByte2, upkey, mQiNiuToken,
+                    new UpCompletionHandler() {
+                        @Override
+                        public void complete(String key, ResponseInfo info, JSONObject response) {
+                            if (info.isOK()) {
+                                release2_add_photo2.setDrawingCacheEnabled(false);
+                                ToastUtils.showTop(Release.this, "发布成功3");
+                                Release.this.finish();
+                            }
+                        }
+                    }, null);
+        }
     }
 
     /**
-     * bitmap转String
+     * bitmap转byte[]
      */
-    public static String convertIconToString(Bitmap bitmap) {
+    public static byte[] convertIconToByte(Bitmap bitmap) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
         byte[] icon = baos.toByteArray();
-        return Base64.encodeToString(icon, Base64.DEFAULT);
+//        return Base64.encodeToString(icon, Base64.DEFAULT);
+        return icon;
     }
 
     /**
-     *
      * bitmap转file
+     *
      * @param bitmap
      * @return
      */
@@ -400,6 +453,7 @@ public class Release extends AppCompatActivity implements View.OnClickListener {
 
     /**
      * 释放bitmap
+     *
      * @param bitmaps
      */
     private static void recycleBitmap(Bitmap... bitmaps) {

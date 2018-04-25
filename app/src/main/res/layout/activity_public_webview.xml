@@ -7,7 +7,7 @@
     <RelativeLayout
         android:id="@+id/rl_title"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/x144">
+        android:layout_height="48dp">
 
         <ImageView
             android:id="@+id/iv_return"
@@ -26,7 +26,7 @@
             android:layout_centerVertical="true"
             android:text=""
             android:textColor="@color/navigation_bar_text_color"
-            android:textSize="@dimen/x46"/>
+            android:textSize="15dp"/>
 
     </RelativeLayout>
 
@@ -34,5 +34,6 @@
         android:id="@+id/webView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/rl_title"></WebView>
+        android:layout_below="@id/rl_title"
+        android:scrollbars="none"/>
 </RelativeLayout>

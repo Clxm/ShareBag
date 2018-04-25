@@ -43,23 +43,6 @@ public class CoollectionAdapter extends RecyclerView.Adapter<CoollectionAdapter.
         holder.collection_rent.setText(list.get(position).getDays_money());
         holder.collection_original.setText(list.get(position).getOriginalprice());
         holder.collection_sale.setText(list.get(position).getNowprice());
-
-
-        holder.collection_salebutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(context, "购买成功", Toast.LENGTH_SHORT).show();
-            }
-        });
-        holder.collection_rentbutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(context, "租下成功", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-
-
     }
 
     public interface AdapterCallback {
@@ -100,25 +83,15 @@ public class CoollectionAdapter extends RecyclerView.Adapter<CoollectionAdapter.
         private final TextView collection_sale;
         private final TextView collection_rent;
         private final TextView  collection_original;
-        private final CheckBox  collection_adapter_checkBox;
-        private final TextView  collection_rentbutton;
-        private final TextView  collection_salebutton;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
-            /* <CheckBox
-           android:id="@+id/collection_adapter_checkBox"
-         */
-
-            collection_adapter_checkBox=(CheckBox)   itemView.findViewById(R.id.collection_adapter_checkBox);
             collection_adapter_image = (ImageView) itemView.findViewById(R.id.collection_adapter_image);
             collection_name = (TextView) itemView.findViewById(R.id.collection_name);
             collection_rent = (TextView) itemView.findViewById(R.id.collection_rent);
             collection_sale = (TextView) itemView.findViewById(R.id.collection_sale);
             collection_original = (TextView) itemView.findViewById(R.id.collection_original);
-            collection_salebutton = (TextView) itemView.findViewById(R.id.collection_salebutton);
-            collection_rentbutton = (TextView) itemView.findViewById(R.id.collection_rentbutton);
         }
     }
 

@@ -629,7 +629,7 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
             OkHttpUtils.getInstance().post(SBUrls.COMMENT, map, new MyNetWorkCallback<CommentBean>() {
                 @Override
                 public void onSuccess(CommentBean commentBean) throws JSONException {
-                    List<CommentBean.DataBean> data = commentBean.getData();
+                    List<CommentBean.InfoBean> data = commentBean.getInfo();
 
                     details_comment_layout_recy.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL));
                     commentAdapter = new CommentAdapter(Details.this, data);
@@ -651,7 +651,7 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
     public void getpinglun() {
         String butttString = et_input_content.getText().toString().trim();
         if (TextUtils.isEmpty(butttString)) {
-            Toast.makeText(this, "butttString不能为空", Toast.LENGTH_SHORT).show();
+            ToastUtils.showTop(this, "请填写评论");
             return;
         }
         Map<String, String> map = new HashMap<>();
