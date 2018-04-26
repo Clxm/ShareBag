@@ -64,6 +64,16 @@ public class ShipHttpBean1 {
         private String end_time;
         private String create_time;
 
+        public String getOrderid() {
+            return orderid;
+        }
+
+        public void setOrderid(String orderid) {
+            this.orderid = orderid;
+        }
+
+        private String orderid;
+
         public String getId() {
             return id;
         }

@@ -2,32 +2,33 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="38px"
-    android:layout_marginRight="38px"
+
     android:background="#FFF">
 
 
 <LinearLayout
-    android:layout_marginTop="48px"
+    android:layout_marginLeft="13dp"
+    android:layout_marginRight="13dp"
+    android:layout_marginTop="13dp"
     android:layout_width="match_parent"
-    android:layout_height="504px"
+    android:layout_height="168dp"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="338px">
+        android:layout_height="112dp">
 
 
         <ImageView
             android:id="@+id/cablinet_adapter_img"
-            android:layout_width="444px"
-            android:layout_height="338px"
+            android:layout_width="148dp"
+            android:layout_height="112dp"
             android:src="@drawable/mo1"
             android:scaleType="fitXY"/>
 
         <LinearLayout
-            android:layout_marginTop="18px"
-            android:layout_marginLeft="76px"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -38,12 +39,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="心平时尚简约纽扣下皮包"
-                android:textSize="28px"
+                android:textSize="10dp"
                 android:textColor="#3D3E43"/>
 
 
             <LinearLayout
-                android:layout_marginTop="30px"
+                android:layout_marginTop="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
@@ -52,7 +53,7 @@
                     android:layout_height="wrap_content"
                     android:text="品牌："
                     android:textColor="#5D5E66"
-                    android:textSize="25px"/>
+                    android:textSize="8dp"/>
 
                 <TextView
                     android:id="@+id/cablinet_adapter_brands"
@@ -60,7 +61,7 @@
                     android:layout_height="wrap_content"
                     android:text=""
                     android:textColor="#5D5E66"
-                    android:textSize="25px"/>
+                    android:textSize="8dp"/>
 
 
             </LinearLayout>
@@ -69,7 +70,7 @@
 
 
             <LinearLayout
-                android:layout_marginTop="16px"
+                android:layout_marginTop="3dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
@@ -78,7 +79,7 @@
                     android:layout_height="wrap_content"
                     android:text="商品标号："
                     android:textColor="#5D5E66"
-                    android:textSize="25px"/>
+                    android:textSize="8dp"/>
 
                 <TextView
                     android:id="@+id/cablinet_adapter_numbering"
@@ -86,13 +87,13 @@
                     android:layout_height="wrap_content"
                     android:text=""
                     android:textColor="#5D5E66"
-                    android:textSize="25px"/>
+                    android:textSize="8dp"/>
 
 
             </LinearLayout>
 
             <LinearLayout
-                android:layout_marginTop="16px"
+                android:layout_marginTop="3dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
@@ -101,7 +102,7 @@
                     android:layout_height="wrap_content"
                     android:text="颜色："
                     android:textColor="#5D5E66"
-                    android:textSize="25px"/>
+                    android:textSize="8dp"/>
 
                 <TextView
                     android:id="@+id/cablinet_adapter_colour"
@@ -109,13 +110,13 @@
                     android:layout_height="wrap_content"
                     android:text=""
                     android:textColor="#5D5E66"
-                    android:textSize="25px"/>
+                    android:textSize="8dp"/>
 
 
             </LinearLayout>
 
             <LinearLayout
-                android:layout_marginTop="16px"
+                android:layout_marginTop="3dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
@@ -124,7 +125,7 @@
                     android:layout_height="wrap_content"
                     android:text="材质："
                     android:textColor="#5D5E66"
-                    android:textSize="25px"/>
+                    android:textSize="8dp"/>
 
                 <TextView
                     android:id="@+id/cablinet_adapter_materials"
@@ -132,14 +133,14 @@
                     android:layout_height="wrap_content"
                     android:text=""
                     android:textColor="#5D5E66"
-                    android:textSize="25px"/>
+                    android:textSize="8dp"/>
 
 
             </LinearLayout>
 
 
             <LinearLayout
-                android:layout_marginTop="16px"
+                android:layout_marginTop="3dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
@@ -148,7 +149,7 @@
                     android:layout_height="wrap_content"
                     android:text="尺寸："
                     android:textColor="#5D5E66"
-                    android:textSize="25px"/>
+                    android:textSize="8dp"/>
 
                 <TextView
                     android:id="@+id/cablinet_adapter_size"
@@ -156,7 +157,7 @@
                     android:layout_height="wrap_content"
                     android:text=""
                     android:textColor="#5D5E66"
-                    android:textSize="25px"/>
+                    android:textSize="8dp"/>
 
             </LinearLayout>
 
@@ -166,115 +167,74 @@
 
 
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_vertical">
-
-
-
         <TextView
             android:id="@+id/cablinet_adapter_status1"
-            android:layout_marginLeft="22px"
+            android:layout_marginLeft="7dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="状态："
-            android:textSize="30px"
+            android:text="状态:"
+            android:textSize="14dp"
             android:textColor="#2C2C2C"/>
-
-
-
-
         <TextView
+            android:layout_toRightOf="@id/cablinet_adapter_status1"
             android:id="@+id/cablinet_adapter_status"
-            android:layout_marginLeft="24px"
+            android:layout_marginLeft="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="正在租"
-            android:textSize="30px"
+            android:textSize="14dp"
             android:textColor="#2C2C2C"/>
-
-
-
-
         <TextView
+            android:layout_toRightOf="@id/cablinet_adapter_status"
             android:id="@+id/cablinet_adapter_rent_day1"
-            android:layout_marginLeft="84px"
+            android:layout_marginLeft="15dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="已租:"
-            android:textSize="30px"
+            android:textSize="14dp"
             android:textColor="#2C2C2C"/>
-
-
-
-
         <TextView
+            android:layout_toRightOf="@+id/cablinet_adapter_rent_day1"
             android:id="@+id/cablinet_adapter_rent_day"
-            android:layout_marginLeft="24px"
+            android:layout_marginLeft="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="3天"
-            android:textSize="30px"
+            android:textSize="14dp"
             android:textColor="#2C2C2C"/>
-
-
-
-
-        <TextView
-            android:id="@+id/cablinet_adapter_rent"
-            android:layout_marginLeft="60px"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="一键续租"
-            android:textSize="34px"
-            android:textColor="#FC5C55"/>
-
-
-
-
-        <TextView
-            android:id="@+id/cablinet_adapter_buyout"
-            android:layout_marginLeft="72px"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="立即买断"
-            android:textSize="34px"
-            android:textColor="#FC5C55"/>
-
-
-
-
-<ImageView
-    android:id="@+id/cablinet_adapter_share"
-    android:layout_marginLeft="60px"
-    android:layout_width="44px"
-    android:layout_height="44px"
-    android:src="@drawable/fenxiangwei"/>
-
-
-
-
-
-
-    </LinearLayout>
-
-
-
-
-
-
-
-
-
-
+            <TextView
+                android:layout_toRightOf="@id/cablinet_adapter_rent_day"
+                android:id="@+id/cablinet_adapter_rent"
+                android:layout_marginLeft="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="一键续租"
+                android:textSize="14dp"
+                android:textColor="#FC5C55"/>
+            <TextView
+                android:layout_toRightOf="@id/cablinet_adapter_rent"
+                android:id="@+id/cablinet_adapter_buyout"
+                android:layout_marginLeft="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="立即买断"
+                android:textSize="14dp"
+                android:textColor="#FC5C55"/>
+            <ImageView
+                android:layout_alignParentRight="true"
+                android:id="@+id/cablinet_adapter_share"
+                android:layout_marginLeft="20dp"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:src="@drawable/fenxiangwei"/>
+        </RelativeLayout>
 </LinearLayout>
-
-
 <View
     android:layout_width="match_parent"
     android:layout_height="4px"
     android:background="#D8D8D8"/>
-
-
 </LinearLayout>

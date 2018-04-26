@@ -66,7 +66,7 @@ public class ShipAdapter3 extends RecyclerView.Adapter{
                     public void onYes() {
                         String url = "https://baobaoapi.ldlchat.com/Home/order/buttonsign.html";
                         HashMap<String,String> map = new HashMap<String, String>();
-                        map.put("orderid",mList.get(position).getId());
+                        map.put("orderid",mList.get(position).getOrderid());
                         OkHttpUtils.getInstance().post(url, map, new MyNetWorkCallback<Object>() {
                             @Override
                             public void onSuccess(Object o) throws JSONException {

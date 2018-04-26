@@ -55,12 +55,12 @@ public class CabinetActivity extends AppCompatActivity {
         OkHttpUtils.getInstance().post(SBUrls.CABINET, stringMap, new MyNetWorkCallback<CabinetBean>() {
             @Override
             public void onSuccess(CabinetBean cabinetBean) throws JSONException {
-                List<CabinetBean.InfoBean> info = cabinetBean.getInfo();
-
-                cablinet_recycler1.setLayoutManager(new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL));
-
-                CabinetAdapter likeAdapter=new CabinetAdapter(CabinetActivity.this,info);
-                cablinet_recycler1.setAdapter(likeAdapter);
+                if(null != cabinetBean.getInfo() && cabinetBean.getInfo().size()>0) {
+                    List<CabinetBean.InfoBean> info = cabinetBean.getInfo();
+                    cablinet_recycler1.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL));
+                    CabinetAdapter likeAdapter = new CabinetAdapter(CabinetActivity.this, info);
+                    cablinet_recycler1.setAdapter(likeAdapter);
+                }
             }
 
             @Override

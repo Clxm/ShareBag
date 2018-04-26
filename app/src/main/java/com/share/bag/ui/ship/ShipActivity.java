@@ -118,8 +118,7 @@ public class ShipActivity extends AppCompatActivity implements View.OnClickListe
     public void getdata1() {
         Map<String, String> map = new HashMap<>();
         map.put("type", "1");
-//        map.put("userid", FileUtil.getUserId(ShipActivity.this));
-        map.put("userid", "51");
+        map.put("userid", FileUtil.getUserId(ShipActivity.this));
         OkHttpUtils.getInstance().post(SBUrls.ORDERTSTATUS, map, new MyNetWorkCallback<ShipHttpBean1>() {
             @Override
             public void onSuccess(ShipHttpBean1 bean) throws JSONException {
@@ -140,8 +139,7 @@ public class ShipActivity extends AppCompatActivity implements View.OnClickListe
     public void getdata2() {
         Map<String, String> map = new HashMap<>();
         map.put("type", "2");
-//        map.put("userid", FileUtil.getUserId(ShipActivity.this));
-        map.put("userid", "51");
+        map.put("userid", FileUtil.getUserId(ShipActivity.this));
         OkHttpUtils.getInstance().post(SBUrls.ORDERTSTATUS, map, new MyNetWorkCallback<ShipHttpBean2>() {
             @Override
             public void onSuccess(ShipHttpBean2 bean) throws JSONException {
@@ -161,8 +159,7 @@ public class ShipActivity extends AppCompatActivity implements View.OnClickListe
     public void getdata3() {
         Map<String, String> map = new HashMap<>();
         map.put("type", "4");
-//        map.put("userid", FileUtil.getUserId(ShipActivity.this));
-        map.put("userid", "51");
+        map.put("userid", FileUtil.getUserId(ShipActivity.this));
         OkHttpUtils.getInstance().post(SBUrls.ORDERTSTATUS, map, new MyNetWorkCallback<ShipHttpBean3>() {
             @Override
             public void onSuccess(ShipHttpBean3 bean) throws JSONException {
@@ -182,8 +179,7 @@ public class ShipActivity extends AppCompatActivity implements View.OnClickListe
     public void getdata4() {
         Map<String, String> map = new HashMap<>();
         map.put("type", "7");
-//        map.put("userid", FileUtil.getUserId(ShipActivity.this));
-        map.put("userid", "51");
+        map.put("userid", FileUtil.getUserId(ShipActivity.this));
         OkHttpUtils.getInstance().post(SBUrls.ORDERTSTATUS, map, new MyNetWorkCallback<ShipHttpBean4>() {
             @Override
             public void onSuccess(ShipHttpBean4 bean) throws JSONException {

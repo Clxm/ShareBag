@@ -39,14 +39,35 @@ public class CabinetAdapter extends RecyclerView.Adapter<CabinetAdapter.ViewHold
 
         Glide.with(context).load(SBUrls.LOGURL + list.get(position).getImg()).into(holder.cablinet_adapter_img);
 
-        holder.cablinet_adapter_name.setText(list.get(position).getTitle());
+        CabinetBean.InfoBean bean = list.get(position);
+        holder.cablinet_adapter_name.setText(bean.getTitle());
         holder.cablinet_adapter_brands.setText(list.get(position).getBagbrand_id());
-//        holder.cablinet_adapter_numbering.setText(list.get(position).getTitle());
-//        holder.cablinet_adapter_colour.setText(list.get(position).get);
         holder.cablinet_adapter_size.setText(list.get(position).getBagsize_id());
-
         holder.cablinet_adapter_status.setText(list.get(position).getBagpay());
-
+        holder.cablinet_adapter_colour.setText(bean.getColor());
+        holder.cablinet_adapter_materials.setText(bean.getMaterial());
+        holder.cablinet_adapter_numbering.setText(bean.getNumber());
+        if(bean.getBagpay().equals("1")){//已买断
+            holder.cablinet_adapter_status.setText("已买断");
+            holder.cablinet_adapter_rent_day.setVisibility(View.GONE);
+            holder.cablinet_adapter_rent_day1.setVisibility(View.GONE);
+            holder.cablinet_adapter_rent.setVisibility(View.GONE);
+            holder.cablinet_adapter_buyout.setVisibility(View.GONE);
+        }else if(bean.getBagpay().equals("2")){
+            holder.cablinet_adapter_status.setText("正在租");
+            holder.cablinet_adapter_rent_day.setVisibility(View.VISIBLE);
+            holder.cablinet_adapter_rent_day1.setVisibility(View.VISIBLE);
+            holder.cablinet_adapter_rent.setVisibility(View.VISIBLE);
+            holder.cablinet_adapter_buyout.setVisibility(View.VISIBLE);
+            holder.cablinet_adapter_rent_day.setText(bean.getDays()+"天");
+        }else if(bean.getBagpay().equals("3")){
+            holder.cablinet_adapter_rent_day.setText(bean.getDays()+"天");
+            holder.cablinet_adapter_status.setText("已出租");
+            holder.cablinet_adapter_rent_day.setVisibility(View.GONE);
+            holder.cablinet_adapter_rent_day1.setVisibility(View.GONE);
+            holder.cablinet_adapter_rent.setVisibility(View.GONE);
+            holder.cablinet_adapter_buyout.setVisibility(View.GONE);
+        }
 
 
         holder.cablinet_adapter_rent.setOnClickListener(new View.OnClickListener() {

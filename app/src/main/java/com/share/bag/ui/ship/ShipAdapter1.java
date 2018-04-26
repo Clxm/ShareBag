@@ -11,9 +11,14 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.share.bag.R;
 import com.share.bag.SBUrls;
+import com.share.bag.utils.okhttp.OkHttpUtils;
+import com.share.bag.utils.okhttp.callback.MyNetWorkCallback;
 import com.share.bag.view.YWXZAlertDialog;
 
+import org.json.JSONException;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -57,8 +62,21 @@ public class ShipAdapter1 extends RecyclerView.Adapter{
                 dialog.setOnAlertDialogOnClick(new YWXZAlertDialog.AlertDialogOnClickListener() {
                     @Override
                     public void onYes() {
-                        mList.remove(position);
-                        notifyDataSetChanged();
+                        String url = "https://baobaoapi.ldlchat.com/Home/Order/deleteorder.html";
+                        HashMap<String,String> map = new HashMap();
+                        map.put("orderid",mList.get(position).getOrderid());
+                        OkHttpUtils.getInstance().post(url, map, new MyNetWorkCallback<Object>() {
+                            @Override
+                            public void onSuccess(Object o) throws JSONException {
+                                mList.remove(position);
+                                notifyDataSetChanged();
+                            }
+
+                            @Override
+                            public void onError(int errorCode, String errorMsg) {
+
+                            }
+                        });
                         dialog.dismiss();
                     }
 
