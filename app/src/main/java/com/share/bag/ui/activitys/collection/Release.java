@@ -32,6 +32,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 
+import com.bumptech.glide.Glide;
 import com.qiniu.android.http.ResponseInfo;
 import com.qiniu.android.storage.UpCompletionHandler;
 import com.qiniu.android.storage.UploadManager;
@@ -40,6 +41,7 @@ import com.share.bag.SBUrls;
 import com.share.bag.entity.ReleaseBagBean;
 import com.share.bag.response.QiNiuToken;
 import com.share.bag.ui.activitys.mine.avatar.PhotoUtils;
+import com.share.bag.utils.ImageUploadeUtils;
 import com.share.bag.utils.ToastUtils;
 import com.share.bag.utils.okhttp.OkHttpUtils;
 import com.share.bag.utils.okhttp.callback.MyNetWorkCallback;
@@ -79,18 +81,17 @@ public class Release extends AppCompatActivity implements View.OnClickListener {
     private File fileCropUri = new File(Environment.getExternalStorageDirectory().getPath() + "/crop_photo.jpg");
     private Uri cropImageUri;
     private Uri imageUri;
-    private List<ImageView> mImageViews = new ArrayList<>();
     private Uri mNewUri;
+    private ImageView selectImage;
     private PopupWindow mWindow2;
     private String baglist_id;
-    private String mQiNiuToken;
 
+    private String url="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_release2);
         initView();
-        getQiNiuToken();
 //        EditText editText = new EditText(this);
 //设置EditText的显示方式为多行文本输入
         release_et_input.setInputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE);
@@ -133,22 +134,6 @@ public class Release extends AppCompatActivity implements View.OnClickListener {
 
     }
 
-    private void getQiNiuToken() {
-        Map<String, String> map = new HashMap<>();
-        OkHttpUtils.getInstance().post(SBUrls.GET_QINIU_TOKEN, map, new MyNetWorkCallback<QiNiuToken>() {
-
-            @Override
-            public void onSuccess(QiNiuToken qiNiuToken) throws JSONException {
-                mQiNiuToken = qiNiuToken.getInfo();
-            }
-
-            @Override
-            public void onError(int errorCode, String errorMsg) {
-
-            }
-        });
-    }
-
     private void initView() {
         release2_return = (ImageView) findViewById(R.id.release2_return);
         release_et_input = (EditText) findViewById(R.id.release_et_input);
@@ -174,12 +159,12 @@ public class Release extends AppCompatActivity implements View.OnClickListener {
                 break;
             case R.id.release2_add_photo1:
                 release2_add_photo1.setDrawingCacheEnabled(true);
-                mImageViews.add(release2_add_photo1);
+                selectImage = release2_add_photo1;
                 getPopupWindow();
                 break;
             case R.id.release2_add_photo2:
                 release2_add_photo2.setDrawingCacheEnabled(true);
-                mImageViews.add(release2_add_photo2);
+                selectImage = release2_add_photo2;
                 getPopupWindow();
                 break;
             case R.id.release2_return:
@@ -216,24 +201,24 @@ public class Release extends AppCompatActivity implements View.OnClickListener {
                     break;
                 case CODE_RESULT_REQUEST:
                     Bitmap bitmap = PhotoUtils.getBitmapFromUri(cropImageUri, this);
-                    if (bitmap != null) {
-                        showImages(bitmap);
-                        mImageViews.clear();
-                    }
+                    ImageUploadeUtils.upLoadImage(bitmap, new ImageUploadeUtils.UploadImageCallBack() {
+                        @Override
+                        public void onSuccess(String imageUrl) {
+                            if(url.isEmpty()){
+                                url = imageUrl;
+                            }else {
+                                url= url + "," +imageUrl;
+                            }
+                            Glide.with(Release.this).load(imageUrl).into(selectImage);
+                        }
+
+                        @Override
+                        public void onFail() {
+                            ToastUtils.showTop(Release.this,"请重新选择图片");
+                        }
+                    });
                     break;
             }
-        }
-    }
-
-
-    private void showImages(Bitmap bitmap) {
-//      压缩图片
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
-//        final byte[] bytes = outputStream.toByteArray();
-
-        for (int i = 0; i < mImageViews.size(); i++) {
-            mImageViews.get(i).setImageBitmap(bitmap);
         }
     }
 
@@ -339,15 +324,13 @@ public class Release extends AppCompatActivity implements View.OnClickListener {
         Map<String, String> map = new HashMap<>();
         map.put("baglist_id", baglist_id);
         map.put("content", input);
+        map.put("url",url);
         //上传文本
         OkHttpUtils.getInstance().post(SBUrls.RELEASE_TEXT_BAG, map, new MyNetWorkCallback<ReleaseBagBean>() {
             @Override
             public void onSuccess(ReleaseBagBean releaseBagBean) throws JSONException {
-                release_et_input.setText("");
-                if (release2_add_photo1.getDrawingCache() == null && release2_add_photo2.getDrawingCache() == null) {
-                    ToastUtils.showTop(Release.this, "发布成功1");
-                    Release.this.finish();
-                }
+                ToastUtils.showTop(Release.this,"发布成功");
+               finish();
             }
 
             @Override
@@ -355,49 +338,6 @@ public class Release extends AppCompatActivity implements View.OnClickListener {
 
             }
         });
-
-//        http://om6im9i3r.bkt.clouddn.com/
-        String upkey = "uploadqiniu.jpg";
-        UploadManager uploadManager = new UploadManager();
-        if (release2_add_photo1.getDrawingCache() != null) {
-            Bitmap photo1Bm = Bitmap.createBitmap(release2_add_photo1.getDrawingCache());
-            byte[] imgByte1 = convertIconToByte(photo1Bm);
-            uploadManager.put(imgByte1, upkey, mQiNiuToken,
-                    new UpCompletionHandler() {
-                        @Override
-                        public void complete(String key, ResponseInfo info, JSONObject response) {
-                            if (info.isOK()) {
-                                if (release2_add_photo2.getDrawingCache() == null) {
-                                    release2_add_photo1.setDrawingCacheEnabled(false);
-                                    ToastUtils.showTop(Release.this, "发布成功2");
-                                    Release.this.finish();
-                                }
-                            }
-                        }
-                    }, null);
-        }
-
-        /*
-         *  参数	说明
-            key	uploadManager.put(file, key, ...) 方法指定的 key
-            info	http 请求的状态信息等，可记入日志，isOK() 返回 true 表示上传成功
-            response	七牛反馈的信息。可从中解析保存在七牛服务的 key 等信息，具体字段取决上传策略的设置
-         * */
-        if (release2_add_photo2.getDrawingCache() != null) {
-            Bitmap photo2Bm = Bitmap.createBitmap(release2_add_photo2.getDrawingCache());
-            byte[] imgByte2 = convertIconToByte(photo2Bm);
-            uploadManager.put(imgByte2, upkey, mQiNiuToken,
-                    new UpCompletionHandler() {
-                        @Override
-                        public void complete(String key, ResponseInfo info, JSONObject response) {
-                            if (info.isOK()) {
-                                release2_add_photo2.setDrawingCacheEnabled(false);
-                                ToastUtils.showTop(Release.this, "发布成功3");
-                                Release.this.finish();
-                            }
-                        }
-                    }, null);
-        }
     }
 
     /**
