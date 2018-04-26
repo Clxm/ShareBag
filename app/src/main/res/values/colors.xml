@@ -17,5 +17,6 @@
     <color name="cutting_line">#F0F0F0</color>
     <color name="normal_color">#292929</color>
     <color name="bag_detail_color">#333333</color>
+    <color name="size_normal">#979797</color>
 
 </resources>

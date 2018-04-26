@@ -23,6 +23,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 
 import com.share.bag.R;
 import com.share.bag.ui.activitys.mine.avatar.PhotoUtils;
@@ -59,6 +60,18 @@ public class UploadActivity extends AppCompatActivity implements View.OnClickLis
     EditText mEtBrand;
     @BindView(R.id.et_original_price)
     EditText mEtOriginalPrice;
+    @BindView(R.id.tv_size_m)
+    TextView mTvSizeM;
+    @BindView(R.id.tv_size_l)
+    TextView mTvSizeL;
+    @BindView(R.id.tv_size_xl)
+    TextView mTvSizeXl;
+    @BindView(R.id.tv_day)
+    TextView mTvDay;
+    @BindView(R.id.tv_month)
+    TextView mTvMonth;
+    @BindView(R.id.tv_long)
+    TextView mTvLong;
 
     private PopupWindow window2;
 
@@ -218,11 +231,41 @@ public class UploadActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
-    @OnClick({R.id.upload_return, R.id.iv_bag1, R.id.iv_bag2, R.id.iv_bag3, R.id.upload_submit})
+    @OnClick({R.id.upload_return, R.id.iv_bag1, R.id.iv_bag2, R.id.iv_bag3, R.id.upload_submit, R.id.tv_size_m, R.id.tv_size_l, R.id.tv_size_xl, R.id.tv_day, R.id.tv_month, R.id.tv_long})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.upload_return:
                 finish();
+                break;
+            case R.id.tv_size_m:
+                mTvSizeM.setBackgroundColor(getResources().getColor(R.color.main_color));
+                mTvSizeL.setBackgroundDrawable(getResources().getDrawable(R.drawable.textview_border));
+                mTvSizeXl.setBackgroundDrawable(getResources().getDrawable(R.drawable.textview_border));
+                break;
+            case R.id.tv_size_l:
+                mTvSizeM.setBackgroundDrawable(getResources().getDrawable(R.drawable.textview_border));
+                mTvSizeL.setBackgroundColor(getResources().getColor(R.color.main_color));
+                mTvSizeXl.setBackgroundDrawable(getResources().getDrawable(R.drawable.textview_border));
+                break;
+            case R.id.tv_size_xl:
+                mTvSizeM.setBackgroundDrawable(getResources().getDrawable(R.drawable.textview_border));
+                mTvSizeL.setBackgroundDrawable(getResources().getDrawable(R.drawable.textview_border));
+                mTvSizeXl.setBackgroundColor(getResources().getColor(R.color.main_color));
+                break;
+            case R.id.tv_day:
+                mTvDay.setBackgroundColor(getResources().getColor(R.color.main_color));
+                mTvMonth.setBackgroundDrawable(getResources().getDrawable(R.drawable.textview_border));
+                mTvLong.setBackgroundDrawable(getResources().getDrawable(R.drawable.textview_border));
+                break;
+            case R.id.tv_month:
+                mTvDay.setBackgroundDrawable(getResources().getDrawable(R.drawable.textview_border));
+                mTvMonth.setBackgroundColor(getResources().getColor(R.color.main_color));
+                mTvLong.setBackgroundDrawable(getResources().getDrawable(R.drawable.textview_border));
+                break;
+            case R.id.tv_long:
+                mTvMonth.setBackgroundDrawable(getResources().getDrawable(R.drawable.textview_border));
+                mTvDay.setBackgroundDrawable(getResources().getDrawable(R.drawable.textview_border));
+                mTvLong.setBackgroundColor(getResources().getColor(R.color.main_color));
                 break;
             case R.id.iv_bag1:
                 mIvBag1.setDrawingCacheEnabled(true);
