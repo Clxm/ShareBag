@@ -8,7 +8,9 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
+import android.os.Bundle;
 import android.provider.Settings;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -26,12 +28,17 @@ import android.widget.Toast;
 import com.share.bag.base.BaseActivity;
 import com.share.bag.ui.activitys.collection.ReleaseActivity;
 import com.share.bag.ui.activitys.collection.UploadActivity;
+import com.share.bag.ui.activitys.mine.AddBean;
 import com.share.bag.ui.fragments.collection.CollectionFragment;
 import com.share.bag.ui.fragments.home.HomeFragment;
 import com.share.bag.ui.fragments.mine.MineFragment;
 import com.share.bag.ui.fragments.selected.SelectedFragment;
 import com.share.bag.ui.fragments.upload.UploadFragment;
 import com.share.bag.utils.Netwoke;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,6 +66,17 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     PopupWindow window;
 
     @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(AddBean bean){
+
+    }
+
+    @Override
     public int initLayout() {
         return R.layout.activity_mainone;
     }
@@ -70,20 +88,20 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
 
         // 友盟屏幕适配
-        if (Build.VERSION.SDK_INT >= 23) {
-            String[] mPermissionList = new String[]{
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                    Manifest.permission.ACCESS_FINE_LOCATION,
-                    Manifest.permission.CALL_PHONE,
-                    Manifest.permission.READ_LOGS,
-                    Manifest.permission.READ_PHONE_STATE,
-                    Manifest.permission.READ_EXTERNAL_STORAGE,
-                    Manifest.permission.SET_DEBUG_APP,
-                    Manifest.permission.SYSTEM_ALERT_WINDOW,
-                    Manifest.permission.GET_ACCOUNTS,
-                    Manifest.permission.WRITE_APN_SETTINGS};
-            ActivityCompat.requestPermissions(this, mPermissionList, 123);
-        }
+//        if (Build.VERSION.SDK_INT >= 23) {
+//            String[] mPermissionList = new String[]{
+//                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
+//                    Manifest.permission.ACCESS_FINE_LOCATION,
+//                    Manifest.permission.CALL_PHONE,
+//                    Manifest.permission.READ_LOGS,
+//                    Manifest.permission.READ_PHONE_STATE,
+//                    Manifest.permission.READ_EXTERNAL_STORAGE,
+//                    Manifest.permission.SET_DEBUG_APP,
+//                    Manifest.permission.SYSTEM_ALERT_WINDOW,
+//                    Manifest.permission.GET_ACCOUNTS,
+//                    Manifest.permission.WRITE_APN_SETTINGS};
+//            ActivityCompat.requestPermissions(this, mPermissionList, 123);
+//        }
 
 //        setPermissions();
 
@@ -364,5 +382,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         if (window != null) {
             window.dismiss();
         }
+        EventBus.getDefault().unregister(this);
     }
 }

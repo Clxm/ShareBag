@@ -26,6 +26,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.share.bag.FileUtil;
 import com.share.bag.GlideCircleTransform;
 import com.share.bag.R;
 import com.share.bag.SBUrls;
@@ -35,6 +36,8 @@ import com.share.bag.entity.selected.HeadImgBean;
 import com.share.bag.ui.activitys.mine.avatar.PhotoUtils;
 import com.share.bag.ui.activitys.mine.avatar.ToastUtils;
 import com.share.bag.ui.activitys.mine.homepage.HomepageBean;
+import com.share.bag.ui.fragments.mine.EventBusImage;
+import com.share.bag.utils.ImageUploadeUtils;
 import com.share.bag.utils.okhttp.OkHttpUtils;
 import com.share.bag.utils.okhttp.callback.MyNetWorkCallback;
 
@@ -149,8 +152,6 @@ public class PersonalActivity extends BaseActivity {
 
         String url="https://baobaoapi.ldlchat.com/Home/my/getprofile.html";
         Map<String,String> map=new HashMap<>();
-//SBUrls.APPID
-
         OkHttpUtils.getInstance().post(url, map, new MyNetWorkCallback<HomepageBean>() {
             @Override
             public void onSuccess(HomepageBean homepageBean) throws JSONException {
@@ -313,7 +314,6 @@ public class PersonalActivity extends BaseActivity {
                 case CODE_CAMERA_REQUEST:
                     cropImageUri = Uri.fromFile(fileCropUri);
                     PhotoUtils.cropImageUri(this, imageUri, cropImageUri, 1, 1, OUTPUT_X, OUTPUT_Y, CODE_RESULT_REQUEST);
-                    Log.e("WOTAG1", "00000" + cropImageUri);
                     initLogin(cropImageUri);
 
 
@@ -323,7 +323,6 @@ public class PersonalActivity extends BaseActivity {
                     if (hasSdcard()) {
                         cropImageUri = Uri.fromFile(fileCropUri);
                         newUri = Uri.parse(PhotoUtils.getPath(this, data.getData()));
-                        Log.e("WOTAG1", "22222222222" + newUri);
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                             newUri = FileProvider.getUriForFile(this, "com.zz.fileprovider", new File(newUri.getPath()));
                             initLogin(newUri);
@@ -338,11 +337,8 @@ public class PersonalActivity extends BaseActivity {
                     break;
                 case CODE_RESULT_REQUEST:
                     Bitmap bitmap = PhotoUtils.getBitmapFromUri(cropImageUri, this);
-
-
                     if (bitmap != null) {
                         showImages(bitmap);
-                        imgview.setImageBitmap(bitmap);
                     }
                     break;
                 case 1:
@@ -383,53 +379,41 @@ public class PersonalActivity extends BaseActivity {
     }
 
     //    展示图片 进行网络请求
-    private void showImages(Bitmap bitmap) {
-        //personal_avatar1.setImageBitmap(bitmap);
-
-
-//        String url, Map<String, String> params, final ByteCallBack callback) {
-//      压缩图片
-        ByteArrayOutputStream onputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, onputStream);
-        final byte[] bytes = onputStream.toByteArray();
-
-//           final Map<String, String> map = new HashMap<>();
-//            final Map<String, String> stringObserverMap=new HashMap<>();
-//        stringObserverMap.put("uploadAvatar",""+bytes);
-
-//        OkHttpUtils.getInstance().post(SBUrls.UPDATA_IMG, stringObserverMap, new MyNetWorkCallback<HeadImgBean>() {
-//            @Override
-//            public void onSuccess(HeadImgBean headImgBean) {
-//                Toast.makeText(PersonalActivity.this, "图片的二进制"+bytes.toString(), Toast.LENGTH_SHORT).show();
-//
-//                Log.e("TAG--------","图片的二进制"+bytes.toString());
-//                com.share.bag.utils.ToastUtils.show(PersonalActivity.this , headImgBean.getInfo()+"返回值"+headImgBean.getStatus());
-//
-//
-//            }
-//
-//            @Override
-//            public void onError(int errorCode, String errorMsg) {
-//
-//            }
-//        });
-        // s上传头像
-        OkHttpUtils.getInstance().updataImg(SBUrls.UPDATA_IMG, bytes, new MyNetWorkCallback<HeadImgBean>() {
+    private void showImages(final Bitmap bitmap) {
+        ImageUploadeUtils.upLoadImage(bitmap, new ImageUploadeUtils.UploadImageCallBack() {
             @Override
-            public void onSuccess(HeadImgBean headImgBean) {
+            public void onSuccess(final String imageUrl) {
+                HashMap<String,String> map = new HashMap<>();
+                map.put("url",imageUrl);
+                // s上传头像
+                OkHttpUtils.getInstance().post(SBUrls.UPDATA_IMG, map, new MyNetWorkCallback<HeadImgBean>() {
+                    @Override
+                    public void onSuccess(HeadImgBean headImgBean) {
+                        FileUtil.saveIcon(PersonalActivity.this,imageUrl);
+                        Glide.with(PersonalActivity.this)
+                                .load(imageUrl)
+                                //设置圆角图片
+//                .transform(new GlideRoundTransform(MainActivity.this, 10))
+                                //设置圆形图片
+                                .transform(new GlideCircleTransform(PersonalActivity.this))
+                                .crossFade()
+                                .into(imgview);
+                        EventBus.getDefault().post(new EventBusImage());
+                    }
 
-                com.share.bag.utils.ToastUtils.show(PersonalActivity.this, bytes.toString() + "" + headImgBean.getInfo() + "-----" + headImgBean.getStatus());
-
-
-                Log.e("TAG11111",  headImgBean.getInfo() + "-----" + headImgBean.getStatus());
-
+                    @Override
+                    public void onError(int errorCode, String errorMsg) {
+                        com.share.bag.utils.ToastUtils.show(PersonalActivity.this, "失败" + errorMsg);
+                    }
+                });
             }
 
             @Override
-            public void onError(int errorCode, String errorMsg) {
-                com.share.bag.utils.ToastUtils.show(PersonalActivity.this, "失败" + errorMsg);
+            public void onFail() {
+
             }
         });
+
 
     }
 

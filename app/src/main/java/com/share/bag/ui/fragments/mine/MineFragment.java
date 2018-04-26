@@ -18,6 +18,7 @@ import com.share.bag.Constant;
 import com.share.bag.FileUtil;
 import com.share.bag.R;
 import com.share.bag.base.BaseFragment;
+import com.share.bag.ui.activitys.mine.AddBean;
 import com.share.bag.ui.activitys.mine.BusinessActivity;
 import com.share.bag.ui.activitys.mine.Login;
 import com.share.bag.ui.activitys.mine.MySetActivity;
@@ -30,6 +31,9 @@ import com.share.bag.ui.activitys.mine.shared.SharedActivity;
 import com.share.bag.ui.share.ShareActivity;
 import com.share.bag.ui.ship.ShipActivity;
 import com.share.bag.utils.SharePreUtils;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -140,7 +144,10 @@ public class MineFragment extends BaseFragment {
 
 
     }
-
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(EventBusImage bean){
+        FileUtil.MinereadFromPre(getActivity(),mine_name,mineAvatar);
+    }
     @Override
     protected void initData() {
 

@@ -8,8 +8,8 @@
 
 
     <LinearLayout
-        android:layout_width="1012px"
-        android:layout_height="505px"
+        android:layout_width="337dp"
+        android:layout_height="170dp"
         android:background="@drawable/personal_album"
         android:orientation="vertical"
         >
@@ -18,7 +18,7 @@
         <LinearLayout
 
             android:layout_width="match_parent"
-            android:layout_height="130px">
+            android:layout_height="45dp">
 
             <TextView
                 android:layout_marginTop="40px"
@@ -26,21 +26,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/avatar"
-                android:textSize="50px"/>
+                android:textSize="16dp"/>
         </LinearLayout>
 
 
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="2px"
+            android:layout_height="1dp"
             android:background="#EBEBEB" />
 
         <LinearLayout
             android:id="@+id/popupwindow_avatar_album"
             android:layout_width="match_parent"
-            android:layout_height="182px"
-            android:layout_marginLeft="44px"
+            android:layout_height="60dp"
+            android:layout_marginLeft="15dp"
             android:gravity="center_vertical">
 
 
@@ -52,9 +52,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="50px"
+                android:layout_marginLeft="15dp"
                 android:text="@string/album"
-                android:textSize="50px"  />
+                android:textSize="16dp"  />
 
 
         </LinearLayout>
@@ -62,15 +62,15 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="4px"
+            android:layout_height="1dp"
             android:background="#F0F0F0" />
 
 
         <LinearLayout
             android:id="@+id/popupwindow_avatar_shoot"
             android:layout_width="match_parent"
-            android:layout_height="182px"
-            android:layout_marginLeft="44px"
+            android:layout_height="60dp"
+            android:layout_marginLeft="15dp"
             android:gravity="center_vertical">
 
 
@@ -82,9 +82,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="50px"
+                android:layout_marginLeft="15dp"
                 android:text="@string/shoot"
-                android:textSize="50px"/>
+                android:textSize="16dp"/>
 
 
         </LinearLayout>

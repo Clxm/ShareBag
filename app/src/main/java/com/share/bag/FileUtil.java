@@ -39,10 +39,19 @@ public  class FileUtil {
     public static void saveName(Context context, String nickname) {
         SharedPreferences sharedPreferences = context.getSharedPreferences("userinfo",context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-
         editor.putString("nickname",nickname);//昵称
         editor.commit();
     }
+
+
+    public static void saveIcon(Context context, String icon) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("userinfo",context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("imageurl",icon);//昵称
+        editor.commit();
+    }
+
+
     /**
      * 使用SharedPreference进行读取保存的用户名和密码
      * @param context
