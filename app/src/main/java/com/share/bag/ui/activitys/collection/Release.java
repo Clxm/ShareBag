@@ -18,6 +18,7 @@ import android.text.Editable;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Base64;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -355,7 +356,7 @@ public class Release extends AppCompatActivity implements View.OnClickListener {
             }
         });
 
-        String upkey = "uploadqiniu.txt";
+        String upkey = "uploadqiniu.jpg";
         UploadManager uploadManager = new UploadManager();
         if (release2_add_photo1.getDrawingCache() != null) {
             Bitmap photo1Bm = Bitmap.createBitmap(release2_add_photo1.getDrawingCache());
@@ -377,7 +378,6 @@ public class Release extends AppCompatActivity implements View.OnClickListener {
                                     ToastUtils.showTop(Release.this, "发布成功2");
                                     Release.this.finish();
                                 }
-
                             }
                         }
                     }, null);
@@ -413,8 +413,17 @@ public class Release extends AppCompatActivity implements View.OnClickListener {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
         byte[] icon = baos.toByteArray();
-//        return Base64.encodeToString(icon, Base64.DEFAULT);
         return icon;
+    }
+
+    /**
+     * bitmap转String
+     */
+    public static String convertIconToString(Bitmap bitmap) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
+        byte[] icon = baos.toByteArray();
+        return Base64.encodeToString(icon, Base64.DEFAULT);
     }
 
     /**

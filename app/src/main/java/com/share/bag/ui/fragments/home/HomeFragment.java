@@ -3,6 +3,7 @@ package com.share.bag.ui.fragments.home;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +12,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.share.bag.DateUtils;
 import com.share.bag.FileUtil;
 import com.share.bag.GlideCircleTransform;
@@ -53,11 +53,7 @@ import static com.share.bag.R.id.home_brandimg1;
 * */
 public class HomeFragment extends BaseFragment {
 
-
     Unbinder unbinder;
-
-    @BindView(R.id.refreshlayout)
-    SmartRefreshLayout refreshlayout;
 
     //品牌专区
     @BindView(home_brandimg1)
@@ -144,6 +140,8 @@ public class HomeFragment extends BaseFragment {
     TextView mTvHandPick;
     @BindView(R.id.tv_expert)
     TextView mTvExpert;
+    @BindView(R.id.refresh)
+    SwipeRefreshLayout mRefresh;
 
     private Context context;
     private MZBannerView mzBannerView;
@@ -172,6 +170,20 @@ public class HomeFragment extends BaseFragment {
     public void initView(View view) {
         context = getActivity().getApplicationContext();
         mzBannerView = view.findViewById(R.id.first_vp);
+        initRefresh();
+    }
+
+    private void initRefresh() {
+        mRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getData();
+            }
+        });
+    }
+
+    private void getData() {
+
     }
 
 
@@ -419,7 +431,6 @@ public class HomeFragment extends BaseFragment {
                 for (int i = 0; i < oldNewList.size(); i++) {
                     String oldNewImg = oldNewList.get(i).getImg();
                     ImageLoader.LoadLocalImg(home_trade_in, context, oldNewImg);
-
                 }
                 //邀请好友
                 List<HomeFragmentBean.AdButtomBean> inviteFriendList = homeFragmentBean.getAd_buttom();
