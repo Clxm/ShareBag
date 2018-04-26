@@ -417,8 +417,8 @@ public class HomeFragment extends BaseFragment {
                 }
                 //邀请好友
                 List<HomeFragmentBean.AdButtomBean> inviteFriendList = homeFragmentBean.getAd_buttom();
-                for (int i = 0; i < inviteFriendList.size(); i++) {
-                    String inviteImg = inviteFriendList.get(i).getImg();
+                if (null != inviteFriendList && inviteFriendList.size() > 0) {
+                    String inviteImg = inviteFriendList.get(0).getImg();
                     ImageLoader.LoadLocalImg(homeShare, context, inviteImg);
                 }
             }
