@@ -191,9 +191,6 @@ public class HomeFragment extends BaseFragment {
             public void onSuccess(HomeTalentBean homeTalentBean) throws JSONException {
                 mRefresh.setRefreshing(false);
                 HomeTalentBean.InfoBean info = homeTalentBean.getInfo();
-
-//                for (int i = 0; i < info.size(); i++) {
-
                 String iconurl = info.getUserinfo().getIconurl();
                 Glide.with(context).load(iconurl)
                         //设置圆角图片
@@ -256,7 +253,6 @@ public class HomeFragment extends BaseFragment {
                 home_time.setText(strTime);
                 home_dynamic.setText(info.getContent());
             }
-//            }
 
             @Override
             public void onError(int errorCode, String errorMsg) {

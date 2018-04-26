@@ -36,7 +36,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 import static com.share.bag.ui.activitys.mine.PersonalActivity.hasSdcard;
 
@@ -92,6 +91,22 @@ public class UploadActivity extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload);
         ButterKnife.bind(this);
+        setViewOnClick();
+    }
+
+    private void setViewOnClick() {
+        mUploadReturn.setOnClickListener(this);
+        mTvSizeM.setOnClickListener(this);
+        mTvSizeL.setOnClickListener(this);
+        mTvSizeXl.setOnClickListener(this);
+        mTvDay.setOnClickListener(this);
+        mTvMonth.setOnClickListener(this);
+        mTvLong.setOnClickListener(this);
+        mIvBag1.setOnClickListener(this);
+        mIvBag2.setOnClickListener(this);
+        mIvBag3.setOnClickListener(this);
+        mUploadSubmit.setOnClickListener(this);
+
     }
 
     public void getPopupWindow() {
@@ -231,7 +246,7 @@ public class UploadActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
-    @OnClick({R.id.upload_return, R.id.iv_bag1, R.id.iv_bag2, R.id.iv_bag3, R.id.upload_submit, R.id.tv_size_m, R.id.tv_size_l, R.id.tv_size_xl, R.id.tv_day, R.id.tv_month, R.id.tv_long})
+    @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.upload_return:
