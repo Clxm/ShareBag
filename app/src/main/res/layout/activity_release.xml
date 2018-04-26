@@ -1,89 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#FFF"
-    tools:context="com.share.bag.ui.activitys.collection.ReleaseActivity">
-
-<LinearLayout
-
-    android:layout_width="match_parent"
-    android:layout_height="@dimen/x144"
-    android:gravity="center_vertical"
-    android:background="#FFF">
-
-    <ImageView
-        android:layout_marginLeft="30px"
-        android:id="@+id/release_return"
-        android:layout_width="27px"
-        android:layout_height="42px"
-        android:src="@mipmap/xiaoyu3"
-        android:scaleType="fitXY"/>
-
-    <TextView
-        android:gravity="center_horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/Bags_select"
-        android:layout_marginRight="57px"
-        android:textSize="@dimen/x46"
-        android:textColor="@color/navigation_bar_text_color"/>
-
-
-
-</LinearLayout>
-
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/x4"
-        android:background="@color/navigation_bar_line_color"
-        />
-
-
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#FFF"
+              android:orientation="vertical"
+              tools:context="com.share.bag.ui.activitys.collection.ReleaseActivity">
 
     <LinearLayout
-        android:layout_marginTop="4dp"
-        android:padding="4dp"
-        android:layout_marginLeft="35px"
-        android:layout_marginRight="35px"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:gravity="center"
-        android:background="#F7F7F7">
+        android:layout_height="48dp"
+        android:background="#FFF"
+        android:gravity="center_vertical">
 
-        <EditText
-            android:layout_weight="1"
-            android:id="@+id/release_et_input"
+        <ImageView
+            android:id="@+id/release_return"
+            android:layout_width="9dp"
+            android:layout_height="14dp"
+            android:layout_marginLeft="12dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/xiaoyu3"/>
+
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="@dimen/x100"
-            android:layout_gravity="center_vertical"
-            android:background="#F7F7F7"
-            android:drawableLeft="@drawable/fangdaxiao"
-            android:drawablePadding="5dp"
-            android:hint="请输入关键字"
-            android:imeOptions="actionSearch"
-            android:inputType="text"
-            android:textSize="16sp"
-            />
-<ImageView
-    android:layout_width="50px"
-    android:layout_height="50px"
-    android:src="@drawable/close"/>
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center_horizontal"
+            android:text="@string/Bags_select"
+            android:textColor="@color/navigation_bar_text_color"
+            android:textSize="15dp"/>
 
     </LinearLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/navigation_bar_line_color"/>
 
-
-<android.support.v7.widget.RecyclerView
-    android:id="@+id/release_recycler"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"/>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/release_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
 
 </LinearLayout>
