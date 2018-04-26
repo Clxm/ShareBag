@@ -189,16 +189,6 @@ public class HomeFragment extends BaseFragment {
 
     @Override
     protected void initData() {
-
-//        home_dynamic.setEllipsize(TextUtils.TruncateAt.END);//收缩
-//        home_dynamic.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-////                    talent_dynamic.setEllipsize(null);//展开
-//
-//            }
-//        });
         final Map<String, String> stringMap = new HashMap<>();
         String strurl = "https://baobaoapi.ldlchat.com/Home/Cabinet/falsemasterlist.html";
         OkHttpUtils.getInstance().post(strurl, stringMap, new MyNetWorkCallback<HomeTalentBean>() {

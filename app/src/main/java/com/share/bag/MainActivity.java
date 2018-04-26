@@ -85,7 +85,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             ActivityCompat.requestPermissions(this, mPermissionList, 123);
         }
 
-        setPermissions();
+//        setPermissions();
 
         home_radiobt = (RadioButton) findViewById(R.id.home_radiobt);
         live_radiobt = (RadioButton) findViewById(R.id.live_radiobt);

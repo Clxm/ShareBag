@@ -18,6 +18,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -49,10 +51,14 @@ public class UploadActivity extends AppCompatActivity implements View.OnClickLis
     ImageView mIvBag2;
     @BindView(R.id.iv_bag3)
     ImageView mIvBag3;
-    //    @BindView(R.id.uplad_adding1_name)
-//    TextView mUpladAdding1Name;
     @BindView(R.id.upload_return)
     ImageView mUploadReturn;
+    @BindView(R.id.upload_submit)
+    Button mUploadSubmit;
+    @BindView(R.id.et_brand)
+    EditText mEtBrand;
+    @BindView(R.id.et_original_price)
+    EditText mEtOriginalPrice;
 
     private PopupWindow window2;
 
@@ -73,13 +79,6 @@ public class UploadActivity extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload);
         ButterKnife.bind(this);
-        initView();
-
-
-    }
-
-    private void initView() {
-
     }
 
     public void getPopupWindow() {
@@ -219,7 +218,7 @@ public class UploadActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
-    @OnClick({R.id.upload_return, R.id.iv_bag1, R.id.iv_bag2, R.id.iv_bag3})
+    @OnClick({R.id.upload_return, R.id.iv_bag1, R.id.iv_bag2, R.id.iv_bag3, R.id.upload_submit})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.upload_return:
@@ -239,6 +238,11 @@ public class UploadActivity extends AppCompatActivity implements View.OnClickLis
                 mIvBag3.setDrawingCacheEnabled(true);
                 mImageViews.add(mIvBag3);
                 getPopupWindow();
+                break;
+            case R.id.upload_submit:
+                String brand = mEtBrand.getText().toString().trim();
+                String originalPrice = mEtOriginalPrice.getText().toString().trim();
+
                 break;
         }
     }
