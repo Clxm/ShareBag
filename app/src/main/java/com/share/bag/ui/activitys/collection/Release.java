@@ -356,6 +356,7 @@ public class Release extends AppCompatActivity implements View.OnClickListener {
             }
         });
 
+//        http://om6im9i3r.bkt.clouddn.com/
         String upkey = "uploadqiniu.jpg";
         UploadManager uploadManager = new UploadManager();
         if (release2_add_photo1.getDrawingCache() != null) {
@@ -365,13 +366,6 @@ public class Release extends AppCompatActivity implements View.OnClickListener {
                     new UpCompletionHandler() {
                         @Override
                         public void complete(String key, ResponseInfo info, JSONObject response) {
-                            Log.d("ResponseInfo2", info + "");
-                            Log.d("JSONObject2", response + "");
-                            String error = info.error;
-                            int statusCode = info.statusCode;
-                            Log.d("qiniu_error", error);
-                            Log.d("statusCode", statusCode + "");
-
                             if (info.isOK()) {
                                 if (release2_add_photo2.getDrawingCache() == null) {
                                     release2_add_photo1.setDrawingCacheEnabled(false);

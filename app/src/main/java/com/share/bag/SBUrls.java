@@ -83,23 +83,14 @@ public class SBUrls {
 
     //  订单状态
     public static final String ORDERTSTATUS = "https://baobaoapi.ldlchat.com/Home/Order/wait.html";
-/*
-* check
-Receiving
-* */
 
-    //    ------------------------------ 字符 -----------------------------------------''
     public static final String TOKEN = "TOKEN";
     //上传头像
 //
     public static final String UPDATA_IMG = "https://baobaoapi.ldlchat.com/Home/My/uploadheaderimg.html";
-//    public static final String UPDATA_IMG = "http://baobaoapi.ldlchat.com/Home/Public/upheaderimg.html";
-    //上传头像
-//    public static final String UPDATA_IMG = "http://baobaoapi.ldlchat.com/Home/Public/upheaderimg.html";
-
     //popo
     public static final String JIAZHEN="https://baobaoapi.ldlchat.com/Home/Backlist/bagtolist.html";
-    //上传文字和包包图片
+    //上传文本
     public static final String RELEASE_TEXT_BAG = "https://baobaoapi.ldlchat.com/Home/Userupload/publishbag.html";
     //发表评论
     public static final String PUBLISH_COMMENT = "https://baobaoapi.ldlchat.com/index.php?s=/Home/comment/publish.html";

@@ -2,6 +2,7 @@ package com.share.bag.ui.activitys.collection;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.text.TextUtils;
@@ -50,6 +51,7 @@ public class ReleaseActivity extends AppCompatActivity {
         release_return = (ImageView) findViewById(R.id.release_return);
         release_et_input = (EditText) findViewById(R.id.release_et_input);
         release_recycler = (RecyclerView) findViewById(R.id.release_recycler);
+        release_recycler.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
     }
 
     private void submit() {

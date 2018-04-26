@@ -1,36 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="1000px"
-    android:background="@color/transparent"
-    android:orientation="horizontal"
-    android:weightSum="2">
+              android:layout_width="match_parent"
+              android:layout_height="330dp"
+              android:background="@color/transparent"
+              android:orientation="horizontal"
+              android:weightSum="2">
 
     <LinearLayout
         android:id="@+id/pop_one"
         android:layout_width="match_parent"
-        android:layout_height="500px"
+        android:layout_height="166dp"
         android:layout_weight="1"
-        android:orientation="vertical"
-        android:gravity="center">
+        android:gravity="center"
+        android:orientation="vertical">
 
         <ImageView
-            android:layout_width="200px"
-            android:layout_height="200px"
+            android:layout_width="66dp"
+            android:layout_height="66dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="50px"
-            android:src="@mipmap/shangchuan2" />
-
-
-
+            android:layout_marginTop="16dp"
+            android:src="@mipmap/shangchuan2"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:text="上传包包"
             android:textColor="#FFF"
-            android:textSize="13sp"
-            android:layout_marginTop="30px"/>
+            android:textSize="13dp"/>
 
     </LinearLayout>
 
@@ -38,26 +35,25 @@
     <LinearLayout
         android:id="@+id/pop_two"
         android:layout_width="match_parent"
-        android:layout_height="500px"
+        android:layout_height="166dp"
         android:layout_weight="1"
-        android:orientation="vertical"
-        android:gravity="center">
+        android:gravity="center"
+        android:orientation="vertical">
 
         <ImageView
-            android:layout_width="200px"
-            android:layout_height="200px"
+            android:layout_width="66dp"
+            android:layout_height="66dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="50px"
-            android:src="@mipmap/baobaodaren2" />
-
+            android:layout_marginTop="16dp"
+            android:src="@mipmap/baobaodaren2"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:text="包包达人"
             android:textColor="#FFF"
-            android:textSize="13sp"
-            android:layout_marginTop="30px"/>
+            android:textSize="13dp"/>
 
     </LinearLayout>
 

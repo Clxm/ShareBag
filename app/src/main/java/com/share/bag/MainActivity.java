@@ -322,7 +322,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         pop_one.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Toast.makeText(MainActivity.this, "点击了上传", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(MainActivity.this, UploadActivity.class);
                 startActivity(intent);
                 window.dismiss();
@@ -332,10 +331,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         pop_two.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//               点击了包包达人
-//                Intent intent = new Intent(MainActivity.this, TalentActivity.class);
-//                startActivity(intent);
-
            //发布包包大人界面
                 Intent intent = new Intent(MainActivity.this, ReleaseActivity.class);
                 startActivity(intent);
