@@ -96,7 +96,7 @@ public class BuyActivity extends AppCompatActivity {
         OkHttpUtils.getInstance().post(SBUrls.DETAIL_GET_USER_INFO, mapParams, new MyNetWorkCallback<DetailBuyUserInfo>() {
             @Override
             public void onSuccess(DetailBuyUserInfo detailUserInfo) throws JSONException {
-                if (detailUserInfo.getStatus().equals("1")) {
+                if ("1".equals(detailUserInfo.getStatus())) {
                     List<DetailBuyUserInfo.InfoBean> response = detailUserInfo.getInfo();
                     for (int i = 0; i < response.size(); i++) {
                         buy_rent.setText(response.get(i).getUsername());

@@ -28,6 +28,7 @@ import java.util.Map;
 public class TalentAdapter extends RecyclerView.Adapter<TalentAdapter.ViewHolder> {
     private Context context;
     private List<TalentBean.InfoBean> list;
+
     public TalentAdapter(Context context) {
         this.context = context;
     }
@@ -56,16 +57,16 @@ public class TalentAdapter extends RecyclerView.Adapter<TalentAdapter.ViewHolder
         holder.talent_name.setText(list.get(position).getUserinfo().getName());//用户名
         holder.talent_dynamic.setText(list.get(position).getContent());//发布内容
 
-        String strurl="http://baobaoapi.ldlchat.com";
+        String strurl = "http://baobaoapi.ldlchat.com";
         String iconurl = list.get(position).getUserinfo().getIconurl();
 
         //头像
-        Glide.with(context.getApplicationContext()).load(strurl+iconurl).transform(new GlideCircleTransform(context)).crossFade().into(holder.talent_avatar);
+        Glide.with(context.getApplicationContext()).load(strurl + iconurl).transform(new GlideCircleTransform(context)).crossFade().into(holder.talent_avatar);
         //发布图片
 
 
         String img = list.get(position).getBack().getImg();
-        Glide.with(context.getApplicationContext()).load(strurl+img).into(holder.talent_commodity_img);//商品图片
+        Glide.with(context.getApplicationContext()).load(strurl + img).into(holder.talent_commodity_img);//商品图片
         holder.talent_commodity_name.setText(list.get(position).getBack().getTitle());//商品名称
         holder.talent_commodity_price.setText(list.get(position).getBack().getDays_money());//商品价格
         int collection = list.get(position).getBack().getCollection();
@@ -74,35 +75,49 @@ public class TalentAdapter extends RecyclerView.Adapter<TalentAdapter.ViewHolder
         if (!contentLabel.equals("")) {
             String[] labels = contentLabel.split(",");
             if (labels.length >= 1) {
-                if (!labels[0].equals("")) {
-                    holder.mTvLabel1.setVisibility(View.VISIBLE);
-                    holder.mTvLabel1.setText(labels[0]);
-                } else {
-                    holder.mTvLabel1.setVisibility(View.GONE);
+                try {
+                    if (!"".equals(labels[0])) {
+                        holder.mTvLabel1.setVisibility(View.VISIBLE);
+                        holder.mTvLabel1.setText(labels[0]);
+                    } else {
+                        holder.mTvLabel1.setVisibility(View.GONE);
+                    }
+                } catch (Exception e) {
+
                 }
-                if (!labels[1].equals("")) {
-                    holder.mTvLabel2.setVisibility(View.VISIBLE);
-                    holder.mTvLabel2.setText(labels[1]);
-                } else {
-                    holder.mTvLabel2.setVisibility(View.GONE);
+
+                try {
+                    if (!"".equals(labels[1])) {
+                        holder.mTvLabel2.setVisibility(View.VISIBLE);
+                        holder.mTvLabel2.setText(labels[1]);
+                    } else {
+                        holder.mTvLabel2.setVisibility(View.GONE);
+                    }
+                } catch (Exception e) {
+
                 }
-                if (!labels[2].equals("")) {
-                    holder.mTvLabel3.setVisibility(View.VISIBLE);
-                    holder.mTvLabel3.setText(labels[2]);
-                } else {
-                    holder.mTvLabel3.setVisibility(View.GONE);
+
+                try {
+                    if (!"".equals(labels[2])) {
+                        holder.mTvLabel3.setVisibility(View.VISIBLE);
+                        holder.mTvLabel3.setText(labels[2]);
+                    } else {
+                        holder.mTvLabel3.setVisibility(View.GONE);
+                    }
+                } catch (Exception e) {
+
                 }
+
             }
         }
 
 
-
-        if ( collection==1) {
+        if (collection == 1) {
 
             holder.talent_commodity_shoucang_img.setImageResource(R.mipmap.shoucanghong1);
 
 
-        }else {
+        } else {
             holder.talent_commodity_shoucang_img.setImageResource(R.mipmap.shoucang1);
 
 
@@ -110,8 +125,8 @@ public class TalentAdapter extends RecyclerView.Adapter<TalentAdapter.ViewHolder
         holder.talent_commodity_shoucang_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Map<String ,String> collection=new HashMap();
-                collection.put("baglist_id",position+"");
+                Map<String, String> collection = new HashMap();
+                collection.put("baglist_id", position + "");
                 OkHttpUtils.getInstance().post(SBUrls.COLLECTION, collection, new MyNetWorkCallback<CollectionBean>() {
                     @Override
                     public void onSuccess(CollectionBean collectionBean) {
@@ -124,7 +139,7 @@ public class TalentAdapter extends RecyclerView.Adapter<TalentAdapter.ViewHolder
                     }
                 });
                 int collection1 = list.get(position).getBack().getCollection();
-                if (collection1==1) {
+                if (collection1 == 1) {
                     list.get(position).getBack().setCollection(0);
                 } else {
                     list.get(position).getBack().setCollection(1);
@@ -164,9 +179,9 @@ public class TalentAdapter extends RecyclerView.Adapter<TalentAdapter.ViewHolder
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public ImageView talent_avatar,talent_commodity_img;
-        private final ImageView talent_img1,talent_img2,talent_commodity_shoucang_img;
-        private final TextView talent_name,talent_commodity_name,talent_commodity_price;
+        public ImageView talent_avatar, talent_commodity_img;
+        private final ImageView talent_img1, talent_img2, talent_commodity_shoucang_img;
+        private final TextView talent_name, talent_commodity_name, talent_commodity_price;
         private final TextView talent_time;
         private final TextView talent_dynamic;
         private final TextView mTvCollectionNum;

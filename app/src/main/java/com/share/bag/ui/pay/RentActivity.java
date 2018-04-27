@@ -29,6 +29,7 @@ import com.share.bag.entity.MayBean;
 import com.share.bag.entity.MayBean1;
 import com.share.bag.response.DetailRentUserInfo;
 import com.share.bag.utils.ImageLoader;
+import com.share.bag.utils.ToastUtils;
 import com.share.bag.utils.okhttp.OkHttpUtils;
 import com.share.bag.utils.okhttp.callback.MyNetWorkCallback;
 import com.tencent.mm.opensdk.modelpay.PayReq;
@@ -75,6 +76,12 @@ public class RentActivity extends AppCompatActivity {
     TextView mTvRantSize;
     @BindView(R.id.rent_return)
     ImageView mRentReturn;
+    @BindView(R.id.tv_rent_original_price)
+    TextView mTvRentOriginalPrice;
+    @BindView(R.id.tv_rent_now_price)
+    TextView mTvRentNowPrice;
+    @BindView(R.id.tv_rent_total_price)
+    TextView mTvRentTotalPrice;
     private IWXAPI api;
     private LinearLayout pay_wx;
     private String content;
@@ -89,7 +96,7 @@ public class RentActivity extends AppCompatActivity {
     private TextView rent_time_plus;
     private TextView rent_member;
     private TextView rent_postage;
-    private TextView rent_red_package;
+    //    private TextView rent_red_package;
     private TextView rent_handle_deposit;
     private TextView rent_paid_deposit;
     private TextView rent_handle_rent;
@@ -162,6 +169,9 @@ public class RentActivity extends AppCompatActivity {
     private String mBagSize;
     private String mDayMoney;
     private String mDays;
+    private String mOriginalPrice;
+    private String mNowPrice;
+    private String mBagId;
 
 
     @Override
@@ -178,8 +188,8 @@ public class RentActivity extends AppCompatActivity {
         rent_time_less.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (number < 8) {
-                    Toast.makeText(RentActivity.this, "最少7天", Toast.LENGTH_SHORT).show();
+                if (number <= Integer.parseInt(mDays)) {
+                    ToastUtils.showTop(RentActivity.this, "最少" + mDays + "天");
                     rent_time_less.clearFocus();
                     rent_time_less.setFocusable(false);
                 } else {
@@ -187,6 +197,9 @@ public class RentActivity extends AppCompatActivity {
                     rent_time_less.requestFocus();
                     number--;
                     rent_time.setText(number + "");
+//                    double dayMoney = (double) Integer.parseInt(mDayMoney);
+//                    double changePrice = number * dayMoney;
+//                    mTvRentTotalPrice.setText(changePrice + "");
                 }
             }
         });
@@ -198,6 +211,9 @@ public class RentActivity extends AppCompatActivity {
                 rent_time_less.requestFocus();
                 number++;
                 rent_time.setText(number + "");
+//                double dayMoney = (double) Integer.parseInt(mDayMoney);
+//                double changePrice = number * dayMoney;
+//                mTvRentTotalPrice.setText(changePrice + "");
             }
         });
 
@@ -208,9 +224,6 @@ public class RentActivity extends AppCompatActivity {
 //                Toast.makeText(MyRentActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
             }
         });
-
-
-        rent_total_amount.setText("");//总价
 
     }
 
@@ -252,7 +265,9 @@ public class RentActivity extends AppCompatActivity {
             mBagSize = intent.getStringExtra("bagSize");
             mDayMoney = intent.getStringExtra("dayMoney");
             mDays = intent.getStringExtra("days");
-
+            mOriginalPrice = intent.getStringExtra("originalPrice");
+            mNowPrice = intent.getStringExtra("nowPrice");
+            mBagId = intent.getStringExtra("bagId");
 
         }
         imageView3 = (ImageView) findViewById(R.id.imageView3);
@@ -266,12 +281,12 @@ public class RentActivity extends AppCompatActivity {
         rent_time_plus = (TextView) findViewById(R.id.rent_time_plus);
 //        rent_member = (TextView) findViewById(R.id.rent_member);
 //        rent_postage = (TextView) findViewById(R.id.rent_postage);
-        rent_red_package = (TextView) findViewById(R.id.rent_red_package);
-        rent_handle_deposit = (TextView) findViewById(R.id.rent_handle_deposit);
-        rent_paid_deposit = (TextView) findViewById(R.id.rent_paid_deposit);
-        rent_handle_rent = (TextView) findViewById(R.id.rent_handle_rent);
-        rent_supplement_rent = (TextView) findViewById(R.id.rent_supplement_rent);
-        rent_total_amount = (TextView) findViewById(R.id.rent_total_amount);
+//        rent_red_package = (TextView) findViewById(R.id.rent_red_package);
+//        rent_handle_deposit = (TextView) findViewById(R.id.rent_handle_deposit);
+//        rent_paid_deposit = (TextView) findViewById(R.id.rent_paid_deposit);
+//        rent_handle_rent = (TextView) findViewById(R.id.rent_handle_rent);
+//        rent_supplement_rent = (TextView) findViewById(R.id.rent_supplement_rent);
+//        rent_total_amount = (TextView) findViewById(R.id.rent_total_amount);
         rent_submit_order = (LinearLayout) findViewById(R.id.rent_submit_order);
 
         setViewData();
@@ -288,7 +303,9 @@ public class RentActivity extends AppCompatActivity {
         mTvRantSize.setText(mBagSize);
         rent_rent.setText(mDayMoney);
         rent_time.setText(mDays);
-
+        mTvRentOriginalPrice.setText(mOriginalPrice);
+        mTvRentNowPrice.setText(mNowPrice);
+        mTvRentTotalPrice.setText(mNowPrice);
 
     }
 
@@ -391,17 +408,26 @@ public class RentActivity extends AppCompatActivity {
 
                 Map<String, String> maymap = new HashMap<String, String>();
 
-                maymap.put("old_price", "0.01");//原定总价  （old_price）（租金总额：没有优惠过的总计）
-                maymap.put("new_price", "0.01");//优惠后的价格  （new_price）（租金总额：有优惠过的总计）
-                maymap.put("pay_status", "3");//支付类型   （pay_status   1-微信   2-钱包   3-支付宝）
-                maymap.put("is_order", "3");//订单类型    （is_order    1-充值   2-买   3-租）
-                maymap.put("deposit_num", "0.01");//押金总和    （deposit_num）（押金）
+//                maymap.put("old_price", "0.01");//原定总价  （old_price）（租金总额：没有优惠过的总计）
+//                maymap.put("new_price", "0.01");//优惠后的价格  （new_price）（租金总额：有优惠过的总计）
+//                maymap.put("pay_status", "3");//支付类型   （pay_status   1-微信   2-钱包   3-支付宝）
+//                maymap.put("is_order", "3");//订单类型    （is_order    1-充值   2-买   3-租）
+//                maymap.put("deposit_num", "0.01");//押金总和    （deposit_num）（押金）
+
+                maymap.put("bagid", mBagId);
+                maymap.put("pay_status", "3");
+                maymap.put("new_price", mNowPrice);
+                maymap.put("old_price", mOriginalPrice);
+                maymap.put("is_order", "3");
+                maymap.put("day", mDays);
+                maymap.put("divide", "1");
+
                 OkHttpUtils.getInstance().post(SBUrls.ZHFPAY, maymap, new MyNetWorkCallback<MayBean>() {
                     @Override
                     public void onSuccess(MayBean mayBean) {
                         String info = mayBean.getInfo();
                         Log.e("TAG", info);
-                        Toast.makeText(RentActivity.this, info, Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(RentActivity.this, info, Toast.LENGTH_SHORT).show();
                         String status = mayBean.getStatus();
                         String s = info.replaceAll("&amp;", "&");
                         payV2(s);

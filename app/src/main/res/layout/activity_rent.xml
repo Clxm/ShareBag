@@ -425,42 +425,42 @@
 
                 <!--</RelativeLayout>-->
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp">
+                <!--<RelativeLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginTop="15dp">-->
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="可用红包"
-                        android:textColor="#FF838383"
-                        android:textSize="13dp"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toLeftOf="@+id/rent_red_package"
-                        android:text="-"
-                        android:textColor="#FF838383"
-                        android:textSize="13dp"/>
-                    <TextView
-                        android:id="@+id/rent_red_package"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toLeftOf="@+id/tv_rant_red_packet_unit"
-                        android:text=""
-                        android:textColor="#FF838383"
-                        android:textSize="13dp"/>
-                    <TextView
-                        android:id="@+id/tv_rant_red_packet_unit"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:text="元"
-                        android:textColor="#FF838383"
-                        android:textSize="13dp"/>
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="可用红包"-->
+                        <!--android:textColor="#FF838383"-->
+                        <!--android:textSize="13dp"/>-->
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_toLeftOf="@+id/rent_red_package"-->
+                        <!--android:text="-"-->
+                        <!--android:textColor="#FF838383"-->
+                        <!--android:textSize="13dp"/>-->
+                    <!--<TextView-->
+                        <!--android:id="@+id/rent_red_package"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_toLeftOf="@+id/tv_rant_red_packet_unit"-->
+                        <!--android:text=""-->
+                        <!--android:textColor="#FF838383"-->
+                        <!--android:textSize="13dp"/>-->
+                    <!--<TextView-->
+                        <!--android:id="@+id/tv_rant_red_packet_unit"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_alignParentRight="true"-->
+                        <!--android:text="元"-->
+                        <!--android:textColor="#FF838383"-->
+                        <!--android:textSize="13dp"/>-->
 
-                </RelativeLayout>
+                <!--</RelativeLayout>-->
 
             </LinearLayout>
 
@@ -472,86 +472,121 @@
                 android:paddingLeft="12dp"
                 android:paddingRight="12dp">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp">
+                <!--<RelativeLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginTop="15dp">-->
 
-                    <TextView
-                        android:id="@+id/tv_rant_deposit_root"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentTop="true"
-                        android:text="应付押金 "
-                        android:textColor="#FF838383"
-                        android:textSize="13dp"/>
+                    <!--<TextView-->
+                        <!--android:id="@+id/tv_rant_deposit_root"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_alignParentStart="true"-->
+                        <!--android:layout_alignParentTop="true"-->
+                        <!--android:text="应付押金 "-->
+                        <!--android:textColor="#FF838383"-->
+                        <!--android:textSize="13dp"/>-->
 
-                    <TextView
-                        android:id="@+id/rent_handle_deposit"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_toRightOf="@id/tv_rant_deposit_root"
-                        android:text=""
-                        android:textColor="#FF838383"
-                        android:textSize="13dp"/>
+                    <!--<TextView-->
+                        <!--android:id="@+id/rent_handle_deposit"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_centerVertical="true"-->
+                        <!--android:layout_toRightOf="@id/tv_rant_deposit_root"-->
+                        <!--android:text=""-->
+                        <!--android:textColor="#FF838383"-->
+                        <!--android:textSize="13dp"/>-->
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_toLeftOf="@+id/rent_paid_deposit"
-                        android:text="已付押金 "
-                        android:textColor="#FF838383"
-                        android:textSize="13dp"/>
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_centerVertical="true"-->
+                        <!--android:layout_toLeftOf="@+id/rent_paid_deposit"-->
+                        <!--android:text="已付押金 "-->
+                        <!--android:textColor="#FF838383"-->
+                        <!--android:textSize="13dp"/>-->
 
-                    <TextView
-                        android:id="@+id/rent_paid_deposit"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:text=""
-                        android:textColor="#FF838383"
-                        android:textSize="13dp"/>
+                    <!--<TextView-->
+                        <!--android:id="@+id/rent_paid_deposit"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_alignParentRight="true"-->
+                        <!--android:layout_centerVertical="true"-->
+                        <!--android:text=""-->
+                        <!--android:textColor="#FF838383"-->
+                        <!--android:textSize="13dp"/>-->
 
-                </RelativeLayout>
+                <!--</RelativeLayout>-->
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp">
+                <!--<RelativeLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginTop="15dp">-->
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:text="应付租金"
-                        android:textColor="#FF838383"
-                        android:textSize="13dp"/>
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_centerVertical="true"-->
+                        <!--android:text="应付租金"-->
+                        <!--android:textColor="#FF838383"-->
+                        <!--android:textSize="13dp"/>-->
 
-                    <TextView
-                        android:id="@+id/rent_handle_rent"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_toLeftOf="@+id/iv_rant_unit"
-                        android:text=""
-                        android:textColor="#FF838383"
-                        android:textSize="13dp"/>
-                    <TextView
-                        android:id="@+id/iv_rant_unit"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:text="元"
-                        android:textColor="#FF838383"
-                        android:textSize="13dp"/>
+                    <!--<TextView-->
+                        <!--android:id="@+id/rent_handle_rent"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_centerVertical="true"-->
+                        <!--android:layout_toLeftOf="@+id/iv_rant_unit"-->
+                        <!--android:text=""-->
+                        <!--android:textColor="#FF838383"-->
+                        <!--android:textSize="13dp"/>-->
+                    <!--<TextView-->
+                        <!--android:id="@+id/iv_rant_unit"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_alignParentRight="true"-->
+                        <!--android:layout_centerVertical="true"-->
+                        <!--android:text="元"-->
+                        <!--android:textColor="#FF838383"-->
+                        <!--android:textSize="13dp"/>-->
 
-                </RelativeLayout>
+                <!--</RelativeLayout>-->
 
+                <!--<RelativeLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginBottom="15dp"-->
+                    <!--android:layout_marginTop="16dp">-->
+
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_centerVertical="true"-->
+                        <!--android:text="补充押金"-->
+                        <!--android:textColor="#FF838383"-->
+                        <!--android:textSize="13dp"/>-->
+
+                    <!--<TextView-->
+                        <!--android:id="@+id/rent_supplement_rent"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_centerVertical="true"-->
+                        <!--android:layout_toLeftOf="@+id/tv_rant_supplement"-->
+                        <!--android:text=""-->
+                        <!--android:textColor="#FF838383"-->
+                        <!--android:textSize="13dp"/>-->
+
+                    <!--<TextView-->
+                        <!--android:id="@+id/tv_rant_supplement"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_alignParentRight="true"-->
+                        <!--android:layout_centerVertical="true"-->
+                        <!--android:text="元"-->
+                        <!--android:textColor="#FF838383"-->
+                        <!--android:textSize="13dp"/>-->
+
+                <!--</RelativeLayout>-->
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -562,22 +597,57 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:text="补充押金"
+                        android:text="原价"
                         android:textColor="#FF838383"
                         android:textSize="13dp"/>
 
                     <TextView
-                        android:id="@+id/rent_supplement_rent"
+                        android:id="@+id/tv_rent_original_price"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_toLeftOf="@+id/tv_rant_supplement"
+                        android:layout_toLeftOf="@+id/tv_rent_original_price_unit"
                         android:text=""
                         android:textColor="#FF838383"
                         android:textSize="13dp"/>
 
                     <TextView
-                        android:id="@+id/tv_rant_supplement"
+                        android:id="@+id/tv_rent_original_price_unit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:text="元"
+                        android:textColor="#FF838383"
+                        android:textSize="13dp"/>
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="现价"
+                        android:textColor="#FF838383"
+                        android:textSize="13dp"/>
+
+                    <TextView
+                        android:id="@+id/tv_rent_now_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toLeftOf="@+id/tv_rent_now_price_unit"
+                        android:text=""
+                        android:textColor="#FF838383"
+                        android:textSize="13dp"/>
+
+                    <TextView
+                        android:id="@+id/tv_rent_now_price_unit"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -616,7 +686,7 @@
             android:textSize="15dp"/>
 
         <TextView
-            android:id="@+id/rent_total_amount"
+            android:id="@+id/tv_rent_total_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"

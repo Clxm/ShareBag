@@ -103,16 +103,19 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
     private String mBagSize;
     private String mDays_money;
     private String mDays;
+    private String mOriginalprice;
+    private String mNowprice;
+    private String mId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details3);
         //分享6.0权限适配
-        if (Build.VERSION.SDK_INT >= 23) {
-            String[] mPermissionList = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.CALL_PHONE, Manifest.permission.READ_LOGS, Manifest.permission.READ_PHONE_STATE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.SET_DEBUG_APP, Manifest.permission.SYSTEM_ALERT_WINDOW, Manifest.permission.GET_ACCOUNTS, Manifest.permission.WRITE_APN_SETTINGS};
-            ActivityCompat.requestPermissions(this, mPermissionList, 123);//123是requestcode，可以根据这个code判断，用户是否同意了授权
-        }
+//        if (Build.VERSION.SDK_INT >= 23) {
+//            String[] mPermissionList = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.CALL_PHONE, Manifest.permission.READ_LOGS, Manifest.permission.READ_PHONE_STATE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.SET_DEBUG_APP, Manifest.permission.SYSTEM_ALERT_WINDOW, Manifest.permission.GET_ACCOUNTS, Manifest.permission.WRITE_APN_SETTINGS};
+//            ActivityCompat.requestPermissions(this, mPermissionList, 123);//123是requestcode，可以根据这个code判断，用户是否同意了授权
+//        }
 
         if (getIntent() != null) {
             Intent intent = getIntent();
@@ -283,6 +286,7 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
                     startActivity(intent);
                 } else {
                     Intent intent = new Intent(Details.this, RentActivity.class);
+                    intent.putExtra("bagId", mId);
                     intent.putExtra("imgUrl", mImgUrl);
                     intent.putExtra("title", mTitle);
                     intent.putExtra("bagBrand", mBagBrand);
@@ -292,8 +296,8 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
                     intent.putExtra("bagSize", mBagSize);
                     intent.putExtra("dayMoney", mDays_money);
                     intent.putExtra("days", mDays);
-
-
+                    intent.putExtra("originalPrice", mOriginalprice);
+                    intent.putExtra("nowPrice", mNowprice);
 
                     startActivity(intent);
                 }
@@ -550,9 +554,9 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
             @Override
             public void onSuccess(DeailsBean deailsBean) {
                 DeailsBean.InfoBean info = deailsBean.getInfo();
-                String id = info.getId();
+                mId = info.getId();
                 mTitle = info.getTitle();
-                String originalprice = info.getOriginalprice();
+                mOriginalprice = info.getOriginalprice();
                 mDays = info.getDays();
                 mDays_money = info.getDays_money();
                 String bagtype_id = info.getBagtype_id();
@@ -566,7 +570,7 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
                 String is_buy = info.getIs_buy();
                 mMaterial = info.getMaterial();
                 String bag_toprice = info.getBag_toprice();
-                String nowprice = info.getNowprice();
+                mNowprice = info.getNowprice();
                 String deposit = info.getDeposit();
                 mColor = info.getColor();
                 String bagpay = info.getBagpay();

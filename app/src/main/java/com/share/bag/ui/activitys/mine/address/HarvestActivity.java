@@ -10,14 +10,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.share.bag.FileUtil;
 import com.share.bag.R;
 import com.share.bag.SBUrls;
 import com.share.bag.adapter.AddressAdapter;
 import com.share.bag.entity.AddressBean;
 import com.share.bag.ui.activitys.mine.AddBean;
 import com.share.bag.ui.activitys.mine.AddressActivity;
-import com.share.bag.ui.activitys.mine.Login;
 import com.share.bag.utils.okhttp.OkHttpUtils;
 import com.share.bag.utils.okhttp.callback.MyNetWorkCallback;
 
@@ -39,7 +37,7 @@ public class HarvestActivity extends AppCompatActivity implements View.OnClickLi
     private ImageView match_return;
     private RecyclerView harvest_recycler;
     private Button harvest_add;
-    private List<AddBean1>list=new ArrayList();
+    private List<AddBean1> list = new ArrayList();
     private TextView yincangpanduan;
     private AddressAdapter mAdapter;
 
@@ -51,12 +49,13 @@ public class HarvestActivity extends AppCompatActivity implements View.OnClickLi
         initView();
         harvest_recycler.setLayoutManager(new LinearLayoutManager(this));
         //适配器
-        mAdapter = new AddressAdapter(HarvestActivity.this,list );
+        mAdapter = new AddressAdapter(HarvestActivity.this, list);
         harvest_recycler.setAdapter(mAdapter);
         initdata();
     }
+
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onMessageEvent(AddBean bean){
+    public void onMessageEvent(AddBean bean) {
         initdata();
     }
 
@@ -65,17 +64,19 @@ public class HarvestActivity extends AppCompatActivity implements View.OnClickLi
         super.onDestroy();
         EventBus.getDefault().unregister(this);
     }
+
     private void initdata() {
 
 //        String addurl="htmltp://baobaoapi.ldlchat.com/Home/Personalcenter/getUserContent.html";
 
-        Map<String,String> addmap=new HashMap<>();
+        Map<String, String> addmap = new HashMap<>();
 
         OkHttpUtils.getInstance().post(SBUrls.CHECK_RECEIVING, addmap, new MyNetWorkCallback<AddressBean>() {
             @Override
             public void onSuccess(AddressBean addressBean) throws JSONException {
                 list.clear();
-                List<AddressBean.InfoBean>  info = addressBean.getInfo();
+                List<AddressBean.InfoBean> info = addressBean.getInfo();
+                if (null != info && info.size() > 0) {
                     for (int i = 0; i < info.size(); i++) {
                         String id = info.get(i).getId();
                         String address = info.get(i).getAddress();
@@ -84,8 +85,9 @@ public class HarvestActivity extends AppCompatActivity implements View.OnClickLi
                         String is_type = info.get(i).getIs_type();
                         AddBean1 addBean1 = new AddBean1(id, address, username, phone, is_type);
                         list.add(addBean1);
+                    }
+                    mAdapter.notifyDataSetChanged();
                 }
-                mAdapter.notifyDataSetChanged();
 
             }
 
@@ -116,7 +118,7 @@ public class HarvestActivity extends AppCompatActivity implements View.OnClickLi
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.harvest_add:
-                startActivityForResult(AddressActivity.getIntent(this),1);
+                startActivityForResult(AddressActivity.getIntent(this), 1);
                 break;
         }
     }
@@ -124,11 +126,10 @@ public class HarvestActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==1&&resultCode==1){
+        if (requestCode == 1 && resultCode == 1) {
             initdata();
         }
     }
-
 
 
 }
