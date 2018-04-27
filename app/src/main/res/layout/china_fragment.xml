@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#FFF">
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#FFF"
+              android:orientation="vertical">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -32,7 +32,7 @@
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:layout_marginLeft="30dp"
-                        android:src="@drawable/touxiang22" />
+                        android:src="@drawable/touxiang22"/>
 
                     <TextView
                         android:id="@+id/mine_name"
@@ -43,13 +43,12 @@
                         android:layout_toEndOf="@+id/mine_avatar"
                         android:text="请登录"
                         android:textColor="#FFF"
-                        android:textSize="14dp" />
+                        android:textSize="14dp"/>
 
 
                 </LinearLayout>
 
                 <TextView
-                    android:visibility="gone"
                     android:id="@+id/textView3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -57,7 +56,8 @@
                     android:layout_marginTop="82dp"
                     android:text="青铜会员"
                     android:textColor="#FFF"
-                    android:textSize="10dp" />
+                    android:textSize="10dp"
+                    android:visibility="gone"/>
 
 
                 <LinearLayout
@@ -75,13 +75,13 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="30dp"
                         android:text="我的主页"
-                        android:textSize="12dp" />
+                        android:textSize="12dp"/>
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:src="@mipmap/wodezhuye2" />
+                        android:src="@mipmap/wodezhuye2"/>
 
                 </LinearLayout>
 
@@ -330,7 +330,7 @@
                         android:id="@+id/textView7"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                         android:layout_marginLeft="20dp"
+                        android:layout_marginLeft="20dp"
                         android:text="我的钱包"
                         android:textColor="#303030"
                         android:textSize="10dp"/>
@@ -420,7 +420,8 @@
                     android:id="@+id/mine_contact"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
-                    android:gravity="center_vertical">
+                    android:gravity="center_vertical"
+                    android:visibility="gone">
 
                     <TextView
                         android:id="@+id/text4"
@@ -446,7 +447,8 @@
                     android:layout_height="1dp"
                     android:layout_marginLeft="12dp"
                     android:layout_marginRight="12dp"
-                    android:background="#DFDFDF"></View>
+                    android:background="#DFDFDF"
+                    android:visibility="gone"></View>
 
                 <RelativeLayout
                     android:id="@+id/mine_problem"
@@ -484,7 +486,8 @@
                     android:id="@+id/mine_Complaints"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
-                    android:gravity="center_vertical">
+                    android:gravity="center_vertical"
+                    android:visibility="gone">
 
                     <TextView
                         android:id="@+id/text6"
@@ -510,7 +513,8 @@
                     android:layout_height="1dp"
                     android:layout_marginLeft="12dp"
                     android:layout_marginRight="12dp"
-                    android:background="#DFDFDF"></View>
+                    android:background="#DFDFDF"
+                    android:visibility="gone"></View>
 
                 <RelativeLayout
                     android:id="@+id/mine_cooperation"
@@ -548,6 +552,7 @@
                     android:id="@+id/mine_set"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
+                    android:layout_marginBottom="100dp"
                     android:gravity="center_vertical">
 
                     <TextView

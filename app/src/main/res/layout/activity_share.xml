@@ -99,6 +99,7 @@
 
                 <TextView
                     android:layout_width="wrap_content"
+                    android:visibility="gone"
                     android:layout_height="wrap_content"
                     android:layout_alignStart="@+id/textView19"
                     android:layout_below="@+id/share_invite"
@@ -302,6 +303,7 @@
 <LinearLayout
     android:layout_marginTop="42px"
     android:layout_marginLeft="64px"
+    android:visibility="gone"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">

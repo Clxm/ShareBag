@@ -110,6 +110,7 @@ public class BuyActivity extends AppCompatActivity implements View.OnClickListen
     private String mImgUrl1;
     private static final int SDK_PAY_FLAG = 1;
     private static final int SDK_AUTH_FLAG = 2;
+    private String mAddress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -134,6 +135,7 @@ public class BuyActivity extends AppCompatActivity implements View.OnClickListen
                     buy_address.setVisibility(View.VISIBLE);
                     mRlAddAddress.setVisibility(View.GONE);
                     for (int i = 0; i < response.size(); i++) {
+                        mAddress = response.get(i).getAddress();
                         buy_rent.setText(response.get(i).getUsername());
                         buy_phone.setText(response.get(i).getPhone());
                         buy_address1.setText(response.get(i).getAddress());
@@ -298,6 +300,7 @@ public class BuyActivity extends AppCompatActivity implements View.OnClickListen
                 maymap.put("is_order", "2");
                 maymap.put("day", "");
                 maymap.put("divide", "1");
+                maymap.put("address_id", mAddress);
 
                 OkHttpUtils.getInstance().post(SBUrls.ZHFPAY, maymap, new MyNetWorkCallback<MayBean1>() {
                             @Override
@@ -344,6 +347,7 @@ public class BuyActivity extends AppCompatActivity implements View.OnClickListen
                 maymap.put("is_order", "2");
                 maymap.put("day", "");
                 maymap.put("divide", "1");
+                maymap.put("address_id", mAddress);
 
                 OkHttpUtils.getInstance().post(SBUrls.ZHFPAY, maymap, new MyNetWorkCallback<MayBean>() {
                     @Override

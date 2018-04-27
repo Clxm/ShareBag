@@ -178,6 +178,7 @@ public class RentActivity extends AppCompatActivity implements View.OnClickListe
     private String mNowPrice;
     private String mBagId;
     private String mImgUrl1;
+    private String mAddress;
 
 
     @Override
@@ -244,6 +245,7 @@ public class RentActivity extends AppCompatActivity implements View.OnClickListe
                     rent_address.setVisibility(View.VISIBLE);
                     mRlAddAddress.setVisibility(View.GONE);
                     for (int i = 0; i < response.size(); i++) {
+                        mAddress = response.get(i).getAddress();
                         rent.setText(response.get(i).getUsername());
                         rent_22.setText(response.get(i).getPhone());
                         rent_11.setText(response.get(i).getAddress());
@@ -372,6 +374,7 @@ public class RentActivity extends AppCompatActivity implements View.OnClickListe
                 maymap.put("is_order", "3");
                 maymap.put("day", mDays);
                 maymap.put("divide", "1");
+                maymap.put("address_id", mAddress);
 
                 OkHttpUtils.getInstance().post(SBUrls.ZHFPAY, maymap, new MyNetWorkCallback<MayBean1>() {
                             @Override
@@ -418,6 +421,7 @@ public class RentActivity extends AppCompatActivity implements View.OnClickListe
                 maymap.put("is_order", "3");
                 maymap.put("day", mDays);
                 maymap.put("divide", "1");
+                maymap.put("address_id", mAddress);
 
                 OkHttpUtils.getInstance().post(SBUrls.ZHFPAY, maymap, new MyNetWorkCallback<MayBean>() {
                     @Override

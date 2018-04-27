@@ -54,14 +54,14 @@ public class TalentAdapter extends RecyclerView.Adapter<TalentAdapter.ViewHolder
         holder.talent_name.setText(list.get(position).getUserinfo().getName());//用户名
         holder.talent_dynamic.setText(list.get(position).getContent());//发布内容
 
-        String strurl = "http://baobaoapi.ldlchat.com";
+        String bagUrl = "https://baobaoapi.ldlchat.com";
         String iconurl = list.get(position).getUserinfo().getIconurl();
 
         //头像
-        Glide.with(context.getApplicationContext()).load(strurl + iconurl).transform(new GlideCircleTransform(context.getApplicationContext())).crossFade().into(holder.talent_avatar);
+        Glide.with(context.getApplicationContext()).load(iconurl).transform(new GlideCircleTransform(context.getApplicationContext())).crossFade().into(holder.talent_avatar);
         //发布图片
         String img = list.get(position).getBack().getImg();
-        Glide.with(context.getApplicationContext()).load(strurl + img).into(holder.talent_commodity_img);//商品图片
+        Glide.with(context.getApplicationContext()).load(bagUrl + img).into(holder.talent_commodity_img);//商品图片
         holder.talent_commodity_name.setText(list.get(position).getBack().getTitle());//商品名称
         holder.talent_commodity_price.setText(list.get(position).getBack().getDays_money());//商品价格
         int collection = list.get(position).getBack().getCollection();
