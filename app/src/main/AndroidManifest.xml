@@ -185,6 +185,8 @@
         <activity android:name=".ui.ship.TransportLog" />
         <activity android:name=".ui.activitys.mine.PassWordORPhoneActivity" />
         <activity android:name=".ui.activitys.BackActivity" />
+        <activity android:name=".ui.activitys.WalletLogActivity" />
+        <activity android:name=".ui.activitys.WithdrawCashActivity" />
     </application>
 
 </manifest>

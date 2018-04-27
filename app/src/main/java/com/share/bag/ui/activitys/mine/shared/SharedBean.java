@@ -11,7 +11,7 @@ public class SharedBean {
 
     /**
      * status : 1
-     * info : [{"id":"2","title":"kate spade/ks女士三折小方包 单肩斜挎包 女包","days_money":"63.00","img":"/Public/headerimg/1111.png","bagtype_id":"手提","bagsize_id":"M","bagbrand_id":"kate spadeks","status":"上架中","material":"牛皮","time":1522221970},{"id":"23","title":"艾丹妮真皮女包单肩包斜挎包女士手提大包包","days_money":"20.00","img":"/Uploads/20180209/5a7d4de731acb.png","bagtype_id":"手提","bagsize_id":"M","bagbrand_id":"艾丹妮","status":"上架中","material":"牛皮","time":1522221970},{"id":"20","title":"njoylife金属圆环手提包白色小包复古斜挎单肩包小方包真皮女包","days_money":"20.00","img":"/Public/headerimg/1111.png","bagtype_id":"单肩","bagsize_id":"M","bagbrand_id":"injoylife","status":"上架中","material":"头层牛皮","time":1522221970},{"id":"4","title":"Michael Kors MK 女士Cindy大号贝壳斜挎包","days_money":"63.00","img":"/Public/headerimg/1111.png","bagtype_id":"手提","bagsize_id":"M","bagbrand_id":"Michael Kors","status":"上架中","material":"牛皮革","time":1522221970},{"id":"1","title":"lapalette小马女双肩书包","days_money":"42.00","img":"/Public/headerimg/1111.png","bagtype_id":"双肩","bagsize_id":"M","bagbrand_id":"lapalette","status":"上架中","material":"聚酯纤维100%","time":1522221970},{"id":"3","title":"Kipling凯浦林手提包轻便单肩包","days_money":"42.00","img":"/Public/headerimg/1111.png","bagtype_id":"手提","bagsize_id":"M","bagbrand_id":"Kipling","status":"上架中","material":"涤纶","time":1522221970}]
+     * info : [{"id":"1","title":"lapalette小马女双肩书包","color":"黑色","img":"/Public/headerimg/1111.png","material":"聚酯纤维100%","status":"审核中","bagbrand_id":"adidas","bagsize_id":"M","days_money":"42.00","nowprice":"0.00","create_time":"2018-02-08,15:37:56","type":1},{"id":"3","title":"Kipling凯浦林手提包轻便单肩包","color":" 藏青30周年欢乐猴印花","img":"/Public/headerimg/1111.png","material":"涤纶","status":"审核失败","bagbrand_id":"Kipling","bagsize_id":"M","days_money":"42.00","nowprice":"0.00","create_time":"2018-02-08,15:51:41","type":3},{"id":"64","title":"丝芙伦民族风手拿包女大容量真皮包包","color":null,"img":null,"material":"hj","status":"审核中","bagbrand_id":null,"bagsize_id":"M","days_money":null,"nowprice":"","create_time":"2018-04-26,16:57:41","type":1}]
      */
 
     private String status;
@@ -35,28 +35,32 @@ public class SharedBean {
 
     public static class InfoBean {
         /**
-         * id : 2
-         * title : kate spade/ks女士三折小方包 单肩斜挎包 女包
-         * days_money : 63.00
+         * id : 1
+         * title : lapalette小马女双肩书包
+         * color : 黑色
          * img : /Public/headerimg/1111.png
-         * bagtype_id : 手提
+         * material : 聚酯纤维100%
+         * status : 审核中
+         * bagbrand_id : adidas
          * bagsize_id : M
-         * bagbrand_id : kate spadeks
-         * status : 上架中
-         * material : 牛皮
-         * time : 1522221970
+         * days_money : 42.00
+         * nowprice : 0.00
+         * create_time : 2018-02-08,15:37:56
+         * type : 1
          */
 
         private String id;
         private String title;
-        private String days_money;
+        private String color;
         private String img;
-        private String bagtype_id;
-        private String bagsize_id;
-        private String bagbrand_id;
-        private String status;
         private String material;
-        private int time;
+        private String status;
+        private String bagbrand_id;
+        private String bagsize_id;
+        private String days_money;
+        private String nowprice;
+        private String create_time;
+        private int type;
 
         public String getId() {
             return id;
@@ -74,12 +78,12 @@ public class SharedBean {
             this.title = title;
         }
 
-        public String getDays_money() {
-            return days_money;
+        public String getColor() {
+            return color;
         }
 
-        public void setDays_money(String days_money) {
-            this.days_money = days_money;
+        public void setColor(String color) {
+            this.color = color;
         }
 
         public String getImg() {
@@ -90,28 +94,12 @@ public class SharedBean {
             this.img = img;
         }
 
-        public String getBagtype_id() {
-            return bagtype_id;
+        public String getMaterial() {
+            return material;
         }
 
-        public void setBagtype_id(String bagtype_id) {
-            this.bagtype_id = bagtype_id;
-        }
-
-        public String getBagsize_id() {
-            return bagsize_id;
-        }
-
-        public void setBagsize_id(String bagsize_id) {
-            this.bagsize_id = bagsize_id;
-        }
-
-        public String getBagbrand_id() {
-            return bagbrand_id;
-        }
-
-        public void setBagbrand_id(String bagbrand_id) {
-            this.bagbrand_id = bagbrand_id;
+        public void setMaterial(String material) {
+            this.material = material;
         }
 
         public String getStatus() {
@@ -122,20 +110,52 @@ public class SharedBean {
             this.status = status;
         }
 
-        public String getMaterial() {
-            return material;
+        public String getBagbrand_id() {
+            return bagbrand_id;
         }
 
-        public void setMaterial(String material) {
-            this.material = material;
+        public void setBagbrand_id(String bagbrand_id) {
+            this.bagbrand_id = bagbrand_id;
         }
 
-        public int getTime() {
-            return time;
+        public String getBagsize_id() {
+            return bagsize_id;
         }
 
-        public void setTime(int time) {
-            this.time = time;
+        public void setBagsize_id(String bagsize_id) {
+            this.bagsize_id = bagsize_id;
+        }
+
+        public String getDays_money() {
+            return days_money;
+        }
+
+        public void setDays_money(String days_money) {
+            this.days_money = days_money;
+        }
+
+        public String getNowprice() {
+            return nowprice;
+        }
+
+        public void setNowprice(String nowprice) {
+            this.nowprice = nowprice;
+        }
+
+        public String getCreate_time() {
+            return create_time;
+        }
+
+        public void setCreate_time(String create_time) {
+            this.create_time = create_time;
+        }
+
+        public int getType() {
+            return type;
+        }
+
+        public void setType(int type) {
+            this.type = type;
         }
     }
 }

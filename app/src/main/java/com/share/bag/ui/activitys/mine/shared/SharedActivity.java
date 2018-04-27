@@ -17,6 +17,7 @@ import org.json.JSONException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 /*
 * 正在共享
 * */
@@ -40,16 +41,17 @@ public class SharedActivity extends AppCompatActivity {
     }
 
     public void getdata() {
-        Map<String,String>map=new HashMap<>();
+        Map<String, String> map = new HashMap<>();
         OkHttpUtils.getInstance().post(SBUrls.SHARED, map, new MyNetWorkCallback<SharedBean>() {
             @Override
             public void onSuccess(SharedBean sharedBean) throws JSONException {
-                List<SharedBean.InfoBean> info = sharedBean.getInfo();
-                shared_recycler.setLayoutManager(new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL));
+                if (null != sharedBean.getInfo() && sharedBean.getInfo().size() > 0) {
+                    List<SharedBean.InfoBean> info = sharedBean.getInfo();
+                    shared_recycler.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL));
 
-                SharedAdapter sharedAdapter=new SharedAdapter(SharedActivity.this,info);
-                shared_recycler.setAdapter(sharedAdapter);
-
+                    SharedAdapter sharedAdapter = new SharedAdapter(SharedActivity.this, info);
+                    shared_recycler.setAdapter(sharedAdapter);
+                }
             }
 
             @Override

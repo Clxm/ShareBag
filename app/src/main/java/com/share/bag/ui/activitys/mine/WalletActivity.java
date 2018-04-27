@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 import com.share.bag.R;
 import com.share.bag.SBUrls;
+import com.share.bag.ui.activitys.WalletLogActivity;
+import com.share.bag.ui.activitys.WithdrawCashActivity;
 import com.share.bag.ui.activitys.mine.wallet.MyTradeActivity;
 import com.share.bag.utils.okhttp.OkHttpUtils;
 import com.share.bag.utils.okhttp.callback.MyNetWorkCallback;
@@ -96,14 +98,11 @@ public class WalletActivity extends AppCompatActivity implements View.OnClickLis
 
                 break;
             case R.id.wallet_bill://账单
-
-                Toast.makeText(this, "账单", Toast.LENGTH_SHORT).show();
+               startActivity(new Intent(WalletActivity.this, WalletLogActivity.class));
                 break;
             case R.id.wallet_withdraw://提现
-
-                Toast.makeText(this, "提现", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(WalletActivity.this, WithdrawCashActivity.class));
                 break;
-
 //            case R.id.wallet_coupons:
 //                Intent intent5=new Intent(WalletActivity.this, RedCouponsActivity.class);
 //                startActivity(intent5);
