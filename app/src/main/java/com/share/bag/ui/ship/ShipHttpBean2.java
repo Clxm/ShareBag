@@ -63,6 +63,24 @@ public class ShipHttpBean2 {
         private String ordernumber;
         private String end_time;
         private String create_time;
+        public String getNumber() {
+            return number;
+        }
+
+        public void setNumber(String number) {
+            this.number = number;
+        }
+
+        public String getMaterial() {
+            return material;
+        }
+
+        public void setMaterial(String material) {
+            this.material = material;
+        }
+
+        private String number;
+        private String material;
         public String getOrderid() {
             return orderid;
         }

@@ -1,6 +1,7 @@
 package com.share.bag.ui.activitys.mine.cabinet;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.share.bag.R;
 import com.share.bag.SBUrls;
+import com.share.bag.ui.pay.BuyActivity;
 
 import java.util.List;
 
@@ -39,7 +41,7 @@ public class CabinetAdapter extends RecyclerView.Adapter<CabinetAdapter.ViewHold
 
         Glide.with(context).load(SBUrls.LOGURL + list.get(position).getImg()).into(holder.cablinet_adapter_img);
 
-        CabinetBean.InfoBean bean = list.get(position);
+        final CabinetBean.InfoBean bean = list.get(position);
         holder.cablinet_adapter_name.setText(bean.getTitle());
         holder.cablinet_adapter_brands.setText(list.get(position).getBagbrand_id());
         holder.cablinet_adapter_size.setText(list.get(position).getBagsize_id());
@@ -47,45 +49,55 @@ public class CabinetAdapter extends RecyclerView.Adapter<CabinetAdapter.ViewHold
         holder.cablinet_adapter_colour.setText(bean.getColor());
         holder.cablinet_adapter_materials.setText(bean.getMaterial());
         holder.cablinet_adapter_numbering.setText(bean.getNumber());
-        if(bean.getBagpay().equals("1")){//已买断
+        if (bean.getBagpay().equals("1")) {//已买断
             holder.cablinet_adapter_status.setText("已买断");
             holder.cablinet_adapter_rent_day.setVisibility(View.GONE);
             holder.cablinet_adapter_rent_day1.setVisibility(View.GONE);
             holder.cablinet_adapter_rent.setVisibility(View.GONE);
             holder.cablinet_adapter_buyout.setVisibility(View.GONE);
-        }else if(bean.getBagpay().equals("2")){
+        } else if (bean.getBagpay().equals("2")) {
             holder.cablinet_adapter_status.setText("正在租");
             holder.cablinet_adapter_rent_day.setVisibility(View.VISIBLE);
             holder.cablinet_adapter_rent_day1.setVisibility(View.VISIBLE);
             holder.cablinet_adapter_rent.setVisibility(View.VISIBLE);
             holder.cablinet_adapter_buyout.setVisibility(View.VISIBLE);
-            holder.cablinet_adapter_rent_day.setText(bean.getDays()+"天");
-        }else if(bean.getBagpay().equals("3")){
-            holder.cablinet_adapter_rent_day.setText(bean.getDays()+"天");
+            holder.cablinet_adapter_rent_day.setText(bean.getDay() + "天");
+        } else if (bean.getBagpay().equals("3")) {
+            holder.cablinet_adapter_rent_day.setText(bean.getDay() + "天");
             holder.cablinet_adapter_status.setText("已出租");
             holder.cablinet_adapter_rent_day.setVisibility(View.GONE);
             holder.cablinet_adapter_rent_day1.setVisibility(View.GONE);
             holder.cablinet_adapter_rent.setVisibility(View.GONE);
             holder.cablinet_adapter_buyout.setVisibility(View.GONE);
         }
-
-
+        holder.cablinet_adapter_rent.setVisibility(View.GONE);
+        holder.cablinet_adapter_share.setVisibility(View.GONE);
         holder.cablinet_adapter_rent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "一键续租", Toast.LENGTH_SHORT).show();
+
             }
         });
         holder.cablinet_adapter_buyout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "立即买断", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context, BuyActivity.class);
+                intent.putExtra("imgUrl", bean.getImg());
+                intent.putExtra("title", bean.getTitle());
+                intent.putExtra("bagBrand", bean.getBagbrand_id());
+                intent.putExtra("number", bean.getNumber());
+                intent.putExtra("color", bean.getColor());
+                intent.putExtra("material", bean.getMaterial());
+                intent.putExtra("bagSize", bean.getBagsize_id());
+                intent.putExtra("originalPrice", bean.getOld_price());
+                intent.putExtra("nowPrice", bean.getNew_price());
+                context.startActivity(intent);
             }
         });
         holder.cablinet_adapter_share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "分享", Toast.LENGTH_SHORT).show();
+
             }
         });
 
@@ -156,13 +168,12 @@ public class CabinetAdapter extends RecyclerView.Adapter<CabinetAdapter.ViewHold
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public ImageView cablinet_adapter_img,cablinet_adapter_share;
+        public ImageView cablinet_adapter_img, cablinet_adapter_share;
 
-        private final TextView cablinet_adapter_name,cablinet_adapter_brands,cablinet_adapter_numbering,
-                cablinet_adapter_colour,cablinet_adapter_materials,cablinet_adapter_size,
-                cablinet_adapter_status1,cablinet_adapter_status,cablinet_adapter_rent_day1,cablinet_adapter_rent_day,
-                cablinet_adapter_rent,cablinet_adapter_buyout;
-
+        private final TextView cablinet_adapter_name, cablinet_adapter_brands, cablinet_adapter_numbering,
+                cablinet_adapter_colour, cablinet_adapter_materials, cablinet_adapter_size,
+                cablinet_adapter_status1, cablinet_adapter_status, cablinet_adapter_rent_day1, cablinet_adapter_rent_day,
+                cablinet_adapter_rent, cablinet_adapter_buyout;
 
 
         public ViewHolder(View itemView) {
@@ -178,13 +189,10 @@ public class CabinetAdapter extends RecyclerView.Adapter<CabinetAdapter.ViewHold
             cablinet_adapter_size = (TextView) itemView.findViewById(R.id.cablinet_adapter_size);//尺寸
 
 
-
             cablinet_adapter_status1 = (TextView) itemView.findViewById(R.id.cablinet_adapter_status1);//状态
             cablinet_adapter_status = (TextView) itemView.findViewById(R.id.cablinet_adapter_status);//状态
             cablinet_adapter_rent_day1 = (TextView) itemView.findViewById(R.id.cablinet_adapter_rent_day1);//已租
             cablinet_adapter_rent_day = (TextView) itemView.findViewById(R.id.cablinet_adapter_rent_day);//已租
-
-
 
 
             cablinet_adapter_rent = (TextView) itemView.findViewById(R.id.cablinet_adapter_rent);//一键续租

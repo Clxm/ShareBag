@@ -11,7 +11,7 @@ public class CabinetBean {
 
     /**
      * status : 1
-     * info : [{"id":"1","title":"lapalette小马女双肩书包","originalprice":"1.00","days":"7","days_money":"42.00","img":"/Public/headerimg/1111.png","bagtype_id":"1","bagsize_id":"1","bagbrand_id":"1","create_time":"1518075476","create_user":"admin","update_time":"1518159857","update_user":"admin","status":"1","contentimg":"/Uploads/20180208/5a7bff92abef4.png,/Uploads/20180208/5a7bfe5476f59.png,/Uploads/20180208/5a7bfe5478451.png","is_buy":"3","material":"聚酯纤维100%","bag_toprice":"3","nowprice":"6380.00","deposit":"80.00","carousel":"/Uploads/20180208/5a7bff7859df0.png,/Uploads/20180208/5a7bfe5478dd6.png,/Uploads/20180208/5a7bfe547917e.png","color":"黑色","bagpay":"1","foruser":"0","is_hot":"2","type":"1","backuser_id":"1","number":"0","is_show":"0","biglist_num":"0","is_collection":0,"islive":"false"}]
+     * info : [{"number":"0","color":"黑色（金色金属件）","material":"牛皮革","title":"Michael Kors MK 女士Cindy大号贝壳斜挎包","img":"/Public/headerimg/1111.png","bagtype_id":"单肩","bagsize_id":"M","bagbrand_id":"adidas","bagpay":"3","id":"4","order_id":"9","baglist_id":"4","old_price":"4.00","new_price":"4.00","discount_price":"0.00","discount_id":"4","deposit":"1.00","end_time":"1523322009","status":"2","renew_price":null},{"number":"0","color":"berry-酒红","material":"PU","title":"秋冬新款女包 Dune商务时尚通勤漆皮单肩斜挎手提凯莉包 ","img":"/Public/headerimg/1111.png","bagtype_id":"单肩","bagsize_id":"M","bagbrand_id":"adidas","bagpay":"1","id":"5","order_id":"12","baglist_id":"5","old_price":"5.00","new_price":"5.00","discount_price":"0.00","discount_id":"4","deposit":"1.00","end_time":"1523322009","status":"2","renew_price":null}]
      */
 
     private String status;
@@ -35,79 +35,82 @@ public class CabinetBean {
 
     public static class InfoBean {
         /**
-         * id : 1
-         * title : lapalette小马女双肩书包
-         * originalprice : 1.00
-         * days : 7
-         * days_money : 42.00
-         * img : /Public/headerimg/1111.png
-         * bagtype_id : 1
-         * bagsize_id : 1
-         * bagbrand_id : 1
-         * create_time : 1518075476
-         * create_user : admin
-         * update_time : 1518159857
-         * update_user : admin
-         * status : 1
-         * contentimg : /Uploads/20180208/5a7bff92abef4.png,/Uploads/20180208/5a7bfe5476f59.png,/Uploads/20180208/5a7bfe5478451.png
-         * is_buy : 3
-         * material : 聚酯纤维100%
-         * bag_toprice : 3
-         * nowprice : 6380.00
-         * deposit : 80.00
-         * carousel : /Uploads/20180208/5a7bff7859df0.png,/Uploads/20180208/5a7bfe5478dd6.png,/Uploads/20180208/5a7bfe547917e.png
-         * color : 黑色
-         * bagpay : 1
-         * foruser : 0
-         * is_hot : 2
-         * type : 1
-         * backuser_id : 1
          * number : 0
-         * is_show : 0
-         * biglist_num : 0
-         * is_collection : 0
-         * islive : false
+         * color : 黑色（金色金属件）
+         * material : 牛皮革
+         * title : Michael Kors MK 女士Cindy大号贝壳斜挎包
+         * img : /Public/headerimg/1111.png
+         * bagtype_id : 单肩
+         * bagsize_id : M
+         * bagbrand_id : adidas
+         * bagpay : 3
+         * id : 4
+         * order_id : 9
+         * baglist_id : 4
+         * old_price : 4.00
+         * new_price : 4.00
+         * discount_price : 0.00
+         * discount_id : 4
+         * deposit : 1.00
+         * end_time : 1523322009
+         * status : 2
+         * renew_price : null
          */
 
-        private String id;
+        private String number;
+        private String color;
+        private String material;
         private String title;
-        private String originalprice;
-        private String days;
-        private String days_money;
         private String img;
         private String bagtype_id;
         private String bagsize_id;
         private String bagbrand_id;
-        private String create_time;
-        private String create_user;
-        private String update_time;
-        private String update_user;
-        private String status;
-        private String contentimg;
-        private String is_buy;
-        private String material;
-        private String bag_toprice;
-        private String nowprice;
-        private String deposit;
-        private String carousel;
-        private String color;
         private String bagpay;
-        private String foruser;
-        private String is_hot;
-        private String type;
-        private String backuser_id;
-        private String number;
-        private String is_show;
-        private String biglist_num;
-        private int is_collection;
-        private String islive;
+        private String id;
+        private String order_id;
+        private String baglist_id;
+        private String old_price;
+        private String new_price;
+        private String discount_price;
+        private String discount_id;
+        private String deposit;
+        private String end_time;
+        private String status;
 
-        public String getId() {
-            return id;
+        public String getDay() {
+            return day;
         }
 
-        public void setId(String id) {
-            this.id = id;
+        public void setDay(String day) {
+            this.day = day;
+        }
+
+        private String day;
+        private Object renew_price;
+
+
+        public String getNumber() {
+            return number;
+        }
+
+        public void setNumber(String number) {
+            this.number = number;
+        }
+
+        public String getColor() {
+            return color;
+        }
+
+        public void setColor(String color) {
+            this.color = color;
+        }
+
+        public String getMaterial() {
+            return material;
+        }
+
+        public void setMaterial(String material) {
+            this.material = material;
         }
 
         public String getTitle() {
@@ -116,30 +119,6 @@ public class CabinetBean {
 
         public void setTitle(String title) {
             this.title = title;
-        }
-
-        public String getOriginalprice() {
-            return originalprice;
-        }
-
-        public void setOriginalprice(String originalprice) {
-            this.originalprice = originalprice;
-        }
-
-        public String getDays() {
-            return days;
-        }
-
-        public void setDays(String days) {
-            this.days = days;
-        }
-
-        public String getDays_money() {
-            return days_money;
-        }
-
-        public void setDays_money(String days_money) {
-            this.days_money = days_money;
         }
 
         public String getImg() {
@@ -174,84 +153,68 @@ public class CabinetBean {
             this.bagbrand_id = bagbrand_id;
         }
 
-        public String getCreate_time() {
-            return create_time;
+        public String getBagpay() {
+            return bagpay;
         }
 
-        public void setCreate_time(String create_time) {
-            this.create_time = create_time;
+        public void setBagpay(String bagpay) {
+            this.bagpay = bagpay;
         }
 
-        public String getCreate_user() {
-            return create_user;
+        public String getId() {
+            return id;
         }
 
-        public void setCreate_user(String create_user) {
-            this.create_user = create_user;
+        public void setId(String id) {
+            this.id = id;
         }
 
-        public String getUpdate_time() {
-            return update_time;
+        public String getOrder_id() {
+            return order_id;
         }
 
-        public void setUpdate_time(String update_time) {
-            this.update_time = update_time;
+        public void setOrder_id(String order_id) {
+            this.order_id = order_id;
         }
 
-        public String getUpdate_user() {
-            return update_user;
+        public String getBaglist_id() {
+            return baglist_id;
         }
 
-        public void setUpdate_user(String update_user) {
-            this.update_user = update_user;
+        public void setBaglist_id(String baglist_id) {
+            this.baglist_id = baglist_id;
         }
 
-        public String getStatus() {
-            return status;
+        public String getOld_price() {
+            return old_price;
         }
 
-        public void setStatus(String status) {
-            this.status = status;
+        public void setOld_price(String old_price) {
+            this.old_price = old_price;
         }
 
-        public String getContentimg() {
-            return contentimg;
+        public String getNew_price() {
+            return new_price;
         }
 
-        public void setContentimg(String contentimg) {
-            this.contentimg = contentimg;
+        public void setNew_price(String new_price) {
+            this.new_price = new_price;
         }
 
-        public String getIs_buy() {
-            return is_buy;
+        public String getDiscount_price() {
+            return discount_price;
         }
 
-        public void setIs_buy(String is_buy) {
-            this.is_buy = is_buy;
+        public void setDiscount_price(String discount_price) {
+            this.discount_price = discount_price;
         }
 
-        public String getMaterial() {
-            return material;
+        public String getDiscount_id() {
+            return discount_id;
         }
 
-        public void setMaterial(String material) {
-            this.material = material;
-        }
-
-        public String getBag_toprice() {
-            return bag_toprice;
-        }
-
-        public void setBag_toprice(String bag_toprice) {
-            this.bag_toprice = bag_toprice;
-        }
-
-        public String getNowprice() {
-            return nowprice;
-        }
-
-        public void setNowprice(String nowprice) {
-            this.nowprice = nowprice;
+        public void setDiscount_id(String discount_id) {
+            this.discount_id = discount_id;
         }
 
         public String getDeposit() {
@@ -262,100 +225,28 @@ public class CabinetBean {
             this.deposit = deposit;
         }
 
-        public String getCarousel() {
-            return carousel;
+        public String getEnd_time() {
+            return end_time;
         }
 
-        public void setCarousel(String carousel) {
-            this.carousel = carousel;
+        public void setEnd_time(String end_time) {
+            this.end_time = end_time;
         }
 
-        public String getColor() {
-            return color;
+        public String getStatus() {
+            return status;
         }
 
-        public void setColor(String color) {
-            this.color = color;
+        public void setStatus(String status) {
+            this.status = status;
         }
 
-        public String getBagpay() {
-            return bagpay;
+        public Object getRenew_price() {
+            return renew_price;
         }
 
-        public void setBagpay(String bagpay) {
-            this.bagpay = bagpay;
-        }
-
-        public String getForuser() {
-            return foruser;
-        }
-
-        public void setForuser(String foruser) {
-            this.foruser = foruser;
-        }
-
-        public String getIs_hot() {
-            return is_hot;
-        }
-
-        public void setIs_hot(String is_hot) {
-            this.is_hot = is_hot;
-        }
-
-        public String getType() {
-            return type;
-        }
-
-        public void setType(String type) {
-            this.type = type;
-        }
-
-        public String getBackuser_id() {
-            return backuser_id;
-        }
-
-        public void setBackuser_id(String backuser_id) {
-            this.backuser_id = backuser_id;
-        }
-
-        public String getNumber() {
-            return number;
-        }
-
-        public void setNumber(String number) {
-            this.number = number;
-        }
-
-        public String getIs_show() {
-            return is_show;
-        }
-
-        public void setIs_show(String is_show) {
-            this.is_show = is_show;
-        }
-
-        public String getBiglist_num() {
-            return biglist_num;
-        }
-
-        public void setBiglist_num(String biglist_num) {
-            this.biglist_num = biglist_num;
-        }
-
-        public int getIs_collection() {
-            return is_collection;
-        }
-
-        public void setIs_collection(int is_collection) {
-            this.is_collection = is_collection;
-        }
-
-        public String getIslive() {
-            return islive;
-        }
-
-        public void setIslive(String islive) {
-            this.islive = islive;
+        public void setRenew_price(Object renew_price) {
+            this.renew_price = renew_price;
         }
     }
 }

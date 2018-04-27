@@ -216,7 +216,8 @@
                 android:textSize="14dp"
                 android:textColor="#FC5C55"/>
             <TextView
-                android:layout_toRightOf="@id/cablinet_adapter_rent"
+                android:layout_marginRight="20dp"
+               android:layout_alignParentRight="true"
                 android:id="@+id/cablinet_adapter_buyout"
                 android:layout_marginLeft="15dp"
                 android:layout_width="wrap_content"

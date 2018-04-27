@@ -45,7 +45,7 @@ public class ShipAdapter2 extends RecyclerView.Adapter{
         myHolder.orderid.setText("订单编号: " +bean.getOrdernumber());
         Glide.with(mContext).load(SBUrls.LOGURL + bean.getImg()).into(myHolder.img);
         myHolder.title.setText(bean.getTitle());
-        myHolder.nums.setText(bean.getBiglist_num());
+        myHolder.nums.setText(bean.getNumber());
         myHolder.color.setText(bean.getColor());
         myHolder.brands.setText(bean.getBagbrand_id());
         myHolder.size.setText(bean.getBagsize_id());
