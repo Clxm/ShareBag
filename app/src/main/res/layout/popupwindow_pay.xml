@@ -1,163 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-
+              android:layout_width="match_parent" android:layout_height="match_parent"
+              android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="820px"></LinearLayout>
+        android:layout_height="274dp"/>
 
-
-
-
-<LinearLayout
-    android:background="#FFF"
-    android:layout_width="match_parent"
-    android:layout_height="900px"
-    android:orientation="vertical">
-
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="146px"
-        android:background="#f8f8f8">
-
-
-        <ImageView
-            android:layout_width="46px"
-            android:layout_height="46px"
-            android:src="@mipmap/guanbi3"
-            android:layout_centerVertical="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="46px" />
-
-
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="选择支付方式"
-    android:textSize="43px"
-    android:textColor="#333333"
-    android:layout_centerVertical="true"
-    android:layout_centerHorizontal="true" />
-
-
-
-    </RelativeLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2px"
-        android:background="#ECECEF"/>
     <LinearLayout
-        android:id="@+id/pay_balance"
-        android:layout_marginTop="137px"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical">
+        android:layout_height="300dp"
+        android:background="#FFF"
+        android:orientation="vertical">
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="#f8f8f8">
 
-        <ImageView
-            android:layout_marginLeft="40px"
-            android:layout_width="65px"
-            android:layout_height="65px"
-            android:src="@mipmap/qianbao3"/>
-        <TextView
-            android:layout_marginLeft="28px"
-            android:layout_width="wrap_content"
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="15dp"
+                android:src="@mipmap/guanbi3"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="选择支付方式"
+                android:textColor="#333333"
+                android:textSize="14dp"/>
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#ECECEF"/>
+
+        <LinearLayout
+            android:id="@+id/pay_balance"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="余额"
-            android:textSize="43px"
-            android:textColor="#333333"/>
+            android:layout_marginTop="46dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_marginLeft="15dp"
+                android:src="@mipmap/qianbao3"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="余额"
+                android:textColor="#333333"
+                android:textSize="14dp"/>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#ECECEF"/>
+
+        <LinearLayout
+            android:id="@+id/pay_wx"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="46dp"
+            android:gravity="center_vertical">
 
 
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_marginLeft="15dp"
+                android:src="@mipmap/pay_wx"/>
 
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="微信支付"
+                android:textColor="#333333"
+                android:textSize="14dp"/>
 
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#ECECEF"/>
+
+        <LinearLayout
+            android:id="@+id/pay_zfb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="46dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_marginLeft="15dp"
+                android:src="@mipmap/pay_zfb"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="支付宝支付"
+                android:textColor="#333333"
+                android:textSize="14dp"/>
+
+        </LinearLayout>
 
     </LinearLayout>
-
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2px"
-        android:background="#ECECEF"/>
-
-
-    <LinearLayout
-        android:id="@+id/pay_wx"
-        android:layout_marginTop="137px"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical">
-
-
-        <ImageView
-            android:layout_marginLeft="40px"
-            android:layout_width="65px"
-            android:layout_height="65px"
-            android:src="@mipmap/pay_wx"/>
-
-
-
-        <TextView
-            android:layout_marginLeft="28px"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="微信支付"
-            android:textSize="43px"
-            android:textColor="#333333"/>
-
-
-
-    </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2px"
-        android:background="#ECECEF"/>
-
-    <LinearLayout
-        android:id="@+id/pay_zfb"
-        android:layout_marginTop="137px"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical">
-
-
-        <ImageView
-            android:layout_marginLeft="40px"
-            android:layout_width="65px"
-            android:layout_height="65px"
-            android:src="@mipmap/pay_zfb"/>
-
-
-        <TextView
-            android:layout_marginLeft="28px"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="支付宝支付"
-            android:textSize="43px"
-            android:textColor="#333333"/>
-
-
-    </LinearLayout>
-
-
-
-
-
-
-
-
-</LinearLayout>
-
-
-
-
-
-
 
 </LinearLayout>

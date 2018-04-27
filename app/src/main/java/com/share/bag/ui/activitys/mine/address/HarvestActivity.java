@@ -67,8 +67,6 @@ public class HarvestActivity extends AppCompatActivity implements View.OnClickLi
 
     private void initdata() {
 
-//        String addurl="htmltp://baobaoapi.ldlchat.com/Home/Personalcenter/getUserContent.html";
-
         Map<String, String> addmap = new HashMap<>();
 
         OkHttpUtils.getInstance().post(SBUrls.CHECK_RECEIVING, addmap, new MyNetWorkCallback<AddressBean>() {

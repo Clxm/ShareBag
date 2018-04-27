@@ -270,7 +270,7 @@ public class RentActivity extends AppCompatActivity {
             mBagId = intent.getStringExtra("bagId");
 
         }
-        imageView3 = (ImageView) findViewById(R.id.imageView3);
+//        imageView3 = (ImageView) findViewById(R.id.imageView3);
         rent = (TextView) findViewById(R.id.buy_rent);
         rent_22 = (TextView) findViewById(R.id.rent_22);
         rent_11 = (TextView) findViewById(R.id.rent_11);
@@ -329,7 +329,7 @@ public class RentActivity extends AppCompatActivity {
 
 
         //显示PopupWindow
-        View rootview = LayoutInflater.from(this).inflate(R.layout.activity_personal2, null);
+        View rootview = LayoutInflater.from(this).inflate(R.layout.activity_rent, null);
         window1.showAtLocation(rootview, Gravity.CENTER, 0, 0);
 
         pay_balance.setOnClickListener(new View.OnClickListener() {
@@ -340,10 +340,10 @@ public class RentActivity extends AppCompatActivity {
             }
         });
 
+        //微信支付
         pay_wx.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//微信支付点击事件
 
                 Map<String, String> maymap = new HashMap<String, String>();
 
@@ -393,21 +393,14 @@ public class RentActivity extends AppCompatActivity {
                             }
                         }
                 );
-
-
-                //微信支付点击事件
-
-
                 window1.dismiss();
             }
         });
+        //支付宝
         pay_zfb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Toast.makeText(MyRentActivity.this, "支付宝", Toast.LENGTH_SHORT).show();
-
                 Map<String, String> maymap = new HashMap<String, String>();
-
 //                maymap.put("old_price", "0.01");//原定总价  （old_price）（租金总额：没有优惠过的总计）
 //                maymap.put("new_price", "0.01");//优惠后的价格  （new_price）（租金总额：有优惠过的总计）
 //                maymap.put("pay_status", "3");//支付类型   （pay_status   1-微信   2-钱包   3-支付宝）
@@ -427,7 +420,6 @@ public class RentActivity extends AppCompatActivity {
                     public void onSuccess(MayBean mayBean) {
                         String info = mayBean.getInfo();
                         Log.e("TAG", info);
-//                        Toast.makeText(RentActivity.this, info, Toast.LENGTH_SHORT).show();
                         String status = mayBean.getStatus();
                         String s = info.replaceAll("&amp;", "&");
                         payV2(s);
@@ -436,41 +428,15 @@ public class RentActivity extends AppCompatActivity {
 
                     @Override
                     public void onError(int errorCode, String errorMsg) {
-                        Toast.makeText(RentActivity.this, "+++++++" + errorMsg, Toast.LENGTH_SHORT).show();
+                        ToastUtils.showTop(RentActivity.this, "" + errorMsg);
                     }
                 });
                 window1.dismiss();
             }
         });
-
-
     }
-    //订单详情表
-//                maymap.put("baglist_id","1");//包id
-//                maymap.put("old_price","10");//一个包的租金
-//                maymap.put("new_price","0.01");//优惠后价格 （new_price）（租金-红包劵）
-//                maymap.put("discount_price","");//优惠卷价格（discount_price）（）
-//                maymap.put("discount_id","");//优惠卷id
-//                maymap.put("deposit","0.01");//押金（单个的实际应付押金）
 
-
-    //                String baglist_id1="1";
-//                String old_price11="10";
-//                String new_price11="0.01";
-//                String discount_price11="";
-//                String discount_id11="";
-//                String deposit11="0.01";
-//
-//
-//                String xiangqing="["
-//                        +"baglist_id"+baglist_id1+","
-//                        +"old_price1"+old_price11+","
-//
-//                        +"]";
-//                maymap.put("",xiangqing);
     public void payV2(final String str) {
-
-
         /**
          * 这里只是为了方便直接向商户展示支付宝的整个支付流程；所以Demo中加签过程直接放在客户端完成；
          * 真实App里，privateKey等数据严禁放在客户端，加签过程务必要放在服务端完成；
@@ -478,7 +444,6 @@ public class RentActivity extends AppCompatActivity {
          *
          * orderInfo的获取必须来自服务端；
          */
-
         Runnable payRunnable = new Runnable() {
 
             @Override

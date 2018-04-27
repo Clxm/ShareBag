@@ -51,16 +51,6 @@
                 android:layout_height="70dp"
                 android:background="#FFF">
 
-                <!--<ImageView-->
-                <!--android:id="@+id/imageView3"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_alignParentStart="true"-->
-                <!--android:layout_centerVertical="true"-->
-                <!--android:layout_marginLeft="12dp"-->
-                <!--android:layout_marginStart="12dp"-->
-                <!--android:src="@mipmap/dingwei3"/>-->
-
                 <TextView
                     android:id="@+id/buy_rent"
                     android:layout_width="wrap_content"
@@ -102,7 +92,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="6dp"
                 android:background="#F2F2F2"/>
-            <!--android:scaleType="fitXY"-->
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -132,6 +121,7 @@
                         android:text=""
                         android:textColor="#FF303030"
                         android:textSize="10dp"/>
+
                     <RelativeLayout android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="10dp">
@@ -143,6 +133,7 @@
                             android:text="品牌: "
                             android:textColor="#FF838383"
                             android:textSize="10dp"/>
+
                         <TextView
                             android:id="@+id/tv_buy_brand"
                             android:layout_width="wrap_content"
@@ -166,6 +157,7 @@
                             android:text="商品编号: "
                             android:textColor="#FF838383"
                             android:textSize="10dp"/>
+
                         <TextView
                             android:id="@+id/tv_buy_number"
                             android:layout_width="wrap_content"
@@ -188,6 +180,7 @@
                             android:text="颜色: "
                             android:textColor="#FF838383"
                             android:textSize="10dp"/>
+
                         <TextView
                             android:id="@+id/tv_buy_color"
                             android:layout_width="wrap_content"
@@ -210,6 +203,7 @@
                             android:text="材质: "
                             android:textColor="#FF838383"
                             android:textSize="10dp"/>
+
                         <TextView
                             android:id="@+id/tv_buy_material"
                             android:layout_width="wrap_content"
@@ -232,6 +226,7 @@
                             android:text="尺寸: "
                             android:textColor="#FF838383"
                             android:textSize="10dp"/>
+
                         <TextView
                             android:id="@+id/tv_buy_size"
                             android:layout_width="wrap_content"
@@ -242,7 +237,6 @@
                             android:textColor="#FF838383"
                             android:textSize="10dp"/>
                     </RelativeLayout>
-
 
                 </LinearLayout>
 
@@ -283,7 +277,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="商品价格"
+                        android:text="商品原价"
                         android:textColor="#FF838383"
                         android:textSize="13dp"/>
 
@@ -293,7 +287,7 @@
                         android:layout_weight="1"/>
 
                     <TextView
-                        android:id="@+id/buy_price"
+                        android:id="@+id/tv_buy_original_price"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=""
@@ -305,75 +299,7 @@
                         android:text="元"
                         android:textSize="13dp"/>
 
-
                 </LinearLayout>
-
-                <!--<LinearLayout-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginTop="15dp">-->
-
-                    <!--<TextView-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:text="运费（包邮）"-->
-                        <!--android:textColor="#FF838383"-->
-                        <!--android:textSize="13dp"/>-->
-
-                    <!--<TextView-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:layout_weight="1"/>-->
-
-
-                    <!--<TextView-->
-                        <!--android:id="@+id/buy_freight"-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:text=""-->
-                        <!--android:textSize="13dp"/>-->
-
-                    <!--<TextView-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:text="元"-->
-                        <!--android:textSize="13dp"/>-->
-
-                <!--</LinearLayout>-->
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="以旧换新"
-                        android:textColor="#FF838383"
-                        android:textSize="13dp"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"/>
-
-
-                    <TextView
-                        android:id="@+id/buy_exchange"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="-"
-                        android:textSize="13dp"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="元"
-                        android:textSize="13dp"/>
-
-                </LinearLayout>
-
 
                 <View
                     android:layout_width="match_parent"
@@ -381,7 +307,6 @@
                     android:layout_marginTop="15dp"
                     android:background="#F2f2f2"/>
 
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -390,7 +315,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="应付价款"
+                        android:text="商品现价"
                         android:textColor="#FD938E"
                         android:textSize="13dp"/>
 
@@ -400,12 +325,13 @@
                         android:layout_weight="1"/>
 
                     <TextView
-                        android:id="@+id/buy_handle"
+                        android:id="@+id/tv_buy_now_price"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=""
                         android:textColor="#FD938E"
                         android:textSize="13dp"/>
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

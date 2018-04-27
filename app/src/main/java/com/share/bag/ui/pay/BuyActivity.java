@@ -43,6 +43,10 @@ public class BuyActivity extends AppCompatActivity {
     TextView mTvBuySize;
     @BindView(R.id.buy_return)
     ImageView mBuyReturn;
+    @BindView(R.id.tv_buy_original_price)
+    TextView mTvBuyOriginalPrice;
+    @BindView(R.id.tv_buy_now_price)
+    TextView mTvBuyNowPrice;
     private ImageView imageView3;
     private TextView buy_rent;
     private TextView buy_phone;
@@ -69,6 +73,8 @@ public class BuyActivity extends AppCompatActivity {
     private String mColor;
     private String mMaterial;
     private String mBagSize;
+    private String mOriginalPrice;
+    private String mNowPrice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,6 +130,9 @@ public class BuyActivity extends AppCompatActivity {
             mColor = intent.getStringExtra("color");
             mMaterial = intent.getStringExtra("material");
             mBagSize = intent.getStringExtra("bagSize");
+            mOriginalPrice = intent.getStringExtra("originalPrice");
+            mNowPrice = intent.getStringExtra("nowPrice");
+
 
         }
 
@@ -139,15 +148,13 @@ public class BuyActivity extends AppCompatActivity {
         buy_commodity_color = (TextView) findViewById(R.id.buy_commodity_color);
         buy_commodity_material = (TextView) findViewById(R.id.buy_commodity_material);
         buy_commodity_size = (TextView) findViewById(R.id.buy_commodity_size);
-        buy_price = (TextView) findViewById(R.id.buy_price);
-//        buy_freight = (TextView) findViewById(R.id.buy_freight);
-        buy_exchange = (TextView) findViewById(R.id.buy_exchange);
-        buy_handle = (TextView) findViewById(R.id.buy_handle);
+//        buy_price = (TextView) findViewById(R.id.buy_price);
+////        buy_freight = (TextView) findViewById(R.id.buy_freight);
+//        buy_exchange = (TextView) findViewById(R.id.buy_exchange);
+//        buy_handle = (TextView) findViewById(R.id.buy_handle);
         rent_total_amount = (TextView) findViewById(R.id.rent_total_amount);
         rent_submit_order = (LinearLayout) findViewById(R.id.rent_submit_order);
-
         setViewData();
-
     }
 
     private void setViewData() {
@@ -159,6 +166,8 @@ public class BuyActivity extends AppCompatActivity {
         mTvBuyColor.setText(mColor);
         mTvBuyMaterial.setText(mMaterial);
         mTvBuySize.setText(mBagSize);
+        mTvBuyOriginalPrice.setText(mOriginalPrice);
+        mTvBuyNowPrice.setText(mNowPrice);
     }
 
     @OnClick(R.id.buy_return)

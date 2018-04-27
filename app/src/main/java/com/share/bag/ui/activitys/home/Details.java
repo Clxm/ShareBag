@@ -316,6 +316,8 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
                     intent.putExtra("color", mColor);
                     intent.putExtra("material", mMaterial);
                     intent.putExtra("bagSize", mBagSize);
+                    intent.putExtra("originalPrice", mOriginalprice);
+                    intent.putExtra("nowPrice", mNowprice);
 
 
                     startActivity(intent);

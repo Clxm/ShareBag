@@ -113,14 +113,9 @@ public class TalentAdapter extends RecyclerView.Adapter<TalentAdapter.ViewHolder
 
 
         if (collection == 1) {
-
             holder.talent_commodity_shoucang_img.setImageResource(R.mipmap.shoucanghong1);
-
-
         } else {
             holder.talent_commodity_shoucang_img.setImageResource(R.mipmap.shoucang1);
-
-
         }
         holder.talent_commodity_shoucang_img.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -130,7 +125,6 @@ public class TalentAdapter extends RecyclerView.Adapter<TalentAdapter.ViewHolder
                 OkHttpUtils.getInstance().post(SBUrls.COLLECTION, collection, new MyNetWorkCallback<CollectionBean>() {
                     @Override
                     public void onSuccess(CollectionBean collectionBean) {
-
 
                     }
 
