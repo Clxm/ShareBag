@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.share.bag.FileUtil;
 import com.share.bag.R;
 import com.share.bag.SBUrls;
 import com.share.bag.ui.activitys.WalletLogActivity;
@@ -131,7 +132,7 @@ public class WalletActivity extends AppCompatActivity implements View.OnClickLis
     public void getdata() {
 
         Map<String ,String>map=new HashMap<>();
-
+        map.put("userid", FileUtil.getUserId(WalletActivity.this));
         OkHttpUtils.getInstance().post(SBUrls.WALLET, map, new MyNetWorkCallback<WalletBean>() {
             @Override
             public void onSuccess(WalletBean walletBean) throws JSONException {

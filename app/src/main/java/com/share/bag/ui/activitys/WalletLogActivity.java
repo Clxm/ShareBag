@@ -44,7 +44,6 @@ public class WalletLogActivity extends BaseActivity {
     @Override
     protected void initData() {
         HashMap<String, String> map = new HashMap<>();
-        map.put("userid", "51");
         map.put("type", "1");
         OkHttpUtils.getInstance().post("https://baobaoapi.ldlchat.com/Home/userupload/spend.html", map, new MyNetWorkCallback<WalletLogBean>() {
             @Override

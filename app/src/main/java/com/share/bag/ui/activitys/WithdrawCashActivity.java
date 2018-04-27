@@ -30,12 +30,11 @@ public class WithdrawCashActivity extends BaseActivity implements View.OnClickLi
     ImageView shipReturn;
     TextView buttonWx;
     TextView buttonZfb;
-    @BindView(R.id.edit_1)
     EditText edit1;
-    @BindView(R.id.edit_2)
     EditText edit2;
     TextView conmit;
     private int type = 1;
+    private View user_group;
 
     @Override
     public int initLayout() {
@@ -48,6 +47,9 @@ public class WithdrawCashActivity extends BaseActivity implements View.OnClickLi
         buttonZfb = (TextView) findViewById(R.id.button_zfb);
         shipReturn = (ImageView) findViewById(R.id.ship_return);
         conmit = (TextView) findViewById(R.id.conmit);
+        edit1 = (EditText) findViewById(R.id.edit_1);
+        edit2 = (EditText) findViewById(R.id.edit_2);
+        user_group = findViewById(R.id.user_group);
     }
 
     @Override
@@ -75,14 +77,14 @@ public class WithdrawCashActivity extends BaseActivity implements View.OnClickLi
                 buttonWx.setTextColor(Color.parseColor("#ffffff"));
                 buttonZfb.setBackgroundColor(Color.parseColor("#ffffff"));
                 buttonZfb.setTextColor(Color.parseColor("#ff0000"));
-                edit2.setVisibility(View.GONE);
+                user_group.setVisibility(View.GONE);
                 break;
             case R.id.button_zfb:
                 buttonZfb.setBackgroundColor(Color.parseColor("#ff0000"));
                 buttonZfb.setTextColor(Color.parseColor("#ffffff"));
                 buttonWx.setBackgroundColor(Color.parseColor("#ffffff"));
                 buttonWx.setTextColor(Color.parseColor("#ff0000"));
-                edit2.setVisibility(View.VISIBLE);
+                user_group.setVisibility(View.VISIBLE);
                 break;
             case R.id.conmit:
                 HashMap<String, String> map = new HashMap<>();
