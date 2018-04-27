@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.share.bag.R;
+import com.share.bag.utils.ToastUtils;
 import com.tencent.mm.opensdk.constants.ConstantsAPI;
 import com.tencent.mm.opensdk.modelbase.BaseReq;
 import com.tencent.mm.opensdk.modelbase.BaseResp;
@@ -43,13 +44,13 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler{
 
 	@Override
 	public void onResp(BaseResp resp) {
-		Log.d("TAG", "onPayFinish, errCode = " + resp.errCode);
-
 		if (resp.getType() == ConstantsAPI.COMMAND_PAY_BY_WX) {
-			AlertDialog.Builder builder = new AlertDialog.Builder(this);
-			builder.setTitle(R.string.app_tip);
-			builder.setMessage(getString(R.string.pay_result_callback_msg, String.valueOf(resp.errCode)));
-			builder.show();
+//			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//			builder.setTitle(R.string.app_tip);
+//			builder.setMessage(getString(R.string.pay_result_callback_msg, String.valueOf(resp.errCode)));
+//			builder.show();
+			ToastUtils.showTop(WXPayEntryActivity.this,getString(R.string.pay_result_callback_msg, String.valueOf(resp.errCode)));
+			finish();
 		}
 	}
 }
