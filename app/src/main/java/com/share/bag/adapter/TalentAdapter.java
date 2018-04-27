@@ -61,10 +61,8 @@ public class TalentAdapter extends RecyclerView.Adapter<TalentAdapter.ViewHolder
         String iconurl = list.get(position).getUserinfo().getIconurl();
 
         //头像
-        Glide.with(context.getApplicationContext()).load(strurl + iconurl).transform(new GlideCircleTransform(context)).crossFade().into(holder.talent_avatar);
+        Glide.with(context.getApplicationContext()).load(strurl + iconurl).transform(new GlideCircleTransform(context.getApplicationContext())).crossFade().into(holder.talent_avatar);
         //发布图片
-
-
         String img = list.get(position).getBack().getImg();
         Glide.with(context.getApplicationContext()).load(strurl + img).into(holder.talent_commodity_img);//商品图片
         holder.talent_commodity_name.setText(list.get(position).getBack().getTitle());//商品名称

@@ -12,6 +12,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -28,6 +29,7 @@ import com.share.bag.alipay.PayResult;
 import com.share.bag.entity.MayBean;
 import com.share.bag.entity.MayBean1;
 import com.share.bag.response.DetailRentUserInfo;
+import com.share.bag.ui.activitys.mine.address.HarvestActivity;
 import com.share.bag.utils.ImageLoader;
 import com.share.bag.utils.ToastUtils;
 import com.share.bag.utils.okhttp.OkHttpUtils;
@@ -45,9 +47,8 @@ import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
-public class RentActivity extends AppCompatActivity {
+public class RentActivity extends AppCompatActivity implements View.OnClickListener {
     private static final int SDK_PAY_FLAG = 1;
     private static final int SDK_AUTH_FLAG = 2;
     //支付
@@ -82,6 +83,10 @@ public class RentActivity extends AppCompatActivity {
     TextView mTvRentNowPrice;
     @BindView(R.id.tv_rent_total_price)
     TextView mTvRentTotalPrice;
+    @BindView(R.id.btn_add_address)
+    Button mBtnAddAddress;
+    @BindView(R.id.rl_add_address)
+    RelativeLayout mRlAddAddress;
     private IWXAPI api;
     private LinearLayout pay_wx;
     private String content;
@@ -234,13 +239,18 @@ public class RentActivity extends AppCompatActivity {
         OkHttpUtils.getInstance().post(SBUrls.DETAIL_GET_USER_INFO, mapParams, new MyNetWorkCallback<DetailRentUserInfo>() {
             @Override
             public void onSuccess(DetailRentUserInfo detailUserInfo) throws JSONException {
-                if (detailUserInfo.getStatus().equals("1")) {
-                    List<DetailRentUserInfo.InfoBean> response = detailUserInfo.getInfo();
+                List<DetailRentUserInfo.InfoBean> response = detailUserInfo.getInfo();
+                if (null != response && response.size() > 0) {
+                    rent_address.setVisibility(View.VISIBLE);
+                    mRlAddAddress.setVisibility(View.GONE);
                     for (int i = 0; i < response.size(); i++) {
                         rent.setText(response.get(i).getUsername());
                         rent_22.setText(response.get(i).getPhone());
                         rent_11.setText(response.get(i).getAddress());
                     }
+                } else {
+                    rent_address.setVisibility(View.GONE);
+                    mRlAddAddress.setVisibility(View.VISIBLE);
                 }
             }
 
@@ -288,7 +298,12 @@ public class RentActivity extends AppCompatActivity {
 //        rent_total_amount = (TextView) findViewById(R.id.rent_total_amount);
         rent_submit_order = (LinearLayout) findViewById(R.id.rent_submit_order);
 
+        setViewOnClick();
         setViewData();
+    }
+
+    private void setViewOnClick() {
+        mBtnAddAddress.setOnClickListener(this);
     }
 
     private void setViewData() {
@@ -461,8 +476,16 @@ public class RentActivity extends AppCompatActivity {
         payThread.start();
     }
 
-    @OnClick(R.id.rent_return)
-    public void onClick() {
-        finish();
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.rent_return:
+                finish();
+                break;
+            case R.id.btn_add_address:
+                Intent intent = new Intent(this, HarvestActivity.class);
+                startActivity(intent);
+                break;
+        }
     }
 }

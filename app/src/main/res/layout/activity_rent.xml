@@ -50,7 +50,8 @@
                 android:id="@+id/rent_address"
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
-                android:background="#FFF">
+                android:background="#FFF"
+                android:visibility="gone">
 
                 <TextView
                     android:id="@+id/buy_rent"
@@ -86,6 +87,24 @@
                     android:textColor="#FF838383"
                     android:textSize="11dp"/>
 
+            </RelativeLayout>
+            <RelativeLayout android:id="@+id/rl_add_address"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@color/color_White"
+                            android:visibility="gone">
+                <Button
+                    android:id="@+id/btn_add_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="20dp"
+                    android:background="#FD6961"
+                    android:text="+新增收货地址"
+                    android:textColor="#FFF"
+                    android:textSize="18dp"/>
             </RelativeLayout>
 
             <View
@@ -341,113 +360,113 @@
                 </RelativeLayout>
 
                 <!--<RelativeLayout-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginTop="15dp">-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="15dp">-->
 
-                    <!--<TextView-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:layout_centerVertical="true"-->
-                        <!--android:text="会员折扣"-->
-                        <!--android:textColor="#FF838383"-->
-                        <!--android:textSize="13dp"/>-->
+                <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:text="会员折扣"-->
+                <!--android:textColor="#FF838383"-->
+                <!--android:textSize="13dp"/>-->
 
 
-                    <!--<TextView-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:layout_centerVertical="true"-->
-                        <!--android:layout_toLeftOf="@+id/rent_member"-->
-                        <!--android:text="-"-->
-                        <!--android:textColor="#FF838383"-->
-                        <!--android:textSize="13dp"/>-->
+                <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:layout_toLeftOf="@+id/rent_member"-->
+                <!--android:text="-"-->
+                <!--android:textColor="#FF838383"-->
+                <!--android:textSize="13dp"/>-->
 
-                    <!--<TextView-->
-                        <!--android:id="@+id/rent_member"-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:layout_centerVertical="true"-->
-                        <!--android:layout_toLeftOf="@+id/tv_rant_discount_unit"-->
-                        <!--android:text=""-->
-                        <!--android:textColor="#FF838383"-->
-                        <!--android:textSize="13dp"/>-->
+                <!--<TextView-->
+                <!--android:id="@+id/rent_member"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:layout_toLeftOf="@+id/tv_rant_discount_unit"-->
+                <!--android:text=""-->
+                <!--android:textColor="#FF838383"-->
+                <!--android:textSize="13dp"/>-->
 
-                    <!--<TextView-->
-                        <!--android:id="@+id/tv_rant_discount_unit"-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:layout_alignParentRight="true"-->
-                        <!--android:layout_centerVertical="true"-->
-                        <!--android:text="元"-->
-                        <!--android:textColor="#FF838383"-->
-                        <!--android:textSize="13dp"/>-->
+                <!--<TextView-->
+                <!--android:id="@+id/tv_rant_discount_unit"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:text="元"-->
+                <!--android:textColor="#FF838383"-->
+                <!--android:textSize="13dp"/>-->
                 <!--</RelativeLayout>-->
 
                 <!--<RelativeLayout-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginTop="15dp">-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="15dp">-->
 
-                    <!--<TextView-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:text="运费(包邮)"-->
-                        <!--android:textColor="#FF838383"-->
-                        <!--android:textSize="13dp"/>-->
-                    <!--<TextView-->
-                        <!--android:id="@+id/rent_postage"-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:layout_toLeftOf="@+id/tv_rant_freight_unit"-->
-                        <!--android:text=""-->
-                        <!--android:textColor="#FF838383"-->
-                        <!--android:textSize="13dp"/>-->
-                    <!--<TextView-->
-                        <!--android:id="@+id/tv_rant_freight_unit"-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:layout_alignParentRight="true"-->
-                        <!--android:text="元"-->
-                        <!--android:textColor="#FF838383"-->
-                        <!--android:textSize="13dp"/>-->
+                <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="运费(包邮)"-->
+                <!--android:textColor="#FF838383"-->
+                <!--android:textSize="13dp"/>-->
+                <!--<TextView-->
+                <!--android:id="@+id/rent_postage"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_toLeftOf="@+id/tv_rant_freight_unit"-->
+                <!--android:text=""-->
+                <!--android:textColor="#FF838383"-->
+                <!--android:textSize="13dp"/>-->
+                <!--<TextView-->
+                <!--android:id="@+id/tv_rant_freight_unit"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:text="元"-->
+                <!--android:textColor="#FF838383"-->
+                <!--android:textSize="13dp"/>-->
 
                 <!--</RelativeLayout>-->
 
                 <!--<RelativeLayout-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginTop="15dp">-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="15dp">-->
 
-                    <!--<TextView-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:text="可用红包"-->
-                        <!--android:textColor="#FF838383"-->
-                        <!--android:textSize="13dp"/>-->
-                    <!--<TextView-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:layout_toLeftOf="@+id/rent_red_package"-->
-                        <!--android:text="-"-->
-                        <!--android:textColor="#FF838383"-->
-                        <!--android:textSize="13dp"/>-->
-                    <!--<TextView-->
-                        <!--android:id="@+id/rent_red_package"-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:layout_toLeftOf="@+id/tv_rant_red_packet_unit"-->
-                        <!--android:text=""-->
-                        <!--android:textColor="#FF838383"-->
-                        <!--android:textSize="13dp"/>-->
-                    <!--<TextView-->
-                        <!--android:id="@+id/tv_rant_red_packet_unit"-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:layout_alignParentRight="true"-->
-                        <!--android:text="元"-->
-                        <!--android:textColor="#FF838383"-->
-                        <!--android:textSize="13dp"/>-->
+                <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="可用红包"-->
+                <!--android:textColor="#FF838383"-->
+                <!--android:textSize="13dp"/>-->
+                <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_toLeftOf="@+id/rent_red_package"-->
+                <!--android:text="-"-->
+                <!--android:textColor="#FF838383"-->
+                <!--android:textSize="13dp"/>-->
+                <!--<TextView-->
+                <!--android:id="@+id/rent_red_package"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_toLeftOf="@+id/tv_rant_red_packet_unit"-->
+                <!--android:text=""-->
+                <!--android:textColor="#FF838383"-->
+                <!--android:textSize="13dp"/>-->
+                <!--<TextView-->
+                <!--android:id="@+id/tv_rant_red_packet_unit"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:text="元"-->
+                <!--android:textColor="#FF838383"-->
+                <!--android:textSize="13dp"/>-->
 
                 <!--</RelativeLayout>-->
 
@@ -462,118 +481,118 @@
                 android:paddingRight="12dp">
 
                 <!--<RelativeLayout-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginTop="15dp">-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="15dp">-->
 
-                    <!--<TextView-->
-                        <!--android:id="@+id/tv_rant_deposit_root"-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:layout_alignParentStart="true"-->
-                        <!--android:layout_alignParentTop="true"-->
-                        <!--android:text="应付押金 "-->
-                        <!--android:textColor="#FF838383"-->
-                        <!--android:textSize="13dp"/>-->
+                <!--<TextView-->
+                <!--android:id="@+id/tv_rant_deposit_root"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_alignParentStart="true"-->
+                <!--android:layout_alignParentTop="true"-->
+                <!--android:text="应付押金 "-->
+                <!--android:textColor="#FF838383"-->
+                <!--android:textSize="13dp"/>-->
 
-                    <!--<TextView-->
-                        <!--android:id="@+id/rent_handle_deposit"-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:layout_centerVertical="true"-->
-                        <!--android:layout_toRightOf="@id/tv_rant_deposit_root"-->
-                        <!--android:text=""-->
-                        <!--android:textColor="#FF838383"-->
-                        <!--android:textSize="13dp"/>-->
+                <!--<TextView-->
+                <!--android:id="@+id/rent_handle_deposit"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:layout_toRightOf="@id/tv_rant_deposit_root"-->
+                <!--android:text=""-->
+                <!--android:textColor="#FF838383"-->
+                <!--android:textSize="13dp"/>-->
 
-                    <!--<TextView-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:layout_centerVertical="true"-->
-                        <!--android:layout_toLeftOf="@+id/rent_paid_deposit"-->
-                        <!--android:text="已付押金 "-->
-                        <!--android:textColor="#FF838383"-->
-                        <!--android:textSize="13dp"/>-->
+                <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:layout_toLeftOf="@+id/rent_paid_deposit"-->
+                <!--android:text="已付押金 "-->
+                <!--android:textColor="#FF838383"-->
+                <!--android:textSize="13dp"/>-->
 
-                    <!--<TextView-->
-                        <!--android:id="@+id/rent_paid_deposit"-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:layout_alignParentRight="true"-->
-                        <!--android:layout_centerVertical="true"-->
-                        <!--android:text=""-->
-                        <!--android:textColor="#FF838383"-->
-                        <!--android:textSize="13dp"/>-->
-
-                <!--</RelativeLayout>-->
-
-                <!--<RelativeLayout-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginTop="15dp">-->
-
-                    <!--<TextView-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:layout_centerVertical="true"-->
-                        <!--android:text="应付租金"-->
-                        <!--android:textColor="#FF838383"-->
-                        <!--android:textSize="13dp"/>-->
-
-                    <!--<TextView-->
-                        <!--android:id="@+id/rent_handle_rent"-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:layout_centerVertical="true"-->
-                        <!--android:layout_toLeftOf="@+id/iv_rant_unit"-->
-                        <!--android:text=""-->
-                        <!--android:textColor="#FF838383"-->
-                        <!--android:textSize="13dp"/>-->
-                    <!--<TextView-->
-                        <!--android:id="@+id/iv_rant_unit"-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:layout_alignParentRight="true"-->
-                        <!--android:layout_centerVertical="true"-->
-                        <!--android:text="元"-->
-                        <!--android:textColor="#FF838383"-->
-                        <!--android:textSize="13dp"/>-->
+                <!--<TextView-->
+                <!--android:id="@+id/rent_paid_deposit"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:text=""-->
+                <!--android:textColor="#FF838383"-->
+                <!--android:textSize="13dp"/>-->
 
                 <!--</RelativeLayout>-->
 
                 <!--<RelativeLayout-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginBottom="15dp"-->
-                    <!--android:layout_marginTop="16dp">-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="15dp">-->
 
-                    <!--<TextView-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:layout_centerVertical="true"-->
-                        <!--android:text="补充押金"-->
-                        <!--android:textColor="#FF838383"-->
-                        <!--android:textSize="13dp"/>-->
+                <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:text="应付租金"-->
+                <!--android:textColor="#FF838383"-->
+                <!--android:textSize="13dp"/>-->
 
-                    <!--<TextView-->
-                        <!--android:id="@+id/rent_supplement_rent"-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:layout_centerVertical="true"-->
-                        <!--android:layout_toLeftOf="@+id/tv_rant_supplement"-->
-                        <!--android:text=""-->
-                        <!--android:textColor="#FF838383"-->
-                        <!--android:textSize="13dp"/>-->
+                <!--<TextView-->
+                <!--android:id="@+id/rent_handle_rent"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:layout_toLeftOf="@+id/iv_rant_unit"-->
+                <!--android:text=""-->
+                <!--android:textColor="#FF838383"-->
+                <!--android:textSize="13dp"/>-->
+                <!--<TextView-->
+                <!--android:id="@+id/iv_rant_unit"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:text="元"-->
+                <!--android:textColor="#FF838383"-->
+                <!--android:textSize="13dp"/>-->
 
-                    <!--<TextView-->
-                        <!--android:id="@+id/tv_rant_supplement"-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:layout_alignParentRight="true"-->
-                        <!--android:layout_centerVertical="true"-->
-                        <!--android:text="元"-->
-                        <!--android:textColor="#FF838383"-->
-                        <!--android:textSize="13dp"/>-->
+                <!--</RelativeLayout>-->
+
+                <!--<RelativeLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginBottom="15dp"-->
+                <!--android:layout_marginTop="16dp">-->
+
+                <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:text="补充押金"-->
+                <!--android:textColor="#FF838383"-->
+                <!--android:textSize="13dp"/>-->
+
+                <!--<TextView-->
+                <!--android:id="@+id/rent_supplement_rent"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:layout_toLeftOf="@+id/tv_rant_supplement"-->
+                <!--android:text=""-->
+                <!--android:textColor="#FF838383"-->
+                <!--android:textSize="13dp"/>-->
+
+                <!--<TextView-->
+                <!--android:id="@+id/tv_rant_supplement"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:text="元"-->
+                <!--android:textColor="#FF838383"-->
+                <!--android:textSize="13dp"/>-->
 
                 <!--</RelativeLayout>-->
                 <RelativeLayout

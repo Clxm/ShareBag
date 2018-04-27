@@ -48,6 +48,7 @@
             <RelativeLayout
                 android:id="@+id/buy_address"
                 android:layout_width="match_parent"
+                android:visibility="gone"
                 android:layout_height="70dp"
                 android:background="#FFF">
 
@@ -86,6 +87,24 @@
                     android:textColor="#FF838383"
                     android:textSize="12dp"/>
 
+            </RelativeLayout>
+            <RelativeLayout android:id="@+id/rl_add_address"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@color/color_White"
+                            android:visibility="gone">
+                <Button
+                    android:id="@+id/btn_add_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="20dp"
+                    android:background="#FD6961"
+                    android:text="+新增收货地址"
+                    android:textColor="#FFF"
+                    android:textSize="18dp"/>
             </RelativeLayout>
 
             <View

@@ -12,6 +12,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -28,6 +29,7 @@ import com.share.bag.alipay.PayResult;
 import com.share.bag.entity.MayBean;
 import com.share.bag.entity.MayBean1;
 import com.share.bag.response.DetailBuyUserInfo;
+import com.share.bag.ui.activitys.mine.address.HarvestActivity;
 import com.share.bag.utils.ImageLoader;
 import com.share.bag.utils.ToastUtils;
 import com.share.bag.utils.okhttp.OkHttpUtils;
@@ -69,6 +71,10 @@ public class BuyActivity extends AppCompatActivity implements View.OnClickListen
     TextView mTvBuyNowPrice;
     @BindView(R.id.tv_buy_total_price)
     TextView mTvBuyTotalPrice;
+    @BindView(R.id.btn_add_address)
+    Button mBtnAddAddress;
+    @BindView(R.id.rl_add_address)
+    RelativeLayout mRlAddAddress;
     private ImageView imageView3;
     private TextView buy_rent;
     private TextView buy_phone;
@@ -125,13 +131,18 @@ public class BuyActivity extends AppCompatActivity implements View.OnClickListen
         OkHttpUtils.getInstance().post(SBUrls.DETAIL_GET_USER_INFO, mapParams, new MyNetWorkCallback<DetailBuyUserInfo>() {
             @Override
             public void onSuccess(DetailBuyUserInfo detailUserInfo) throws JSONException {
-                if ("1".equals(detailUserInfo.getStatus())) {
-                    List<DetailBuyUserInfo.InfoBean> response = detailUserInfo.getInfo();
+                List<DetailBuyUserInfo.InfoBean> response = detailUserInfo.getInfo();
+                if (null != response && response.size() > 0) {
+                    buy_address.setVisibility(View.VISIBLE);
+                    mRlAddAddress.setVisibility(View.GONE);
                     for (int i = 0; i < response.size(); i++) {
                         buy_rent.setText(response.get(i).getUsername());
                         buy_phone.setText(response.get(i).getPhone());
                         buy_address1.setText(response.get(i).getAddress());
                     }
+                } else {
+                    buy_address.setVisibility(View.GONE);
+                    mRlAddAddress.setVisibility(View.VISIBLE);
                 }
             }
 
@@ -185,6 +196,7 @@ public class BuyActivity extends AppCompatActivity implements View.OnClickListen
     private void setViewOnClick() {
         mBuyReturn.setOnClickListener(this);
         rent_submit_order.setOnClickListener(this);
+        mBtnAddAddress.setOnClickListener(this);
     }
 
     private void setViewData() {
@@ -214,6 +226,10 @@ public class BuyActivity extends AppCompatActivity implements View.OnClickListen
                 break;
             case R.id.rent_submit_order:
                 showPayWindow();
+                break;
+            case R.id.btn_add_address:
+                Intent intent = new Intent(this, HarvestActivity.class);
+                startActivity(intent);
                 break;
         }
     }
