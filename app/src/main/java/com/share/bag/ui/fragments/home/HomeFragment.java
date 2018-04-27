@@ -170,8 +170,12 @@ public class HomeFragment extends BaseFragment {
     public void initView(View view) {
         context = getActivity().getApplicationContext();
         mzBannerView = view.findViewById(R.id.first_vp);
-        getData();
         initRefresh();
+    }
+
+    @Override
+    protected void initData() {
+        getData();
     }
 
     private void initRefresh() {
@@ -193,25 +197,23 @@ public class HomeFragment extends BaseFragment {
                 HomeTalentBean.InfoBean info = homeTalentBean.getInfo();
                 String iconurl = info.getUserinfo().getIconurl();
                 Glide.with(context).load(iconurl)
-                        //设置圆角图片
-//                .transform(new GlideRoundTransform(MainActivity.this, 10))
                         //设置圆形图片
                         .transform(new GlideCircleTransform(context))
                         .crossFade()
                         .into(home_avatar);
 
                 String contentImg = info.getBack().getContentimg();
-                if (!contentImg.equals("")) {
+                if (!"".equals(contentImg)) {
                     String[] imgs = contentImg.split(",");
                     if (imgs.length >= 1) {
-                        if (!imgs[0].equals("")) {
+                        if (!"".equals(imgs[0])) {
                             mTalentImg1.setVisibility(View.VISIBLE);
                             String img1 = SBUrls.LOGURL + imgs[0];
                             Glide.with(context).load(img1).into(mTalentImg1);
                         } else {
                             mTalentImg1.setVisibility(View.GONE);
                         }
-                        if (!imgs[1].equals("")) {
+                        if (!"".equals(imgs[1])) {
                             mTalentImg2.setVisibility(View.VISIBLE);
                             String img2 = SBUrls.LOGURL + imgs[1];
                             Glide.with(context).load(img2).into(mTalentImg2);
@@ -225,19 +227,19 @@ public class HomeFragment extends BaseFragment {
                 if (!contentLabel.equals("")) {
                     String[] labels = contentLabel.split(",");
                     if (labels.length >= 1) {
-                        if (!labels[0].equals("")) {
+                        if (!"".equals(labels[0])) {
                             mTvLabel1.setVisibility(View.VISIBLE);
                             mTvLabel1.setText(labels[0]);
                         } else {
                             mTvLabel1.setVisibility(View.GONE);
                         }
-                        if (!labels[1].equals("")) {
+                        if (!"".equals(labels[1])) {
                             mTvLabel2.setVisibility(View.VISIBLE);
                             mTvLabel2.setText(labels[1]);
                         } else {
                             mTvLabel2.setVisibility(View.GONE);
                         }
-                        if (!labels[2].equals("")) {
+                        if (!"".equals(labels[2])) {
                             mTvLabel3.setVisibility(View.VISIBLE);
                             mTvLabel3.setText(labels[2]);
                         } else {
@@ -428,257 +430,6 @@ public class HomeFragment extends BaseFragment {
                 Toast.makeText(context, "请求失败", Toast.LENGTH_SHORT).show();
             }
         });
-    }
-
-
-    @Override
-    protected void initData() {
-//        final Map<String, String> stringMap = new HashMap<>();
-//        String strurl = "https://baobaoapi.ldlchat.com/Home/Cabinet/falsemasterlist.html";
-//        OkHttpUtils.getInstance().post(strurl, stringMap, new MyNetWorkCallback<HomeTalentBean>() {
-//            @Override
-//            public void onSuccess(HomeTalentBean homeTalentBean) throws JSONException {
-//
-//                HomeTalentBean.InfoBean info = homeTalentBean.getInfo();
-//
-////                for (int i = 0; i < info.size(); i++) {
-//
-//                String iconurl = info.getUserinfo().getIconurl();
-//                Glide.with(context).load(iconurl)
-//                        //设置圆角图片
-////                .transform(new GlideRoundTransform(MainActivity.this, 10))
-//                        //设置圆形图片
-//                        .transform(new GlideCircleTransform(context))
-//                        .crossFade()
-//                        .into(home_avatar);
-//
-//                String contentImg = info.getBack().getContentimg();
-//                if (!contentImg.equals("")) {
-//                    String[] imgs = contentImg.split(",");
-//                    if (imgs.length >= 1) {
-//                        if (!imgs[0].equals("")) {
-//                            mTalentImg1.setVisibility(View.VISIBLE);
-//                            String img1 = SBUrls.LOGURL + imgs[0];
-//                            Glide.with(context).load(img1).into(mTalentImg1);
-//                        } else {
-//                            mTalentImg1.setVisibility(View.GONE);
-//                        }
-//                        if (!imgs[1].equals("")) {
-//                            mTalentImg2.setVisibility(View.VISIBLE);
-//                            String img2 = SBUrls.LOGURL + imgs[1];
-//                            Glide.with(context).load(img2).into(mTalentImg2);
-//                        } else {
-//                            mTalentImg2.setVisibility(View.GONE);
-//                        }
-//                    }
-//                }
-//
-//                String contentLabel = info.getUserinfo().getLabel();
-//                if (!contentLabel.equals("")) {
-//                    String[] labels = contentLabel.split(",");
-//                    if (labels.length >= 1) {
-//                        if (!labels[0].equals("")) {
-//                            mTvLabel1.setVisibility(View.VISIBLE);
-//                            mTvLabel1.setText(labels[0]);
-//                        } else {
-//                            mTvLabel1.setVisibility(View.GONE);
-//                        }
-//                        if (!labels[1].equals("")) {
-//                            mTvLabel2.setVisibility(View.VISIBLE);
-//                            mTvLabel2.setText(labels[1]);
-//                        } else {
-//                            mTvLabel2.setVisibility(View.GONE);
-//                        }
-//                        if (!labels[2].equals("")) {
-//                            mTvLabel3.setVisibility(View.VISIBLE);
-//                            mTvLabel3.setText(labels[2]);
-//                        } else {
-//                            mTvLabel3.setVisibility(View.GONE);
-//                        }
-//                    }
-//                }
-//                mTvCommentNum.setText(info.getBack().getCollection() + "");
-//                String name = info.getUserinfo().getName();
-//                home_name.setText(name);
-//                String time = info.getTime();
-//                String strTime = DateUtils.getStrTime1(time);
-//                home_time.setText(strTime);
-//                home_dynamic.setText(info.getContent());
-//            }
-////            }
-//
-//            @Override
-//            public void onError(int errorCode, String errorMsg) {
-//
-//            }
-//        });
-//
-//        headerimg = new ArrayList<>();
-//        final Map<String, String> map = new HashMap<>();
-//        OkHttpUtils.getInstance().post(SBUrls.HOMEURL, map, new MyNetWorkCallback<HomeFragmentBean>() {
-//
-//            @Override
-//            public void onSuccess(HomeFragmentBean homeFragmentBean) {
-//                headerimg.addAll(homeFragmentBean.getHeaderimg());
-//                //轮播图赋值
-//                mzBannerView.setPages(headerimg, new MZHolderCreator<BannerViewHolder>() {
-//                    @Override
-//                    public BannerViewHolder createViewHolder() {
-//                        return new BannerViewHolder();
-//                    }
-//                });
-//                List<HomeFragmentBean.ListBean> imgList = homeFragmentBean.getList();
-//                for (int i = 0; i < imgList.size(); i++) {
-//                    String id = imgList.get(i).getId();
-//                    switch (id) {
-//                        case "1":   //品牌专区
-//                            String brandTitle = imgList.get(i).getTitle();
-//                            mTvBrand.setText(brandTitle);
-//                            List<HomeFragmentBean.ListBean.BagthinksBean> brandList = imgList.get(i).getBagthinks();
-//                            for (int i1 = 0; i1 < brandList.size(); i1++) {
-//                                String brandId = brandList.get(i1).getId();
-//                                switch (brandId) {
-//                                    case "1":
-//                                        mBrandBagId1 = brandList.get(i1).getBaglist_id();
-//                                        String brandImg1 = brandList.get(i1).getImg();
-//                                        ImageLoader.LoadLocalImg(homeBrandimg1, context, brandImg1);
-//                                        break;
-//                                    case "2":
-//                                        mBrandBagId2 = brandList.get(i1).getBaglist_id();
-//                                        String brandImg2 = brandList.get(i1).getImg();
-//                                        ImageLoader.LoadLocalImg(homeBrandimg2, context, brandImg2);
-//                                        break;
-//                                    case "3":
-//                                        mBrandBagId3 = brandList.get(i1).getBaglist_id();
-//                                        String brandImg3 = brandList.get(i1).getImg();
-//                                        ImageLoader.LoadLocalImg(homeBrandimg3, context, brandImg3);
-//                                        break;
-//                                }
-//                            }
-//                            break;
-//                        case "2":   //每日精选
-//                            String handPickTitle = imgList.get(i).getTitle();
-//                            mTvHandPick.setText(handPickTitle);
-//                            List<HomeFragmentBean.ListBean.ChildBean> childBeanList = imgList.get(i).get_child();
-//                            for (int childI = 0; childI < childBeanList.size(); childI++) {
-//                                String childId = childBeanList.get(childI).getId();
-//                                switch (childId) {
-//                                    case "4":   //休闲度假
-//                                        String lifeTitle = childBeanList.get(childI).getTitle();
-//                                        Relaxation1.setText(lifeTitle);
-//                                        List<HomeFragmentBean.ListBean.ChildBean.BagthinksBeanX> lifeList = childBeanList.get(childI).getBagthinks();
-//                                        for (int i2 = 0; i2 < lifeList.size(); i2++) {
-//                                            String lifeId = lifeList.get(i2).getId();
-//                                            switch (lifeId) {
-//                                                case "1":
-//                                                    mLifeBagId1 = lifeList.get(i2).getBaglist_id();
-//                                                    String lifeImg1 = lifeList.get(i2).getImg();
-//                                                    ImageLoader.LoadLocalImg(homeLeisureimg2, context, lifeImg1);
-//                                                    break;
-//                                                case "2":
-//                                                    mLifeBagId2 = lifeList.get(i2).getBaglist_id();
-//                                                    String lifeImg2 = lifeList.get(i2).getImg();
-//                                                    ImageLoader.LoadLocalImg(homeLeisureimg3, context, lifeImg2);
-//                                                    break;
-//                                                case "3":   //大图home_leisureimg1
-//                                                    mLifeBagId3 = lifeList.get(i2).getBaglist_id();
-//                                                    String lifeImg3 = lifeList.get(i2).getImg();
-//                                                    ImageLoader.LoadLocalImg(homeLeisureimg1, context, lifeImg3);
-//                                                    break;
-//                                            }
-//                                        }
-//                                        break;
-//                                    case "5":   //宴会轻奢
-//                                        String feastTitle = childBeanList.get(childI).getTitle();
-//                                        mFestname.setText(feastTitle);
-//                                        List<HomeFragmentBean.ListBean.ChildBean.BagthinksBeanX> feastList = childBeanList.get(childI).getBagthinks();
-//                                        for (int i2 = 0; i2 < feastList.size(); i2++) {
-//                                            String feastId = feastList.get(i2).getId();
-//                                            switch (feastId) {
-//                                                case "8":   //横图
-//                                                    mFeastBagId1 = feastList.get(i2).getBaglist_id();
-//                                                    String feastImg1 = feastList.get(i2).getImg();
-//                                                    ImageLoader.LoadLocalImg(home_banquet_img3, context, feastImg1);
-//                                                    break;
-//                                                case "9":   //竖图
-//                                                    mFeastBagId2 = feastList.get(i2).getBaglist_id();
-//                                                    String feastImg2 = feastList.get(i2).getImg();
-//                                                    ImageLoader.LoadLocalImg(home_banquet_img0, context, feastImg2);
-//                                                    break;
-//                                                case "10":
-//                                                    mFeastBagId3 = feastList.get(i2).getBaglist_id();
-//                                                    String feastImg3 = feastList.get(i2).getImg();
-//                                                    ImageLoader.LoadLocalImg(home_banquet_img1, context, feastImg3);
-//                                                    break;
-//                                                case "11":
-//                                                    mFeastBagId4 = feastList.get(i2).getBaglist_id();
-//                                                    String feastImg4 = feastList.get(i2).getImg();
-//                                                    ImageLoader.LoadLocalImg(home_banquet_img2, context, feastImg4);
-//                                                    break;
-//                                            }
-//                                        }
-//                                        break;
-//                                    case "6":   //商务办公
-//                                        String businessTitle = childBeanList.get(childI).getTitle();
-//                                        mBusinessname.setText(businessTitle);
-//                                        List<HomeFragmentBean.ListBean.ChildBean.BagthinksBeanX> businessList = childBeanList.get(childI).getBagthinks();
-//                                        for (int i1 = 0; i1 < businessList.size(); i1++) {
-//                                            String businessId = businessList.get(i1).getId();
-//                                            switch (businessId) {
-//                                                case "4":   //竖图
-//                                                    mBusinessBagId1 = businessList.get(i1).getBaglist_id();
-//                                                    String businessImg1 = businessList.get(i1).getImg();
-//                                                    ImageLoader.LoadLocalImg(home_business_img4, context, businessImg1);
-//                                                    break;
-//                                                case "5":   //横图
-//                                                    mBusinessBagId2 = businessList.get(i1).getBaglist_id();
-//                                                    String businessImg2 = businessList.get(i1).getImg();
-//                                                    ImageLoader.LoadLocalImg(home_business_img3, context, businessImg2);
-//                                                    break;
-//                                                case "6":
-//                                                    mBusinessBagId3 = businessList.get(i1).getBaglist_id();
-//                                                    String businessImg3 = businessList.get(i1).getImg();
-//                                                    ImageLoader.LoadLocalImg(home_business_img1, context, businessImg3);
-//                                                    break;
-//                                                case "7":
-//                                                    mBusinessBagId4 = businessList.get(i1).getBaglist_id();
-//                                                    String businessImg4 = businessList.get(i1).getImg();
-//                                                    ImageLoader.LoadLocalImg(home_business_img2, context, businessImg4);
-//                                                    break;
-//                                            }
-//                                        }
-//                                        break;
-//                                }
-//                            }
-//
-//                            break;
-//                        case "3":   //包包达人
-//                            String expertTitle = imgList.get(i).getTitle();
-//                            mTvExpert.setText(expertTitle);
-////                            List<HomeFragmentBean.ListBean.BagthinksBean> expertList = imgList.get(i).getBagthinks();
-//
-//                            break;
-//                    }
-//                }
-//                //以旧换新
-//                List<HomeFragmentBean.AdOldnewBean> oldNewList = homeFragmentBean.getAd_oldnew();
-//                for (int i = 0; i < oldNewList.size(); i++) {
-//                    String oldNewImg = oldNewList.get(i).getImg();
-//                    ImageLoader.LoadLocalImg(home_trade_in, context, oldNewImg);
-//                }
-//                //邀请好友
-//                List<HomeFragmentBean.AdButtomBean> inviteFriendList = homeFragmentBean.getAd_buttom();
-//                for (int i = 0; i < inviteFriendList.size(); i++) {
-//                    String inviteImg = inviteFriendList.get(i).getImg();
-//                    ImageLoader.LoadLocalImg(homeShare, context, inviteImg);
-//                }
-//            }
-//
-//            @Override
-//            public void onError(int errorCode, String errorMsg) {
-//                Toast.makeText(context, "请求失败", Toast.LENGTH_SHORT).show();
-//            }
-//        });
     }
 
     @Override

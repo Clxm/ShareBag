@@ -119,9 +119,7 @@ public class BuyActivity extends AppCompatActivity implements View.OnClickListen
         api = WXAPIFactory.createWXAPI(this, "wx38f75c7fdb68b2bf");
         initView();
         getUserInfo();
-
     }
-
 
     //获取用户昵称 地址
     private void getUserInfo() {
@@ -294,10 +292,10 @@ public class BuyActivity extends AppCompatActivity implements View.OnClickListen
                 Map<String, String> maymap = new HashMap<String, String>();
 
                 maymap.put("bagid", mBagId);
-                maymap.put("pay_status", "3");
+                maymap.put("pay_status", "2");
                 maymap.put("new_price", mNowPrice);
                 maymap.put("old_price", mOriginalPrice);
-                maymap.put("is_order", "3");
+                maymap.put("is_order", "2");
                 maymap.put("day", "");
                 maymap.put("divide", "1");
 
@@ -312,7 +310,6 @@ public class BuyActivity extends AppCompatActivity implements View.OnClickListen
                                 String prepayid = mayBean1.getInfo().getPrepayid();
                                 String sign = mayBean1.getInfo().getSign();
                                 String timestamp = mayBean1.getInfo().getTimestamp();
-                                Toast.makeText(BuyActivity.this, appid + "" + noncestr, Toast.LENGTH_SHORT).show();
                                 Log.e("", noncestr + "" + packageX + "" + partnerid + "" + prepayid + "" + sign + "" + timestamp);
                                 PayReq pay = new PayReq();
                                 pay.appId = appid;
@@ -323,9 +320,6 @@ public class BuyActivity extends AppCompatActivity implements View.OnClickListen
                                 pay.packageValue = packageX;
                                 pay.sign = sign;
                                 api.sendReq(pay);
-
-//                                req.extData			= "app data"; // optional
-                                Toast.makeText(BuyActivity.this, "正常调起支付", Toast.LENGTH_SHORT).show();
                             }
 
                             @Override
@@ -347,7 +341,7 @@ public class BuyActivity extends AppCompatActivity implements View.OnClickListen
                 maymap.put("pay_status", "3");
                 maymap.put("new_price", mNowPrice);
                 maymap.put("old_price", mOriginalPrice);
-                maymap.put("is_order", "3");
+                maymap.put("is_order", "2");
                 maymap.put("day", "");
                 maymap.put("divide", "1");
 
