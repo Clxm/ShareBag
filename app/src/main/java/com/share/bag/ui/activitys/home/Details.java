@@ -309,6 +309,7 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
                     startActivity(intent);
                 } else {
                     Intent intent = new Intent(Details.this, BuyActivity.class);
+                    intent.putExtra("bagId", mId);
                     intent.putExtra("imgUrl", mImgUrl);
                     intent.putExtra("title", mTitle);
                     intent.putExtra("bagBrand", mBagBrand);

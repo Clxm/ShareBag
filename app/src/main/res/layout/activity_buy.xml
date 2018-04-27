@@ -367,7 +367,7 @@
             android:textSize="14dp"/>
 
         <TextView
-            android:id="@+id/rent_total_amount"
+            android:id="@+id/tv_buy_total_price"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"

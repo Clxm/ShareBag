@@ -172,6 +172,7 @@ public class RentActivity extends AppCompatActivity {
     private String mOriginalPrice;
     private String mNowPrice;
     private String mBagId;
+    private String mImgUrl1;
 
 
     @Override
@@ -221,10 +222,8 @@ public class RentActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 getPay();
-//                Toast.makeText(MyRentActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 
     //获取用户昵称 地址
@@ -293,8 +292,13 @@ public class RentActivity extends AppCompatActivity {
     }
 
     private void setViewData() {
-        String imgUrl = SBUrls.URL_HEAD + mImgUrl;
-        ImageLoader.LoadLocalImg(mIvRentImg, this, imgUrl);
+        //https://baobaoapi.ldlchat.com
+        if (mImgUrl.indexOf("baobaoapi.ldlchat.com") < 0) {
+            mImgUrl1 = SBUrls.LOGURL + mImgUrl;
+        } else if (mImgUrl.indexOf("https://") < 0) {
+            mImgUrl1 = SBUrls.URL_HEAD + mImgUrl;
+        }
+        ImageLoader.LoadLocalImg(mIvRentImg, this, mImgUrl1);
         mTvRentTitle.setText(mTitle);
         mTvRantBrand.setText(mBagBrand);
         mTvRantNum.setText(mNumber);
@@ -314,7 +318,7 @@ public class RentActivity extends AppCompatActivity {
         WindowManager wm = (WindowManager) getApplication()
                 .getSystemService(Context.WINDOW_SERVICE);
 
-        int width = wm.getDefaultDisplay().getWidth();
+        final int width = wm.getDefaultDisplay().getWidth();
         int height = wm.getDefaultDisplay().getHeight();
 
         //设置contentView
@@ -326,7 +330,14 @@ public class RentActivity extends AppCompatActivity {
         LinearLayout pay_balance = (LinearLayout) contentView.findViewById(R.id.pay_balance);
         pay_wx = (LinearLayout) contentView.findViewById(R.id.pay_wx);
         LinearLayout pay_zfb = (LinearLayout) contentView.findViewById(R.id.pay_zfb);
-
+        ImageView ivClose = contentView.findViewById(R.id.iv_close);
+        ivClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (window1 != null)
+                    window1.dismiss();
+            }
+        });
 
         //显示PopupWindow
         View rootview = LayoutInflater.from(this).inflate(R.layout.activity_rent, null);
@@ -347,18 +358,13 @@ public class RentActivity extends AppCompatActivity {
 
                 Map<String, String> maymap = new HashMap<String, String>();
 
-                maymap.put("old_price", "1");//原定总价  （old_price）（租金总额：没有优惠过的总计）
-                maymap.put("new_price", "1");//优惠后的价格  （new_price）（租金总额：有优惠过的总计）
-                maymap.put("pay_status", "2");//支付类型   （pay_status   1-微信   2-钱包   3-支付宝）
-                maymap.put("is_order", "2");//订单类型    （is_order    1-充值   2-买   3-租）
-                maymap.put("deposit_num", "1");//押金总和    （deposit_num）（押金）
-                //订单详情表
-//                maymap.put("baglist_id","1");//包id
-//                maymap.put("old_price","10");//一个包的租金
-//                maymap.put("new_price","0.01");//优惠后价格 （new_price）（租金-红包劵）
-//                maymap.put("discount_price","");//优惠卷价格（discount_price）（）
-//                maymap.put("discount_id","");//优惠卷id
-//                maymap.put("deposit","0.01");//押金（单个的实际应付押金）
+                maymap.put("bagid", mBagId);
+                maymap.put("pay_status", "3");
+                maymap.put("new_price", mNowPrice);
+                maymap.put("old_price", mOriginalPrice);
+                maymap.put("is_order", "3");
+                maymap.put("day", mDays);
+                maymap.put("divide", "1");
 
                 OkHttpUtils.getInstance().post(SBUrls.ZHFPAY, maymap, new MyNetWorkCallback<MayBean1>() {
                             @Override
@@ -382,9 +388,6 @@ public class RentActivity extends AppCompatActivity {
                                 pay.packageValue = packageX;
                                 pay.sign = sign;
                                 api.sendReq(pay);
-
-//                                req.extData			= "app data"; // optional
-                                Toast.makeText(RentActivity.this, "正常调起支付", Toast.LENGTH_SHORT).show();
                             }
 
                             @Override
@@ -401,11 +404,6 @@ public class RentActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Map<String, String> maymap = new HashMap<String, String>();
-//                maymap.put("old_price", "0.01");//原定总价  （old_price）（租金总额：没有优惠过的总计）
-//                maymap.put("new_price", "0.01");//优惠后的价格  （new_price）（租金总额：有优惠过的总计）
-//                maymap.put("pay_status", "3");//支付类型   （pay_status   1-微信   2-钱包   3-支付宝）
-//                maymap.put("is_order", "3");//订单类型    （is_order    1-充值   2-买   3-租）
-//                maymap.put("deposit_num", "0.01");//押金总和    （deposit_num）（押金）
 
                 maymap.put("bagid", mBagId);
                 maymap.put("pay_status", "3");
