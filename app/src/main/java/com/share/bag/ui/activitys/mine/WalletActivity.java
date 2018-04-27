@@ -13,11 +13,15 @@ import com.share.bag.FileUtil;
 import com.share.bag.R;
 import com.share.bag.SBUrls;
 import com.share.bag.ui.activitys.WalletLogActivity;
+import com.share.bag.ui.activitys.WithdrawBean;
 import com.share.bag.ui.activitys.WithdrawCashActivity;
 import com.share.bag.ui.activitys.mine.wallet.MyTradeActivity;
 import com.share.bag.utils.okhttp.OkHttpUtils;
 import com.share.bag.utils.okhttp.callback.MyNetWorkCallback;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.json.JSONException;
 
 import java.util.HashMap;
@@ -41,12 +45,22 @@ public class WalletActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
         setContentView(R.layout.activity_wallet);
         initView();
-
-
         getdata();
 
+    }
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(WithdrawBean bean){
+        getdata();
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 
     private void initView() {

@@ -14,6 +14,7 @@ import com.share.bag.utils.ToastUtils;
 import com.share.bag.utils.okhttp.OkHttpUtils;
 import com.share.bag.utils.okhttp.callback.MyNetWorkCallback;
 
+import org.greenrobot.eventbus.EventBus;
 import org.json.JSONException;
 
 import java.util.HashMap;
@@ -104,10 +105,11 @@ public class WithdrawCashActivity extends BaseActivity implements View.OnClickLi
                 map.put("type", type + "");
 
 
-                OkHttpUtils.getInstance().post("https://baobaoapi.ldlchat.com/Home/wallet/withdraw.html", map, new MyNetWorkCallback<Object>() {
+                OkHttpUtils.getInstance().post("https://baobaoapi.ldlchat.com/Home/wallet/withdraw.html", map, new MyNetWorkCallback<WithdrawBean>() {
                     @Override
-                    public void onSuccess(Object o) throws JSONException {
-                        ToastUtils.showTop(WithdrawCashActivity.this, "申请成功，等待审核");
+                    public void onSuccess(WithdrawBean o) throws JSONException {
+                        ToastUtils.showTop(WithdrawCashActivity.this, o.getInfo());
+                        EventBus.getDefault().post(o);
                         finish();
                     }
 
