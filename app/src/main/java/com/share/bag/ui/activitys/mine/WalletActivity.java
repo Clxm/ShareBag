@@ -152,7 +152,7 @@ public class WalletActivity extends AppCompatActivity implements View.OnClickLis
             public void onSuccess(WalletBean walletBean) throws JSONException {
                 WalletBean.InfoBean info = walletBean.getInfo();
 
-                String balance = info.getBalance();
+                String balance = info.getNumber();
                 String foregift = info.getForegift();
                 wallet_amount.setText(balance);
                 wallet_deposit.setText(foregift);
