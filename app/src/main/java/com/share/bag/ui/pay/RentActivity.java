@@ -279,7 +279,6 @@ public class RentActivity extends AppCompatActivity implements View.OnClickListe
             mBagId = intent.getStringExtra("bagId");
 
         }
-//        imageView3 = (ImageView) findViewById(R.id.imageView3);
         rent = (TextView) findViewById(R.id.buy_rent);
         rent_22 = (TextView) findViewById(R.id.rent_22);
         rent_11 = (TextView) findViewById(R.id.rent_11);
@@ -288,14 +287,6 @@ public class RentActivity extends AppCompatActivity implements View.OnClickListe
         rent_time_less = (TextView) findViewById(R.id.rent_time_less);
         rent_time = (TextView) findViewById(R.id.rent_time);
         rent_time_plus = (TextView) findViewById(R.id.rent_time_plus);
-//        rent_member = (TextView) findViewById(R.id.rent_member);
-//        rent_postage = (TextView) findViewById(R.id.rent_postage);
-//        rent_red_package = (TextView) findViewById(R.id.rent_red_package);
-//        rent_handle_deposit = (TextView) findViewById(R.id.rent_handle_deposit);
-//        rent_paid_deposit = (TextView) findViewById(R.id.rent_paid_deposit);
-//        rent_handle_rent = (TextView) findViewById(R.id.rent_handle_rent);
-//        rent_supplement_rent = (TextView) findViewById(R.id.rent_supplement_rent);
-//        rent_total_amount = (TextView) findViewById(R.id.rent_total_amount);
         rent_submit_order = (LinearLayout) findViewById(R.id.rent_submit_order);
 
         setViewOnClick();
@@ -303,6 +294,7 @@ public class RentActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void setViewOnClick() {
+        mRentReturn.setOnClickListener(this);
         mBtnAddAddress.setOnClickListener(this);
     }
 
@@ -374,7 +366,7 @@ public class RentActivity extends AppCompatActivity implements View.OnClickListe
                 Map<String, String> maymap = new HashMap<String, String>();
 
                 maymap.put("bagid", mBagId);
-                maymap.put("pay_status", "3");
+                maymap.put("pay_status", "2");
                 maymap.put("new_price", mNowPrice);
                 maymap.put("old_price", mOriginalPrice);
                 maymap.put("is_order", "3");
@@ -392,7 +384,6 @@ public class RentActivity extends AppCompatActivity implements View.OnClickListe
                                 String prepayid = mayBean1.getInfo().getPrepayid();
                                 String sign = mayBean1.getInfo().getSign();
                                 String timestamp = mayBean1.getInfo().getTimestamp();
-                                Toast.makeText(RentActivity.this, appid + "" + noncestr, Toast.LENGTH_SHORT).show();
                                 Log.e("", noncestr + "" + packageX + "" + partnerid + "" + prepayid + "" + sign + "" + timestamp);
                                 PayReq pay = new PayReq();
                                 pay.appId = appid;
@@ -484,8 +475,25 @@ public class RentActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn_add_address:
                 Intent intent = new Intent(this, HarvestActivity.class);
-                startActivity(intent);
+                intent.putExtra("add", "add");
+                startActivityForResult(intent, 101);
                 break;
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 101 && resultCode == 102) {
+            rent_address.setVisibility(View.VISIBLE);
+            mBtnAddAddress.setVisibility(View.GONE);
+            String userName = data.getStringExtra("userName");
+            String phone = data.getStringExtra("phone");
+            String address = data.getStringExtra("address");
+            rent.setText(userName);
+            rent_22.setText(phone);
+            rent_11.setText(address);
+        }
+
     }
 }

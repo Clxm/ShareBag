@@ -31,6 +31,7 @@ import java.util.Map;
 public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHolder>{
     private Context context;
     private List<AddBean1> list;
+    private OnItemClickListener mOnItemCickListener = null;
     public AddressAdapter(Context context, List<AddBean1> list) {
         this.context = context;
         this.list = list;
@@ -45,7 +46,14 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mOnItemCickListener != null) {
+                    mOnItemCickListener.onItemClick(view, position);
+                }
+            }
+        });
 
         holder.add_name.setText(list.get(position).getUsername());
         holder.add_dizhi.setText(list.get(position).getAddress());
@@ -126,6 +134,14 @@ checkbox.setChecked(false)未选中。
 
            }
        });
+    }
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.mOnItemCickListener = onItemClickListener;
+    }
+
+
+    public interface OnItemClickListener {
+        void onItemClick(View view, int position);
     }
 
 

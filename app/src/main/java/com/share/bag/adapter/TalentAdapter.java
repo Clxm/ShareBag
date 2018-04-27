@@ -48,9 +48,6 @@ public class TalentAdapter extends RecyclerView.Adapter<TalentAdapter.ViewHolder
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
 
-//        Glide.with(context).load(SBUrls.LOGURL + list.get(position).getImg()).into(holder.recyler_commodity);
-//
-
         String time = list.get(position).getTime();
         String strTime = DateUtils.getStrTime(time);
         holder.talent_time.setText(strTime);//时间
