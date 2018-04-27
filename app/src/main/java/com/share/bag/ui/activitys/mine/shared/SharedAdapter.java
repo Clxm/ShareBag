@@ -21,6 +21,7 @@ public class SharedAdapter extends RecyclerView.Adapter<SharedAdapter.ViewHolder
     private Context context;
     private List<SharedBean.InfoBean> list;
 
+
     public SharedAdapter(Context context, List<SharedBean.InfoBean> list) {
         this.context = context;
         this.list = list;

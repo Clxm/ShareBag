@@ -40,6 +40,7 @@ public class WalletLogActivity extends BaseActivity {
         });
     }
 
+
     @Override
     protected void initData() {
         HashMap<String, String> map = new HashMap<>();

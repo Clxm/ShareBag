@@ -20,6 +20,7 @@ import com.umeng.socialize.media.UMWeb;
 * */
 public class ShareActivity extends AppCompatActivity {
 
+
     private ImageView Share_return;
     private TextView share_invite;
     private LinearLayout share_wxfriends1;

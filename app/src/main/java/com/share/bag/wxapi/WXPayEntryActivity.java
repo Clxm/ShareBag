@@ -42,6 +42,7 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler{
 	public void onReq(BaseReq req) {
 	}
 
+
 	@Override
 	public void onResp(BaseResp resp) {
 		if (resp.getType() == ConstantsAPI.COMMAND_PAY_BY_WX) {

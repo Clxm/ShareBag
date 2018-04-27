@@ -14,6 +14,7 @@ public class WalletLogBean {
      * info : [{"id":"1","user_id":"51","create_time":"2018-03-10 12:16:06","type":"1","content":"租包","num":"10","status":"1"}]
      */
 
+
     private String status;
     private List<InfoBean> info;
 

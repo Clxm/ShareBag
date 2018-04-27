@@ -41,6 +41,7 @@
                     android:layout_height="wrap_content"
                     android:text="正在租" />
 
+
                 <TextView
                     android:id="@+id/shared_adapter_time"
                     android:layout_width="wrap_content"

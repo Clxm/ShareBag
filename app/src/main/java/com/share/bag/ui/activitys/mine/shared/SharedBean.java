@@ -9,6 +9,7 @@ import java.util.List;
 public class SharedBean {
 
 
+
     /**
      * status : 1
      * info : [{"id":"1","title":"lapalette小马女双肩书包","color":"黑色","img":"/Public/headerimg/1111.png","material":"聚酯纤维100%","status":"审核中","bagbrand_id":"adidas","bagsize_id":"M","days_money":"42.00","nowprice":"0.00","create_time":"2018-02-08,15:37:56","type":1},{"id":"3","title":"Kipling凯浦林手提包轻便单肩包","color":" 藏青30周年欢乐猴印花","img":"/Public/headerimg/1111.png","material":"涤纶","status":"审核失败","bagbrand_id":"Kipling","bagsize_id":"M","days_money":"42.00","nowprice":"0.00","create_time":"2018-02-08,15:51:41","type":3},{"id":"64","title":"丝芙伦民族风手拿包女大容量真皮包包","color":null,"img":null,"material":"hj","status":"审核中","bagbrand_id":null,"bagsize_id":"M","days_money":null,"nowprice":"","create_time":"2018-04-26,16:57:41","type":1}]

@@ -49,6 +49,7 @@ public class SharedActivity extends AppCompatActivity {
                     List<SharedBean.InfoBean> info = sharedBean.getInfo();
                     shared_recycler.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL));
 
+
                     SharedAdapter sharedAdapter = new SharedAdapter(SharedActivity.this, info);
                     shared_recycler.setAdapter(sharedAdapter);
                 }

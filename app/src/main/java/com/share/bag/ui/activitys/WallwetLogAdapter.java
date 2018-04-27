@@ -21,6 +21,7 @@ public class WallwetLogAdapter extends RecyclerView.Adapter {
     public Context context;
     public List<WalletLogBean.InfoBean> mlist;
 
+
     public WallwetLogAdapter(Context context, List<WalletLogBean.InfoBean> list) {
         this.context = context;
         mlist = list;
