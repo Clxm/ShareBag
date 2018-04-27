@@ -484,8 +484,25 @@ public class RentActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn_add_address:
                 Intent intent = new Intent(this, HarvestActivity.class);
-                startActivity(intent);
+                intent.putExtra("add", "add");
+                startActivityForResult(intent, 101);
                 break;
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 101 && resultCode == 102) {
+            rent_address.setVisibility(View.VISIBLE);
+            mBtnAddAddress.setVisibility(View.GONE);
+            String userName = data.getStringExtra("userName");
+            String phone = data.getStringExtra("phone");
+            String address = data.getStringExtra("address");
+            rent.setText(userName);
+            rent_22.setText(phone);
+            rent_11.setText(address);
+        }
+
     }
 }

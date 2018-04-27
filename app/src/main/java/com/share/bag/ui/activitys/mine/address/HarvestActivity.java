@@ -52,6 +52,28 @@ public class HarvestActivity extends AppCompatActivity implements View.OnClickLi
         mAdapter = new AddressAdapter(HarvestActivity.this, list);
         harvest_recycler.setAdapter(mAdapter);
         initdata();
+        if (null != getIntent()) {
+            String add = getIntent().getStringExtra("add");
+            if ("add".equals(add)) {
+                adapterItemOnClick();
+            }
+        }
+    }
+
+    private void adapterItemOnClick() {
+        mAdapter.setOnItemClickListener(new AddressAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Intent intent = new Intent();
+                if (null != list && list.size() > 0) {
+                    intent.putExtra("userName", list.get(position).getUsername());
+                    intent.putExtra("phone", list.get(position).getPhone());
+                    intent.putExtra("address", list.get(position).getAddress());
+                    HarvestActivity.this.setResult(102, intent);
+                    finish();
+                }
+            }
+        });
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -109,6 +131,8 @@ public class HarvestActivity extends AppCompatActivity implements View.OnClickLi
                 finish();
             }
         });
+
+
     }
 
 
