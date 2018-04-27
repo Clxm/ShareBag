@@ -96,11 +96,14 @@ public class WithdrawCashActivity extends BaseActivity implements View.OnClickLi
                     return;
                 }
                 map.put("amount", money);
-                if (type == 1)
+                if (type == 1) {
                     if (TextUtils.isEmpty(user)) {
                         ToastUtils.showTop(WithdrawCashActivity.this, "请输入支付宝账号");
                         return;
                     }
+                }else {
+                    user = "1";
+                }
                 map.put("account", user);
                 map.put("type", type + "");
 
