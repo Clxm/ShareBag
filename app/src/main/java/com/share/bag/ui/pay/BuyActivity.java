@@ -75,6 +75,17 @@ public class BuyActivity extends AppCompatActivity implements View.OnClickListen
     Button mBtnAddAddress;
     @BindView(R.id.rl_add_address)
     RelativeLayout mRlAddAddress;
+    @BindView(R.id.iv_buy_change)
+    ImageView mIvBuyChange;
+    @BindView(R.id.tv_old_new_price)
+    TextView mTvOldNewPrice;
+
+    @BindView(R.id.tv_subtract)
+    TextView mTvSubtract;
+    @BindView(R.id.tv_add)
+    TextView mTvAdd;
+    @BindView(R.id.rl_old_new)
+    RelativeLayout mRlOldNew;
     private ImageView imageView3;
     private TextView buy_rent;
     private TextView buy_phone;
@@ -111,6 +122,7 @@ public class BuyActivity extends AppCompatActivity implements View.OnClickListen
     private static final int SDK_PAY_FLAG = 1;
     private static final int SDK_AUTH_FLAG = 2;
     private String mAddress;
+    private String mBalance;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -153,6 +165,7 @@ public class BuyActivity extends AppCompatActivity implements View.OnClickListen
         });
     }
 
+    private String mOldNew = "";
 
     private void initView() {
         if (getIntent() != null) {
@@ -167,8 +180,17 @@ public class BuyActivity extends AppCompatActivity implements View.OnClickListen
             mOriginalPrice = intent.getStringExtra("originalPrice");
             mNowPrice = intent.getStringExtra("nowPrice");
             mBagId = intent.getStringExtra("bagId");
+            mOldNew = intent.getStringExtra("oldNew");
+            mBalance = intent.getStringExtra("balance");
 
 
+        }
+
+        if ("oldNew".equals(mOldNew)) {
+            mRlOldNew.setVisibility(View.VISIBLE);
+            mTvOldNewPrice.setText(mBalance);
+        } else {
+            mRlOldNew.setVisibility(View.GONE);
         }
 
 //        imageView3 = (ImageView) findViewById(R.id.imageView3);
@@ -197,6 +219,9 @@ public class BuyActivity extends AppCompatActivity implements View.OnClickListen
         mBuyReturn.setOnClickListener(this);
         rent_submit_order.setOnClickListener(this);
         mBtnAddAddress.setOnClickListener(this);
+        mIvBuyChange.setOnClickListener(this);
+        mTvSubtract.setOnClickListener(this);
+        mTvAdd.setOnClickListener(this);
     }
 
     private void setViewData() {
@@ -215,11 +240,21 @@ public class BuyActivity extends AppCompatActivity implements View.OnClickListen
         mTvBuySize.setText(mBagSize);
         mTvBuyOriginalPrice.setText(mOriginalPrice);
         mTvBuyNowPrice.setText(mNowPrice);
-        mTvBuyTotalPrice.setText(mNowPrice);
+        if ("".equals(mBalance)) {
+            mTvBuyTotalPrice.setText(mNowPrice);
+        } else {
+            int nowPrice = Integer.parseInt(mNowPrice);
+            int balance = Integer.parseInt(mBalance);
+            mTvBuyTotalPrice.setText((nowPrice - balance) + "");
+        }
     }
 
     @Override
     public void onClick(View view) {
+        String balance = mTvOldNewPrice.getText().toString();
+        int temp = Integer.parseInt(balance);
+//        String totalPrice = mTvBuyTotalPrice.getText().toString();
+        int totalPriceTemp = Integer.parseInt(mNowPrice);
         switch (view.getId()) {
             case R.id.buy_return:
                 finish();
@@ -232,6 +267,45 @@ public class BuyActivity extends AppCompatActivity implements View.OnClickListen
                 intent.putExtra("add", "add");
                 startActivityForResult(intent, 101);
                 break;
+            case R.id.iv_buy_change:
+                Intent intentC = new Intent(this, HarvestActivity.class);
+                intentC.putExtra("add", "add");
+                startActivityForResult(intentC, 101);
+                break;
+            case R.id.tv_subtract:
+                if (temp <= 0) {
+                    ToastUtils.showTop(BuyActivity.this, "最低可优惠0元");
+                    mTvSubtract.clearFocus();
+                    mTvSubtract.setFocusable(false);
+//                    mTvBuyTotalPrice.setText(mNowPrice);
+                } else {
+                    mTvSubtract.setFocusable(true);
+                    mTvSubtract.requestFocus();
+                    temp--;
+                    totalPriceTemp -= temp;
+                    mTvOldNewPrice.setText(temp + "");
+                    mTvBuyTotalPrice.setText(totalPriceTemp + "");
+                }
+                break;
+            case R.id.tv_add:
+                if (temp >= Integer.parseInt(mBalance)) {
+                    ToastUtils.showTop(BuyActivity.this, "最高可优惠" + mBalance + "元");
+                    mTvAdd.clearFocus();
+                    mTvAdd.setFocusable(false);
+
+                    int nowPrice2 = Integer.parseInt(mNowPrice);
+                    int balance2 = Integer.parseInt(mBalance);
+                    mTvBuyTotalPrice.setText((nowPrice2 - balance2) + "");
+                } else {
+                    mTvAdd.setFocusable(true);
+                    mTvAdd.requestFocus();
+                    temp++;
+                    totalPriceTemp -= temp;
+                    mTvOldNewPrice.setText(temp + "");
+                    mTvBuyTotalPrice.setText(totalPriceTemp + "");
+                }
+                break;
+
         }
     }
 

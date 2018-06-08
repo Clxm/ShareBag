@@ -51,7 +51,7 @@ class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHoudler> {
         List<String> labels = list.get(position).getUser().getLabels();
         String s0, s1, s2;
         try {
-            if (labels.get(0) != null) {
+            if (null != labels.get(0)) {
                 s0 = labels.get(0);
                 holder.details_comment_signature1.setVisibility(View.VISIBLE);
                 holder.details_comment_signature1.setText(s0);
@@ -62,7 +62,7 @@ class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHoudler> {
 
         }
         try {
-            if (labels.get(1) != null) {
+            if (null != labels.get(1)) {
                 s1 = labels.get(1);
                 holder.details_comment_signature2.setVisibility(View.VISIBLE);
                 holder.details_comment_signature2.setText(s1);
@@ -73,7 +73,7 @@ class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHoudler> {
 
         }
         try {
-            if (labels.get(2) != null) {
+            if (null != labels.get(2)) {
                 s2 = labels.get(2);
                 holder.details_comment_signature3.setVisibility(View.VISIBLE);
                 holder.details_comment_signature3.setText(s2);

@@ -55,6 +55,7 @@ public class Trade1Adapter extends RecyclerView.Adapter<Trade1Adapter.ViewHolder
 
                 Intent intent_brandid0 = new Intent(context, Details.class);
                 intent_brandid0.putExtra("details", list.get(position).getId()+"");
+                intent_brandid0.putExtra("oldNew", "oldNew");
                 context.startActivity(intent_brandid0);
 
             }

@@ -90,7 +90,6 @@ public class WalletActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.wallet_voucher://卡卷
                 Intent intent4=new Intent(WalletActivity.this, MyTradeActivity.class);
                 startActivity(intent4);
-//                Toast.makeText(this, "卡卷", Toast.LENGTH_SHORT).show();
                 break;
 //            case R.id.wallet_promotion:
 //                //推广佣金

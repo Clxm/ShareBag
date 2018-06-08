@@ -41,8 +41,8 @@ public class MyTradeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trade);
         initView();
-        gettadachange();//以旧换新卡卷
-        getdata();//红包卷
+//        gettadachange();//以旧换新卡卷
+//        getdata();//红包卷
 
 
 

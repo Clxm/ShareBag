@@ -3,7 +3,7 @@ package com.share.bag.ui.activitys.mine;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
@@ -14,7 +14,7 @@ import android.widget.ImageView;
 
 import com.share.bag.R;
 
-public class BusinessActivity extends ActionBarActivity {
+public class BusinessActivity extends AppCompatActivity {
 
     private static final String URL = "http://ywxz.ldlchat.com/fx/Business.html";
 
@@ -87,10 +87,10 @@ public class BusinessActivity extends ActionBarActivity {
             if (webView.canGoBack()) {
                 if (webView.getUrl().equals(URL)) {
                     finish();
-                }else {
+                } else {
                     webView.goBack();
                 }
-            }else {
+            } else {
                 finish();
             }
             return true;

@@ -5,12 +5,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.mcxtzhang.layoutmanager.swipecard.CardConfig;
+import com.mcxtzhang.layoutmanager.swipecard.OverLayCardLayoutManager;
+import com.mcxtzhang.layoutmanager.swipecard.RenRenCallback;
 import com.share.bag.R;
 import com.share.bag.SBUrls;
 import com.share.bag.utils.okhttp.OkHttpUtils;
@@ -47,11 +51,14 @@ public class ReleaseActivity extends AppCompatActivity {
 
     }
 
+
     private void initView() {
         release_return = (ImageView) findViewById(R.id.release_return);
         release_et_input = (EditText) findViewById(R.id.release_et_input);
         release_recycler = (RecyclerView) findViewById(R.id.release_recycler);
         release_recycler.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+
+
     }
 
     private void submit() {

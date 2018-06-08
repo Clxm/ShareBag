@@ -87,6 +87,8 @@ public class RentActivity extends AppCompatActivity implements View.OnClickListe
     Button mBtnAddAddress;
     @BindView(R.id.rl_add_address)
     RelativeLayout mRlAddAddress;
+    @BindView(R.id.iv_change_address)
+    ImageView mIvChangeAddress;
     private IWXAPI api;
     private LinearLayout pay_wx;
     private String content;
@@ -199,14 +201,15 @@ public class RentActivity extends AppCompatActivity implements View.OnClickListe
                     ToastUtils.showTop(RentActivity.this, "最少" + mDays + "天");
                     rent_time_less.clearFocus();
                     rent_time_less.setFocusable(false);
+//                    mTvRentTotalPrice.setText(mNowPrice);
                 } else {
                     rent_time_less.setFocusable(true);
                     rent_time_less.requestFocus();
                     number--;
                     rent_time.setText(number + "");
-//                    double dayMoney = (double) Integer.parseInt(mDayMoney);
-//                    double changePrice = number * dayMoney;
-//                    mTvRentTotalPrice.setText(changePrice + "");
+                    double dayMoney = Double.parseDouble(mDayMoney);
+                    double totals = dayMoney * number;
+                    mTvRentTotalPrice.setText(totals + "");
                 }
             }
         });
@@ -218,9 +221,9 @@ public class RentActivity extends AppCompatActivity implements View.OnClickListe
                 rent_time_less.requestFocus();
                 number++;
                 rent_time.setText(number + "");
-//                double dayMoney = (double) Integer.parseInt(mDayMoney);
-//                double changePrice = number * dayMoney;
-//                mTvRentTotalPrice.setText(changePrice + "");
+                double dayMoney = Double.parseDouble(mDayMoney);
+                double totals = dayMoney * number;
+                mTvRentTotalPrice.setText(totals + "");
             }
         });
 
@@ -298,6 +301,7 @@ public class RentActivity extends AppCompatActivity implements View.OnClickListe
     private void setViewOnClick() {
         mRentReturn.setOnClickListener(this);
         mBtnAddAddress.setOnClickListener(this);
+        mIvChangeAddress.setOnClickListener(this);
     }
 
     private void setViewData() {
@@ -481,6 +485,11 @@ public class RentActivity extends AppCompatActivity implements View.OnClickListe
                 Intent intent = new Intent(this, HarvestActivity.class);
                 intent.putExtra("add", "add");
                 startActivityForResult(intent, 101);
+                break;
+            case R.id.iv_change_address:
+                Intent intentC = new Intent(this, HarvestActivity.class);
+                intentC.putExtra("add", "add");
+                startActivityForResult(intentC, 101);
                 break;
         }
     }

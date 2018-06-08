@@ -10,7 +10,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/x144"
+        android:layout_height="48dp"
         android:id="@+id/relativeLayout2">
 
         <ImageView
@@ -29,7 +29,7 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:text="常见问题"
-            android:textSize="@dimen/x46"
+            android:textSize="15dp"
             android:textColor="@color/navigation_bar_text_color"/>
 
 

@@ -48,9 +48,9 @@
             <RelativeLayout
                 android:id="@+id/buy_address"
                 android:layout_width="match_parent"
-                android:visibility="gone"
                 android:layout_height="70dp"
-                android:background="#FFF">
+                android:background="#FFF"
+                android:visibility="gone">
 
                 <TextView
                     android:id="@+id/buy_rent"
@@ -86,6 +86,14 @@
                     android:text=""
                     android:textColor="#FF838383"
                     android:textSize="12dp"/>
+
+                <ImageView android:id="@+id/iv_buy_change"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:layout_alignParentRight="true"
+                           android:layout_centerVertical="true"
+                           android:layout_marginRight="15dp"
+                           android:src="@mipmap/wode_zhankaiyou3"/>
 
             </RelativeLayout>
             <RelativeLayout android:id="@+id/rl_add_address"
@@ -332,11 +340,11 @@
                     android:layout_marginTop="15dp">
 
                     <TextView
+                        android:id="@+id/textView2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="商品现价"
-                        android:textColor="#FD938E"
-                        android:textSize="13dp"/>
+                        android:textColor="#FD938E" android:textSize="13dp"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -359,6 +367,63 @@
                         android:textSize="13dp"/>
 
                 </LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_old_new"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp">
+
+                    <TextView
+                        android:id="@+id/tv_ole_new"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="选择换新券额度(元)"
+                        android:layout_centerVertical="true"
+                        android:textColor="#FD938E"
+                        android:textSize="13dp"/>
+                    <LinearLayout
+                        android:layout_width="100dp"
+                        android:layout_height="34dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/tv_subtract"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/textview_border"
+                            android:gravity="center"
+                            android:text="—"
+                            android:textColor="#000"
+                            android:textSize="13dp"/>
+
+                        <TextView
+                            android:id="@+id/tv_old_new_price"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/textview_border"
+                            android:gravity="center"
+                            android:text=""
+                            android:textColor="#000"
+                            android:textSize="13dp"/>
+
+                        <TextView
+                            android:id="@+id/tv_add"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/textview_border"
+                            android:gravity="center"
+                            android:text="+"
+                            android:textColor="#000"
+                            android:textSize="13dp"/>
+                    </LinearLayout>
+
+                </RelativeLayout>
 
             </LinearLayout>
 

@@ -10,7 +10,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/x144"
+        android:layout_height="48dp"
         android:background="#FFF">
 
 
@@ -31,7 +31,7 @@
             android:layout_centerVertical="true"
             android:text="卡卷"
             android:textColor="@color/navigation_bar_text_color"
-            android:textSize="@dimen/x46" />
+            android:textSize="16dp" />
 
     </RelativeLayout>
 
@@ -45,19 +45,15 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-
-
-
-
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="330px"
+                android:layout_height="110dp"
                 android:background="@drawable/background1"
-                android:layout_marginLeft="30px"
-                android:layout_marginRight="30px"
-                android:layout_marginTop="22px"
-                android:paddingLeft="62px"
-                android:paddingRight="62px">
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp">
 
 
                 <TextView
@@ -65,10 +61,10 @@
                     android:layout_height="wrap_content"
                     android:text="以旧换新"
                     android:textColor="#333333"
-                    android:textSize="54px"
+                    android:textSize="18dp"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentStart="true"
-                    android:layout_marginTop="97px"
+                    android:layout_marginTop="32dp"
                     android:id="@+id/crade_name" />
 
 
@@ -76,9 +72,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="仅限于以旧换新区包包"
-                    android:textSize="37px"
+                    android:textSize="12dp"
                     android:textColor="#999999"
-                    android:layout_marginTop="46px"
+                    android:layout_marginTop="15dp"
                     android:layout_below="@+id/crade_name"
                     android:layout_alignStart="@+id/crade_name"
                     android:id="@+id/card_Introduce" />
@@ -90,11 +86,11 @@
                     android:layout_height="wrap_content"
                     android:text="余额"
                     android:textColor="#F96662"
-                    android:textSize="37px"
+                    android:textSize="12dp"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="205px"
-                    android:layout_marginTop="30px"
+                    android:layout_marginEnd="68dp"
+                    android:layout_marginTop="10dp"
                     android:id="@+id/textView6" />
 
 
@@ -104,13 +100,13 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/textView6"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginTop="13px"
+                    android:layout_marginTop="4dp"
                     android:id="@+id/linearLayout">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="￥"
-                        android:textSize="51px"
+                        android:textSize="17dp"
                         android:textColor="#F96662"/>
 
                     <TextView
@@ -118,7 +114,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=""
-                        android:textSize="90px"
+                        android:textSize="30dp"
                         android:textStyle="bold"
                         android:textColor="#F96662"/>
                 </LinearLayout>
@@ -128,12 +124,12 @@
 
                 <ImageView
                     android:id="@+id/card_use"
-                    android:layout_width="186px"
-                    android:layout_height="58px"
+                    android:layout_width="62dp"
+                    android:layout_height="20dp"
                     android:src="@drawable/use"
                     android:layout_below="@+id/linearLayout"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginTop="20px"/>
+                    android:layout_marginTop="6dp"/>
 
             </RelativeLayout>
 

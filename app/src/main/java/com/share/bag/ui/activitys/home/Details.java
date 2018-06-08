@@ -1,11 +1,8 @@
 package com.share.bag.ui.activitys.home;
 
-import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -106,6 +103,8 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
     private String mOriginalprice;
     private String mNowprice;
     private String mId;
+    private String mOldNew = "";
+    private String mBalance;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,6 +118,7 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
 
         if (getIntent() != null) {
             Intent intent = getIntent();
+            mOldNew = intent.getStringExtra("oldNew");
             tmp = intent.getStringExtra("details");
         }
         initView();
@@ -260,6 +260,11 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
         details_comment_layout = (LinearLayout) findViewById(R.id.details_comment_layout);
         details_button_collection = (Button) findViewById(R.id.details_button_collection);
         details_button_rent = (Button) findViewById(R.id.details_button_rent);
+        if ("oldNew".equals(mOldNew)) {
+            details_button_rent.setVisibility(View.GONE);
+        } else {
+            details_button_rent.setVisibility(View.VISIBLE);
+        }
         details_button_buy = (Button) findViewById(R.id.details_button_buy);
         details__user = (TextView) findViewById(R.id.details__user);
         details_like_recycler = (RecyclerView) findViewById(R.id.details_like_recycler);
@@ -309,6 +314,11 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
                     startActivity(intent);
                 } else {
                     Intent intent = new Intent(Details.this, BuyActivity.class);
+                    if ("oldNew".equals(mOldNew)) {
+                        intent.putExtra("oldNew", "oldNew");
+                    }else {
+                        intent.putExtra("oldNew", "");
+                    }
                     intent.putExtra("bagId", mId);
                     intent.putExtra("imgUrl", mImgUrl);
                     intent.putExtra("title", mTitle);
@@ -319,6 +329,7 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
                     intent.putExtra("bagSize", mBagSize);
                     intent.putExtra("originalPrice", mOriginalprice);
                     intent.putExtra("nowPrice", mNowprice);
+                    intent.putExtra("balance", mBalance);
 
 
                     startActivity(intent);
@@ -588,6 +599,8 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
                 List<String> contentimg = info.getContentimg();
                 List<String> carousel = info.getCarousel();
                 mBagSize = bagSizeBean.getTitle();
+
+                mBalance = info.getBalance();
 
                 for (int i = 0; i < carousel.size(); i++) {
                     String bannerUrl = SBUrls.URL_HEAD + carousel.get(i);

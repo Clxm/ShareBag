@@ -41,6 +41,7 @@ import com.share.bag.SBUrls;
 import com.share.bag.entity.ReleaseBagBean;
 import com.share.bag.response.QiNiuToken;
 import com.share.bag.ui.activitys.mine.avatar.PhotoUtils;
+import com.share.bag.utils.ImageLoader;
 import com.share.bag.utils.ImageUploadeUtils;
 import com.share.bag.utils.ToastUtils;
 import com.share.bag.utils.okhttp.OkHttpUtils;

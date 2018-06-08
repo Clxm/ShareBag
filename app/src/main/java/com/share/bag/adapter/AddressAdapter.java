@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.share.bag.R;
 import com.share.bag.entity.AddressAdapterBean;
 import com.share.bag.ui.activitys.mine.address.AddBean1;
+import com.share.bag.ui.activitys.mine.address.HarvestActivity;
 import com.share.bag.ui.activitys.mine.address.ModifyActivity;
 import com.share.bag.utils.okhttp.OkHttpUtils;
 import com.share.bag.utils.okhttp.callback.MyNetWorkCallback;
